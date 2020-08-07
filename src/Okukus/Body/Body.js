@@ -6,10 +6,12 @@ import Clothes from "./clothes";
 import Shoes from "./shoes";
 import ButtonBar from "./ButtonBar";
 import Carousel from './Carousel/Carousel'
+import data from '../files/data'
 
 import "./body.css";
 
 const Body = () => {
+  console.log(data)
   const [active, setActive] = useState("allProducts");
 
   const allProducts = active === "allProducts";
