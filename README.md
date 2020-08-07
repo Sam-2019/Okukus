@@ -1,1 +1,1 @@
-[Okukus Preview](okukus.netlify.app)
+[Okukus Preview](https://okukus.netlify.app)
