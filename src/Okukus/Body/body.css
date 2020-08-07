@@ -1,0 +1,134 @@
+.body-background{
+  background-color: whitesmoke;
+}
+
+.item {
+  border: 1px solid #ff0000db;
+}
+
+.spin {
+  margin: 5.7em 0em 0em 0em;
+}
+
+.product {
+  border: 0.8px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  padding: 5px;
+  background-color: #fff;
+  margin: 4px 2px 2px 2px;
+  border-radius: 0.3rem;
+}
+
+.product:hover,
+.product:focus {
+  background-color: #20ad2518;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+.product-name {
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 140px;
+  font-size: 12px;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+div.categories {
+  background-color: #333;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.categories::-webkit-scrollbar {
+  display: none;
+}
+
+.button {
+  margin: 0 0.3em 0 0.3em;
+  padding: 3px 14.5px 3.5px 14.5px;
+  color: #212529;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid #0069d9;
+  font-size: 1rem;
+  color: #fff;
+  border-radius: 2rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.button:focus {
+  outline: 0;
+}
+
+.button-view,
+.button-view:hover,
+.button-view:focus {
+  background-color: #0069d9;
+}
+
+.price {
+  padding: 0 10px 0 10px;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 0.5px solid #00d919;
+  font-size: 12px;
+  color: #272727;
+  border-radius: 2rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+
+@media (min-width: 576px) {
+  .spin {
+    margin-top: 3.9rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .product-name {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 235px;
+    font-size: 16px;
+  }
+
+  .spin {
+    margin-top: 4.1rem !important;
+  }
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+}

@@ -1,0 +1,19 @@
+.search_item {
+
+
+  width: auto;
+
+  vertical-align: middle;
+}
+
+.control {
+  display: inline-block;
+
+  vertical-align: middle;
+}
+
+@media (min-width: 768px) {
+  .searchp {
+    width: auto;
+  }
+}
