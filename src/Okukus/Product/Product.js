@@ -66,10 +66,10 @@ const Product = (props) => {
       </div>
     );
   } else {
-    view = <div>Loading....</div>;
+    view = <div className="text-center">Loading ....</div>;
   }
 
-  return <div>{view}</div>;
+  return <div className="text-center">{view}</div>;
 };
 
 export default Product;
