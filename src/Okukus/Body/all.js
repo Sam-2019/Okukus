@@ -1,11 +1,19 @@
-import React, { useState } from "react";
-import products from "../files/products";
+import React, { useState, useEffect, Component } from "react";
+import axios from "axios";
 import View from "./View";
 
 const All = () => {
-  const [items] = useState(products);
+  const [products, setProducts] = useState([]);
 
-  let content = items.map(
+  useEffect(() => {
+    axios.get(`https://okukus.com/api_call/get_books.php`).then((res) => {
+      const products = res.data;
+      setProducts(products);
+    });
+    console.log(products);
+  });
+
+  let content = products.map(
     ({ unique_id, unit_price, product_name, cover_photo_url }) => (
       <View
         key={unique_id}
