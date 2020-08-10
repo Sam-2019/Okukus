@@ -15,7 +15,6 @@ const Product = (props) => {
         const product = res.data;
         setProduct(product);
       });
-    console.log(product);
   });
 
   let view;
@@ -67,7 +66,7 @@ const Product = (props) => {
       </div>
     );
   } else {
-    view = <div>product unavailable</div>;
+    view = <div>Loading....</div>;
   }
 
   return <div>{view}</div>;
