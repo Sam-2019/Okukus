@@ -10,13 +10,9 @@ const User = () => {
   };
 
   return (
-    <div className="user user-background">
-      <div className="row">
-        <div className="col-12 col-md"></div>
-        <div className="col-12 col-md-8">
-          {state ? <Login handler={handler} /> : <SignUp handler={handler} />}
-        </div>
-        <div className="col-12 col-md"></div>
+    <div className="user-background">
+      <div className="user col-md-9">
+        {state ? <Login handler={handler} /> : <SignUp handler={handler} />}
       </div>
     </div>
   );
@@ -28,8 +24,8 @@ const Login = (props) => {
   return (
     <div className="sign-in-container shadow">
       <form action="#" className="user_form ">
-        <h1>Sign in</h1>
-      <div className="social-container" hidden>
+        <h2>Sign in</h2>
+        <div className="social-container" hidden>
           <a href="#" className="social">
             <i className="fab fa-facebook-f"></i>
           </a>
@@ -37,7 +33,9 @@ const Login = (props) => {
             <i className="fab fa-google-plus-g"></i>
           </a>
         </div>
-        <div className="user_text" hidden>or use your account</div>
+        <div className="user_text" hidden>
+          or use your account
+        </div>
         <input type="email" placeholder="Email" className="user_input" />
         <input type="password" placeholder="Password" className="user_input" />
         <a href="#">Forgot your password?</a>
@@ -65,7 +63,9 @@ const SignUp = (props) => {
             <i className="fab fa-google-plus-g"></i>
           </a>
         </div>
-        <div className="user_text" hidden>or use your email for registration</div>
+        <div className="user_text" hidden>
+          or use your email for registration
+        </div>
         <input type="text" placeholder="First Name" className="user_input" />
         <input type="text" placeholder="Last Name" className="user_input" />
         <input type="email" placeholder="Email" className="user_input" />

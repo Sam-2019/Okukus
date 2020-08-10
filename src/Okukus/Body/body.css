@@ -1,6 +1,8 @@
-.body-background{
+ .body-background{
   background-color: whitesmoke;
 }
+
+
 
 .item {
   border: 1px solid #ff0000db;
@@ -106,6 +108,8 @@ div.categories::-webkit-scrollbar {
 }
 
 @media (min-width: 768px) {
+
+
   .wrapper {
     display: flex;
     flex-wrap: wrap;

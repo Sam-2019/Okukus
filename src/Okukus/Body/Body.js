@@ -1,17 +1,16 @@
-import React, { useState,useEffect, Component } from "react";
+import React, { useState, useEffect, Component } from "react";
 import All from "./all";
 import Bags from "./bags";
 import Books from "./books";
 import Clothes from "./clothes";
 import Shoes from "./shoes";
 import ButtonBar from "./ButtonBar";
-import Carousel from './Carousel/Carousel'
-import data from '../files/data'
+import Carousel from "./Carousel/Carousel";
+import data from "../files/data";
 
 import "./body.css";
 
 const Body = () => {
-  console.log(data)
   const [active, setActive] = useState("allProducts");
 
   const allProducts = active === "allProducts";
@@ -39,28 +38,19 @@ const Body = () => {
     setActive("clothes");
   }
 
-  
   useEffect(() => {
-    fetch(
-      `https://okukus.com/script/major_payn.php`,
-      {
-        method: "GET",
-        headers: new Headers({
-          Accept: "application"
-        })
-      }
-    )
-      .then(res => res.json())
-      .then(response => {
-        console.log(response.items);
+    fetch(`https://okukus.com/script/major_payn.php`)
+      .then((res) => res.json())
+      .then((response) => {
+        console.log(response.data);
       })
-      .catch(error => console.log(error));
-  }, );
+      .catch((error) => console.log(error));
+  });
 
   return (
     <>
       <div className="">
-      <Carousel />
+        <Carousel />
         <div className="text-center p-3 categories" hidden>
           <ButtonBar
             show_all={show_all}

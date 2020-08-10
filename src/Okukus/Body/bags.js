@@ -9,6 +9,7 @@ const Bags = () => {
     ({ unique_id, unit_price, product_name, cover_photo_url }) => (
       <View
         key={unique_id}
+        id={unique_id}
         unit_price={unit_price}
         cover_photo_url={cover_photo_url}
         product_name={product_name}

@@ -1,12 +1,13 @@
 import React from "react";
 import "./footer.css";
+import logo from "./logo.png";
 
 const Footer = () => {
   return (
     <>
       <div className="footer footer_bg text-white text-center">
         <div>
-          <img src="img/okuku-logo.png" alt="Okuku Store" />
+          <img src={logo} alt="Okuku Store" className="logo" />
         </div>
         <div className="row">
           <div className="col-12 col-md-4 px-3 pt-2 ">
@@ -41,7 +42,7 @@ const Footer = () => {
 
           <div className="col-12 col-md  pt-2 ">
             <h5>Follow Us</h5>
-            <a href="#" className=" text-decoration-none  ">
+            <a href="https://www.facebook.com/Okukus-Marketplace-108501647170509/" className=" text-decoration-none  ">
               <span className="">
                 <i className="icon fab fa-facebook-square facebook"></i>
               </span>
@@ -53,7 +54,7 @@ const Footer = () => {
               </span>
             </a>
 
-            <a href="#" className=" text-decoration-none ">
+            <a href="https://twitter.com/okukus_com" className=" text-decoration-none ">
               <span>
                 <i className="icon fab fa-twitter  twitter"></i>
               </span>
@@ -68,7 +69,7 @@ const Footer = () => {
               typography="ButtonAlpha"
               rel="noopener"
               data-ux="Button"
-              href="https://wa.me/233244434000"
+              href="https://wa.me/233245086885"
               target="_blank"
               data-aid="CONTACT_INFO_WHATS_APP_REND"
               data-route="whatsApp"
@@ -80,7 +81,7 @@ const Footer = () => {
               </span>
             </a>
 
-            <a href="tel:+233271707777" className=" text-decoration-none ">
+            <a href="tel:+233245086885" className=" text-decoration-none ">
               <span className=" ">
                 <i className="icon fas fa-phone fa-flip-horizontal phone"></i>
               </span>

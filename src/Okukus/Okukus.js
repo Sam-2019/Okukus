@@ -6,6 +6,8 @@ import Body from "./Body/Body";
 import Footer from "./Footer/Footer";
 import User from "./User/User";
 import Product from './Product/Product'
+import Cart from './Cart/Cart'
+import Profile from './User/Profile'
 
 export default class Okukus extends Component {
   render() {
@@ -15,7 +17,9 @@ export default class Okukus extends Component {
           <Navigation />
           <Route exact path="/" component={Body} />
           <Route path="/login" component={User} />
-          <Route path='/product' component={Product} />
+          <Route path='/product/:id' component={Product} />
+          <Route path='/cart' component={Cart} />
+          <Route path='/profile' component={Profile} />
         </Router>
         <Footer />
       </>

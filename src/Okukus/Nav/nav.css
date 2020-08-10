@@ -11,6 +11,34 @@
   align-items: center;
 }
 
+.name {
+font-size: 1em;
+}
+
+.link {
+  color: #000000;
+}
+
+.link:hover,
+.link:focus {
+  text-decoration: none;
+  color: #002aff;
+}
+
+.bi {
+  color: #000000;
+font-size: 2em;
+}
+
+.bi:hover,
+.bi:active,
+.bi:focus {
+  background-color: #4645468d;
+  border-radius: 2rem 2rem;
+  padding: 0.2em;
+  font-size: 2em;
+}
+
 .search-input {
   font-size: 0.75rem;
   font-weight: 400;
@@ -106,6 +134,10 @@
 }
 
 @media (min-width: 768px) {
+  .name {
+    font-size: 1.3em;
+    }
+
   .search-input {
     font-size: 1rem;
     font-weight: 400;
@@ -157,8 +189,6 @@
     color: white;
   }
 
-
-
   .slideRight {
     z-index: 49;
     height: auto;
@@ -168,14 +198,12 @@
     margin: 0 0 0 -225vh;
     position: fixed;
     overflow: scroll;
-
   }
 
   .slideRight.is-slideRight-open {
     margin-left: 0;
     -webkit-transition: all ease 0.5s;
     transition: all ease 0.5s;
-
   }
 
   .slideRight::-webkit-scrollbar {
