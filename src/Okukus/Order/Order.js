@@ -45,7 +45,7 @@ const Buy = (props) => {
                 name="payment_option"
                 id="cash"
                 value="cash"
-              />
+              />{" "}
               Cash on Delivery
             </label>
           </div>
