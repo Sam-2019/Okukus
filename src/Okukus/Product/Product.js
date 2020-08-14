@@ -9,8 +9,7 @@ const Product = (props) => {
 
   useEffect(() => {
     var formData = new FormData();
-    formData.set("product_unique_id",  id );
-    console.log(id)
+    formData.set("product_unique_id", id);
 
     const fetchData = async () => {
       const result = await axios({
@@ -19,7 +18,6 @@ const Product = (props) => {
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       });
-      console.log(result.data);
       setProduct(result.data);
     };
 

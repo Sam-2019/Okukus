@@ -11,7 +11,6 @@ const Cart = () => {
   };
 
   let cart_list;
-  console.log(products.length);
   if (products === null) {
     cart_list = <Spinner />;
   } else if (products.length > 0) {

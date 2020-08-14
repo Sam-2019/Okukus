@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import "./user.css";
 
 const User = () => {
