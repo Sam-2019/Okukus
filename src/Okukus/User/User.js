@@ -20,6 +20,18 @@ const User = () => {
 export default User;
 
 const Login = (props) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const Submit = () => {
+
+
+    
+    console.log(email, password);
+    setEmail("");
+    setPassword("");
+  };
+
   return (
     <div className="sign-in-container  shadow">
       <form action="#" className="user_form ">
@@ -35,14 +47,29 @@ const Login = (props) => {
         <div className="user_text" hidden>
           or use your account
         </div>
-        <input type="email" placeholder="Email" className="user_input" />
-        <input type="password" placeholder="Password" className="user_input" />
+        <input
+          type="email"
+          placeholder="Email"
+          className="user_input"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          className="user_input"
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+        />
         <a href="#">Forgot your password?</a>
         <div>
           <button className="user_button up mr-3" onClick={props.handler}>
             Sign Up
           </button>
-          <button className="user_button in">Sign In</button>
+          <button className="user_button in" onClick={Submit}>
+            Sign In
+          </button>
         </div>
       </form>
     </div>
