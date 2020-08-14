@@ -42,7 +42,10 @@ const Footer = () => {
 
           <div className="col-12 col-md  pt-2 ">
             <h5>Follow Us</h5>
-            <a href="https://www.facebook.com/Okukus-Marketplace-108501647170509/" className=" text-decoration-none  ">
+            <a
+              href="https://www.facebook.com/Okukus-Marketplace-108501647170509/"
+              className=" text-decoration-none  "
+            >
               <span className="">
                 <i className="icon fab fa-facebook-square facebook"></i>
               </span>
@@ -54,7 +57,10 @@ const Footer = () => {
               </span>
             </a>
 
-            <a href="https://twitter.com/okukus_com" className=" text-decoration-none ">
+            <a
+              href="https://twitter.com/okukus_com"
+              className=" text-decoration-none "
+            >
               <span>
                 <i className="icon fab fa-twitter  twitter"></i>
               </span>
@@ -89,8 +95,10 @@ const Footer = () => {
           </div>
 
           <div className="col-12 p-2  text-center">
-            &#169; Copyright {new Date().getFullYear()}. All rights reserved.
-            Okukus
+            <p>
+              &#169; Copyright {new Date().getFullYear()}. All rights reserved.
+              Okukus
+            </p>
           </div>
         </div>
       </div>

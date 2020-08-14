@@ -1,27 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
-import "./user.css";
-import Okukus from "../Okukus";
+import "./profile.css";
+import book1 from "../files/book1.png";
 
 const User = () => {
-  const [state, setstate] = useState(true);
+  const [active, setActive] = useState("account");
 
-  const handler = () => {
-    setstate(!state);
-  };
+  const account = active === "account";
+  const order = active === "order";
+
+  function okukus_account() {
+    setActive("account");
+  }
+
+  function order_history() {
+    setActive("order");
+  }
 
   return (
-    <div className="user-background">
-      <div className="user col-md-9">
-        <div className="product_page product_bg">
-          <div className="row py-5 ">
-            <div className="col-5 col-md-4  item">
-              <Sidebar />
-            </div>
+    <div className="account  ">
+      <div className="account-container shadow">
+        <h2 className="text-center "> {account ? "Account" : "Order"}</h2>
 
-            <div className="col-7 col-md item">
-              <Main />
-            </div>
+        <div className="row  ">
+          <div className="col-12 col-md-4   ">
+            <Sidebar
+              okukus_account={okukus_account}
+              order_history={order_history}
+            />
+          </div>
+
+          <div className="col-12 col-md-8  ">
+            {account ? <OkukusAccount /> : <OrderHistory />}
           </div>
         </div>
       </div>
@@ -31,56 +41,125 @@ const User = () => {
 
 export default User;
 
-const Sidebar = (props) => {
+const Sidebar = ({ okukus_account, order_history }) => {
   return (
-    <div className=" text-center ">
-      <div>OKUKUS Account</div>
-      <div>Order History</div>
-      <div>Change Password</div>
+    <div className="">
+      <div className="row sidey no-gutters">
+        <div className="col-6 col-md-12 mb-2">
+          <button onClick={okukus_account} className="selector2">
+            Account
+          </button>
+        </div>
+
+        <div className="col-6 col-md-12 ">
+          <button onClick={order_history} className="selector2">
+            Order History
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
 
-const Main = (props) => {
+const OkukusAccount = () => {
   return (
     <>
-      <OkukusAccount />
-      <OrderHistory />
+      <div className=" mt-3 ">
+        <div className="profile-header">
+          <div className=" d-flex justify-content-between ">
+            <div className="bd-highlight">Account Details</div>
+            <div className="bd-highlight  ">
+              <svg
+                width="0.6em"
+                height="0.6em"
+                viewBox="0 0 16 16"
+                className="bi bi-pencil-square"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                <path
+                  fillRule="evenodd"
+                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div className="profile-body">
+          <div className="">Ken Joe</div>
+
+          <div className="px-2 profile-text">kenjoe@gmail.com</div>
+        </div>
+      </div>
+
+      <div className=" mt-3 mb-3">
+        <div className="profile-header">
+          <div className=" d-flex justify-content-between ">
+            <div className="bd-highlight">Address Book</div>
+            <div className="bd-highlight  ">
+              <svg
+                width="0.6em"
+                height="0.6em"
+                viewBox="0 0 16 16"
+                className="bi bi-pencil-square"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                <path
+                  fillRule="evenodd"
+                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div className="profile-body">
+          <div className="">Your default shipping address:</div>
+
+          <div className="px-2 profile-text">
+            <div>ken kay</div>
+            <div>
+              kenjoe@gmail.comkenjoe@gmail.comkenjoe@gmail.comkenjoe@gmail.com
+            </div>
+            <div>Tel: +233 254 23564 </div>
+            <div>Tel: +233 254 23564 </div>
+          </div>
+        </div>
+      </div>
     </>
-  );
-};
-
-const OkukusAccount = (props) => {
-  return (
-    <div className="product_detail ">
-      <div className="product_name ">Acccount Overview</div>
-
-      <div className="product_review item">
-        <span className="">Account Details</span>
-        <div className="">Ken Joe</div>
-        <div className="">kenjoe@gmail.com</div>
-      </div>
-
-      <div className="product_review mt-3 item">
-        <span className="">Address Book</span>
-        <div className="">Ken Joe</div>
-        <div className="">kenjoe@gmail.com</div>
-      </div>
-    </div>
   );
 };
 
 const OrderHistory = (props) => {
   return (
     <>
-      <div className="row ">
-        <div className="col-12 col-md   inline  ">
-          <img src="" className=" cart_image item" alt=" slide" />
-          <div className="cart_detail item ">jgojrpoj</div>
-        </div>
+      <div className="px-3">
+        <div className="  my-3 card">
+          <div className="row no-gutters  ">
+            <div className="col-md-2 col-3 ">
+              <img src={book1} className="order-img" alt="..." />
+            </div>
+            <div className="col-md col ">
+              <div className="order-body">
+                <div className="">Card</div>
 
-        <div className="col-12 col-md-4  ">
-          <div className="cart_detail  item">jrlgn34rnh4</div>
+                <div className=" d-flex justify-content-between ">
+                  <div className="bd-highlight ">
+                    <span className="order-qty">1 x </span>
+                    <span> $40</span>
+                  </div>
+                  <div className="bd-highlight ">
+                    <span> $4000</span>
+                  </div>
+                </div>
+
+                <small className="bg-warning">Delivered</small>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>

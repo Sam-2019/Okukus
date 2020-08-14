@@ -107,14 +107,16 @@ a {
 .sign-in-container,
 .sign-up-container {
   border-radius: 10px;
-
   transition: all 0.6s ease-in-out;
-  padding: 2em 0;
+  padding: 2em 1.5em;
   background-color: #ffffff;
 }
 
 .social-container {
-  margin: 20px 0;
+  border-radius: 10px;
+  transition: all 0.6s ease-in-out;
+  padding: 2em 1.5em;
+  background-color: #ffffff;
 }
 
 .social-container a {
@@ -138,7 +140,6 @@ a {
     padding-left: 15%;
     margin-right: auto;
     margin-left: auto;
-    padding: 2em;
   }
 
   .user_form {
@@ -164,7 +165,7 @@ a {
     border-radius: 10px;
 
     transition: all 0.6s ease-in-out;
-    padding: 5em 0;
+    padding: 3em 3em;
     background-color: #ffffff;
   }
 }

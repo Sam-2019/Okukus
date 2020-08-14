@@ -1,4 +1,13 @@
- .body-background{
+.contain {
+  width: 100%;
+  padding-right: 0;
+  padding-left: 0;
+  margin-right: auto;
+  margin-left: auto;
+
+}
+
+.body-background {
   background-color: whitesmoke;
 }
 
@@ -27,6 +36,8 @@
   background-color: #fff;
   margin: 4px 2px 2px 2px;
   border-radius: 0.3rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+  border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .product:hover,
@@ -35,6 +46,8 @@
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+  border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .product-name {
@@ -112,10 +125,6 @@ div.categories::-webkit-scrollbar {
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-
-
-
-
 @media (min-width: 576px) {
   .spin {
     margin-top: 3.9rem !important;
@@ -123,15 +132,16 @@ div.categories::-webkit-scrollbar {
 }
 
 @media (min-width: 768px) {
-  
-
+  .contain {
+    max-width: 720px;
+  }
 
   .wrapper {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
     display: inline-grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 25% 25% 25% 25%;
   }
 
   .product-name {
@@ -158,7 +168,13 @@ div.categories::-webkit-scrollbar {
 }
 
 @media (min-width: 992px) {
+  .contain {
+    max-width: 960px;
+  }
 }
 
 @media (min-width: 1200px) {
+  .contain {
+    max-width: 1140px;
+  }
 }

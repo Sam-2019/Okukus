@@ -5,6 +5,10 @@ import "bootstrap/dist/css/bootstrap.css";
 
 export default class App extends Component {
   render() {
-    return <Okukus />;
+    return(
+      <div className='body-background'>
+         <Okukus />
+      </div>
+    )
   }
 }

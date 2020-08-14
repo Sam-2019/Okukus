@@ -1,4 +1,10 @@
 import React, { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  NavLink,
+  useRouteMatch,
+} from "react-router-dom";
 import "./hamburger.css";
 import product_tags from "../files/product_tags";
 
@@ -27,7 +33,12 @@ const Tags = () => {
 
   let content = tags.map(({ id, title }) => (
     <div key={id}>
-      <button className="selector text-center text-uppercase">{title}</button>
+      <NavLink
+        to={`/tag/${title}`}
+        className="selector text-center text-uppercase"
+      >
+        {title}
+      </NavLink>
     </div>
   ));
   return <>{content}</>;

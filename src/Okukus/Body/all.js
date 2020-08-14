@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import View from "./View";
 
@@ -6,12 +6,12 @@ const All = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios.get(`https://okukus.com/api_call/get_books.php`).then((res) => {
-      const products = res.data;
-      setProducts(products);
-    });
-    console.log(products);
-  });
+    const fetchData = async () => {
+      const result = await axios("https://okukus.com/api_call/get_books.php");
+      setProducts(result.data);
+    };
+    fetchData();
+  }, []);
 
   let content = products.map(
     ({ unique_id, unit_price, product_name, cover_photo_url }) => (
@@ -25,7 +25,19 @@ const All = () => {
     )
   );
 
-  return <div className="wrapper">{content}</div>;
+  let view;
+
+  if (content.length === 0) {
+    view = <div>Loading.....</div>;
+  } else {
+    view = <> {content}</>;
+  }
+
+  return (
+    <div className="p-1 body-background">
+      <div className="wrapper">{view}</div>
+    </div>
+  );
 };
 
 export default All;

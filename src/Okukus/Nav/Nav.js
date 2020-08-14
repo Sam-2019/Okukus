@@ -12,8 +12,8 @@ const Navigation = () => {
 
   const [dialog, setDialog] = useState(false);
   const [menudialog, setMenudialog] = useState(false);
-  const [auth, setAuth] = useState(false);
-  const [login, setLogin] = useState(true);
+  const [auth, setAuth] = useState(true);
+  const [login, setLogin] = useState(false);
 
   const userDialog = () => {
     setDialog(!dialog);
@@ -99,7 +99,9 @@ const Desktop = (props) => {
 
       <div className="bd-highlight inline in-content">
         {props.auth && (
+          
           <div className="mr-3">
+                      <NavLink to="/profile" className="link">
             <svg
               width="1em"
               height="1em"
@@ -115,6 +117,7 @@ const Desktop = (props) => {
                 d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"
               />
             </svg>
+            </NavLink>
           </div>
         )}
 

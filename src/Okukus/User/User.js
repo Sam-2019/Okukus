@@ -10,8 +10,8 @@ const User = () => {
   };
 
   return (
-    <div className="user-background">
-      <div className="user col-md-9">
+    <div className="">
+      <div className="user ">
         {state ? <Login handler={handler} /> : <SignUp handler={handler} />}
       </div>
     </div>
@@ -22,7 +22,7 @@ export default User;
 
 const Login = (props) => {
   return (
-    <div className="sign-in-container shadow">
+    <div className="sign-in-container  shadow">
       <form action="#" className="user_form ">
         <h2>Sign in</h2>
         <div className="social-container" hidden>
@@ -52,7 +52,7 @@ const Login = (props) => {
 
 const SignUp = (props) => {
   return (
-    <div className="form-container sign-up-container shadow ">
+    <div className="sign-up-container shadow ">
       <form action="#" className="user_form">
         <h2>Create Account</h2>
         <div className="social-container" hidden>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./product.css";
-import book1 from "./book1.png";
 import axios from "axios";
 
 const Product = (props) => {
@@ -9,13 +8,23 @@ const Product = (props) => {
   let id = props.match.params.id;
 
   useEffect(() => {
-    axios
-      .get(`https://okukus.com/api_call/get_book.php?product_unique_id=${id}`)
-      .then((res) => {
-        const product = res.data;
-        setProduct(product);
+    var formData = new FormData();
+    formData.set("product_unique_id",  id );
+    console.log(id)
+
+    const fetchData = async () => {
+      const result = await axios({
+        method: "post",
+        url: "https://okukus.com/api_call/get_book.php",
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
       });
-  });
+      console.log(result.data);
+      setProduct(result.data);
+    };
+
+    fetchData();
+  }, []);
 
   let view;
 

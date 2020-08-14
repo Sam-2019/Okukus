@@ -21,8 +21,8 @@ const Cart = () => {
   }
 
   return (
-    <div className="cart-background  text-center ">
-      <div className="  cart  col-md-9 ">{cart_list}</div>
+    <div className=" text-center  ">
+      <div className="  cart   ">{cart_list}</div>
     </div>
   );
 };
@@ -31,7 +31,7 @@ export default Cart;
 
 const NotEmpty = (props) => {
   return (
-    <div className="cart-container shadow">
+    <div className="cart-container shadow ">
       <h2 className="">Cart</h2>
       <List />
     </div>
@@ -41,17 +41,15 @@ const NotEmpty = (props) => {
 const Empty = (props) => {
   return (
     <div className="cart-container shadow">
-      <div className="">
-        <h2>Cart</h2>
-        <span className="cart_stack  ">
-          <i className="fas fa-shopping-cart  fa-flip-horizontal"></i>
-        </span>
-        <div className="m-2">Your cart is empty!</div>
-        <div className="m-2">
-          Already have an account? Login to see items in your cart.
-        </div>
-        <button className="cart_button m-2">Start Shopping</button>
+      <h2>Cart</h2>
+      <span className="cart_stack  ">
+        <i className="fas fa-shopping-cart  fa-flip-horizontal"></i>
+      </span>
+      <div className="m-2">Your cart is empty!</div>
+      <div className="m-2">
+        Already have an account? Login to see items in your cart.
       </div>
+      <button className="cart_button m-2">Start Shopping</button>
     </div>
   );
 };
@@ -74,47 +72,30 @@ const List = () => {
 
   return (
     <>
-    <div className="container">
-      <div className="d-none d-sm-block">
-        <div className="row card_item">
-          <div className="col-12 col-md  ">
-            <div className="cart_detail ">Item</div>
+      <div className="">
+        <div className="d-none d-sm-block card_header">
+          <div className="row">
+            <div className="col-12 col-md  ">Item</div>
+
+            <div className="col-4 col-md-1  ">Qty</div>
+
+            <div className="col-4 col-md-2 ">Unit Price</div>
+
+            <div className="col-4 col-md-2  ">Sub-Total</div>
+          </div>
+        </div>
+
+        {content}
+
+        <div className="inline  justify-content-end">
+          <div className="col-4 col-md-2">
+            <div className="">Total</div>
           </div>
 
-          <div className="col-4 col-md-1  ">
-            <div className="cart_detail ">Qty</div>
-          </div>
-
-          <div className="col-4 col-md-2 ">
-            <div className="cart_detail ">Unit Price</div>
-          </div>
-
-          <div className="col-4 col-md-2  ">
-            <div className="cart_detail ">Sub-Total</div>
-          </div>
+          <div className="col-4 col-md-2 card_item ">Sub-Total</div>
         </div>
       </div>
-
-      {content}
-
-      <div className="inline  justify-content-end ">
-        <div className="col-4 col-md-2">
-          <div className="cart_detail">Total</div>
-        </div>
-
-        <div className="col-4 col-md-2 card_item ">
-          <div className="cart_detail ">Sub-Total</div>
-        </div>
-      </div>
-    </div>
-
-<div className="cart_detail ">
-
-
-
-</div>
-
-</>
+    </>
   );
 };
 
@@ -125,24 +106,23 @@ const Item = (props) => {
 
   return (
     <>
-      <div className=" my-3 ">
-        <div className="row  card_item ">
-          <div className="col-12 col-md   inline ">
-            <img src="" className=" cart_image" alt=" slide" />
-            <div className="cart_detail ">{props.product_name}</div>
+      <div className="mb-3 card_item ">
+        <div className="row ">
+          <div className="col-12 col-md-1  ">
+            <img
+              src={`https://okukus.com/${props.cover_photo_url}`}
+              className=" cart_image "
+              alt=" slide"
+            />
           </div>
 
-          <div className="col-4 col-md-1  ">
-            <div className="cart_detail ">{props.stock}</div>
-          </div>
+          <div className="col-12 col-md  ">{props.product_name}</div>
 
-          <div className="col-4 col-md-2  ">
-            <div className="cart_detail ">{props.unit_price}</div>
-          </div>
+          <div className="col-4 col-md-1  ">{props.stock}</div>
 
-          <div className="col-4 col-md-2 ">
-            <div className="cart_detail  ">{subtotal}</div>
-          </div>
+          <div className="col-4 col-md-2  ">{props.unit_price}</div>
+
+          <div className="col-4 col-md-2 ">{subtotal}</div>
         </div>
       </div>
     </>

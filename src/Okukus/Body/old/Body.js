@@ -44,7 +44,7 @@ const Body = () => {
           <button className=" button button-view" onClick={show_all}>
             Show all
           </button>
-          <button className=" button button-view " onClick={show_books}>
+          <button className=" button button-view" onClick={show_books}>
             Books
           </button>
           <button className="button button-view" onClick={show_bags}>
