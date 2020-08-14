@@ -12,8 +12,8 @@ const Navigation = () => {
 
   const [dialog, setDialog] = useState(false);
   const [menudialog, setMenudialog] = useState(false);
-  const [auth, setAuth] = useState(true);
-  const [login, setLogin] = useState(false);
+  const [auth, setAuth] = useState(false);
+  const [login, setLogin] = useState(true);
 
   const userDialog = () => {
     setDialog(!dialog);
