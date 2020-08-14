@@ -1,15 +1,13 @@
   state = {
-    question: "",
-    option1: "",
-    option2: "",
-    option3: ""
+    email"",
+    password"",
   };
 
   onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
 
-  submitPoll = () => {
+  submit = () => {
     let empty =
       this.state.question &&
       this.state.option1 &&
@@ -19,13 +17,31 @@
     if (empty === "") {
       alert("Please fill below");
     } else this.createPoll();
+
+  createPoll = () => {
+    let poll = {
+      question: this.state.question,
+      option1: this.state.option1,
+      option2: this.state.option2,
+      option3: this.state.option3
+    };
+
   };
 
  <input
                 onChange={this.onChange}
-                value={this.state.question}
+                value={this.state.email}
                 id="question"
                 type="text"
-                placeholder="My Awesome Poll"
-                className="form-input"
+                placeholder="email"
+                className=""
+              />
+
+ <input
+                onChange={this.onChange}
+                value={this.state.password}
+                id="password"
+                type="password"
+                placeholder="password"
+                className=""
               />

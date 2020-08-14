@@ -10,6 +10,7 @@ const Product = (props) => {
   useEffect(() => {
     var formData = new FormData();
     formData.set("product_unique_id", id);
+    console.log(formData)
 
     const fetchData = async () => {
       const result = await axios({
