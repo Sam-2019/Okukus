@@ -27,20 +27,20 @@ export default Tag;
 
 
 const All2 = ({ tagname }) => {
-  const [product, setProduct] = useState(products || []);
-  console.log(products.product_tag);
+  const [products, setProducts] = useState([]);
 
   if (tagname === products.product_tag) {
     console.log("All correct");
   } else console.log("not-correct");
 
+
   useEffect(() => {
-    axios.get(`https://okukus.com/api_call/get_books.php`).then((res) => {
-      const products = res.data;
-      setProduct(product);
-    });
-    console.log(product);
-  });
+    const fetchData = async () => {
+      const result = await axios("https://okukus.com/api_call/get_books.php");
+      setProducts(result.data);
+    };
+    fetchData();
+  }, []);
 
   let content = products.map(
     ({ unique_id, unit_price, product_name, cover_photo_url }) => (
@@ -54,9 +54,17 @@ const All2 = ({ tagname }) => {
     )
   );
 
+  let view;
+
+  if (content.length === 0) {
+    view = <div>Loading.....</div>;
+  } else {
+    view = <> {content}</>;
+  }
+
   return (
     <div className="p-1 body-background">
-      <div className="wrapper">{content}</div>
+      <div className="wrapper">{view}</div>
     </div>
   );
 };
