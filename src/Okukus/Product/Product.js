@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import "./product.css";
 import axios from "axios";
 
@@ -10,7 +11,6 @@ const Product = (props) => {
   useEffect(() => {
     var formData = new FormData();
     formData.set("product_unique_id", id);
-    console.log(formData)
 
     const fetchData = async () => {
       const result = await axios({
@@ -65,8 +65,10 @@ const Product = (props) => {
 
                 <span className="d-block product_description mt-1 ">
                   {product.product_description}
-                  <button className="d-block buy_btn m-2">Buy Now</button>
                 </span>
+                <NavLink to={/order/ + id} className="product_link">
+                  <button className="d-block buy_btn m-2">Buy Now</button>
+                </NavLink>
               </div>
             </div>
           </div>

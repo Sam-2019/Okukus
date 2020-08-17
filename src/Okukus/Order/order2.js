@@ -31,21 +31,19 @@ const Buy = ({ doneShopping }) => {
   const [location, setLocation] = useState("");
   const [digital_address, setDigitalAddress] = useState("");
   const [phone_number, setPhoneNumber] = useState("");
-  const [payment_method, setPaymentMethod] = useState(null);
+  const [payment_method, setPaymentMethod] = useState("");
   const [momo_name, setMomoName] = useState("");
   const [momo_number, setMomoNumber] = useState("");
   const [momo_transaction_id, setMomoTransactionID] = useState("");
 
-  const cashCheck = () => {
-    setMomo(false);
-    setPaymentMethod("cash");
-    console.log(payment_method);
+  const MomoCheck = () => {
+    setMomo(true);
   };
 
-  const momoCheck = () => {
-    setMomo(true);
-    setPaymentMethod("momo");
-    console.log(payment_method);
+
+
+  const MomoUncheck = () => {
+    setMomo(false);
   };
 
   const clearCheckOut = () => {
@@ -89,15 +87,8 @@ const Buy = ({ doneShopping }) => {
       });
 
     console.log(
-      buyer_unique_id,
-      product_unique_id,
-      location,
-      digital_address,
-      phone_number,
-      payment_method,
-      momo_name,
-      momo_number,
-      momo_transaction_id
+  
+      payment_method
     );
     clearCheckOut();
     doneShopping();
@@ -106,7 +97,9 @@ const Buy = ({ doneShopping }) => {
   const submit = () => {
     let empty = location && digital_address && phone_number && payment_method;
 
-    console.log(payment_method);
+    if (empty === "") {
+      alert("Please fill below");
+    } 
   };
 
   return (
@@ -147,22 +140,15 @@ const Buy = ({ doneShopping }) => {
         </p>
 
         <div className="">
-          <input
-            type="radio"
-            name="payment_option"
-            value={payment_method}
-            checked
-            hidden
-          />
-
           <div>
             <label>
               <input
                 type="radio"
-                id="cash"
                 name="payment_option"
-                value={payment_method}
-                onClick={cashCheck}
+                value="cash"
+                onClick={MomoUncheck}
+                checked={MomoUncheck && payment_method === 'cash'}
+       
               />{" "}
               Cash on Delivery
             </label>
@@ -172,10 +158,10 @@ const Buy = ({ doneShopping }) => {
             <label>
               <input
                 type="radio"
-                id="momo"
                 name="payment_option"
-                value={payment_method}
-                onClick={momoCheck}
+                value={payment_method === 'momo'}
+                onClick={MomoCheck}
+            
               />{" "}
               Mobile Money
             </label>
@@ -209,6 +195,7 @@ const Buy = ({ doneShopping }) => {
               className="user_input"
               onChange={(e) => setMomoName(e.target.value)}
               value={momo_name}
+        
             />
             <input
               type="number"
@@ -216,6 +203,7 @@ const Buy = ({ doneShopping }) => {
               className="user_input"
               onChange={(e) => setMomoNumber(e.target.value)}
               value={momo_number}
+         
             />
             <input
               type="number"
@@ -223,12 +211,13 @@ const Buy = ({ doneShopping }) => {
               className="user_input"
               onChange={(e) => setMomoTransactionID(e.target.value)}
               value={momo_transaction_id}
+       
             />
           </>
         )}
 
         <div>
-          <button className="order_button" onClick={submit}>
+          <button className="order_button" onClick={CheckOut}>
             Check Out
           </button>
         </div>

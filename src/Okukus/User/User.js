@@ -51,7 +51,7 @@ const Login = (props) => {
       });
 
     console.log(email, password);
-    clearLogin()
+    clearLogin();
   };
 
   return (
