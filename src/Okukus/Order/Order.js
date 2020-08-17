@@ -31,7 +31,7 @@ const Buy = ({ doneShopping }) => {
   const [location, setLocation] = useState("");
   const [digital_address, setDigitalAddress] = useState("");
   const [phone_number, setPhoneNumber] = useState("");
-  const [payment_method, setPaymentMethod] = useState(null);
+  const [payment_method, setPaymentMethod] = useState('');
   const [momo_name, setMomoName] = useState("");
   const [momo_number, setMomoNumber] = useState("");
   const [momo_transaction_id, setMomoTransactionID] = useState("");
@@ -151,7 +151,7 @@ const Buy = ({ doneShopping }) => {
             type="radio"
             name="payment_option"
             value={payment_method}
-            checked
+            defaultChecked
             hidden
           />
 
