@@ -3,7 +3,9 @@ import axios from "axios";
 import Confirm from "./Confirm";
 import "./order.css";
 
-const Order = () => {
+const Order = (props) => {
+  let id = props.match.params.id;
+
   const [state, setState] = useState(false);
 
   const doneShopping = () => {
@@ -13,7 +15,7 @@ const Order = () => {
   return (
     <div className="order  ">
       <div className="order-container shadow">
-        {state ? <Confirm /> : <Buy doneShopping={doneShopping} />}
+        {state ? <Confirm /> : <Buy doneShopping={doneShopping} id={id} />}
       </div>
     </div>
   );
@@ -21,17 +23,17 @@ const Order = () => {
 
 export default Order;
 
-const Buy = ({ doneShopping }) => {
+const Buy = ({ doneShopping, id }) => {
   const [momo, setMomo] = useState(false);
 
   const [buyer_unique_id, setBuyerUniqueID] = useState(
     "5f36a061590599.86077024"
   );
-  const [product_unique_id, setProductUniqueID] = useState("");
+  const [product_unique_id, setProductUniqueID] = useState(id);
   const [location, setLocation] = useState("");
   const [digital_address, setDigitalAddress] = useState("");
   const [phone_number, setPhoneNumber] = useState("");
-  const [payment_method, setPaymentMethod] = useState('');
+  const [payment_method, setPaymentMethod] = useState("");
   const [momo_name, setMomoName] = useState("");
   const [momo_number, setMomoNumber] = useState("");
   const [momo_transaction_id, setMomoTransactionID] = useState("");
@@ -39,13 +41,11 @@ const Buy = ({ doneShopping }) => {
   const cashCheck = () => {
     setMomo(false);
     setPaymentMethod("cash");
-    console.log(payment_method);
   };
 
   const momoCheck = () => {
     setMomo(true);
     setPaymentMethod("momo");
-    console.log(payment_method);
   };
 
   const clearCheckOut = () => {
@@ -60,53 +60,96 @@ const Buy = ({ doneShopping }) => {
     setMomoTransactionID("");
   };
 
-  const CheckOut = (event) => {
-    event.preventDefault();
+  const submit = () => {
     var formData = new FormData();
 
-    formData.set("buyer_unique_id", buyer_unique_id);
-    formData.set("product_unique_id", product_unique_id);
-    formData.set("location", location);
-    formData.set("digital_address", digital_address);
-    formData.set("phone_number", phone_number);
-    formData.set("payment_method", payment_method);
-    formData.set("momo_name", momo_name);
-    formData.set("momo_number", momo_number);
-    formData.set("momo_transaction_id", momo_transaction_id);
+    if (payment_method === "cash") {
+      let empty = location && digital_address && phone_number && payment_method;
+      if (empty != "") {
+        formData.set("buyer_unique_id", buyer_unique_id);
+        formData.set("product_unique_id", product_unique_id);
+        formData.set("location", location);
+        formData.set("digital_address", digital_address);
+        formData.set("phone_number", phone_number);
+        formData.set("payment_method", payment_method);
 
-    const uri = "https://okukus.com/api_call/user_register.php";
-    axios({
-      method: "post",
-      url: uri,
-      data: formData,
-      headers: { "Content-Type": "multipart/form-data" },
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+        const uri = "https://okukus.com/api_call/create_order.php";
+        axios({
+          method: "post",
+          url: uri,
+          data: formData,
+          headers: { "Content-Type": "multipart/form-data" },
+        })
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
 
-    console.log(
-      buyer_unique_id,
-      product_unique_id,
-      location,
-      digital_address,
-      phone_number,
-      payment_method,
-      momo_name,
-      momo_number,
-      momo_transaction_id
-    );
-    clearCheckOut();
-    doneShopping();
-  };
+        console.log(
+          buyer_unique_id,
+          product_unique_id,
+          location,
+          digital_address,
+          phone_number,
+          payment_method
+        );
+        clearCheckOut();
+        doneShopping();
+      } else alert("Please fill below");
+    } else if (payment_method === "momo") {
+      let empty =
+        location &&
+        digital_address &&
+        phone_number &&
+        payment_method &&
+        momo_name &&
+        momo_number &&
+        momo_transaction_id;
 
-  const submit = () => {
-    let empty = location && digital_address && phone_number && payment_method;
+      if (empty != "") {
+        formData.set("buyer_unique_id", buyer_unique_id);
+        formData.set("product_unique_id", product_unique_id);
+        formData.set("location", location);
+        formData.set("digital_address", digital_address);
+        formData.set("phone_number", phone_number);
+        formData.set("payment_method", payment_method);
+        formData.set("momo_name", momo_name);
+        formData.set("momo_number", momo_number);
+        formData.set("momo_transaction_id", momo_transaction_id);
 
-    console.log(payment_method);
+        const uri = "https://okukus.com/api_call/create_order.php";
+        axios({
+          method: "post",
+          url: uri,
+          data: formData,
+          headers: { "Content-Type": "multipart/form-data" },
+        })
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+
+        console.log(
+          buyer_unique_id,
+          product_unique_id,
+          location,
+          digital_address,
+          phone_number,
+          payment_method,
+          momo_name,
+          momo_number,
+          momo_transaction_id
+        );
+        clearCheckOut();
+        doneShopping();
+      } else alert("Please fill below");
+    } else {
+      alert("fill all fields");
+    }
   };
 
   return (
