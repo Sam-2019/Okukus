@@ -23,6 +23,7 @@ export default User;
 const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const clearLogin = () => {
     setEmail("");
@@ -45,6 +46,10 @@ const Login = (props) => {
     })
       .then((response) => {
         console.log(response);
+        if (response.data.error === true) {
+          console.log(response.data.message);
+          setError(response.data.message);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -52,6 +57,7 @@ const Login = (props) => {
 
     console.log(email, password);
     clearLogin();
+    setError('')
   };
 
   return (
@@ -69,6 +75,9 @@ const Login = (props) => {
         <div className="user_text" hidden>
           or use your account
         </div>
+
+
+
         <input
           type="email"
           placeholder="Email"
@@ -84,6 +93,9 @@ const Login = (props) => {
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />
+
+<div className="text-danger"> {error ? `${error}` : " " }</div>
+
         <a href="#">Forgot your password?</a>
         <div>
           <button className="user_button up mr-3" onClick={props.handler}>
@@ -104,6 +116,9 @@ const SignUp = (props) => {
   const [email, setEmail] = useState("");
   const [password0, setPassword0] = useState("");
   const [password1, setPassword1] = useState("");
+
+  const [error, setError] = useState("");
+
 
   const clearSignup = () => {
     setFirstName("");
@@ -132,6 +147,10 @@ const SignUp = (props) => {
     })
       .then((response) => {
         console.log(response);
+        if (response.data.error === true) {
+          console.log(response.data.message);
+          setError(response.data.message);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -139,6 +158,8 @@ const SignUp = (props) => {
 
     console.log(firstname, lastname, email, password0, password1);
     clearSignup();
+    setError('')
+
   };
 
   return (
@@ -191,7 +212,7 @@ const SignUp = (props) => {
           onChange={(e) => setPassword1(e.target.value)}
           value={password1}
         />
-        <div className="signin"></div>
+  <div className="text-danger"> {error ? `${error}` : " " }</div>
         <div>
           <button className="user_button up mr-3 " onClick={props.handler}>
             Sign In
