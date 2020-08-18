@@ -2,19 +2,17 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./product.css";
 import axios from "axios";
-import products from "../files/products";
 
 const Tag = (props) => {
-  const [product, setProduct] = useState();
   let id = props.match.params.id;
-  console.log(id);
+
 
   return (
     <div className=" text-center  ">
       <div className="  cart   ">
         <div className="cart-container shadow ">
           <h2 className=""> {id}</h2>
-          <All2 tagname={id} />
+          <All2 book_tag={id} />
         </div>
       </div>
     </div>
@@ -26,45 +24,33 @@ export default Tag;
 
 
 
-const All2 = ({ tagname }) => {
-  const [products, setProducts] = useState([]);
+const All2 = ({ book_tag }) => {
+  const [data, setData] = useState({ hits: [] });
 
-  if (tagname === products.product_tag) {
-    console.log("All correct");
-  } else console.log("not-correct");
-
+  console.log(book_tag)
 
   useEffect(() => {
+    var formData = new FormData();
+    formData.set("book_tag", book_tag);
+
     const fetchData = async () => {
-      const result = await axios("https://okukus.com/api_call/get_books.php");
-      setProducts(result.data);
+      const result = await axios({
+        method: "post",
+        url: "https://okukus.com/api_call/get_book_tag.php",
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      setData(result.data);
+      console.log(data)
     };
     fetchData();
   }, []);
 
-  let content = products.map(
-    ({ unique_id, unit_price, product_name, cover_photo_url }) => (
-      <View
-        key={unique_id}
-        id={unique_id}
-        unit_price={unit_price}
-        cover_photo_url={cover_photo_url}
-        product_name={product_name}
-      />
-    )
-  );
 
-  let view;
-
-  if (content.length === 0) {
-    view = <div>Loading.....</div>;
-  } else {
-    view = <> {content}</>;
-  }
 
   return (
     <div className="p-1 body-background">
-      <div className="wrapper">{view}</div>
+      <div className="wrapper">hi</div>
     </div>
   );
 };

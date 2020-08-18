@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
   NavLink,
   useRouteMatch,
 } from "react-router-dom";
+import axios from "axios";
 import "./hamburger.css";
 import product_tags from "../files/product_tags";
 
@@ -29,10 +30,19 @@ const Hamburger = (props) => {
 export default Hamburger;
 
 const Tags = () => {
-  const [tags] = useState(product_tags);
+  const [tags, setTags] = useState([]);
 
-  let content = tags.map(({ id, title }) => (
-    <div key={id}>
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios("https://okukus.com/api_call/get_book_tags.php");
+      setTags(result.data);
+
+    };
+    fetchData();
+  }, []);
+
+  let content = tags.map(({ title }) => (
+    <div key={title}>
       <NavLink
         to={`/tag/${title}`}
         className="selector text-center text-uppercase"
