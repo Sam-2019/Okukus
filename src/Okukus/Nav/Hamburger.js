@@ -34,15 +34,18 @@ const Tags = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios("https://okukus.com/api_call/get_book_tags.php");
+      const result = await axios(
+        "https://okukus.com/api_call/get_book_tags.php"
+      );
       setTags(result.data);
-
     };
     fetchData();
   }, []);
 
-  let content = tags.map(({ title }) => (
-    <div key={title}>
+  console.log(tags)
+
+  let content = tags.map(({ id, title }) => (
+    <div key={id}>
       <NavLink
         to={`/tag/${title}`}
         className="selector text-center text-uppercase"

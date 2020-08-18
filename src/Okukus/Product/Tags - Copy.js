@@ -4,7 +4,8 @@ import "./product.css";
 import axios from "axios";
 
 const Tag = (props) => {
-  const [product, setProduct] = useState([]);
+  const [tag, setTag] = useState();
+  var file;
   let id = props.match.params.id;
 
   var formData = new FormData();
@@ -19,25 +20,17 @@ const Tag = (props) => {
         url: uri,
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
-      }).then((res) => {
-
-        setProduct(res.data);
+      }).then((response) => {
+        console.log(response);
+        setTag(response.data);
+        file = response.request.response;
+        console.log(file);
       });
     };
     fetchData();
-  }, [product]);
+  }, []);
 
-  let content = product.map(
-    ({ unique_id, unit_price, product_name, cover_photo_url }) => (
-      <View
-        key={unique_id}
-        id={unique_id}
-        unit_price={unit_price}
-        cover_photo_url={cover_photo_url}
-        product_name={product_name}
-      />
-    )
-  );
+
 
   return (
     <div className=" text-center  ">
@@ -45,7 +38,8 @@ const Tag = (props) => {
         <div className="cart-container shadow ">
           <h2 className=""> {id}</h2>
           <div className="p-1 body-background">
-            <div className="wrapper">{content}</div>
+            <button>Load data</button>
+
           </div>
         </div>
       </div>

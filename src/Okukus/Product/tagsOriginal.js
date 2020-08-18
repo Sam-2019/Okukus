@@ -2,32 +2,47 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./product.css";
 import axios from "axios";
+import products from "../files/products";
 
 const Tag = (props) => {
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState();
   let id = props.match.params.id;
+  console.log(id);
 
-  var formData = new FormData();
+  return (
+    <div className=" text-center  ">
+      <div className="  cart   ">
+        <div className="cart-container shadow ">
+          <h2 className=""> {id}</h2>
+          <All2 tagname={id} />
+        </div>
+      </div>
+    </div>
+  );
+};
 
-  formData.set("book_tag", id);
+export default Tag;
+
+
+
+
+const All2 = ({ tagname }) => {
+  const [product, setProduct] = useState(products || []);
+  console.log(products.product_tag);
+
+  if (tagname === products.product_tag) {
+    console.log("All correct");
+  } else console.log("not-correct");
 
   useEffect(() => {
-    const fetchData = async () => {
-      const uri = "https://okukus.com/api_call/get_book_tag.php";
-      axios({
-        method: "post",
-        url: uri,
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-      }).then((res) => {
+    axios.get(`https://okukus.com/api_call/get_books.php`).then((res) => {
+      const products = res.data;
+      setProduct(product);
+    });
+    console.log(product);
+  });
 
-        setProduct(res.data);
-      });
-    };
-    fetchData();
-  }, [product]);
-
-  let content = product.map(
+  let content = products.map(
     ({ unique_id, unit_price, product_name, cover_photo_url }) => (
       <View
         key={unique_id}
@@ -40,20 +55,11 @@ const Tag = (props) => {
   );
 
   return (
-    <div className=" text-center  ">
-      <div className="  cart   ">
-        <div className="cart-container shadow ">
-          <h2 className=""> {id}</h2>
-          <div className="p-1 body-background">
-            <div className="wrapper">{content}</div>
-          </div>
-        </div>
-      </div>
+    <div className="p-1 body-background">
+      <div className="wrapper">{content}</div>
     </div>
   );
 };
-
-export default Tag;
 
 const View = (props) => {
   return (
