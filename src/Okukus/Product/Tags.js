@@ -43,7 +43,7 @@ const Tag = (props) => {
       <div className="  cart   ">
         <div className="cart-container shadow ">
           <h2 className=""> {id}</h2>
-          <div className="p-1 body-background">
+          <div className="p-1">
             <div className="wrapper">{content}</div>
           </div>
         </div>

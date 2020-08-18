@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const View = (props) => {
   return (
-    <div className=" product">
+    <div className=" product shadow">
       <NavLink to={/product/ + props.id } className='product_link'>
         <div className=" text-center">
           <img
