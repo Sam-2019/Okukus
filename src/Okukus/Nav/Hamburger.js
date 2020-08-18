@@ -45,10 +45,10 @@ const Tags = () => {
   console.log(tags)
 
   let content = tags.map(({ id, title }) => (
-    <div key={id}>
+    <div key={id}         className="selector text-center">
       <NavLink
         to={`/tag/${title}`}
-        className="selector text-center text-uppercase"
+        className=" text-uppercase selector-link"
       >
         {title}
       </NavLink>
