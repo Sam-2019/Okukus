@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import axios from "axios";
 import "./user.css";
+
+const TodoContext = createContext(null);
 
 const User = () => {
   const [state, setstate] = useState(true);
@@ -22,6 +24,7 @@ const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [token, isToken] = useState(null);
 
   const clearLogin = () => {
     setEmail("");
@@ -44,6 +47,11 @@ const Login = (props) => {
     })
       .then((response) => {
         console.log(response);
+
+        if (response.data.token) {
+          localStorage.setItem("loginToken", response.data.token);
+        }
+
         if (response.data.error === true) {
           console.log(response.data.message);
           setError(response.data.message);
@@ -54,8 +62,38 @@ const Login = (props) => {
       });
 
     console.log(email, password);
+
     clearLogin();
     setError("");
+  };
+
+  const isLoggedIn = async () => {
+    const loginToken = localStorage.getItem("loginToken");
+    console.log(loginToken);
+
+ 
+
+    if (loginToken) {
+
+
+      var formData = new FormData();
+
+      formData.set("token", token);
+
+      const uri = "https://okukus.com/api_call/user_validate.php";
+      axios({
+        method: "post",
+        url: uri,
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   return (
@@ -90,7 +128,7 @@ const Login = (props) => {
           value={password}
         />
 
-<div className="text-danger mt-3"> {error ? `${error}` : " "}</div>
+        <div className="text-danger mt-3"> {error ? `${error}` : " "}</div>
 
         {/* <a href="#">Forgot your password?</a> */}
         <div>
@@ -101,6 +139,9 @@ const Login = (props) => {
             Sign In
           </button>
         </div>
+        <button className="mt-3" onClick={isLoggedIn}>
+          cool
+        </button>
       </form>
     </div>
   );
