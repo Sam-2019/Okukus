@@ -1,5 +1,4 @@
-import React, { useState, useRef } from "react";
-import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import React, { useState } from "react";
 import "./profile.css";
 import book1 from "../files/book1.png";
 
@@ -7,7 +6,7 @@ const User = () => {
   const [active, setActive] = useState("account");
 
   const account = active === "account";
-  const order = active === "order";
+  // const order = active === "order";
 
   function okukus_account() {
     setActive("account");

@@ -1,35 +1,29 @@
 import React, { useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  NavLink,
-  useRouteMatch,
-} from "react-router-dom";
+import { BrowserRouter as NavLink } from "react-router-dom";
 import axios from "axios";
 import "./hamburger.css";
-import product_tags from "../files/product_tags";
 
-const Hamburger = (props) => {
+const Hamburger = ({ hamburger }) => {
   return (
     <div className="grid-container ">
       <div className="main">
         <div className="text-right ">
-          <div className=" " onClick={props.hamburger}>
+          <div className=" " onClick={hamburger}>
             <i className="fas fa-angle-left back"></i>
           </div>
         </div>
 
-        <Tags />
+        <Tags hamburger={hamburger} />
       </div>
 
-      <div className="backdrop" />
+      <div className="backdrop" onClick={hamburger} />
     </div>
   );
 };
 
 export default Hamburger;
 
-const Tags = () => {
+const Tags = ({ hamburger }) => {
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
@@ -42,13 +36,14 @@ const Tags = () => {
     fetchData();
   }, []);
 
-  console.log(tags)
+  console.log(tags);
 
   let content = tags.map(({ id, title }) => (
-    <div key={id}         className="selector text-center">
+    <div key={id} className="selector text-center">
       <NavLink
         to={`/tag/${title}`}
         className=" text-uppercase selector-link"
+        onClick={hamburger}
       >
         {title}
       </NavLink>

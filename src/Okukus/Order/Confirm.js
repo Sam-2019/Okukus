@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./confirm.css";
 import { NavLink } from "react-router-dom";
 

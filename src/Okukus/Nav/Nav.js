@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
-import DialogBox from "./Dialog_Box";
-import MenuDialog from "./MenuDialog";
+// import DialogBox from "./Dialog_Box";
+// import MenuDialog from "./MenuDialog";
 import Hamburger from "./Hamburger";
 
 import "./nav.css";
@@ -10,18 +10,18 @@ const Navigation = () => {
   //d-none d-sm-block - desktop
   // d-none d-block d-sm-none -mobile
 
-  const [dialog, setDialog] = useState(false);
-  const [menudialog, setMenudialog] = useState(false);
-  const [auth, setAuth] = useState(false);
-  const [login, setLogin] = useState(true);
+  // const [dialog, setDialog] = useState(false);
+  // const [menudialog, setMenudialog] = useState(false);
+  const [auth, setAuth] = useState(true);
+  const [login, setLogin] = useState(false);
 
-  const userDialog = () => {
-    setDialog(!dialog);
-  };
+  // const userDialog = () => {
+  //   setDialog(!dialog);
+  // };
 
-  const menuDialog = () => {
-    setMenudialog(!menudialog);
-  };
+  // const menuDialog = () => {
+  //   setMenudialog(!menudialog);
+  // };
 
   const Authenticated = () => {
     setAuth(true);
@@ -55,9 +55,9 @@ const Navigation = () => {
         />
       </div>
 
-      {dialog && <DialogBox />}
+      {/* {dialog && <DialogBox />}
 
-      {menudialog && <MenuDialog />}
+      {menudialog && <MenuDialog />} */}
 
       <div ref={slide} className="slideRight ">
         <Hamburger hamburger={hamburgerClick} />
@@ -256,6 +256,7 @@ const Mobile = (props) => {
           Search
         </button>
       </div>
+      
     </div>
   );
 };

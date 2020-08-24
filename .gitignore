@@ -2,10 +2,10 @@
 
 # dependencies
 /node_modules
-/src/Old
-/src/roughcut
 /src/Router
+/src/Redux
 /src/Okukus/User/yard.txt
+/src/Okukus/css
 /.pnp
 .pnp.js
 

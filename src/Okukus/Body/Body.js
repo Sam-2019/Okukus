@@ -6,7 +6,7 @@ import "./body.css";
 
 const Body = () => {
   return (
-    <div>
+    <div className=''>
       <Carousel />
       <All />
     </div>

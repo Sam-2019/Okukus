@@ -51,11 +51,11 @@ const Footer = () => {
               </span>
             </a>
 
-            <a href="#" className=" text-decoration-none ">
+            {/* <a href="#" className=" text-decoration-none ">
               <span className=" ">
                 <i className="icon fab fa-instagram instagram"></i>
               </span>
-            </a>
+            </a> */}
 
             <a
               href="https://twitter.com/okukus_com"
@@ -73,7 +73,7 @@ const Footer = () => {
             <a
               tccltracking="click"
               typography="ButtonAlpha"
-              rel="noopener"
+              rel="noopener noreferrer"
               data-ux="Button"
               href="https://wa.me/233245086885"
               target="_blank"

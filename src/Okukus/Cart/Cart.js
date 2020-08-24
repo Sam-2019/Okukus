@@ -4,11 +4,11 @@ import Spinner from "../Spinner/Spinner";
 import "./cart.css";
 
 const Cart = () => {
-  const [state, setstate] = useState(true);
+  // const [state, setstate] = useState(true);
 
-  const handler = () => {
-    setstate(!state);
-  };
+  // const handler = () => {
+  //   setstate(!state);
+  // };
 
   let cart_list;
   if (products === null) {

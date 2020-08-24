@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import "./user.css";
 
@@ -10,10 +10,8 @@ const User = () => {
   };
 
   return (
-    <div className="">
-      <div className="user ">
-        {state ? <Login handler={handler} /> : <SignUp handler={handler} />}
-      </div>
+    <div className="user">
+      {state ? <Login handler={handler} /> : <SignUp handler={handler} />}
     </div>
   );
 };
@@ -57,26 +55,24 @@ const Login = (props) => {
 
     console.log(email, password);
     clearLogin();
-    setError('')
+    setError("");
   };
 
   return (
     <div className="sign-in-container  shadow">
       <form action="#" className="user_form ">
         <h2>Sign in</h2>
-        <div className="social-container" hidden>
+        {/* <div className="social-container" hidden>
           <a href="#" className="social">
             <i className="fab fa-facebook-f"></i>
           </a>
           <a href="#" className="social">
             <i className="fab fa-google-plus-g"></i>
           </a>
-        </div>
+        </div> */}
         <div className="user_text" hidden>
           or use your account
         </div>
-
-
 
         <input
           type="email"
@@ -94,9 +90,9 @@ const Login = (props) => {
           value={password}
         />
 
-<div className="text-danger"> {error ? `${error}` : " " }</div>
+<div className="text-danger mt-3"> {error ? `${error}` : " "}</div>
 
-        <a href="#">Forgot your password?</a>
+        {/* <a href="#">Forgot your password?</a> */}
         <div>
           <button className="user_button up mr-3" onClick={props.handler}>
             Sign Up
@@ -118,7 +114,6 @@ const SignUp = (props) => {
   const [password1, setPassword1] = useState("");
 
   const [error, setError] = useState("");
-
 
   const clearSignup = () => {
     setFirstName("");
@@ -158,22 +153,21 @@ const SignUp = (props) => {
 
     console.log(firstname, lastname, email, password0, password1);
     clearSignup();
-    setError('')
-
+    setError("");
   };
 
   return (
     <div className="sign-up-container shadow ">
       <form action="#" className="user_form">
         <h2>Create Account</h2>
-        <div className="social-container" hidden>
+        {/* <div className="social-container" hidden>
           <a href="#" className="social">
             <i className="fab fa-facebook-f"></i>
           </a>
           <a href="#" className="social">
             <i className="fab fa-google-plus-g"></i>
           </a>
-        </div>
+        </div> */}
         <div className="user_text" hidden>
           or use your email for registration
         </div>
@@ -212,7 +206,7 @@ const SignUp = (props) => {
           onChange={(e) => setPassword1(e.target.value)}
           value={password1}
         />
-  <div className="text-danger"> {error ? `${error}` : " " }</div>
+        <div className="text-danger mt-3"> {error ? `${error}` : " "}</div>
         <div>
           <button className="user_button up mr-3 " onClick={props.handler}>
             Sign In

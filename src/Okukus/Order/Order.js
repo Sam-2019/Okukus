@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Confirm from "./Confirm";
 import "./order.css";
@@ -65,7 +65,7 @@ const Buy = ({ doneShopping, id }) => {
 
     if (payment_method === "cash") {
       let empty = location && digital_address && phone_number && payment_method;
-      if (empty != "") {
+      if (empty !== "") {
         formData.set("buyer_unique_id", buyer_unique_id);
         formData.set("product_unique_id", product_unique_id);
         formData.set("location", location);
@@ -108,7 +108,7 @@ const Buy = ({ doneShopping, id }) => {
         momo_number &&
         momo_transaction_id;
 
-      if (empty != "") {
+      if (empty !== "") {
         formData.set("buyer_unique_id", buyer_unique_id);
         formData.set("product_unique_id", product_unique_id);
         formData.set("location", location);
