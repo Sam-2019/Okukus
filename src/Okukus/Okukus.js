@@ -22,7 +22,7 @@ export default class Okukus extends Component {
             <Route exact path="/" component={Body} />
             <Route path="/login" component={User} />
             <Route path="/product/:id" component={Product} />
-            <Route path="/tag/:id" component={Tag} />
+            <Route path="/tags/:id" component={Tag} />
             <Route path="/cart" component={Cart} />
             <Route path="/profile" component={Profile} />
             <Route path="/order/:id" component={Order} />

@@ -6,6 +6,7 @@ import axios from "axios";
 const Tag = (props) => {
   const [product, setProduct] = useState([]);
   let id = props.match.params.id;
+  console.log(id)
 
   var formData = new FormData();
 

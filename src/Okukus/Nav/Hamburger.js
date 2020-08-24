@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import axios from "axios";
 import "./hamburger.css";
 
@@ -41,7 +41,7 @@ const Tags = ({ hamburger }) => {
   let content = tags.map(({ id, title }) => (
     <div key={id} className="selector text-center">
       <NavLink
-        to={`/tag/${title}`}
+        to={`/tags/${title}`}
         className=" text-uppercase selector-link"
         onClick={hamburger}
       >

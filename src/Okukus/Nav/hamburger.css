@@ -56,11 +56,11 @@
 }
 
 .selector {
-  background-color: transparent;
-  border: 1px solid #00d919;
+  background-color: #00d91913;
+  border: 1px solid #00d91913;
   padding: 2.5px 10px;
   border-radius: 0.5rem;
-  color: transparent;
+  color: #777777;
   margin: 8px 0;
   width: 100%;
   outline: none;
