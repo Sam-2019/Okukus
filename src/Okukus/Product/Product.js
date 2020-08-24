@@ -66,8 +66,11 @@ const Product = (props) => {
                 <span className="d-block product_description mt-1 ">
                   {product.product_description}
                 </span>
-                <NavLink to={/order/ + id} className="product_link">
-                  <button className="d-block buy_btn m-2">Buy Now</button>
+                <NavLink
+                  to={/order/ + id}
+                  className="product_link item buy_btn mt-2"
+                >
+                  Buy Now
                 </NavLink>
               </div>
             </div>

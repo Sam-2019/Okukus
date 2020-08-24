@@ -4,6 +4,7 @@
 /node_modules
 /src/Router
 /src/Redux
+/src/User2
 /src/Okukus/User/yard.txt
 /src/Okukus/css
 /.pnp
