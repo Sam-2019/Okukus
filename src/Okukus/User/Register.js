@@ -22,6 +22,7 @@ function SignUp({handler}){
   };
 
   const SignUp = async (event) => {
+    setError();
     event.preventDefault();
     var formData = new FormData();
 
@@ -33,13 +34,9 @@ function SignUp({handler}){
 
     const data = await registerUser(formData)
         if (data.error === true) {
-            console.log(data.message);
             setError(data.message);
           }
-
-    console.log(firstname, lastname, email, password0, password1);
     clearSignup();
-    setError("");
   };
 
   return (
@@ -92,7 +89,8 @@ function SignUp({handler}){
           onChange={(e) => setPassword1(e.target.value)}
           value={password1}
         />
-        <div className="text-danger mt-3"> {error ? `${error}` : " "}</div>
+            {error ? <div className="mt-3 mb-2 error"> {error}</div> : null}
+            
         <div>
           <button className="user_button up mr-3 " onClick={handler}>
             Sign In

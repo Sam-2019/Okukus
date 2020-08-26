@@ -15,6 +15,7 @@ function Login({ handler }) {
   };
 
   const LogIn = async (event) => {
+    setError();
     event.preventDefault();
     var formData = new FormData();
 
@@ -24,16 +25,13 @@ function Login({ handler }) {
     const data = await loginUser(formData);
     console.log(data);
     if (data.error === true) {
-      console.log(data.message);
       setError(data.message);
     } else {
       localStorage.setItem("loginToken", data.token);
       isLoggedIn();
     }
     clearLogin();
-    setError("");
   };
-
 
   return (
     <div className="sign-in-container  shadow">
@@ -67,10 +65,10 @@ function Login({ handler }) {
           value={password}
         />
 
-        <div className="text-danger mt-3"> {error}</div>
+        {error ? <div className="mt-3 mb-2 error"> {error}</div> : null}
 
         {/* <a href="#">Forgot your password?</a> */}
-        <div>
+        <div className="mt-3">
           <button className="user_button up mr-3" onClick={handler}>
             Sign Up
           </button>
