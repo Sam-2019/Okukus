@@ -90,8 +90,8 @@ function SignUp({handler}){
           value={password1}
         />
             {error ? <div className="mt-3 mb-2 error"> {error}</div> : null}
-            
-        <div>
+
+          <div className="mt-3">
           <button className="user_button up mr-3 " onClick={handler}>
             Sign In
           </button>

@@ -23,7 +23,6 @@ function Login({ handler }) {
     formData.set("password", password);
 
     const data = await loginUser(formData);
-    console.log(data);
     if (data.error === true) {
       setError(data.message);
     } else {
