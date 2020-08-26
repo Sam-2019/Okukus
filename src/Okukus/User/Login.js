@@ -2,8 +2,8 @@ import React, { useContext, useState } from "react";
 import { auth } from "./authContext";
 import "./user.css";
 
-function Login({handler}) {
-  const { toggleNav, loginUser, isLoggedIn, isAuth } = useContext(auth);
+function Login({ handler }) {
+  const { loginUser, isLoggedIn, isAuth } = useContext(auth);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -83,7 +83,6 @@ function Login({handler}) {
             Sign In
           </button>
         </div>
-        <button onClick={checkToken}>cool</button>
       </form>
     </div>
   );

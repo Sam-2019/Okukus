@@ -4,9 +4,11 @@
 /node_modules
 /src/Router
 /src/Redux
-/src/User2
 /src/Okukus/User/yard.txt
 /src/Okukus/css
+/src/Okukus/useAysnc.js
+/src/Okukus/useAysnc2.js
+/src/Okukus/api.js
 /.pnp
 .pnp.js
 
