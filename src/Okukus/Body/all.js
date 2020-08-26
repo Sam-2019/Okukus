@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import View from "./View";
+import { getbooks } from "../apis";
 
 const All = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios("https://okukus.com/api_call/get_books.php");
+      const result = await axios(getbooks);
       setProducts(result.data);
     };
     fetchData();

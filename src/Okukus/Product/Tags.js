@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import View from "../Body/View";
+import { getbooktag } from "../apis";
 import "./product.css";
 import axios from "axios";
 
 const Tag = (props) => {
   const [product, setProduct] = useState([]);
   let id = props.match.params.id;
-  console.log(id)
+  console.log(id);
 
   var formData = new FormData();
 
@@ -14,7 +15,7 @@ const Tag = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const uri = "https://okukus.com/api_call/get_book_tag.php";
+      const uri = getbooktag;
       axios({
         method: "post",
         url: uri,
@@ -25,7 +26,7 @@ const Tag = (props) => {
       });
     };
     fetchData();
-  }, [product]);
+  }, []);
 
   let content = product.map(
     ({ unique_id, unit_price, product_name, cover_photo_url }) => (

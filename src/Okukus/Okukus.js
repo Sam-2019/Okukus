@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Navigation from "./Nav/Nav";
@@ -11,26 +11,26 @@ import Tag from "./Product/Tags";
 import Profile from "./User/Profile";
 import Order from "./Order/Order";
 
-export default class Okukus extends Component {
-  render() {
-    return (
-      <>
-        <Router>
-          <Navigation />
-          <div className="contain">
-            
-            <Route exact path="/" component={Body} />
-            <Route path="/login" component={User} />
-            <Route path="/product/:id" component={Product} />
-            <Route path="/tags/:id" component={Tag} />
-            <Route path="/cart" component={Cart} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/order/:id" component={Order} />
+import AuthProvider from './User/authContext'
 
-          </div>
-          <Footer />
-        </Router>
-      </>
-    );
-  }
-}
+const Okukus = () => {
+  return (
+    <AuthProvider>
+      <Router>
+        <Navigation />
+        <div className="contain">
+          <Route path="/login" component={User} />
+          <Route path="/cart" component={Cart} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/product/:id" component={Product} />
+          <Route path="/tags/:id" component={Tag} />
+          <Route path="/order/:id" component={Order} />
+          <Route exact path="/" component={Body} />
+        </div>
+        <Footer />
+      </Router>
+    </AuthProvider>
+  );
+};
+
+export default Okukus;

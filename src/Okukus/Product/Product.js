@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { getbook } from "../apis";
 import "./product.css";
 import axios from "axios";
 
@@ -15,7 +16,7 @@ const Product = (props) => {
     const fetchData = async () => {
       const result = await axios({
         method: "post",
-        url: "https://okukus.com/api_call/get_book.php",
+        url: getbook,
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       });

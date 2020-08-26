@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import {  NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import axios from "axios";
 import "./hamburger.css";
+import { getbooktags } from "../apis";
 
 const Hamburger = ({ hamburger }) => {
   return (
@@ -28,9 +29,7 @@ const Tags = ({ hamburger }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios(
-        "https://okukus.com/api_call/get_book_tags.php"
-      );
+      const result = await axios(getbooktags);
       setTags(result.data);
     };
     fetchData();

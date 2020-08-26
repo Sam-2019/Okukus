@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Confirm from "./Confirm";
+import {orderbook} from '../apis'
 import "./order.css";
 
 const Order = (props) => {
@@ -73,7 +74,7 @@ const Buy = ({ doneShopping, id }) => {
         formData.set("phone_number", phone_number);
         formData.set("payment_method", payment_method);
 
-        const uri = "https://okukus.com/api_call/create_order.php";
+        const uri = orderbook;
         axios({
           method: "post",
           url: uri,
