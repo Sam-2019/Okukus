@@ -7,3 +7,5 @@ export const userLogin = "https://okukus.com/api_call/user_login.php";
 export const userRegister = "https://okukus.com/api_call/user_register.php";
 export const orderbook = "https://okukus.com/api_call/create_order.php";
 export const userValidate = "https://okukus.com/api_call/user_validate.php";
+
+export const userOrder = "https://okukus.com/api_call/get_order_history.php";

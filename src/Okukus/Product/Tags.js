@@ -15,10 +15,9 @@ const Tag = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const uri = getbooktag;
       axios({
         method: "post",
-        url: uri,
+        url: getbooktag,
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       }).then((res) => {

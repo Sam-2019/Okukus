@@ -1,7 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import axios from "axios";
 import "./profile.css";
 import { auth } from "./authContext";
+import { userOrder } from "../apis";
 import book1 from "../files/book1.png";
+import products from "../files/products";
 
 const User = () => {
   const [active, setActive] = useState("account");
@@ -60,21 +63,14 @@ const Sidebar = ({ okukus_account, order_history }) => {
             Order History
           </button>
         </div>
-
-        <div className="col-6 col-md-12 ">
-          <button onClick={clear} className="">
-            Clear
-          </button>
-        </div>
       </div>
     </div>
   );
 };
 
 const OkukusAccount = () => {
-
-  const {rootState} = useContext(auth);
-  const { firstName, lastName,email} = rootState;
+  const { rootState } = useContext(auth);
+  const { firstName, lastName, email } = rootState;
 
   return (
     <>
@@ -110,7 +106,7 @@ const OkukusAccount = () => {
         </div>
       </div>
 
-      <div className=" mt-3 mb-3">
+      <div className=" mt-3 mb-3" hidden>
         <div className="profile-header">
           <div className=" d-flex justify-content-between ">
             <div className="bd-highlight">Address Book</div>
@@ -149,35 +145,91 @@ const OkukusAccount = () => {
   );
 };
 
-const OrderHistory = (props) => {
+const OrderHistory = () => {
+  const [order, setOrder] = useState([]);
+  const { rootState } = useContext(auth);
+  const { uniqueID } = rootState;
+
+  var formData = new FormData();
+  formData.set("buyer_unique_id", uniqueID);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios({
+        method: "post",
+        url: userOrder,
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+      }).then((res) => setOrder(res.data));
+    };
+    fetchData();
+  }, []);
+
+  let content = order.map(
+    ({
+      id,
+      unique_id,
+      order_number,
+      product_unique_id,
+      product_author,
+      status,
+      datetime_ordered,
+      unit_price,
+      product_name,
+      cover_photo_url,
+    }) => (
+      <View
+        key={id}
+        id={unique_id}
+        unit_price={unit_price}
+        cover_photo_url={cover_photo_url}
+        product_name={product_name}
+        status={status}
+      />
+    )
+  );
+
   return (
     <>
-      <div className="px-3">
-        <div className="  my-3 card">
-          <div className="row no-gutters  ">
-            <div className="col-md-2 col-3 ">
-              <img src={book1} className="order-img" alt="..." />
+      <div className="px-3">{content}</div>
+    </>
+  );
+};
+
+const View = ({ product_name, cover_photo_url, unit_price, status }) => {
+  return (
+    <div className="  my-3 card">
+      <div className="row no-gutters  ">
+        <div className="col-md-2 col-3 ">
+          <img
+            src={`https://okukus.com/${cover_photo_url}`}
+            className="order-img"
+            alt="..."
+          />
+        </div>
+        <div className="col-md col ">
+          <div className="order-body">
+            <div className="">{product_name}</div>
+
+            <div className=" d-flex justify-content-between ">
+              <div className="bd-highlight " hidden>
+                <span className="order-qty">1 x </span>
+                <span> $40</span>
+              </div>
+
+              <div className="bd-highlight ">
+                <span>${unit_price}</span>
+              </div>
             </div>
-            <div className="col-md col ">
-              <div className="order-body">
-                <div className="">Card</div>
 
-                <div className=" d-flex justify-content-between ">
-                  <div className="bd-highlight ">
-                    <span className="order-qty">1 x </span>
-                    <span> $40</span>
-                  </div>
-                  <div className="bd-highlight ">
-                    <span> $4000</span>
-                  </div>
-                </div>
-
-                <small className="bg-warning">Delivered</small>
+            <div className="  text-right ">
+              <div className="bd-highlight ">
+                <small className="bg-warning">{status}</small>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };

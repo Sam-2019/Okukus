@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, {  useContext } from "react";
 import { auth } from "../User/authContext";
 import "./confirm.css";
 import { NavLink } from "react-router-dom";
@@ -11,7 +11,7 @@ const Confirm = () => {
       <div className="confirm_form">
         <NavLink to="/">
           <img
-            class="logo"
+            className="logo"
             src="img/okuku-logo.png"
             alt="Okukus"
             title="Okukus"

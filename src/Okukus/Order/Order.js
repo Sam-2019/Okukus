@@ -31,6 +31,8 @@ const Buy = ({ doneShopping, id }) => {
 
   const [momo, setMomo] = useState(false);
 
+  const [message, setMessage] = useState();
+
   const [buyer_unique_id, setBuyerUniqueID] = useState(uniqueID);
   const [product_unique_id, setProductUniqueID] = useState(id);
   const [location, setLocation] = useState("");
@@ -76,10 +78,9 @@ const Buy = ({ doneShopping, id }) => {
         formData.set("phone_number", phone_number);
         formData.set("payment_method", payment_method);
 
-        const uri = orderbook;
         axios({
           method: "post",
-          url: uri,
+          url: orderbook,
           data: formData,
           headers: { "Content-Type": "multipart/form-data" },
         })
