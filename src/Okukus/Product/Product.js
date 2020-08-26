@@ -24,7 +24,7 @@ const Product = (props) => {
     };
 
     fetchData();
-  }, []);
+  }, [id]);
 
   let view;
 

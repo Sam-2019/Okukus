@@ -3,7 +3,7 @@ import { auth } from "./authContext";
 import "./user.css";
 
 function Login({ handler }) {
-  const { loginUser, isLoggedIn, isAuth } = useContext(auth);
+  const { loginUser, isLoggedIn } = useContext(auth);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,16 +29,11 @@ function Login({ handler }) {
     } else {
       localStorage.setItem("loginToken", data.token);
       isLoggedIn();
-      console.log(data);
-      console.log(isAuth);
     }
     clearLogin();
     setError("");
   };
 
-  const checkToken = async () => {
-    console.log(localStorage);
-  };
 
   return (
     <div className="sign-in-container  shadow">

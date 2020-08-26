@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
+import { auth } from "../User/authContext";
 import Confirm from "./Confirm";
-import {orderbook} from '../apis'
+import { orderbook } from "../apis";
 import "./order.css";
 
 const Order = (props) => {
@@ -25,11 +26,12 @@ const Order = (props) => {
 export default Order;
 
 const Buy = ({ doneShopping, id }) => {
+  const { rootState } = useContext(auth);
+  const { uniqueID } = rootState;
+
   const [momo, setMomo] = useState(false);
 
-  const [buyer_unique_id, setBuyerUniqueID] = useState(
-    "5f36a061590599.86077024"
-  );
+  const [buyer_unique_id, setBuyerUniqueID] = useState(uniqueID);
   const [product_unique_id, setProductUniqueID] = useState(id);
   const [location, setLocation] = useState("");
   const [digital_address, setDigitalAddress] = useState("");

@@ -1,13 +1,4 @@
-import React, { useState, useRef, useContext } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-  useHistory,
-  useLocation,
-} from "react-router-dom";
+import React, { useRef, useContext } from "react";
 import { auth } from "../User/authContext";
 // import DialogBox from "./Dialog_Box";
 // import MenuDialog from "./MenuDialog";
@@ -15,8 +6,6 @@ import Hamburger from "./Hamburger";
 
 import "./nav.css";
 import { NavLink } from "react-router-dom";
-
-
 
 const Navigation = () => {
   //d-none d-sm-block - desktop
@@ -134,7 +123,7 @@ const { isAuth } = rootState;
           </div>
         )}
 
-        <div className="mr-2">
+        <div className="mr-2" hidden>
           <NavLink to="/cart" className="link">
             <svg
               width="1em"
@@ -204,6 +193,7 @@ const Mobile = ({ hamburger }) => {
           {isAuth ? (
             <>
               <div className="mr-1 p-2">
+              <NavLink to="/profile" className="link">       
                 <svg
                   width="1em"
                   height="1em"
@@ -222,6 +212,7 @@ const Mobile = ({ hamburger }) => {
                     d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"
                   />
                 </svg>
+                </NavLink>
               </div>
 
               <div className="mr-3">
@@ -238,7 +229,7 @@ const Mobile = ({ hamburger }) => {
             </div>
           )}
 
-          <div className="p-2 ">
+          <div className="p-2 " hidden>
             <NavLink to="/cart" className="link">
               <svg
                 width="1em"

@@ -35,8 +35,6 @@ const Tags = ({ hamburger }) => {
     fetchData();
   }, []);
 
-  console.log(tags);
-
   let content = tags.map(({ id, title }) => (
     <div key={id} className="selector text-center">
       <NavLink

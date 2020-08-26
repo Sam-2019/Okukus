@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./profile.css";
+import { auth } from "./authContext";
 import book1 from "../files/book1.png";
 
 const User = () => {
@@ -41,6 +42,10 @@ const User = () => {
 export default User;
 
 const Sidebar = ({ okukus_account, order_history }) => {
+  const clear = () => {
+    localStorage.clear();
+    console.log(window.localStorage);
+  };
   return (
     <div className="">
       <div className="row sidey no-gutters">
@@ -55,12 +60,22 @@ const Sidebar = ({ okukus_account, order_history }) => {
             Order History
           </button>
         </div>
+
+        <div className="col-6 col-md-12 ">
+          <button onClick={clear} className="">
+            Clear
+          </button>
+        </div>
       </div>
     </div>
   );
 };
 
 const OkukusAccount = () => {
+
+  const {rootState} = useContext(auth);
+  const { firstName, lastName,email} = rootState;
+
   return (
     <>
       <div className=" mt-3 ">
@@ -87,9 +102,11 @@ const OkukusAccount = () => {
         </div>
 
         <div className="profile-body">
-          <div className="">Ken Joe</div>
+          <div className="">
+            {firstName} {lastName}
+          </div>
 
-          <div className="px-2 profile-text">kenjoe@gmail.com</div>
+          <div className="px-2 profile-text">{email}</div>
         </div>
       </div>
 
