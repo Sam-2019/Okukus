@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import View from "../Body/View";
+import { searchBook } from "../apis";
 import "./search.css";
 
 const Search = (props) => {
@@ -16,33 +17,26 @@ const Search = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      axios({
+      const result = await axios({
         method: "post",
-        url: "https://okukus.com/api_call/search.php",
+        url: searchBook,
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
-      })
-        .then((response) => {
-          console.log(response);
-          if (response.data.error === true) {
-            setError(response.data.error);
-            setMessage(response.data.message);
-            setResults([]);
-            console.log(message);
-          } else if (response.data.error === false) {
-            setMessage();
-            setError();
-            setResults(response.data.results);
-            console.log(results);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      });
+
+      if (result.data.error === true) {
+        setError(result.data.error);
+        setMessage(result.data.message);
+        setResults([]);
+      } else if (result.data.error === false) {
+        setMessage();
+        setError();
+        setResults(result.data.results);
+      }
     };
 
     fetchData();
-  });
+  }, [id]);
 
   let content = results.map(
     ({ unique_id, unit_price, product_name, cover_photo_url }) => (
@@ -55,10 +49,9 @@ const Search = (props) => {
       />
     )
   );
-
   let view;
 
-  if (content.length === 0) {
+  if (!content) {
     view = <div>Loading.....</div>;
   } else {
     view = <> {content}</>;
