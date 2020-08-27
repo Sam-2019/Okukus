@@ -1,14 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import View from "../Body/View";
-import { auth } from "../User/authContext";
-import { orderbook } from "../apis";
 import "./search.css";
 
 const Search = (props) => {
   let id = props.match.params.id;
 
   const [results, setResults] = useState([]);
+  const [message, setMessage] = useState();
 
   var formData = new FormData();
 
@@ -24,7 +23,16 @@ const Search = (props) => {
       })
         .then((response) => {
           console.log(response);
-          setResults(response.data);
+          if (response.data.error === true) {
+            setMessage(response.data.message);
+            console.log(message);
+          } else if (
+            response.data.error === false &&
+            response.data.message === "results found"
+          ) {
+            setResults(response.data.results);
+            console.log(results);
+          }
         })
         .catch((error) => {
           console.log(error);
@@ -32,7 +40,7 @@ const Search = (props) => {
     };
 
     fetchData();
-  });
+  }, []);
 
   let content = results.map(
     ({ unique_id, unit_price, product_name, cover_photo_url }) => (
@@ -45,8 +53,6 @@ const Search = (props) => {
       />
     )
   );
-
-  console.log(content);
 
   let view;
 
@@ -61,11 +67,11 @@ const Search = (props) => {
       <div className="order  ">
         <div className="order-container shadow">
           <div>{id}</div>
-          <div className="wrapper">{view}</div>
+          {message ? <div>{message}</div> : null}
+
+          {message === "true" ? null : <div className="wrapper">{content}</div>}
         </div>
       </div>
-
-
     </div>
   );
 };

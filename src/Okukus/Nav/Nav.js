@@ -246,7 +246,7 @@ const Mobile = ({ hamburger }) => {
 };
 
 const SearchDesktop = (props) => {
-  const [query, setQuery] = useState();
+  const [query, setQuery] = useState('');
 
   let history = useHistory();
 
@@ -263,10 +263,10 @@ const SearchDesktop = (props) => {
         placeholder="Search"
         aria-label="Search"
         value={query}
-        onChange={(event) => setQuery(event.target.value)}
+        onChange={(e) => setQuery(e.target.value)}
       />
 
-      <button className="search-button" type="submit" onClick={Query}>
+      <button className="search-button" onClick={Query}>
         Search
       </button>
     </div>
@@ -274,12 +274,18 @@ const SearchDesktop = (props) => {
 };
 
 const SearchMobile = () => {
-  const [query, setQuery] = useState();
+  const [query, setQuery] = useState('');
 
   let history = useHistory();
   function Query() {
-    history.push(`/search/${query}`);
-    console.log(query);
+    if (query === "") {
+      alert("Please fill the search box");
+    } else {
+      history.push(`/search/${query}`);
+      console.log(query);
+    }
+
+  
   }
   return (
     <div className="text-center pb-2 ">
@@ -289,10 +295,10 @@ const SearchMobile = () => {
         placeholder="Search"
         aria-label="Search"
         value={query}
-        onChange={(event) => setQuery(event.target.value)}
+        onChange={(e) => setQuery(e.target.value)}
       />
 
-      <button className="search-button" type="submit" onClick={Query}>
+      <button className="search-button" onClick={Query}>
         Search
       </button>
     </div>
