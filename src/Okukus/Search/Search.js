@@ -8,6 +8,7 @@ const Search = (props) => {
 
   const [results, setResults] = useState([]);
   const [message, setMessage] = useState();
+  const [error, setError] = useState();
 
   var formData = new FormData();
 
@@ -24,12 +25,13 @@ const Search = (props) => {
         .then((response) => {
           console.log(response);
           if (response.data.error === true) {
+            setError(response.data.error);
             setMessage(response.data.message);
+            setResults([]);
             console.log(message);
-          } else if (
-            response.data.error === false &&
-            response.data.message === "results found"
-          ) {
+          } else if (response.data.error === false) {
+            setMessage();
+            setError();
             setResults(response.data.results);
             console.log(results);
           }
@@ -40,7 +42,7 @@ const Search = (props) => {
     };
 
     fetchData();
-  }, []);
+  });
 
   let content = results.map(
     ({ unique_id, unit_price, product_name, cover_photo_url }) => (
@@ -69,7 +71,7 @@ const Search = (props) => {
           <div>{id}</div>
           {message ? <div>{message}</div> : null}
 
-          {message === "true" ? null : <div className="wrapper">{content}</div>}
+          {error === "true" ? null : <div className="wrapper">{content}</div>}
         </div>
       </div>
     </div>
