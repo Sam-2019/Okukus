@@ -14,8 +14,8 @@ export const orderbook = axios.get(
 );
 
 export const booktags = axios.get(
-    "https://okukus.com/api_call/get_book_tags.php"
-  );
+  "https://okukus.com/api_call/get_book_tags.php"
+);
 
 export const input = (uri, formData) => {
   axios({

@@ -1,9 +1,9 @@
-import React, {useContext, useState} from 'react'
+import React, { useContext, useState } from "react";
 import { auth } from "./authContext";
 import "./user.css";
 
-function SignUp({handler}){
-    const {registerUser} = useContext(auth);
+function SignUp({ handler }) {
+  const { registerUser } = useContext(auth);
 
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
@@ -32,10 +32,10 @@ function SignUp({handler}){
     formData.set("password0", password0);
     formData.set("password1", password1);
 
-    const data = await registerUser(formData)
-        if (data.error === true) {
-            setError(data.message);
-          }
+    const data = await registerUser(formData);
+    if (data.error === true) {
+      setError(data.message);
+    }
     clearSignup();
   };
 
@@ -89,9 +89,9 @@ function SignUp({handler}){
           onChange={(e) => setPassword1(e.target.value)}
           value={password1}
         />
-            {error ? <div className="mt-3 mb-2 error"> {error}</div> : null}
+        {error ? <div className="mt-3 mb-2 error"> {error}</div> : null}
 
-          <div className="mt-3">
+        <div className="mt-3">
           <button className="user_button up mr-3 " onClick={handler}>
             Sign In
           </button>
@@ -102,6 +102,6 @@ function SignUp({handler}){
       </form>
     </div>
   );
-};
+}
 
 export default SignUp;

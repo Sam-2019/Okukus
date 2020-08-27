@@ -10,6 +10,7 @@ import Cart from "./Cart/Cart";
 import Tag from "./Product/Tags";
 import Profile from "./User/Profile";
 import Order from "./Order/Order";
+import Search from './Search/Search'
 
 
 const Okukus = () => {
@@ -24,6 +25,7 @@ const Okukus = () => {
         <Route path="/product/:id" component={Product} />
         <Route path="/tags/:id" component={Tag} />
         <Route path="/order/:id" component={Order} />
+        <Route path="/search/:id" component={Search} />
         <Route exact path="/" component={Body} />
       </div>
       <Footer />

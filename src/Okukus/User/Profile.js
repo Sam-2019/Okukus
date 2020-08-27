@@ -3,8 +3,6 @@ import axios from "axios";
 import "./profile.css";
 import { auth } from "./authContext";
 import { userOrder } from "../apis";
-import book1 from "../files/book1.png";
-import products from "../files/products";
 
 const User = () => {
   const [active, setActive] = useState("account");

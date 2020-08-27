@@ -1,11 +1,12 @@
-import React, { useRef, useContext } from "react";
+import React, { useRef, useContext, useState } from "react";
+import axios from "axios";
 import { auth } from "../User/authContext";
 // import DialogBox from "./Dialog_Box";
 // import MenuDialog from "./MenuDialog";
 import Hamburger from "./Hamburger";
 
 import "./nav.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 const Navigation = () => {
   //d-none d-sm-block - desktop
@@ -54,7 +55,7 @@ export default Navigation;
 
 const Desktop = ({ hamburger }) => {
   const { rootState, logoutUser } = useContext(auth);
-const { isAuth } = rootState;
+  const { isAuth } = rootState;
   return (
     <div className=" d-flex justify-content-between  shadow  nav_bg p-2">
       <div className="bd-highlight inline in-content ">
@@ -141,17 +142,7 @@ const { isAuth } = rootState;
           </NavLink>
         </div>
 
-        <div className=" ">
-          <input
-            className="search-input"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button className="search-button" type="submit">
-            Search
-          </button>
-        </div>
+        <SearchDesktop />
       </div>
     </div>
   );
@@ -193,25 +184,25 @@ const Mobile = ({ hamburger }) => {
           {isAuth ? (
             <>
               <div className="mr-1 p-2">
-              <NavLink to="/profile" className="link">       
-                <svg
-                  width="1em"
-                  height="1em"
-                  viewBox="0 0 16 16"
-                  className="bi bi-person-circle"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
-                  <path
-                    fillRule="evenodd"
-                    d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-                  />
-                  <path
-                    fillRule="evenodd"
-                    d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"
-                  />
-                </svg>
+                <NavLink to="/profile" className="link">
+                  <svg
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 16 16"
+                    className="bi bi-person-circle"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
+                    <path
+                      fillRule="evenodd"
+                      d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+                    />
+                    <path
+                      fillRule="evenodd"
+                      d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"
+                    />
+                  </svg>
                 </NavLink>
               </div>
 
@@ -249,17 +240,61 @@ const Mobile = ({ hamburger }) => {
         </div>
       </div>
 
-      <div className="text-center pb-2 ">
-        <input
-          className="search-input mobile"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button className="search-button mobile" type="submit">
-          Search
-        </button>
-      </div>
+      <SearchMobile />
+    </div>
+  );
+};
+
+const SearchDesktop = (props) => {
+  const [query, setQuery] = useState();
+
+  let history = useHistory();
+
+  function Query() {
+    history.push(`/search/${query}`);
+    console.log(query);
+  }
+
+  return (
+    <div className=" ">
+      <input
+        className="search-input"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+        value={query}
+        onChange={(event) => setQuery(event.target.value)}
+      />
+
+      <button className="search-button" type="submit" onClick={Query}>
+        Search
+      </button>
+    </div>
+  );
+};
+
+const SearchMobile = () => {
+  const [query, setQuery] = useState();
+
+  let history = useHistory();
+  function Query() {
+    history.push(`/search/${query}`);
+    console.log(query);
+  }
+  return (
+    <div className="text-center pb-2 ">
+      <input
+        className="search-input mobile"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+        value={query}
+        onChange={(event) => setQuery(event.target.value)}
+      />
+
+      <button className="search-button" type="submit" onClick={Query}>
+        Search
+      </button>
     </div>
   );
 };
