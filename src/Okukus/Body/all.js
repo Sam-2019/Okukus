@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import View from "./View";
-import { getbooks } from "../apis";
+import { itemsGet } from "../apis";
 
 const All = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios(getbooks);
+      const result = await axios(itemsGet);
       setProducts(result.data);
     };
     fetchData();

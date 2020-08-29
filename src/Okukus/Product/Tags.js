@@ -1,31 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import View from "../Body/View";
-import { getbooktag } from "../apis";
+import { auth } from "../Context/authContext";
 import "./product.css";
-import axios from "axios";
 
 const Tag = (props) => {
+  const { getTag } = useContext(auth);
+
   const [product, setProduct] = useState([]);
   let id = props.match.params.id;
-  console.log(id);
-
-  var formData = new FormData();
-
-  formData.set("book_tag", id);
 
   useEffect(() => {
+    var formData = new FormData();
+
+    formData.set("book_tag", id);
     const fetchData = async () => {
-      axios({
-        method: "post",
-        url: getbooktag,
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-      }).then((res) => {
-        setProduct(res.data);
-      });
+      const data = await getTag(formData);
+      setProduct(data);
     };
     fetchData();
-  }, []);
+  }, [id, getTag]);
 
   let content = product.map(
     ({ unique_id, unit_price, product_name, cover_photo_url }) => (

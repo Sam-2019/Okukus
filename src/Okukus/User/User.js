@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Login from './Login'
-import SignUp from './Register'
+import Login from "./Login";
+import SignUp from "./Signup";
 import "./user.css";
 
 const User = () => {

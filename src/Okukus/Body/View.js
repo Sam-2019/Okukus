@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const View = (props) => {
+
   return (
     <div className=" product ">
       <NavLink to={/product/ + props.id } className='product_link'>

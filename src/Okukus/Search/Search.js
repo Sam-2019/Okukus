@@ -1,42 +1,36 @@
 import React, { useState, useContext, useEffect } from "react";
-import axios from "axios";
+import { auth } from "../Context/authContext";
 import View from "../Body/View";
-import { searchBook } from "../apis";
 import "./search.css";
 
 const Search = (props) => {
+  const { searchItem } = useContext(auth);
   let id = props.match.params.id;
 
   const [results, setResults] = useState([]);
   const [message, setMessage] = useState();
   const [error, setError] = useState();
 
-  var formData = new FormData();
-
-  formData.set("search_phrase", id);
-
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios({
-        method: "post",
-        url: searchBook,
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+    var formData = new FormData();
+    formData.set("search_phrase", id);
 
-      if (result.data.error === true) {
-        setError(result.data.error);
-        setMessage(result.data.message);
+    const fetchData = async () => {
+      const data = await searchItem(formData);
+      console.log(data);
+      if (data.error === true) {
+        setError(data.error);
+        setMessage(data.message);
         setResults([]);
-      } else if (result.data.error === false) {
+      } else if (data.error === false) {
         setMessage();
         setError();
-        setResults(result.data.results);
+        setResults(data.results);
       }
     };
 
     fetchData();
-  }, [id]);
+  }, [searchItem, id]);
 
   let content = results.map(
     ({ unique_id, unit_price, product_name, cover_photo_url }) => (
@@ -49,13 +43,6 @@ const Search = (props) => {
       />
     )
   );
-  let view;
-
-  if (!content) {
-    view = <div>Loading.....</div>;
-  } else {
-    view = <> {content}</>;
-  }
 
   return (
     <div className="p-1 body-background">

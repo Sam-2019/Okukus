@@ -1,8 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
-import axios from "axios";
+import { auth } from "../Context/authContext";
+import { okukus } from "../apis";
 import "./profile.css";
-import { auth } from "./authContext";
-import { userOrder } from "../apis";
 
 const User = () => {
   const [active, setActive] = useState("account");
@@ -43,10 +42,6 @@ const User = () => {
 export default User;
 
 const Sidebar = ({ okukus_account, order_history }) => {
-  const clear = () => {
-    localStorage.clear();
-    console.log(window.localStorage);
-  };
   return (
     <div className="">
       <div className="row sidey no-gutters">
@@ -145,37 +140,22 @@ const OkukusAccount = () => {
 
 const OrderHistory = () => {
   const [order, setOrder] = useState([]);
-  const { rootState } = useContext(auth);
+  const { rootState, orderHistory } = useContext(auth);
   const { uniqueID } = rootState;
 
-  var formData = new FormData();
-  formData.set("buyer_unique_id", uniqueID);
-
   useEffect(() => {
+    var formData = new FormData();
+    formData.set("buyer_unique_id", uniqueID);
+
     const fetchData = async () => {
-      await axios({
-        method: "post",
-        url: userOrder,
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-      }).then((res) => setOrder(res.data));
+      const data = await orderHistory(formData);
+      setOrder(data);
     };
     fetchData();
-  }, []);
+  }, [uniqueID, orderHistory]);
 
   let content = order.map(
-    ({
-      id,
-      unique_id,
-      order_number,
-      product_unique_id,
-      product_author,
-      status,
-      datetime_ordered,
-      unit_price,
-      product_name,
-      cover_photo_url,
-    }) => (
+    ({ id, unique_id, status, unit_price, product_name, cover_photo_url }) => (
       <View
         key={id}
         id={unique_id}
@@ -187,11 +167,7 @@ const OrderHistory = () => {
     )
   );
 
-  return (
-    <>
-      <div className="px-3">{content}</div>
-    </>
-  );
+  return <div className="px-3">{content}</div>;
 };
 
 const View = ({ product_name, cover_photo_url, unit_price, status }) => {
@@ -200,7 +176,7 @@ const View = ({ product_name, cover_photo_url, unit_price, status }) => {
       <div className="row no-gutters  ">
         <div className="col-md-2 col-3 ">
           <img
-            src={`https://okukus.com/${cover_photo_url}`}
+            src={`${okukus}/${cover_photo_url}`}
             className="order-img"
             alt="..."
           />

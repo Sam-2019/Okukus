@@ -1,11 +1,19 @@
-import React, {  useContext } from "react";
-import { auth } from "../User/authContext";
+import React, { useContext } from "react";
+import { NavLink, useHistory } from "react-router-dom";
+import { auth } from "../Context/authContext";
 import "./confirm.css";
-import { NavLink } from "react-router-dom";
 
 const Confirm = () => {
   const { rootState } = useContext(auth);
   const { firstName, lastName } = rootState;
+  const orderID = localStorage.getItem("orderID");
+
+  let history = useHistory();
+  function purchaseDone() {
+    localStorage.removeItem("orderID");
+    history.push(`/`);
+  }
+
   return (
     <div className=" ">
       <div className="confirm_form">
@@ -25,8 +33,8 @@ const Confirm = () => {
           </code>
         </h5>
         <p>
-          Thank you for shopping with us! Your order <code>order number</code>{" "}
-          has been placed, pending confirmation.
+          Thank you for shopping with us! Your order <code>{orderID}</code> has
+          been placed, pending confirmation.
         </p>
         <p>
           We will call you within 24 hours (calling hours: Mon-Fri
@@ -39,9 +47,9 @@ const Confirm = () => {
           know during the confirmation call.
         </p>
 
-        <NavLink to="/" className="confirm_button link">
-          Contiue Shopping
-        </NavLink>
+        <button className="confirm_button" onClick={purchaseDone}>
+          Continue Shopping
+        </button>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import AuthProvider from "./Okukus/User/authContext";
+import AuthProvider from "./Okukus/Context/authContext";
 import Okukus from "./Okukus/Okukus";
 import "bootstrap/dist/css/bootstrap.css";
 

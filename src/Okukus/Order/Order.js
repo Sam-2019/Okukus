@@ -1,8 +1,6 @@
 import React, { useState, useContext } from "react";
-import axios from "axios";
-import { auth } from "../User/authContext";
+import { auth } from "../Context/authContext";
 import Confirm from "./Confirm";
-import { orderbook } from "../apis";
 import "./order.css";
 
 const Order = (props) => {
@@ -26,7 +24,7 @@ const Order = (props) => {
 export default Order;
 
 const Buy = ({ doneShopping, id }) => {
-  const { rootState } = useContext(auth);
+  const { rootState, orderItem } = useContext(auth);
   const { uniqueID } = rootState;
 
   const [momo, setMomo] = useState(false);
@@ -65,7 +63,8 @@ const Buy = ({ doneShopping, id }) => {
     setMomoTransactionID("");
   };
 
-  const submit = () => {
+  const submit = async (event) => {
+    event.preventDefault();
     var formData = new FormData();
 
     if (payment_method === "cash") {
@@ -78,27 +77,9 @@ const Buy = ({ doneShopping, id }) => {
         formData.set("phone_number", phone_number);
         formData.set("payment_method", payment_method);
 
-        axios({
-          method: "post",
-          url: orderbook,
-          data: formData,
-          headers: { "Content-Type": "multipart/form-data" },
-        })
-          .then((response) => {
-            console.log(response);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-
-        console.log(
-          buyer_unique_id,
-          product_unique_id,
-          location,
-          digital_address,
-          phone_number,
-          payment_method
-        );
+        const data = await orderItem(formData);
+    
+        localStorage.setItem("orderID", data.order_number);
         clearCheckOut();
         doneShopping();
       } else alert("Please fill below");
@@ -123,31 +104,9 @@ const Buy = ({ doneShopping, id }) => {
         formData.set("momo_number", momo_number);
         formData.set("momo_transaction_id", momo_transaction_id);
 
-        const uri = "https://okukus.com/api_call/create_order.php";
-        axios({
-          method: "post",
-          url: uri,
-          data: formData,
-          headers: { "Content-Type": "multipart/form-data" },
-        })
-          .then((response) => {
-            console.log(response);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-
-        console.log(
-          buyer_unique_id,
-          product_unique_id,
-          location,
-          digital_address,
-          phone_number,
-          payment_method,
-          momo_name,
-          momo_number,
-          momo_transaction_id
-        );
+        const data = await orderItem(formData);
+    
+        localStorage.setItem("orderID", data.order_number);
         clearCheckOut();
         doneShopping();
       } else alert("Please fill below");

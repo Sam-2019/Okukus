@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
-import { auth } from "./authContext";
+import { NavLink } from "react-router-dom";
+import { auth } from "../Context/authContext";
 import "./user.css";
 
-function SignUp({ handler }) {
-  const { registerUser } = useContext(auth);
+function SignUp() {
+  const { registerUser, isLoggedIn} = useContext(auth);
 
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
@@ -33,8 +34,12 @@ function SignUp({ handler }) {
     formData.set("password1", password1);
 
     const data = await registerUser(formData);
+    console.log(data)
     if (data.error === true) {
       setError(data.message);
+    } else {
+      localStorage.setItem("loginToken", data.token);
+      isLoggedIn();
     }
     clearSignup();
   };
@@ -42,7 +47,7 @@ function SignUp({ handler }) {
   return (
     <div className="sign-up-container shadow ">
       <form action="#" className="user_form">
-        <h2>Create Account</h2>
+        <h2>Sign Up</h2>
         {/* <div className="social-container" hidden>
           <a href="#" className="social">
             <i className="fab fa-facebook-f"></i>
@@ -81,20 +86,26 @@ function SignUp({ handler }) {
           className="user_input"
           onChange={(e) => setPassword0(e.target.value)}
           value={password0}
+        
         />
         <input
           type="password"
-          placeholder="Password"
+          placeholder="Confirm Password"
           className="user_input"
           onChange={(e) => setPassword1(e.target.value)}
           value={password1}
+      
         />
         {error ? <div className="mt-3 mb-2 error"> {error}</div> : null}
 
         <div className="mt-3">
-          <button className="user_button up mr-3 " onClick={handler}>
+          <NavLink to="/login" className="user_button up mr-3">
             Sign In
-          </button>
+          </NavLink>
+
+          {/* <button className="user_button up mr-3 " onClick={handler}>
+            Sign In
+          </button> */}
           <button className="user_button in" onClick={SignUp}>
             Sign Up
           </button>

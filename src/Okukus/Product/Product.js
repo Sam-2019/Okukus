@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { getbook } from "../apis";
+import { auth } from "../Context/authContext";
 import "./product.css";
-import axios from "axios";
 
 const Product = (props) => {
+  const { rootState, getItem } = useContext(auth);
+  const { isAuth } = rootState;
   const [product, setProduct] = useState([]);
 
   let id = props.match.params.id;
@@ -14,17 +15,12 @@ const Product = (props) => {
     formData.set("product_unique_id", id);
 
     const fetchData = async () => {
-      const result = await axios({
-        method: "post",
-        url: getbook,
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      setProduct(result.data);
+      const data = await getItem(formData);
+      setProduct(data);
     };
 
     fetchData();
-  }, [id]);
+  }, [id, getItem]);
 
   let view;
 
@@ -67,12 +63,21 @@ const Product = (props) => {
                 <span className="d-block product_description mt-1 ">
                   {product.product_description}
                 </span>
-                <NavLink
-                  to={/order/ + id}
-                  className="product_link item buy_btn mt-2"
-                >
-                  Buy Now
-                </NavLink>
+                {isAuth ? (
+                  <NavLink
+                    to={/order/ + id}
+                    className="product_link item buy_btn mt-2"
+                  >
+                    Buy book
+                  </NavLink>
+                ) : (
+                  <NavLink
+                    to="/login"
+                    className="product_link item buy_btn mt-2"
+                  >
+                    Buy book
+                  </NavLink>
+                )}
               </div>
             </div>
           </div>

@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
+import { auth } from "../Context/authContext";
 import "./hamburger.css";
-import { getbooktags } from "../apis";
 
 const Hamburger = ({ hamburger }) => {
   return (
@@ -25,15 +24,16 @@ const Hamburger = ({ hamburger }) => {
 export default Hamburger;
 
 const Tags = ({ hamburger }) => {
+  const { getTags } = useContext(auth);
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios(getbooktags);
-      setTags(result.data);
+      const data = await getTags();
+      setTags(data);
     };
     fetchData();
-  }, []);
+  }, [getTags]);
 
   let content = tags.map(({ id, title }) => (
     <div key={id} className="selector text-center">

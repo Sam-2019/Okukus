@@ -1,5 +1,6 @@
 import React from "react";
 import Carousel from "react-bootstrap/Carousel";
+import { okukus } from "../apis";
 
 const Slider = () => {
   return (
@@ -7,7 +8,7 @@ const Slider = () => {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="https://www.okukus.com/img/slides/okuks0.jpg"
+          src={`${okukus}/img/slides/okuks0.jpg`}
           alt=" slide"
         />
       </Carousel.Item>
@@ -15,7 +16,7 @@ const Slider = () => {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="https://okukus.com/img/slides/okuks1.jpg"
+          src={`${okukus}/img/slides/okuks1.jpg`}
           alt=" slide"
         />
       </Carousel.Item>
@@ -23,7 +24,7 @@ const Slider = () => {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="https://okukus.com/img/slides/okuks2.jpg"
+          src={`${okukus}/img/slides/okuks2.jpg`}
           alt=" slide"
         />
       </Carousel.Item>
@@ -31,7 +32,7 @@ const Slider = () => {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="https://okukus.com/img/slides/okuks3.jpg"
+          src={`${okukus}/img/slides/okuks3.jpg`}
           alt=" slide"
         />
       </Carousel.Item>
@@ -39,7 +40,7 @@ const Slider = () => {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="https://okukus.com/img/slides/okuksslider.png"
+          src={`${okukus}/img/slides/okuksslider.png`}
           alt="Third slide"
         />
       </Carousel.Item>

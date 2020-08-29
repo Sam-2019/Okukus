@@ -1,11 +1,11 @@
 import React from "react";
 import All from "./all";
-import Carousel from "./Carousel/Carousel";
+import Carousel from "../Carousel/Carousel";
 import "./body.css";
 
 const Body = () => {
   return (
-    <div className="">
+    <div>
       <Carousel />
       <All />
     </div>

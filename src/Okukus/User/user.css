@@ -57,8 +57,10 @@ a {
   transform: scale(0.95);
 }
 
+.user_button:hover,
 .user_button:focus {
   outline: none;
+  text-decoration: none;
 }
 
 .user_button.ghost {

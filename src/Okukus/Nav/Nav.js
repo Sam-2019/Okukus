@@ -1,6 +1,5 @@
 import React, { useRef, useContext, useState } from "react";
-import axios from "axios";
-import { auth } from "../User/authContext";
+import { auth } from "../Context/authContext";
 // import DialogBox from "./Dialog_Box";
 // import MenuDialog from "./MenuDialog";
 import Hamburger from "./Hamburger";
@@ -246,7 +245,7 @@ const Mobile = ({ hamburger }) => {
 };
 
 const SearchDesktop = (props) => {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
 
   let history = useHistory();
 
@@ -274,7 +273,7 @@ const SearchDesktop = (props) => {
 };
 
 const SearchMobile = () => {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
 
   let history = useHistory();
   function Query() {
@@ -284,8 +283,6 @@ const SearchMobile = () => {
       history.push(`/search/${query}`);
       console.log(query);
     }
-
-  
   }
   return (
     <div className="text-center pb-2 ">

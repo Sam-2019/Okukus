@@ -1,10 +1,21 @@
 import React, { createContext, Component } from "react";
-import { userLogin, userRegister, userValidate } from "../apis";
+import {
+  userLogin,
+  userRegister,
+  userOrder,
+  userValidate,
+  userOrderHistory,
+  itemSearch,
+  itemsGet,
+  itemGet,
+  tagsGet,
+  tagGet,
+} from "../apis";
 import axios from "axios";
 
 export const auth = createContext();
 
-class authProvider extends Component {
+class AuthProvider extends Component {
   constructor() {
     super();
     this.isLoggedIn();
@@ -19,12 +30,54 @@ class authProvider extends Component {
     uniqueID: null,
   };
 
-  toggleNav = () => {
-    const showLogin = !this.state.showLogin;
-    this.setState({
-      ...this.state,
-      showLogin,
+  getItems = async () => {
+    const items = await axios(itemsGet);
+    return items.data;
+  };
+
+  getItem = async (formData) => {
+    const item = await axios({
+      method: "post",
+      url: itemGet,
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
     });
+    return item.data;
+  };
+
+  getTags = async () => {
+    const tags = await axios(tagsGet);
+    return tags.data;
+  };
+
+  getTag = async (formData) => {
+    const tag = await axios({
+      method: "post",
+      url: tagGet,
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return tag.data;
+  };
+
+  orderItem = async (formData) => {
+    const order = await axios({
+      method: "post",
+      url: userOrder,
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return order.data;
+  };
+
+  orderHistory = async (formData) => {
+    const orderHistory = await axios({
+      method: "post",
+      url: userOrderHistory,
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return orderHistory.data;
   };
 
   logoutUser = () => {
@@ -43,6 +96,16 @@ class authProvider extends Component {
     });
   };
 
+  loginUser = async (formData) => {
+    const login = await axios({
+      method: "post",
+      url: userLogin,
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return login.data;
+  };
+
   registerUser = async (formData) => {
     const register = await axios({
       method: "post",
@@ -52,16 +115,6 @@ class authProvider extends Component {
     });
 
     return register.data;
-  };
-
-  loginUser = async (formData) => {
-    const login = await axios({
-      method: "post",
-      url: userLogin,
-      data: formData,
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-    return login.data;
   };
 
   isLoggedIn = async () => {
@@ -77,7 +130,6 @@ class authProvider extends Component {
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       });
- 
 
       if (data.error === false && data.validity === true) {
         localStorage.setItem("firstname", data.buyer.firstname);
@@ -102,18 +154,34 @@ class authProvider extends Component {
     }
   };
 
+  searchItem = async (formData) => {
+    const search = await axios({
+      method: "post",
+      url: itemSearch,
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return search.data;
+  };
+
   render() {
     const contextValue = {
       rootState: this.state,
-      toggleNav: this.toggleNav,
-      isLoggedIn: this.isLoggedIn,
-      registerUser: this.registerUser,
-      loginUser: this.loginUser,
+      getItems: this.getItems,
+      getItem: this.getItem,
+      getTags: this.getTags,
+      getTag: this.getTag,
+      orderItem: this.orderItem,
+      orderHistory: this.orderHistory,
       logoutUser: this.logoutUser,
+      loginUser: this.loginUser,
+      registerUser: this.registerUser,
+      isLoggedIn: this.isLoggedIn,
+      searchItem: this.searchItem,
       firstName: this.firstname,
       lastName: this.lastname,
       email: this.email,
-      uniqueID: this.uniqueID
+      uniqueID: this.uniqueID,
     };
     return (
       <auth.Provider value={contextValue}>{this.props.children}</auth.Provider>
@@ -121,4 +189,4 @@ class authProvider extends Component {
   }
 }
 
-export default authProvider;
+export default AuthProvider;

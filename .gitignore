@@ -4,11 +4,16 @@
 /node_modules
 /src/Router
 /src/Redux
-/src/Okukus/User/yard.txt
-/src/Okukus/css
 /src/Okukus/useAysnc.js
 /src/Okukus/useAysnc2.js
 /src/Okukus/api.js
+/src/Okukus/User/yard.txt
+/src/Okukus/Nav/new ideas
+/src/Okukus/Nav/possible.css
+/src/Okukus/Nav/possible_nav.js
+/src/Okukus/Nav/Hamburger2.js
+/src/Okukus/css
+/src/Okukus/files
 /.pnp
 .pnp.js
 
