@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { auth } from "../Context/authContext";
+import {okukus} from '../apis'
 import "./confirm.css";
 
 const Confirm = () => {
@@ -20,7 +21,7 @@ const Confirm = () => {
         <NavLink to="/">
           <img
             className="logo"
-            src="img/okuku-logo.png"
+            src={`${okukus}/img/okukus.png`}
             alt="Okukus"
             title="Okukus"
           />

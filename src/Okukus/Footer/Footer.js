@@ -1,12 +1,12 @@
 import React from "react";
+import {okukus} from '../apis'
 import "./footer.css";
-import logo from "./logo.png";
 
 const Footer = () => {
   return (
     <div className="footer footer_bg text-white text-center">
       <div>
-        <img src={logo} alt="Okuku Store" className="logo" />
+        <img src={`${okukus}/img/okukus.png`} alt="Okuku Store" className="logo" />
       </div>
       <div className="row">
         <div className="col-12 col-md-4 px-3 pt-2 ">
