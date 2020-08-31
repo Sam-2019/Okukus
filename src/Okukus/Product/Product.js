@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { auth } from "../Context/authContext";
+import Spinner from '../Spinner/Spinner'
 import "./product.css";
 
 const Product = (props) => {
@@ -86,7 +87,7 @@ const Product = (props) => {
       </div>
     );
   } else {
-    view = <div className="text-center">Loading ....</div>;
+    view = <div className="text-center"><Spinner /></div>;
   }
 
   return <div className="text-center">{view}</div>;

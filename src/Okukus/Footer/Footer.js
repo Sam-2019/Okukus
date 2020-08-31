@@ -15,7 +15,7 @@ const Footer = () => {
 
             <p>
               Online marketplace for shops with a wide selection of books,
-              magazines, music, DVDs, apparel & accessories, shoes & just about
+              magazines & just about
               anything else.
             </p>
           </div>
@@ -23,7 +23,7 @@ const Footer = () => {
           <div>
             <h5>Mission</h5>
             <p>
-              Our aim is to be the world’s largest digital marketplace for local
+              Our aim is to be the  digital marketplace for local
               and physical shops. We are a total customer focused company.
             </p>
           </div>

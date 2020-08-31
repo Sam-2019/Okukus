@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { auth } from "../Context/authContext";
 import { okukus } from "../apis";
+import Spinner from '../Spinner/Spinner'
 import "./profile.css";
 
 const User = () => {
@@ -18,23 +19,22 @@ const User = () => {
   }
 
   return (
+    <div className="account-container shadow">
+      <h2 className="text-center "> {account ? "Account" : "Order"}</h2>
 
-      <div className="account-container shadow">
-        <h2 className="text-center "> {account ? "Account" : "Order"}</h2>
+      <div className="row  ">
+        <div className="col-12 col-md-4   ">
+          <Sidebar
+            okukus_account={okukus_account}
+            order_history={order_history}
+          />
+        </div>
 
-        <div className="row  ">
-          <div className="col-12 col-md-4   ">
-            <Sidebar
-              okukus_account={okukus_account}
-              order_history={order_history}
-            />
-          </div>
-
-          <div className="col-12 col-md-8  ">
-            {account ? <OkukusAccount /> : <OrderHistory />}
-          </div>
+        <div className="col-12 col-md-8  ">
+          {account ? <OkukusAccount /> : <OrderHistory />}
         </div>
       </div>
+    </div>
   );
 };
 
@@ -70,7 +70,7 @@ const OkukusAccount = () => {
         <div className="profile-header">
           <div className=" d-flex justify-content-between ">
             <div className="bd-highlight">Account Details</div>
-            <div className="bd-highlight  ">
+            <div className="bd-highlight  " hidden>
               <svg
                 width="0.6em"
                 height="0.6em"
@@ -139,6 +139,7 @@ const OkukusAccount = () => {
 
 const OrderHistory = () => {
   const [order, setOrder] = useState([]);
+  const [message, setMessage] = useState("");
   const { rootState, orderHistory } = useContext(auth);
   const { uniqueID } = rootState;
 
@@ -148,7 +149,11 @@ const OrderHistory = () => {
 
     const fetchData = async () => {
       const data = await orderHistory(formData);
-      setOrder(data.order_history);
+      if (data.error === true) {
+        setMessage(data.message);
+      } else if (data.error === false) {
+        setOrder(data.order_history);
+      }
     };
     fetchData();
   }, [uniqueID, orderHistory]);
@@ -175,15 +180,14 @@ const OrderHistory = () => {
     )
   );
 
-  let view;
+  return (
+    <div className="px-3">
+      
+      <div className="">{content}</div>
 
-  if (content.length === 0) {
-    view = <div className="text-center">Loading.....</div>;
-  } else {
-    view = <> {content}</>;
-  }
-
-  return <div className="px-3">{view}</div>;
+      <div className="mt-2 ">{message ? <div>{message} </div> : null}</div>
+    </div>
+  );
 };
 
 const View = ({
@@ -193,7 +197,6 @@ const View = ({
   status,
   datetime_ordered,
 }) => {
-
   return (
     <div className="  my-3 card">
       <div className="row no-gutters  p-2 ">

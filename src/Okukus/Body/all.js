@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { auth } from "../Context/authContext";
 import View from "./View";
+import Spinner from "../Spinner/Spinner";
 
 const All = () => {
   const { getItems } = useContext(auth);
@@ -13,7 +14,6 @@ const All = () => {
       if (isMounted) setProducts(data);
     };
     fetchData();
-
   }, []);
 
   let content = products.map(
@@ -28,17 +28,17 @@ const All = () => {
     )
   );
 
-  let view;
-
-  if (content.length === 0) {
-    view = <div>Loading.....</div>;
-  } else {
-    view = <> {content}</>;
-  }
-
   return (
     <div className="p-1 body-background">
-      <div className="wrapper">{view}</div>
+      <div>
+        {content.length === 0 ? (
+          <div>
+            <Spinner />
+          </div>
+        ) : (
+          <div className="wrapper">{content}</div>
+        )}
+      </div>
     </div>
   );
 };
