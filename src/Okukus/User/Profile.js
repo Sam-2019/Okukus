@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { auth } from "../Context/authContext";
 import { okukus } from "../apis";
-import Spinner from '../Spinner/Spinner'
+import Spinner from "../Spinner/Spinner";
 import "./profile.css";
 
 const User = () => {
@@ -140,6 +140,7 @@ const OkukusAccount = () => {
 const OrderHistory = () => {
   const [order, setOrder] = useState([]);
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(true);
   const { rootState, orderHistory } = useContext(auth);
   const { uniqueID } = rootState;
 
@@ -150,8 +151,10 @@ const OrderHistory = () => {
     const fetchData = async () => {
       const data = await orderHistory(formData);
       if (data.error === true) {
+        setLoading(false);
         setMessage(data.message);
       } else if (data.error === false) {
+        setLoading(false);
         setOrder(data.order_history);
       }
     };
@@ -180,11 +183,11 @@ const OrderHistory = () => {
     )
   );
 
+  let view = {};
+
   return (
     <div className="px-3">
-      
-      <div className="">{content}</div>
-
+      <div className="">{loading ? <Spinner /> : <div>{content}</div>}</div>
       <div className="mt-2 ">{message ? <div>{message} </div> : null}</div>
     </div>
   );
