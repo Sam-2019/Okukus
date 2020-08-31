@@ -6,7 +6,6 @@ import Navigation from "./Nav/Nav";
 import Body from "./Body/Body";
 import Footer from "./Footer/Footer";
 import Product from "./Product/Product";
-import Cart from "./Cart/Cart";
 import Tag from "./Product/Tags";
 import Profile from "./User/Profile";
 import Order from "./Order/Order";
@@ -27,7 +26,6 @@ const Okukus = () => {
         <Route path="/tags/:id" component={Tag} />
         <Route path="/search/:id" component={Search} />
         {isAuth && <Route path="/order/:id" component={Order} />}
-        {isAuth && <Route path="/cart" component={Cart} />}
         {isAuth && <Route path="/profile" component={Profile} />}
         {isAuth && <Redirect from="/login" to="/" component={Body} />}
 
