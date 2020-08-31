@@ -38,8 +38,8 @@ function SignUp() {
     if (data.error === true) {
       setError(data.message);
     } else {
-      localStorage.setItem("loginToken", data.token);
-      isLoggedIn();
+
+
     }
     clearSignup();
   };

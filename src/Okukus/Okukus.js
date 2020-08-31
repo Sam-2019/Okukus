@@ -29,7 +29,7 @@ const Okukus = () => {
         {isAuth && <Route path="/profile" component={Profile} />}
         
         {isAuth && <Redirect from="/login" to="/" component={Body} />}
-        {isAuth && <Redirect from="/signup/" to="/" component={Body} />}
+       
 
         {!isAuth && <Redirect from="/order/:id" to="/" component={Body} />}
         {!isAuth && <Redirect from="/profile" to="/" component={Body} />}

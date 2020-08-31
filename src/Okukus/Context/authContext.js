@@ -128,11 +128,13 @@ class AuthProvider extends Component {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      console.log(data);
+      console.log(data)
 
       if (data.validity === true && data.buyer === null) {
         localStorage.removeItem("loginToken");
-      } else if (data.validity === true && data.buyer === !null) {
+      } else if (data.error === true) {
+        localStorage.removeItem("loginToken");
+      } else {
         this.setState({
           ...this.state,
           isAuth: true,
@@ -141,8 +143,6 @@ class AuthProvider extends Component {
           email: data.buyer.email,
           uniqueID: data.buyer.unique_id,
         });
-      } else if (data.error === true) {
-        localStorage.removeItem("loginToken");
       }
     }
   };
