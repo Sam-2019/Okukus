@@ -1,11 +1,12 @@
 import React, { useRef, useContext, useState } from "react";
+import { NavLink, useHistory } from "react-router-dom";
 import { auth } from "../Context/authContext";
-// import DialogBox from "./Dialog_Box";
-// import MenuDialog from "./MenuDialog";
 import Hamburger from "./Hamburger";
 
+// import DialogBox from "./Dialog_Box";
+// import MenuDialog from "./MenuDialog";
+
 import "./nav.css";
-import { NavLink, useHistory } from "react-router-dom";
 
 const Navigation = () => {
   //d-none d-sm-block - desktop
@@ -53,7 +54,9 @@ const Navigation = () => {
 export default Navigation;
 
 const Desktop = ({ hamburger }) => {
+
   const { rootState, logoutUser } = useContext(auth);
+
   const { isAuth } = rootState;
   return (
     <div className=" d-flex justify-content-between  shadow  nav_bg p-2">
@@ -149,6 +152,7 @@ const Desktop = ({ hamburger }) => {
 
 const Mobile = ({ hamburger }) => {
   const { rootState, logoutUser } = useContext(auth);
+
   const { isAuth } = rootState;
   return (
     <div className=" nav_bg p-1">
@@ -207,7 +211,7 @@ const Mobile = ({ hamburger }) => {
 
               <div className="mr-3">
                 <span className="link" onClick={logoutUser}>
-                  Logout
+                Logout
                 </span>
               </div>
             </>
@@ -244,14 +248,13 @@ const Mobile = ({ hamburger }) => {
   );
 };
 
-const SearchDesktop = (props) => {
+const SearchDesktop = () => {
   const [query, setQuery] = useState("");
 
   let history = useHistory();
 
   function Query() {
     history.push(`/search/${query}`);
-    console.log(query);
   }
 
   return (
@@ -281,7 +284,6 @@ const SearchMobile = () => {
       alert("Please fill the search box");
     } else {
       history.push(`/search/${query}`);
-      console.log(query);
     }
   }
   return (

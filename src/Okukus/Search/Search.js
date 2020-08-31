@@ -17,7 +17,6 @@ const Search = (props) => {
 
     const fetchData = async () => {
       const data = await searchItem(formData);
-      console.log(data);
       if (data.error === true) {
         setError(data.error);
         setMessage(data.message);
@@ -45,15 +44,14 @@ const Search = (props) => {
   );
 
   return (
-    <div className="p-1 body-background">
-      <div className="order  ">
-        <div className="order-container shadow">
-          <div>{id}</div>
-          {message ? <div>{message}</div> : null}
-
-          {error === "true" ? null : <div className="wrapper">{content}</div>}
-        </div>
+    <div className="order-container shadow">
+      <div>
+        Search Results for <span className=" text-uppercase">"{id}"</span>
       </div>
+
+      {message ? <div>{message}</div> : null}
+
+      {error === "true" ? null : <div className="wrapper">{content}</div>}
     </div>
   );
 };

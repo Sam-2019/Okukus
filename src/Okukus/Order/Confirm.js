@@ -15,7 +15,7 @@ const Confirm = () => {
   }
 
   return (
-    <div className=" ">
+    <div className=" confirm-container">
       <div className="confirm_form">
         <NavLink to="/">
           <img

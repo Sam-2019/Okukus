@@ -63,6 +63,7 @@ const Product = (props) => {
                 <span className="d-block product_description mt-1 ">
                   {product.product_description}
                 </span>
+                
                 {isAuth ? (
                   <NavLink
                     to={/order/ + id}

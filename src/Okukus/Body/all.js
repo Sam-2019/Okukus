@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect, useContext } from "react";
+import { auth } from "../Context/authContext";
 import View from "./View";
-import { itemsGet } from "../apis";
 
 const All = () => {
+  const { getItems } = useContext(auth);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
+    let isMounted = true;
     const fetchData = async () => {
-      const result = await axios(itemsGet);
-      setProducts(result.data);
+      const data = await getItems();
+      if (isMounted) setProducts(data);
     };
     fetchData();
+
   }, []);
 
   let content = products.map(

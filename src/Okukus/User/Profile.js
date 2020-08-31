@@ -18,7 +18,7 @@ const User = () => {
   }
 
   return (
-    <div className="account  ">
+
       <div className="account-container shadow">
         <h2 className="text-center "> {account ? "Account" : "Order"}</h2>
 
@@ -35,7 +35,6 @@ const User = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
@@ -149,32 +148,56 @@ const OrderHistory = () => {
 
     const fetchData = async () => {
       const data = await orderHistory(formData);
-      setOrder(data);
+      setOrder(data.order_history);
     };
     fetchData();
   }, [uniqueID, orderHistory]);
 
   let content = order.map(
-    ({ id, unique_id, status, unit_price, product_name, cover_photo_url }) => (
+    ({
+      id,
+      unique_id,
+      status,
+      product_name,
+      cover_photo_url,
+      amount,
+      datetime_ordered,
+    }) => (
       <View
         key={id}
         id={unique_id}
-        unit_price={unit_price}
+        amount={amount}
         cover_photo_url={cover_photo_url}
         product_name={product_name}
         status={status}
+        datetime_ordered={datetime_ordered}
       />
     )
   );
 
-  return <div className="px-3">{content}</div>;
+  let view;
+
+  if (content.length === 0) {
+    view = <div className="text-center">Loading.....</div>;
+  } else {
+    view = <> {content}</>;
+  }
+
+  return <div className="px-3">{view}</div>;
 };
 
-const View = ({ product_name, cover_photo_url, unit_price, status }) => {
+const View = ({
+  product_name,
+  cover_photo_url,
+  amount,
+  status,
+  datetime_ordered,
+}) => {
+
   return (
     <div className="  my-3 card">
-      <div className="row no-gutters  ">
-        <div className="col-md-2 col-3 ">
+      <div className="row no-gutters  p-2 ">
+        <div className="col-md-2 col-3  ">
           <img
             src={`${okukus}/${cover_photo_url}`}
             className="order-img"
@@ -192,12 +215,18 @@ const View = ({ product_name, cover_photo_url, unit_price, status }) => {
               </div>
 
               <div className="bd-highlight ">
-                <span>${unit_price}</span>
+                <span>${amount}</span>
               </div>
             </div>
 
-            <div className="  text-right ">
-              <div className="bd-highlight ">
+            <div className="">
+              <div className="bd-highlight">
+                <small className="">
+                  <span>{datetime_ordered}</span>
+                </small>
+              </div>
+
+              <div className="bd-highlight   text-right">
                 <small className="bg-warning">{status}</small>
               </div>
             </div>

@@ -13,10 +13,8 @@ const Order = (props) => {
   };
 
   return (
-    <div className="order  ">
-      <div className="order-container shadow">
-        {state ? <Confirm /> : <Buy doneShopping={doneShopping} id={id} />}
-      </div>
+    <div className="order-contain shadow">
+      {state ? <Confirm /> : <Buy doneShopping={doneShopping} id={id} />}
     </div>
   );
 };
@@ -78,7 +76,7 @@ const Buy = ({ doneShopping, id }) => {
         formData.set("payment_method", payment_method);
 
         const data = await orderItem(formData);
-    
+
         localStorage.setItem("orderID", data.order_number);
         clearCheckOut();
         doneShopping();
@@ -105,18 +103,18 @@ const Buy = ({ doneShopping, id }) => {
         formData.set("momo_transaction_id", momo_transaction_id);
 
         const data = await orderItem(formData);
-    
+
         localStorage.setItem("orderID", data.order_number);
         clearCheckOut();
         doneShopping();
       } else alert("Please fill below");
     } else {
-      alert("fill all fields");
+    alert('Please fill fields')
     }
   };
 
   return (
-    <div className="">
+    <div>
       <h2 className="text-center">Order</h2>
       <div className="order_form ">
         <div className="order_text" hidden>

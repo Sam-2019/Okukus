@@ -86,6 +86,7 @@ class AuthProvider extends Component {
     localStorage.removeItem("lastname");
     localStorage.removeItem("email");
     localStorage.removeItem("uniqueID");
+
     this.setState({
       ...this.state,
       isAuth: false,

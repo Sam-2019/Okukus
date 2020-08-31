@@ -13,7 +13,7 @@ const Hamburger = ({ hamburger }) => {
           </div>
         </div>
 
-        <Tags hamburger={hamburger} />
+        <Tags hamburgerClick={hamburger} />
       </div>
 
       <div className="backdrop" onClick={hamburger} />
@@ -23,7 +23,7 @@ const Hamburger = ({ hamburger }) => {
 
 export default Hamburger;
 
-const Tags = ({ hamburger }) => {
+const Tags = ({ hamburgerClick }) => {
   const { getTags } = useContext(auth);
   const [tags, setTags] = useState([]);
 
@@ -40,7 +40,7 @@ const Tags = ({ hamburger }) => {
       <NavLink
         to={`/tags/${title}`}
         className=" text-uppercase selector-link"
-        onClick={hamburger}
+        onClick={hamburgerClick}
       >
         {title}
       </NavLink>

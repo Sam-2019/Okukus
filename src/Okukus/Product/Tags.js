@@ -31,19 +31,22 @@ const Tag = (props) => {
       />
     )
   );
+  let view;
 
-  return (
-    <div className=" text-center  ">
-      <div className="  cart   ">
+  if (content.length === 0) {
+    view = <div className="text-center">Loading.....</div>;
+  } else {
+    view = (
+      <div className=" text-center  ">
         <div className="cart-container shadow ">
-          <h2 className=""> {id}</h2>
-          <div className="p-1">
-            <div className="wrapper">{content}</div>
-          </div>
+          <h2> {id}</h2>
+          <div className="wrapper">{content}</div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+
+  return <div>{view}</div>;
 };
 
 export default Tag;

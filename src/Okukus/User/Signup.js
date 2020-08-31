@@ -4,7 +4,7 @@ import { auth } from "../Context/authContext";
 import "./user.css";
 
 function SignUp() {
-  const { registerUser, isLoggedIn} = useContext(auth);
+  const { registerUser } = useContext(auth);
 
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
@@ -34,12 +34,8 @@ function SignUp() {
     formData.set("password1", password1);
 
     const data = await registerUser(formData);
-    console.log(data)
     if (data.error === true) {
       setError(data.message);
-    } else {
-      localStorage.setItem("loginToken", data.token);
-      isLoggedIn();
     }
     clearSignup();
   };
