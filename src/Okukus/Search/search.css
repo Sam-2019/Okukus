@@ -12,7 +12,7 @@
   }
   
   .order-container {
-    border-radius: 10px;
+    border-radius: 0px;
     transition: all 0.6s ease-in-out;
     padding: 2em 1.5em;
     background-color: #ffffff;
@@ -98,8 +98,7 @@
     }
   
     .order-container {
-      border-radius: 10px;
-  
+      border-radius: 0px;
       transition: all 0.6s ease-in-out;
       padding: 3em 3em;
       background-color: #ffffff;

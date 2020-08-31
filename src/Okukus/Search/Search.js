@@ -49,7 +49,9 @@ const Search = (props) => {
         Search Results for <span className=" text-uppercase">"{id}"</span>
       </div>
 
-      {message ? <div>{message}</div> : null}
+      <div className="font-weight-bold">
+        {message ? <div>{message}</div> : null}
+      </div>
 
       {error === "true" ? null : <div className="wrapper">{content}</div>}
     </div>

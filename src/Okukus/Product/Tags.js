@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import View from "../Body/View";
 import { auth } from "../Context/authContext";
+import Spinner from "../Spinner/Spinner";
 import "./product.css";
 
 const Tag = (props) => {
   const { getTag } = useContext(auth);
 
   const [product, setProduct] = useState([]);
+  const [loading, setLoading] = useState(true);
   let id = props.match.params.id;
 
   useEffect(() => {
@@ -15,7 +17,13 @@ const Tag = (props) => {
     formData.set("book_tag", id);
     const fetchData = async () => {
       const data = await getTag(formData);
-      setProduct(data);
+
+      if (data.error === true) {
+        setLoading(false);
+      } else {
+        setLoading(false);
+        setProduct(data);
+      }
     };
     fetchData();
   }, [id, getTag]);
@@ -31,22 +39,18 @@ const Tag = (props) => {
       />
     )
   );
-  let view;
 
-  if (content.length === 0) {
-    view = <div className="text-center">Loading.....</div>;
-  } else {
-    view = (
-      <div className=" text-center  ">
-        <div className="cart-container shadow ">
-          <h2> {id}</h2>
-          <div className="wrapper">{content}</div>
+  return (
+    <div className=" text-center  ">
+      <div className="tags-container shadow ">
+        <h2> {id}</h2>
+
+        <div >
+          {loading ? <Spinner /> : <div className="wrapper">{content}</div>}
         </div>
       </div>
-    );
-  }
-
-  return <div>{view}</div>;
+    </div>
+  );
 };
 
 export default Tag;

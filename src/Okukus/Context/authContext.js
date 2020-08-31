@@ -82,10 +82,6 @@ class AuthProvider extends Component {
 
   logoutUser = () => {
     localStorage.removeItem("loginToken");
-    localStorage.removeItem("firstname");
-    localStorage.removeItem("lastname");
-    localStorage.removeItem("email");
-    localStorage.removeItem("uniqueID");
 
     this.setState({
       ...this.state,
@@ -132,11 +128,11 @@ class AuthProvider extends Component {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      if (data.error === false && data.validity === true) {
-        localStorage.setItem("firstname", data.buyer.firstname);
-        localStorage.setItem("lastname", data.buyer.lastname);
-        localStorage.setItem("email", data.buyer.email);
-        localStorage.setItem("uniqueID", data.buyer.unique_id);
+      console.log(data);
+
+      if (data.validity === true && data.buyer === null) {
+        localStorage.removeItem("loginToken");
+      } else if (data.validity === true && data.buyer === !null) {
         this.setState({
           ...this.state,
           isAuth: true,
@@ -145,12 +141,8 @@ class AuthProvider extends Component {
           email: data.buyer.email,
           uniqueID: data.buyer.unique_id,
         });
-      } else {
+      } else if (data.error === true) {
         localStorage.removeItem("loginToken");
-        localStorage.removeItem("firstname");
-        localStorage.removeItem("lastname");
-        localStorage.removeItem("email");
-        localStorage.removeItem("uniqueID");
       }
     }
   };
