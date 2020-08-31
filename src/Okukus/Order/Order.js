@@ -27,8 +27,6 @@ const Buy = ({ doneShopping, id }) => {
 
   const [momo, setMomo] = useState(false);
 
-  const [message, setMessage] = useState();
-
   const [buyer_unique_id, setBuyerUniqueID] = useState(uniqueID);
   const [product_unique_id, setProductUniqueID] = useState(id);
   const [location, setLocation] = useState("");

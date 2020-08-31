@@ -183,8 +183,6 @@ const OrderHistory = () => {
     )
   );
 
-  let view = {};
-
   return (
     <div className="px-3">
       <div className="">{loading ? <Spinner /> : <div>{content}</div>}</div>
