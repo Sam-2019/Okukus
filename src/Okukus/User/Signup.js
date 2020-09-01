@@ -34,14 +34,16 @@ function SignUp() {
     formData.set("password1", password1);
 
     const data = await registerUser(formData);
-    console.log(data)
     if (data.error === true) {
       setError(data.message);
     } else {
-
-
+      localStorage.setItem("loginToken", data.buyer.token);
+      console.log(window.localStorage);
+      isLoggedIn();
+      clearSignup();
     }
-    clearSignup();
+
+
   };
 
   return (
@@ -86,7 +88,6 @@ function SignUp() {
           className="user_input"
           onChange={(e) => setPassword0(e.target.value)}
           value={password0}
-        
         />
         <input
           type="password"
@@ -94,7 +95,6 @@ function SignUp() {
           className="user_input"
           onChange={(e) => setPassword1(e.target.value)}
           value={password1}
-      
         />
         {error ? <div className="mt-3 mb-2 error"> {error}</div> : null}
 

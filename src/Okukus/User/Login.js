@@ -26,11 +26,13 @@ function Login() {
     const data = await loginUser(formData);
     if (data.error === true) {
       setError(data.message);
+
     } else {
       localStorage.setItem("loginToken", data.token);
       isLoggedIn();
+      clearLogin();
     }
-    clearLogin();
+
   };
 
   return (

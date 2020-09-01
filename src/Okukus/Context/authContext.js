@@ -82,6 +82,7 @@ class AuthProvider extends Component {
 
   logoutUser = () => {
     localStorage.removeItem("loginToken");
+    localStorage.clear()
 
     this.setState({
       ...this.state,
@@ -127,11 +128,11 @@ class AuthProvider extends Component {
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       });
-
       console.log(data)
 
       if (data.validity === true && data.buyer === null) {
         localStorage.removeItem("loginToken");
+        console.log(window.localStorage)
       } else if (data.error === true) {
         localStorage.removeItem("loginToken");
       } else {
@@ -143,6 +144,7 @@ class AuthProvider extends Component {
           email: data.buyer.email,
           uniqueID: data.buyer.unique_id,
         });
+        console.log(window.localStorage)
       }
     }
   };
