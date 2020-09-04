@@ -12,9 +12,7 @@ const All = () => {
     const fetchData = async () => {
       const data = await getItems();
       if (isMounted) setProducts(data);
-    };
-    fetchData();
-  }, []);
+    }; fetchData()}, [getItems]);
 
   let content = products.map(
     ({ unique_id, unit_price, product_name, cover_photo_url }) => (

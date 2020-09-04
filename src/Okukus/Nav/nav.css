@@ -12,7 +12,14 @@
 }
 
 .name {
-font-size: 1em;
+  font-size: 1.35em;
+  font-weight: 600;
+  color: black;
+}
+
+.name:hover{
+  text-decoration: none;
+  color: #075200;
 }
 
 .link {
@@ -27,7 +34,7 @@ font-size: 1em;
 
 .bi {
   color: #000000;
-font-size: 2em;
+  font-size: 2em;
 }
 
 .bi:hover,
@@ -88,7 +95,6 @@ font-size: 2em;
   outline: 0;
   border-color: #00d919;
   background-color: #00d919;
-
 }
 
 .font-mobile {
@@ -136,10 +142,6 @@ font-size: 2em;
 }
 
 @media (min-width: 768px) {
-  .name {
-    font-size: 1.3em;
-    }
-
   .search-input {
     font-size: 1rem;
     font-weight: 400;
@@ -152,7 +154,7 @@ font-size: 2em;
     padding: 0.4em;
     outline: 0;
     color: #252525;
-      border-color: #00d919;
+    border-color: #00d919;
   }
 
   .search-input:focus {
@@ -189,7 +191,6 @@ font-size: 2em;
     outline: 0;
     border-color: #00d919;
     background-color: #00d919;
-
   }
 
   .slideRight {

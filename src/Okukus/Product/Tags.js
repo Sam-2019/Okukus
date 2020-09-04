@@ -14,7 +14,7 @@ const Tag = (props) => {
   useEffect(() => {
     var formData = new FormData();
 
-    formData.set("book_tag", id);
+    formData.set("tag_title", id);
     const fetchData = async () => {
       const data = await getTag(formData);
 

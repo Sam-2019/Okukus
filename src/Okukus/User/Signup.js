@@ -38,12 +38,9 @@ function SignUp() {
       setError(data.message);
     } else {
       localStorage.setItem("loginToken", data.buyer.token);
-      console.log(window.localStorage);
       isLoggedIn();
       clearSignup();
     }
-
-
   };
 
   return (

@@ -58,7 +58,7 @@ const Desktop = ({ hamburger }) => {
 
       <div className="bd-highlight inline in-content">
         <div className="mr-2">
-          <NavLink to="/" className="link name">
+          <NavLink to="/" className=" name">
             OKUKUS
           </NavLink>
         </div>
@@ -137,7 +137,7 @@ const Mobile = ({ hamburger }) => {
 
         <div className="p-2bd-highlight inline in-content">
           <div className="mr-1 p-2">
-            <NavLink to="/" className="link name">
+            <NavLink to="/" className=" name">
               OKUKUS
             </NavLink>
           </div>
