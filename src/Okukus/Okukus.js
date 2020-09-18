@@ -12,6 +12,7 @@ import Order from "./Order/Order";
 import Search from "./Search/Search";
 import Login from "./User/Login";
 import SignUp from "./User/Signup";
+import Cart from './Cart/Cart'
 
 const Okukus = () => {
   const { rootState } = useContext(auth);
@@ -22,10 +23,11 @@ const Okukus = () => {
       <div className="contain">
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
+        <Route path="/cart" component={Cart} />
         <Route path="/product/:id" component={Product} />
         <Route path="/tags/:id" component={Tag} />
         <Route path="/search/:id" component={Search} />
-        {isAuth && <Route path="/order/:id" component={Order} />}
+        {/* {isAuth && <Route path="/order/:id" component={Order} />}
         {isAuth && <Route path="/profile" component={Profile} />}
         
         {isAuth && <Redirect from="/login" to="/" component={Body} />}
@@ -33,7 +35,7 @@ const Okukus = () => {
        
 
         {!isAuth && <Redirect from="/order/:id" to="/" component={Body} />}
-        {!isAuth && <Redirect from="/profile" to="/" component={Body} />}
+        {!isAuth && <Redirect from="/profile" to="/" component={Body} />} */}
         <Route exact path="/" component={Body} />
       </div>
       <Footer />

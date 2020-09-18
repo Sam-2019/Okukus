@@ -1,16 +1,15 @@
 import React from "react";
 import AuthProvider from "./Okukus/Context/authContext";
 import Okukus from "./Okukus/Okukus";
+import Save from "./saveArray";
 import "bootstrap/dist/css/bootstrap.css";
 
-
 const App = () => {
-
   return (
     <AuthProvider>
-    <div className="body-background">
-      <Okukus />
-    </div>
+      <div className="body-background">
+        <Okukus />
+      </div>
     </AuthProvider>
   );
 };

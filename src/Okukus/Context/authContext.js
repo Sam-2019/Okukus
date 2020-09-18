@@ -131,7 +131,6 @@ class AuthProvider extends Component {
 
       if (data.validity === true && data.buyer === null) {
         localStorage.removeItem("loginToken");
-        console.log(window.localStorage);
       } else if (data.error === true) {
         localStorage.removeItem("loginToken");
       } else {
@@ -171,6 +170,7 @@ class AuthProvider extends Component {
       registerUser: this.registerUser,
       isLoggedIn: this.isLoggedIn,
       searchItem: this.searchItem,
+      
       firstName: this.firstname,
       lastName: this.lastname,
       email: this.email,
