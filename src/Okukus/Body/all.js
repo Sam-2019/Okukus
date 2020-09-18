@@ -11,7 +11,6 @@ const All = () => {
     let isMounted = true;
     const fetchData = async () => {
       const data = await getItems();
-      console.log(data)
       if (isMounted) setProducts(data);
     }; fetchData()}, [getItems]);
 

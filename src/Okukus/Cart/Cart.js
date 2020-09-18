@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Spinner from "../Spinner/Spinner";
 import { auth } from "../Context/authContext";
 import EmptyCart from "./Empty Cart";
@@ -43,17 +43,18 @@ const List = () => {
 
     const fetchData = async () => {
       const data = await getCart(formData);
-      if (data) {
+      console.log(data);
+      if (data.error === true) {
         setLoading(false);
-        setValue(data);
+        setMessage(data.message);
       } else {
         setLoading(false);
-        setMessage("No data");
+        setValue(data);
       }
     };
 
     fetchData();
-  }, [formData, getCart]);
+  }, [getCart]);
 
   let content = value.map(
     ({ unique_id, unit_price, product_name, cover_photo_url, stock }) => (
@@ -85,7 +86,9 @@ const List = () => {
    
         </div>
       </div> */}
-      {loading ? <Spinner /> : <> {content} </>}
+
+{loading ? <Spinner /> : <> {message} </>}
+
 
       <div className="cart_total_wrapper  ">
         <div className="cart_total">Total</div>
