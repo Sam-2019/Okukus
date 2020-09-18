@@ -104,10 +104,7 @@ class AuthProvider extends Component {
   };
 
   isLoggedIn = async () => {
-    const loginToken = localStorage.getItem("loginToken");
-    var formData = new FormData();
-
-    formData.set("token", loginToken);
+get
 
     if (loginToken) {
       const { data } = await axios({
@@ -255,7 +252,7 @@ class AuthProvider extends Component {
   render() {
     const contextValue = {
       rootState: this.state,
-      
+
       getItems: this.getItems,
       getItem: this.getItem,
       getTags: this.getTags,

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import products from "../files/products";
 import Spinner from "../Spinner/Spinner";
+import { auth } from "../Context/authContext";
 import EmptyCart from "./Empty Cart";
 import "./cart.css";
 
@@ -11,19 +11,10 @@ const Cart = () => {
   //setstate(!state);
   // };
 
-  let cart_list;
-  if (products === null) {
-    cart_list = <Spinner />;
-  } else if (products.length > 0) {
-    cart_list = <NotEmpty />;
-  } else {
-    cart_list = <EmptyCart />;
-  }
-
   return (
     <div className="cart_wrapper item">
       <h2 className="text-center "> Cart</h2>
-      <EmptyCart />
+      <NotEmpty />
     </div>
   );
 };
@@ -39,9 +30,32 @@ const NotEmpty = (props) => {
 };
 
 const List = () => {
-  const [items] = useState(products);
+  const { getCart } = useContext(auth);
+  const [value, setValue] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState();
 
-  let content = items.map(
+  useEffect(() => {
+    const loginToken = localStorage.getItem("loginToken");
+    var formData = new FormData();
+
+    formData.set("token", loginToken);
+
+    const fetchData = async () => {
+      const data = await getCart(formData);
+      if (data) {
+        setLoading(false);
+        setValue(data);
+      } else {
+        setLoading(false);
+        setMessage("No data");
+      }
+    };
+
+    fetchData();
+  }, [formData, getCart]);
+
+  let content = value.map(
     ({ unique_id, unit_price, product_name, cover_photo_url, stock }) => (
       <Item
         key={unique_id}
@@ -71,8 +85,7 @@ const List = () => {
    
         </div>
       </div> */}
-
-      {content}
+      {loading ? <Spinner /> : <> {content} </>}
 
       <div className="cart_total_wrapper  ">
         <div className="cart_total">Total</div>
