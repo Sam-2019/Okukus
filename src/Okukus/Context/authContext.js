@@ -104,7 +104,10 @@ class AuthProvider extends Component {
   };
 
   isLoggedIn = async () => {
-get
+    const loginToken = localStorage.getItem("loginToken");
+    var formData = new FormData();
+
+    formData.set("token", loginToken);
 
     if (loginToken) {
       const { data } = await axios({
