@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Spinner from "../Spinner/Spinner";
 import Primary from "../Button/Primary";
@@ -6,10 +6,12 @@ import Secondary from "../Button/Secondary";
 import { okukus } from "../apis";
 import { useAsync } from "../helpers";
 import { useAuthentication } from "../Auth/Context";
+import Alertbox from "../DialogBox/AlertBox";
 import "./product.css";
 
 const Product = (props) => {
   const { getItem, addCart, uniqueID } = useAuthentication();
+  const [message, setMessage] = useState();
 
   let id = props.match.params.id;
   let history = useHistory();
@@ -28,6 +30,7 @@ const Product = (props) => {
 
     const data = await addCart(formData);
     console.log(data);
+    setMessage(data.data.message);
   };
 
   let data = resource.value;
@@ -69,6 +72,10 @@ const Product = (props) => {
         </a> */}
 
         <div className=" _description">{data.product_description}</div>
+
+        <div className="message_wrapper ">
+          {message ? <div className="user_message "> {message}</div> : null}
+        </div>
 
         <div className="button_wrapper ">
           <Secondary name="Add to cart" action={add2cart} />
