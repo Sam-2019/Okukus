@@ -77,7 +77,7 @@ const Authentication = () => {
 
     if (loginToken) {
       const { data } = await axiosMethod(userValidate, formData);
-      console.log(data);
+   
       if (data.validity === true && data.buyer === null) {
         localStorage.removeItem("loginToken");
       } else if (data.error === true) {

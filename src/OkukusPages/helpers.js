@@ -41,15 +41,17 @@ export const useAsync = (getMethod, data) => {
   const [loading, setLoading] = useState(true);
   const [success, setSuccess] = useState();
   const [error, setError] = useState();
+  const [message, setMessage] = useState();
   const [value, setValue] = useState([]);
 
   const fetchData = async () => {
     const result = await getMethod(data);
+
     if (result.status !== 200) {
-      setError(result.status);
+      setMessage(result.data.message);
     } else {
       setSuccess(result.status);
-      setValue(result.data);
+      setValue(result.data.data);
       setLoading(false);
     }
   };
@@ -69,6 +71,7 @@ export const useAsyncc = (getMethod) => {
 
   const fetchData = async () => {
     const result = await getMethod();
+
     if (result.status !== 200) {
       setError(result.status);
     } else {

@@ -7,7 +7,7 @@ const Item = ({
   unit_price,
   product_name,
   cover_photo_url,
-  stock,
+  quantity,
   unique_id,
 }) => {
   const { deleteCart, updateCart } = useAuthentication();
@@ -33,7 +33,7 @@ const Item = ({
     console.log(data);
   };
 
-  const [qty, setQty] = useState(Number(stock));
+  const [qty, setQty] = useState(Number(quantity));
 
   const Add = () => {
     setQty(qty + 1);

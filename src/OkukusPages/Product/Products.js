@@ -8,6 +8,7 @@ const Products = () => {
   const { getItems } = useAuthentication();
 
   const resource = useAsyncc(getItems);
+  console.log(resource)
 
   let content = resource.value.map(
     ({ unique_id, unit_price, product_name, cover_photo_url }) => (

@@ -9,13 +9,20 @@ const Detail_edit = ({ update }) => {
   const [lastname, setLastName] = useState("");
   const [email0, setEmail0] = useState("");
 
-  update = async (event) => {
+  function update() {
+    updateData();
+    console.log(firstname)
+  }
+
+  const updateData = async (event) => {
     event.preventDefault();
     var formData = new FormData();
 
     formData.set("firstname", firstname);
     formData.set("lastname", lastname);
     formData.set("email", email0);
+
+
 
     const data = await updateUserProfile(formData);
     console.log(data);

@@ -20,6 +20,7 @@ const Product = (props) => {
   formData.set("product_unique_id", id);
 
   const resource = useAsync(getItem, formData);
+  console.log(resource)
 
   const add2cart = async (event) => {
     event.preventDefault();
@@ -29,7 +30,6 @@ const Product = (props) => {
     formData.set("product_unique_id", id);
 
     const data = await addCart(formData);
-    console.log(data);
     setMessage(data.data.message);
   };
 
