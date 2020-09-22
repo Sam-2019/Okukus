@@ -1,0 +1,43 @@
+.alertbox {
+    left: 1em;
+    right: 1em;
+  margin: 0 30%;
+  background-color: white;
+  border: 1px solid #00000020;
+  padding: 2.5em;
+
+}
+
+
+.slideBottom {
+  z-index: 49;
+  top: 5rem;
+  left: 0;
+  right: 0;
+  -webkit-transition: margin 1.3s;
+  transition: margin 1.3s;
+  margin: -15em 0 0 0;
+  position: fixed;
+  -webkit-transition: all ease 0.7s;
+  transition: all ease 0.7s;
+
+}
+
+.slideBottom.is-slideBottom-open {
+  margin-top: -1.6em;
+  -webkit-transition: all ease 0.7s;
+  transition: all ease 0.7s;
+}
+
+.slideBottom::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 720px) {
+    .alertbox {
+        left: 1em;
+        right: 1em;
+      margin: 0 10%;
+      background-color: aqua;
+    }
+}

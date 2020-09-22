@@ -1,0 +1,163 @@
+.product_wrapper {
+  display: flex;
+  padding: 0.5em;
+  align-items: center;
+}
+
+.product_img_wrapper {
+  width: 100%;
+  text-align: center;
+}
+
+.product_image {
+  border-radius: 0.9em;
+}
+
+.product_detail_wrapper {
+  width: 100%;
+}
+
+.name_author_wrapper {
+}
+
+._name {
+  font-size: 32px;
+  font-weight: 300;
+}
+
+._author {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.three_content_wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #00d91913;
+  padding: 8px;
+  color: #777777;
+  border-radius: 0.5em;
+  align-items: baseline;
+}
+
+._review,
+._stock {
+  font-size: 25px;
+  text-align: center;
+  font-weight: 300;
+}
+
+._price {
+  font-size: 30px;
+  font-weight: 500;
+  text-align: center;
+}
+
+._description {
+  text-align: justify;
+  margin: 0.5em 0 0 0;
+}
+
+.button_wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 0.5em 0 0 0;
+}
+
+.add_to_cart,
+.buy_product {
+  border-radius: 20px;
+  border: 1px solid #00d919;
+  font-size: 12px;
+  padding: 5px 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+
+.add_to_cart {
+  margin: 0 0.5em 0 0;
+  background-color: #ffffff;
+  color: #00d919;
+}
+
+.buy_product {
+  background-color: #00d919;
+  color: #ffffff;
+}
+
+.buy_product:active,
+.add_to_cart:active {
+  transform: scale(0.95);
+}
+
+.buy_product:focus,
+.add_to_cart:focus {
+  outline: none;
+}
+
+.buy_product.ghost,
+.add_to_cart.ghost {
+  background-color: transparent;
+  border-color: #ffffff;
+}
+
+@media (max-width: 720px) {
+  .product_wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product_img_wrapper {
+    width: 100%;
+  }
+
+  .product_image {
+    width: 170px;
+  }
+
+  .product_detail_wrapper {
+    width: 100%;
+  }
+
+  ._name {
+    font-size: 17px;
+    font-weight: 300;
+  }
+
+  ._author {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .three_content_wrapper {
+    justify-content: space-around;
+  }
+
+  ._review,
+  ._stock {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  ._price {
+    font-size: 30px;
+    font-weight: 600;
+  }
+
+  .button_wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5em 0;
+  }
+
+  .add_to_cart {
+    color: #00d919;
+    background-color: #ffffff;
+    margin: 0;
+  }
+
+  .buy_product {
+    margin: 0.5em 0 0 0;
+  }
+}

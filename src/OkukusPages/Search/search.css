@@ -1,0 +1,15 @@
+.search_wrapper {
+  padding: 0.5em 0.5em 0em 0.5em;
+  text-align: center;
+}
+
+.search_message {
+  padding: 10em 0;
+  font-weight: 500;
+}
+
+@media (max-width: 720px) {
+  .search_message {
+    padding: 10em 0;
+  }
+}

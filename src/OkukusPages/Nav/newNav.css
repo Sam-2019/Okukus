@@ -1,0 +1,32 @@
+.nav_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.dual {
+  display: flex;
+}
+
+.show {
+  text-align: center;
+  width: auto;
+}
+
+.show2 {
+  text-align: center;
+  width: auto;
+}
+
+@media (max-width: 570px) {
+  .dual {
+  }
+
+  .show {
+  }
+
+  .show2 {
+    width: 100%;
+  }
+}

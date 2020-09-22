@@ -1,0 +1,96 @@
+.account {
+  display: flex;
+  justify-content: space-around;
+  height: 72vh;
+}
+
+.account_detail {
+  width: 40%;
+  min-width: 45%;
+}
+
+.profile-header {
+  padding: 0.4rem 1.25rem;
+  border: 1px solid #00000020;
+  border: 1px solid #11111120;
+  border-radius: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bi-pencil-square {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.bi-pencil-square:hover,
+.bi-pencil-square:active,
+.bi-pencil-square:focus {
+  color: #7f7f7f;
+  padding: 0.1em;
+}
+
+.profile_button {
+  border-radius: 13px;
+  background-color: #7f7f7f;
+  color: #ffffff;
+  font-size: 10px;
+  padding: 3px 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  width: auto;
+}
+
+
+.profile_button  {
+  background-color: #00d919;
+  border: 1px solid #00d919;
+  color: #ffffff;
+}
+
+.profile_button:active {
+  transform: scale(0.95);
+}
+
+.profile_button:focus {
+  outline: none;
+}
+
+
+.user_name {
+}
+
+.user_email {
+}
+
+.address_book {
+  width: 50%;
+}
+
+.profile-body {
+  padding: 0.4rem 1.25rem;
+  background-color: #ffffff;
+  border: 1px solid #00000020;
+  word-wrap: break-word;
+}
+
+.user_contact {
+}
+
+@media (max-width: 720px) {
+  .account {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+
+  .account_detail {
+    width: 100%;
+    padding: 0 0 0.5em 0;
+  }
+
+  .address_book {
+    width: 100%;
+  }
+}

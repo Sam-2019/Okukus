@@ -1,0 +1,28 @@
+.profile-content {
+  display: flex;
+}
+
+.sidebar {
+  width: 30%;
+}
+
+.view {
+  width: 70%;
+  padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+@media (max-width: 720px) {
+  .profile-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .view {
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    width: 100%;
+  }
+}

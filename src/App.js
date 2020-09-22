@@ -1,16 +1,16 @@
 import React from "react";
-import AuthProvider from "./Okukus/Context/authContext";
-import Okukus from "./Okukus/Okukus";
-import Save from "./saveArray";
+import { ContextProvider } from "./OkukusPages/Auth/Context";
 import "bootstrap/dist/css/bootstrap.css";
+import Okukus from "./OkukusPages/Okukus";
+// import Future from "./Future1";
 
 const App = () => {
   return (
-    <AuthProvider>
-      <div className="body-background">
+    <ContextProvider>
+      <div className="body">
         <Okukus />
       </div>
-    </AuthProvider>
+    </ContextProvider>
   );
 };
 

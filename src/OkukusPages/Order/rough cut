@@ -1,0 +1,35 @@
+      <div>
+          <input
+            type="radio"
+            name="payment_option"
+            value={payment_method}
+            defaultChecked
+            hidden
+          />
+          <div className="d-flex  item justify-content-center ">
+            <div className=" flex-fill radio item ">
+              <label>
+                <input
+                  type="radio"
+                  id="cash"
+                  name="payment_option"
+                  value={payment_method}
+                  onClick={cashCheck}
+                />{" "}
+                Cash on Delivery
+              </label>
+            </div>
+            <div className=" flex-fill  radio item ">
+              <label>
+                <input
+                  type="radio"
+                  id="momo"
+                  name="payment_option"
+                  value={payment_method}
+                  onClick={momoCheck}
+                />{" "}
+                Mobile Money
+              </label>
+            </div>
+          </div>
+        </div>
