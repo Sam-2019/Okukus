@@ -11,27 +11,28 @@ import "./nav.css";
 const NavHandler = () => {
   const [dialog, setDialog] = useState(false);
   const [alert, noAlert] = useState(false);
-  const slide = useRef(null);
+  const hamburger = useRef(null);
+  const alertbox = useRef(null);
 
   const hamburgerShow = () => {
     setDialog(!dialog);
-    const slider = slide.current;
+    const slider = hamburger.current;
     slider.classList.toggle("is-slideRight-open");
   };
 
   const showAlert = () => {
     noAlert(!alert);
-    const slider = slide.current;
+    const slider = alertbox.current;
     slider.classList.toggle("is-slideBottom-open");
   };
 
   return (
     <header>
-      <div ref={slide} className="slideRight">
+      <div ref={hamburger} className="slideRight">
         <Hamburger hamburger={hamburgerShow} />
       </div>
 
-      <div ref={slide} className="slideBottom">
+      <div ref={alertbox} className="slideBottom">
         <AlertBox alert={showAlert} />
       </div>
 
@@ -50,9 +51,8 @@ const Navigation = ({ hamburger, showAlert }) => {
   formData.set("buyer_unique_id", uniqueID);
 
   const resource = useAsync(countCart, formData);
-  console.log(resource);
 
-  console.log(window.localStorage);
+
   return (
     <header>
       <nav className="nav_header ">

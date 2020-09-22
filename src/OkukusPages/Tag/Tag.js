@@ -9,13 +9,12 @@ const Tag = ({ hamburgerClick }) => {
   const { getTags } = useAuthentication();
 
   const resource = useAsyncc(getTags);
-  console.log(resource);
 
   const [tags] = useState(product_tag);
 
   let history = useHistory();
 
-  let tenet = tags.map(({ id, title }) => (
+  let tenet = resource.value.map(({ id, title }) => (
     <button
       key={id}
       onClick={() => {
@@ -28,7 +27,7 @@ const Tag = ({ hamburgerClick }) => {
     </button>
   ));
 
-  return <div className='tag_wrapper'>{tenet}</div>;
+  return <div className="tag_wrapper">{tenet}</div>;
 };
 
 export default Tag;
