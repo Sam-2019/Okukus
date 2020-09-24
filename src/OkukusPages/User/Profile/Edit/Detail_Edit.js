@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Primary from "../../../Button/Primary";
 import { useAuthentication } from "../../../Auth/Context";
 import "./edit.css";
 
@@ -9,20 +10,15 @@ const Detail_edit = ({ update }) => {
   const [lastname, setLastName] = useState("");
   const [email0, setEmail0] = useState("");
 
-  function update() {
-    updateData();
-    console.log(firstname)
-  }
-
   const updateData = async (event) => {
+    update();
+    console.log(firstname);
     event.preventDefault();
     var formData = new FormData();
 
     formData.set("firstname", firstname);
     formData.set("lastname", lastname);
     formData.set("email", email0);
-
-
 
     const data = await updateUserProfile(formData);
     console.log(data);
@@ -50,6 +46,10 @@ const Detail_edit = ({ update }) => {
         value={email0}
         onChange={(e) => setEmail0(e.target.value)}
       />
+
+      <div className="button_wrapper ">
+        <Primary name="Save Changes" action={updateData} />
+      </div>
     </div>
   );
 };

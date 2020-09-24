@@ -45,13 +45,13 @@ const NavHandler = () => {
 
 const Navigation = ({ hamburger, showAlert }) => {
   const { Auth, countCart, uniqueID, logoutUser } = useAuthentication();
+  const [cartCount, setCartcount] = useState();
   let history = useHistory();
 
   var formData = new FormData();
   formData.set("buyer_unique_id", uniqueID);
 
   const resource = useAsync(countCart, formData);
-
 
   return (
     <header>
@@ -119,10 +119,15 @@ const Navigation = ({ hamburger, showAlert }) => {
                 />
               </svg>
             </NavLink>
-            <span className="cart3000 item">200</span>
+
+            {resource.loading ? (
+              <span className=" "></span>
+            ) : (
+              <span className="cart3000 ">{resource.value.cart_count}</span>
+            )}
           </div>
 
-          <div className="item">
+          <div className="">
             {Auth ? (
               <span className="link logout " onClick={logoutUser}>
                 Logout

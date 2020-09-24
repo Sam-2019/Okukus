@@ -5,8 +5,8 @@ import "./view.css";
 
 const View = ({ id, cover_photo_url, product_name, unit_price }) => {
   return (
-    <NavLink to={/product/ + id} className="view_wrapper">
-      <div className="item_wrapper">
+    <NavLink to={/product/ + id} className="view_wrapper ">
+      <div className="item_wrapper ">
         <div className=" item_image_wrapper">
           <img
             src={`${okukus}/${cover_photo_url}`}

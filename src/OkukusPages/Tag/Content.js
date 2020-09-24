@@ -12,9 +12,10 @@ const Content = (props) => {
   const [loading] = useState(false);
 
   let id = props.match.params.id;
+  console.log(id)
 
   var formData = new FormData();
-  formData.set("book_tag", id);
+  formData.set("tag_title", id);
 
   const resource = useAsync(getTag, formData);
   console.log(resource)

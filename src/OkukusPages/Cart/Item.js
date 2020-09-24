@@ -3,44 +3,38 @@ import Delete from "../Button/Delete";
 import Save from "../Button/Save";
 import { useAuthentication } from "../Auth/Context";
 
-const Item = ({
-  unit_price,
-  product_name,
-  cover_photo_url,
-  quantity,
-  unique_id,
-}) => {
-  const { deleteCart, updateCart } = useAuthentication();
+const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {
+  const { deleteCart, updateCart, uniqueID } = useAuthentication();
+  const [qty, setQty] = useState(Number(quantity));
 
   const deleteItem = async (event) => {
     event.preventDefault();
     var formData = new FormData();
-    formData.set("buyer_unique_id", unique_id);
-    formData.set("cart_item_unique_id", unique_id);
+    formData.set("buyer_unique_id", uniqueID);
+    formData.set("item_unique_id", id);
 
     const data = await deleteCart(formData);
     console.log(data);
   };
 
-  const updateItem = async (event) => {
-    event.preventDefault();
+  const updateItem = async () => {
     var formData = new FormData();
-    formData.set("buyer_unique_id", unique_id);
-    formData.set("item_unique_id", unique_id);
-    formData.set("item_quantity", unique_id);
+    formData.set("buyer_unique_id", uniqueID);
+    formData.set("item_unique_id", id);
+    formData.set("item_quantity", qty);
 
     const data = await updateCart(formData);
     console.log(data);
   };
 
-  const [qty, setQty] = useState(Number(quantity));
-
   const Add = () => {
     setQty(qty + 1);
+    updateItem();
   };
 
   const Subtract = () => {
     setQty(qty - 1);
+    updateItem();
   };
 
   const rawsubtotal = qty * unit_price;
@@ -80,7 +74,6 @@ const Item = ({
         <div className="cart_item_price ">
           <small>GHc</small>
           <small>{unit_price}</small>
-    
         </div>
 
         <div className="cart_item_subtotal">{subtotal}</div>

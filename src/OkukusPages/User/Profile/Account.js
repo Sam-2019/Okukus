@@ -9,8 +9,12 @@ const OkukusAccount = () => {
   const [detailedit, setdetailedit] = useState(false);
   const [addressedit, setaddressedit] = useState(false);
 
-  const submit = () => {
-    console.log("hi");
+  const submitDetail = () => {
+    setdetailedit(false);
+  };
+
+  const submitAddress = () => {
+    setaddressedit(false);
   };
 
   return (
@@ -19,17 +23,7 @@ const OkukusAccount = () => {
         <div className="profile-header">
           <div> Details</div>
 
-          {detailedit ? (
-            <button
-            className='profile_button'
-              onClick={() => {
-                setdetailedit(false);
-                submit();
-              }}
-            >
-              Done
-            </button>
-          ) : (
+          {detailedit ? null : (
             <svg
               onClick={() => {
                 setdetailedit(true);
@@ -49,7 +43,7 @@ const OkukusAccount = () => {
         </div>
 
         {detailedit ? (
-          <Detailedit update={submit} />
+          <Detailedit update={submitDetail} />
         ) : (
           <div className="profile-body">
             <div className="user_name">
@@ -65,16 +59,7 @@ const OkukusAccount = () => {
         <div className="profile-header">
           <div>Address Book</div>
 
-          {addressedit ? (
-            <button className='profile_button'
-              onClick={() => {
-                setaddressedit(false);
-                submit();
-              }}
-            >
-              Done
-            </button>
-          ) : (
+          {addressedit ? null : (
             <svg
               onClick={() => {
                 setaddressedit(true);
@@ -96,7 +81,7 @@ const OkukusAccount = () => {
         <div className="profile-body">
           <div>Your default shipping address:</div>
           {addressedit ? (
-            <Addressedit update={submit} />
+            <Addressedit update={submitAddress} />
           ) : (
             <div className="px-2 profile-text">
               <div className="user_name">

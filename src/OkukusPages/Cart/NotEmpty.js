@@ -18,7 +18,7 @@ const List = () => {
 
   const resource = useAsync(getCart, formData);
 
-  const [items] = useState(products);
+
   let content;
 
   if (resource.value) {

@@ -36,7 +36,7 @@ const Authentication = () => {
 
   const getItem = async (formData) => {
     const item = await axiosMethod(itemGet, formData);
-    return item;
+    return (item);
   };
 
   const getTags = async () => {

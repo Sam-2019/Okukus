@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import Primary from "../../../Button/Primary";
 import { useAuthentication } from "../../../Auth/Context";
 import "./edit.css";
 
 const Address_edit = ({ update }) => {
-  const { updateUserProflie } = useAuthentication();
+  const { updateUserProfile } = useAuthentication();
 
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
@@ -12,8 +13,11 @@ const Address_edit = ({ update }) => {
   const [contact0, setContact0] = useState("");
   const [contact1, setContact1] = useState("");
 
-  update = async (event) => {
+  const updateData = async (event) => {
+    update();
+    console.log(firstname);
     event.preventDefault();
+
     var formData = new FormData();
 
     formData.set("firstname", firstname);
@@ -24,7 +28,7 @@ const Address_edit = ({ update }) => {
     formData.set("email", contact0);
     formData.set("email", contact1);
 
-    const data = await updateUserProflie(formData);
+    const data = await updateUserProfile(formData);
     console.log(data);
   };
 
@@ -67,6 +71,9 @@ const Address_edit = ({ update }) => {
         value={contact1}
         onChange={(e) => setContact1(e.target.value)}
       />
+      <div className="button_wrapper ">
+        <Primary name="Save Changes" action={updateData} />
+      </div>
     </div>
   );
 };

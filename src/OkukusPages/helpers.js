@@ -47,7 +47,9 @@ export const useAsync = (getMethod, data) => {
   const fetchData = async () => {
     const result = await getMethod(data);
 
+
     if (result.status !== 200) {
+      setError(result.data.error);
       setMessage(result.data.message);
     } else {
       setSuccess(result.status);
@@ -60,7 +62,7 @@ export const useAsync = (getMethod, data) => {
     fetchData();
   }, [fetchData]);
 
-  return { value, error, loading, success };
+  return { value,message, error, loading, success };
 };
 
 export const useAsyncc = (getMethod) => {
@@ -73,6 +75,7 @@ export const useAsyncc = (getMethod) => {
     const result = await getMethod();
 
     if (result.status !== 200) {
+
       setError(result.status);
     } else {
       setSuccess(result.status);
