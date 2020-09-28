@@ -60,7 +60,7 @@ const OkukusAccount = () => {
     const data = await updateUserProfile(formData);
     if (data.data.error === true) {
       setError(data.data.message);
-    } else if (data.error === false) {
+    } else if (data.data.error === false) {
       submitDetail();
     }
   };
@@ -76,7 +76,7 @@ const OkukusAccount = () => {
 
     if (data.data.error === true) {
       setError(data.data.message);
-    } else if (data.error === false) {
+    } else if (data.data.error === false) {
       submitEmail();
     }
   };
@@ -93,7 +93,7 @@ const OkukusAccount = () => {
 
     if (data.data.error === true) {
       setError(data.data.message);
-    } else if (data.error === false) {
+    } else if (data.data.error === false) {
       submitPassword();
     }
   };
