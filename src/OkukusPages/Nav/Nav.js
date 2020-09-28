@@ -55,8 +55,8 @@ const Navigation = ({ hamburger, showAlert }) => {
 
   return (
     <header>
-      <nav className="nav_header ">
-        <div className="sub_header_one ">
+      <nav className="nav_header item ">
+        <div className="sub_header_one item ">
           <div onClick={hamburger}>
             <svg
               viewBox="0 0 16 16"
@@ -77,12 +77,12 @@ const Navigation = ({ hamburger, showAlert }) => {
           </div>
         </div>
 
-        <div className="nav_search ">
+        <div className="nav_search item">
           <Searchbox alert={showAlert} />
         </div>
 
-        <div className="sub_header_two  ">
-          <div>
+        <div className="sub_header_two item ">
+          <span className="item">
             {Auth ? (
               <NavLink to="/profile" className="link">
                 <svg
@@ -103,7 +103,7 @@ const Navigation = ({ hamburger, showAlert }) => {
                 </svg>
               </NavLink>
             ) : null}
-          </div>
+          </span>
 
           <div className="item ">
             <NavLink to="/cart" className="link ">
@@ -121,20 +121,20 @@ const Navigation = ({ hamburger, showAlert }) => {
             </NavLink>
 
             {resource.loading ? (
-              <span className=" "></span>
+              <span className="cart3000">0</span>
             ) : (
-              <span className="cart3000 ">{resource.value.cart_count}</span>
+              <span className="cart3000">{resource.value.cart_count}</span>
             )}
           </div>
 
           <div className="">
             {Auth ? (
-              <span className="link logout " onClick={logoutUser}>
+              <span className="link logout item " onClick={logoutUser}>
                 Logout
               </span>
             ) : (
               <span
-                className="link login"
+                className="link login item"
                 onClick={() => {
                   history.push("/login");
                 }}

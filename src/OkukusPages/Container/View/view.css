@@ -74,6 +74,10 @@
   padding: 3px 10px;
 }
 
+.discount{
+  font-size: 10px
+}
+
 @media (max-width: 720px) {
   .item_wrapper {
     padding: 5px;

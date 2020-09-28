@@ -10,6 +10,7 @@ import {
   userValidate,
   userPasswordUpdate,
   userProfileUpdate,
+  userEmailUpdate,
   itemSearch,
   cartAdd,
   cartGet,
@@ -24,7 +25,7 @@ import { axiosMethod } from "../helpers";
 
 const Authentication = () => {
   const [Auth, setAuth] = useState(false);
-  const [firstName, setFirstName] = useState("");
+  const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [email, setEmail] = useState();
   const [uniqueID, setUniqueID] = useState();
@@ -36,7 +37,7 @@ const Authentication = () => {
 
   const getItem = async (formData) => {
     const item = await axiosMethod(itemGet, formData);
-    return (item);
+    return item;
   };
 
   const getTags = async () => {
@@ -77,7 +78,7 @@ const Authentication = () => {
 
     if (loginToken) {
       const { data } = await axiosMethod(userValidate, formData);
-   
+
       if (data.validity === true && data.buyer === null) {
         localStorage.removeItem("loginToken");
       } else if (data.error === true) {
@@ -96,12 +97,27 @@ const Authentication = () => {
 
   const updateUserPassword = async (formData) => {
     const updatePassword = await axiosMethod(userPasswordUpdate, formData);
+
     return updatePassword;
   };
 
   const updateUserProfile = async (formData) => {
     const updateProfile = await axiosMethod(userProfileUpdate, formData);
+
+    if (updateProfile.data.error === false) {
+      setFirstName(updateProfile.data.data.firstname);
+      setLastName(updateProfile.data.data.lastname);
+    }
     return updateProfile;
+  };
+
+  const updateUserEmail = async (formData) => {
+    const updateEmail = await axiosMethod(userEmailUpdate, formData);
+
+    if (updateEmail.data.error === false) {
+      setEmail(updateEmail.data.data.email);
+    }
+    return updateEmail;
   };
 
   const searchItem = async (formData) => {
@@ -175,6 +191,7 @@ const Authentication = () => {
     isLoggedIn,
     updateUserPassword,
     updateUserProfile,
+    updateUserEmail,
 
     searchItem,
 

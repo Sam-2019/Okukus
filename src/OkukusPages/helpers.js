@@ -47,14 +47,16 @@ export const useAsync = (getMethod, data) => {
   const fetchData = async () => {
     const result = await getMethod(data);
 
-
-    if (result.status !== 200) {
-      setError(result.data.error);
-      setMessage(result.data.message);
-    } else {
+    if (result.data.error === true) {
       setSuccess(result.status);
+      setMessage(result.data.message);
+      setValue(null);
+      setLoading(false);
+    } else if (result.data.error === false) {
       setValue(result.data.data);
       setLoading(false);
+      setMessage(null);
+      setError(null);
     }
   };
 
@@ -62,7 +64,7 @@ export const useAsync = (getMethod, data) => {
     fetchData();
   }, [fetchData]);
 
-  return { value,message, error, loading, success };
+  return { value, message, error, loading, success };
 };
 
 export const useAsyncc = (getMethod) => {
@@ -75,7 +77,6 @@ export const useAsyncc = (getMethod) => {
     const result = await getMethod();
 
     if (result.status !== 200) {
-
       setError(result.status);
     } else {
       setSuccess(result.status);

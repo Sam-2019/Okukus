@@ -8,19 +8,16 @@ import "./content.css";
 
 const Content = (props) => {
   const { getTag } = useAuthentication();
-  const [product] = useState(productItem);
-  const [loading] = useState(false);
 
   let id = props.match.params.id;
-  console.log(id)
 
   var formData = new FormData();
   formData.set("tag_title", id);
 
   const resource = useAsync(getTag, formData);
-  console.log(resource)
+  console.log(resource.value)
 
-  let content = product.map(
+  let content = resource.value.map(
     ({ unique_id, unit_price, product_name, cover_photo_url }) => (
       <View
         key={unique_id}
@@ -38,7 +35,7 @@ const Content = (props) => {
         <h4> {id}</h4>
       </div>
 
-      {loading ? <Spinner /> : <div className="wrapper">{content}</div>}
+      {resource.loading ? <Spinner /> : <div className="wrapper">{content}</div>}
     </>
   );
 };

@@ -22,6 +22,9 @@ const View = ({ id, cover_photo_url, product_name, unit_price }) => {
 
         <div className=" item_price_wrapper ">
           <span className="item_price item">₵{unit_price}</span>
+     
+          {/* <span className="discount item">-5%</span> */}
+       
         </div>
       </div>
     </NavLink>

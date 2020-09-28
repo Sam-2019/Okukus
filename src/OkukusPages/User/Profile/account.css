@@ -18,6 +18,15 @@
   justify-content: space-between;
 }
 
+.name-change,
+.password-change,
+.email-change {
+  padding: 0.4rem 1.25rem;
+  border-radius: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
 .bi-pencil-square {
   width: 1.2em;
   height: 1.2em;

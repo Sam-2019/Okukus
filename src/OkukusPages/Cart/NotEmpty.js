@@ -18,7 +18,6 @@ const List = () => {
 
   const resource = useAsync(getCart, formData);
 
-
   let content;
 
   if (resource.value) {
@@ -71,15 +70,16 @@ const List = () => {
         {resource.loading ? (
           <Spinner />
         ) : resource.error ? (
-          <span className="text-danger">{resource.error}</span>
+          <span className="text-danger">{resource.message}</span>
         ) : (
-          <>{content}</>
+          <>
+            {content}
+            <div className="cart_total_wrapper  ">
+              <div className="cart_total">Total</div>
+              <div className="cart_total_amount  ">Total</div>
+            </div>
+          </>
         )}
-      </div>
-
-      <div className="cart_total_wrapper  ">
-        <div className="cart_total">Total</div>
-        <div className="cart_total_amount  ">Total</div>
       </div>
     </div>
   );

@@ -12,6 +12,7 @@
   display: flex;
   justify-content: space-between;
   width: 10em;
+  
 }
 
 .sub_header_two {
@@ -24,6 +25,7 @@
 .nav_search {
   text-align: center;
   width: auto;
+  align-items: baseline;
 }
 
 .name {

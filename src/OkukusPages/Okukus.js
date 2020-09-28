@@ -21,7 +21,7 @@ const Okukus = () => {
     <Router>
       <Navigation />
       <div className="contain ">
-      <Route exact path="/" component={Body} />
+        <Route exact path="/" component={Body} />
         <Route path="/order" component={Order} />
         <Route path="/confirm" component={Confirm} />.
         <Route path="/cart" component={Cart} />
@@ -31,9 +31,9 @@ const Okukus = () => {
         <Route path="/product/:id" component={Product} />
         <Route path="/tag/:id" component={TagContent} />
         <Route path="/search/:id" component={Search} />
-        {/* <Route component={NotFound} /> */}
+        {/*    <Route component={NotFound} />
 
- 
+ */}
       </div>
       <Footer />
     </Router>

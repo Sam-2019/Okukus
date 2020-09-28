@@ -12,6 +12,8 @@ export const userRegister = `${okukus}/${dev_site}/user_register.php`;
 export const userValidate = `${okukus}/${dev_site}/user_validate.php`;
 export const userPasswordUpdate = `${okukus}/${dev_site}/update_buyer_password.php`;
 export const userProfileUpdate = `${okukus}/${dev_site}/update_buyer_profile.php`;
+export const userEmailUpdate = `${okukus}/${dev_site}/update_buyer_email.php`;
+
 
 export const itemSearch = `${okukus}/${dev_site}/search.php`;
 
