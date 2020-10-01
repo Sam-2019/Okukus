@@ -80,12 +80,6 @@ const Navigation = () => {
           ) : (
             <div className="profile">Login</div>
           )}
-
-          {/* <ul>
-            <li>Profile</li>
-            <li>Cart</li>
-            <li>Login</li>
-          </ul> */}
         </div>
 
         <div className="three ">

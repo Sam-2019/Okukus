@@ -16,7 +16,7 @@ const Search = ({ alert }) => {
   }
   return (
     <>
-      <div className="search_object item">
+      <div className="search_object ">
         <input
           className="search-input"
           type="search"
