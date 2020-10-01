@@ -167,26 +167,28 @@
     padding: 0.1em 0.2em;
     background-color: #00ff55;
     color: rgb(0, 0, 0);
+
   }
 
   .one {
     display: flex;
     order: 1;
+
   }
 
   .bi-justify {
-    width: 2em;
-    height: 2em;
+    width: 3em;
+    height: 3em;
   }
 
   .bi-person-circle {
-    width: 1.5em;
-    height: 1.5em;
+    width: 2.5em;
+    height: 2.5em;
   }
 
   .bi-cart3 {
-    width: 1.5em;
-    height: 1.5em;
+    width: 2.5em;
+    height: 2.5em;
   }
 
   .two {
