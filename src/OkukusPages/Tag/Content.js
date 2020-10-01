@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import View from "../Container/View/View";
-import productItem from "../files/products";
 import Spinner from "../Spinner/Spinner";
 import { useAuthentication } from "../Auth/Context";
 import { useAsync } from "../helpers";

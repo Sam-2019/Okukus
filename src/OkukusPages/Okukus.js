@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./okukus.css";
 
-import Navigation from "./Nav/Nav";
+import Navigation from "./Nav/new Nav";
 import Body from "./Body/Body";
 import Search from "./Search/Search";
 import Product from "./Product/Product";
@@ -21,7 +21,7 @@ const Okukus = () => {
     <Router>
       <Navigation />
       <div className="contain ">
-        <Route exact path="/" component={Body} />
+        {/*        <Route exact path="/" component={Body} />
         <Route path="/order" component={Order} />
         <Route path="/confirm" component={Confirm} />.
         <Route path="/cart" component={Cart} />
@@ -31,7 +31,7 @@ const Okukus = () => {
         <Route path="/product/:id" component={Product} />
         <Route path="/tag/:id" component={TagContent} />
         <Route path="/search/:id" component={Search} />
-        {/*    <Route component={NotFound} />
+   <Route component={NotFound} />
 
  */}
       </div>

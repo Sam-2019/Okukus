@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import products from "../files/products";
 import Item from "./Item";
 import { useAuthentication } from "../Auth/Context";
 import { useAsync } from "../helpers";
@@ -45,8 +44,6 @@ const List = () => {
         />
       )
     );
-  } else {
-    content = <Empty />;
   }
 
   return (
@@ -70,7 +67,8 @@ const List = () => {
         {resource.loading ? (
           <Spinner />
         ) : resource.error ? (
-          <span className="text-danger">{resource.message}</span>
+          //   <span className="text-danger">{resource.message}</span>//
+          <Empty />
         ) : (
           <>
             {content}

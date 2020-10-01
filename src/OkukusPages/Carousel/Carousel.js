@@ -5,6 +5,7 @@ import okuks1 from "./okuks1.jpg";
 import okuks2 from "./okuks2.jpg";
 import okuks3 from "./okuks3.jpg";
 import okuks4 from "./okuks4.png";
+import "./carousel.css";
 
 const Slider = () => {
   return (
@@ -12,23 +13,23 @@ const Slider = () => {
     slide={true}
     >
       <Carousel.Item>
-        <img className="d-block w-100" src={okuks0} alt=" slide" />
+        <img className="d-block w-100  carousel" src={okuks0} alt=" slide" />
       </Carousel.Item>
 
       <Carousel.Item>
-        <img className="d-block w-100" src={okuks1} alt=" slide" />
+        <img className="d-block w-100 carousel" src={okuks1} alt=" slide" />
       </Carousel.Item>
 
       <Carousel.Item>
-        <img className="d-block w-100" src={okuks2} alt=" slide" />
+        <img className="d-block w-100 carousel" src={okuks2} alt=" slide" />
       </Carousel.Item>
 
       <Carousel.Item>
-        <img className="d-block w-100" src={okuks3} alt=" slide" />
+        <img className="d-block w-100 carousel" src={okuks3} alt=" slide" />
       </Carousel.Item>
 
       <Carousel.Item>
-        <img className="d-block w-100" src={okuks4} alt=" slide" />
+        <img className="d-block w-100 carousel" src={okuks4} alt=" slide" />
       </Carousel.Item>
     </Carousel>
   );

@@ -21,6 +21,19 @@
   outline: 0;
 }
 
+.bi-person-circle {
+  width: 2em;
+  height: 2em;
+}
+
+.justify:active {
+  transform: scale(0.95);
+}
+
+.justify:focus {
+  outline: none;
+}
+
 .search-button {
   font-size: 1rem;
   background-clip: padding-box;
@@ -48,8 +61,11 @@
 }
 
 @media (max-width: 720px) {
+
+
   .search-input {
     padding: 0.1em 0.2em;
+    width: 60%;
   }
 
   .search-input:focus {
