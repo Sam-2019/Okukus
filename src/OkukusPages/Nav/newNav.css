@@ -71,19 +71,6 @@
   border-radius: 0.2em;
 }
 
-.cart30001 {
-  position: relative;
-  border: 1px solid #00ff55;
-  background-color: white;
-  color: #00ff55;
-  padding: 0 3px;
-  left: 0em;
-  top: -0.5em;
-  border-radius: 13px;
-  font-size: 12px;
-  font-weight: bold;
-}
-
 .cart3000 {
   position: relative;
   border: 0px solid #ff0000;
@@ -161,6 +148,36 @@
 .menu_item:focus {
 }
 
+
+.slideRight {
+  z-index: 49;
+  height: auto;
+  width: 22%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  -webkit-transition: margin 1.3s;
+  transition: margin 1.3s;
+  margin: 0 0 0 -130vh;
+  position: fixed;
+  overflow: scroll;
+  background-color: white;
+  -webkit-transition: all ease 0.7s;
+  transition: all ease 0.7s;
+}
+
+.slideRight.is-slideRight-open {
+  margin-left: 0;
+  -webkit-transition: all ease 0.7s;
+  transition: all ease 0.7s;
+}
+
+.slideRight::-webkit-scrollbar {
+  display: none;
+}
+
+
 @media (max-width: 720px) {
   .nav_header {
     padding: 0.1em 0.2em;
@@ -201,19 +218,6 @@
     margin: 0;
     padding: 0.2em 0 0.2em 0.25em;
     border-radius: 0.2em;
-  }
-
-  .cart30001 {
-    position: relative;
-    border: 1px solid #00ff55;
-    background-color: white;
-    color: #00ff55;
-    padding: 0 3px;
-    left: 0em;
-    top: -0.5em;
-    border-radius: 13px;
-    font-size: 12px;
-    font-weight: bold;
   }
 
   .cart3000 {
@@ -264,6 +268,16 @@
   .profile_menu {
     top: 2.6em;
     left: 14em;
+  }
+
+  .slideRight {
+    width: 100%;
+  }
+
+  .slideRight.is-slideRight-open {
+  }
+
+  .slideRight::-webkit-scrollbar {
   }
 }
 

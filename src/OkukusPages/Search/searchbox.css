@@ -60,6 +60,11 @@
   outline: 0;
 }
 
+.bi-search {
+  width: 1.3em;
+  height: 1em;
+}
+
 @media (max-width: 720px) {
 
 
@@ -78,4 +83,10 @@
   .search-button {
     padding: 0.1em 0.5em;
   }
+
+  
+.bi-search {
+  width: 1.3em;
+  height: 1.2em;
+}
 }

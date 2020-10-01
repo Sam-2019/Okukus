@@ -29,6 +29,7 @@ const Authentication = () => {
   const [lastName, setLastName] = useState();
   const [email, setEmail] = useState();
   const [uniqueID, setUniqueID] = useState();
+  const [getCartCount, setGetCartCount] = useState(0);
 
   const getItems = async () => {
     const items = await axios(itemsGet);
