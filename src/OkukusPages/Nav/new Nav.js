@@ -55,7 +55,7 @@ const Navigation = () => {
               />
             </svg>
 
-            <span className="cart3000 ">3000</span>
+            <span className="cart3000 ">30</span>
           </div>
 
           {auth === true ? (
