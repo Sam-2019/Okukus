@@ -167,13 +167,11 @@
     padding: 0.1em 0.2em;
     background-color: #00ff55;
     color: rgb(0, 0, 0);
-
   }
 
   .one {
     display: flex;
     order: 1;
-
   }
 
   .bi-justify {
@@ -275,9 +273,50 @@
   }
 
   .profile_menu {
-    top: 2.2em;
+    top: 3.1em;
   }
 }
 
+@media (max-width: 320px) {
+  .bi-justify {
+    width: 2.5em;
+    height: 2.5em;
+  }
 
-  /* find out the Bible scripture for jehovah bein the head of Jesue, who leads the man */
+  .bi-person-circle {
+    width: 2em;
+    height: 2em;
+  }
+
+  .bi-cart3 {
+    width: 2em;
+    height: 2em;
+  }
+
+  .profile_menu {
+    top: 2.6em;
+  }
+}
+
+@media (max-width: 280px) {
+  .bi-justify {
+    width: 2.2em;
+    height: 2.2em;
+  }
+
+  .bi-person-circle {
+    width: 1.7em;
+    height: 1.7em;
+  }
+
+  .bi-cart3 {
+    width: 1.7em;
+    height: 1.7em;
+  }
+
+  .profile_menu {
+    top: 2.3em;
+  }
+}
+
+/* find out the Bible scripture for jehovah bein the head of Jesue, who leads the man */
