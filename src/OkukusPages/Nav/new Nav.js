@@ -42,7 +42,7 @@ const Navigation = () => {
         </div>
 
         <div className="two ">
-          <div className="cart ">
+          <div className="cart  ">
             <svg
               viewBox="0 0 16 16"
               className="bi bi-cart3 navIcon"
@@ -55,7 +55,7 @@ const Navigation = () => {
               />
             </svg>
 
-            <span className="cart3000">3000</span>
+            <span className="cart3000 ">3000</span>
           </div>
 
           {auth === true ? (
