@@ -128,7 +128,7 @@
   z-index: 1031;
   right: 1%;
   color: #1973d3;
-
+  left: 95em;
   transition: margin 0.5s;
   -webkit-transition: all ease-in-out 0.5s;
   transition: all ease-in-out 0.5s;
@@ -137,7 +137,7 @@
   word-wrap: break-word;
 
   padding: 4px;
-  background-color: rgb(0, 255, 174);
+  background-color: #00ffae;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
@@ -263,6 +263,7 @@
 
   .profile_menu {
     top: 3.1em;
+    left: 13.5em;
   }
 }
 
@@ -284,6 +285,7 @@
 
   .profile_menu {
     top: 2.6em;
+    left: 12em;
   }
 
   .cart3000 {
@@ -309,6 +311,7 @@
 
   .profile_menu {
     top: 2.3em;
+    left: 9em;
   }
 
   .cart3000 {
