@@ -44,7 +44,13 @@ const NavHandler = () => {
 };
 
 const Navigation = ({ hamburger, showAlert }) => {
-  const { Auth, countCart, uniqueID, logoutUser } = useAuthentication();
+  const {
+    Auth,
+    countCart,
+    uniqueID,
+    logoutUser,
+    getCartCount,
+  } = useAuthentication();
   const [menu, setMenu] = useState(false);
 
   let history = useHistory();
@@ -94,11 +100,12 @@ const Navigation = ({ hamburger, showAlert }) => {
             </svg>
 
             <span className="cart3000 ">
-              {resource.value.cart_count === null ? (
+              {/* {resource.value === null ? (
                 <>0</>
               ) : (
                 <>{resource.value.cart_count}</>
-              )}
+              )} */}
+              {getCartCount}
             </span>
           </div>
 

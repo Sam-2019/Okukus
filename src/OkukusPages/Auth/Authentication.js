@@ -138,7 +138,12 @@ const Authentication = () => {
 
   const countCart = async (formData) => {
     const countcart = await axiosMethod(cartCount, formData);
-    return countcart;
+     if (countcart.data.error === true) {
+       setGetCartCount(0);
+     } else {
+      setGetCartCount(countcart.data.value.cart_count);
+    }
+    return(countcart);
   };
 
   const deleteCart = async (formData) => {
@@ -199,6 +204,7 @@ const Authentication = () => {
     addCart,
     getCart,
     countCart,
+    getCartCount,
     deleteCart,
     updateCart,
 

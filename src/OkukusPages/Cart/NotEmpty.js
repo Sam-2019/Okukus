@@ -16,7 +16,7 @@ const List = () => {
   formData.set("buyer_unique_id", uniqueID);
 
   const resource = useAsync(getCart, formData);
-  console.log(resource);
+
   let content;
 
   if (resource.value) {
@@ -62,6 +62,7 @@ const List = () => {
         <div className="cart_actions" >
    
         </div>
+         || resource.message === "cart is empty" 
       </div> */}
       <div>
         {resource.loading ? (
