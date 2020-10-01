@@ -1,7 +1,9 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import Primary from "../Button/Primary";
 
 const EmptyCart = () => {
+  let history = useHistory();
   return (
     <div className="empty_cart">
       <div className="cart_stack">
@@ -26,7 +28,9 @@ const EmptyCart = () => {
         <div>Login to see items in your cart.</div>
       </div>
 
-      <Primary name="Go Shopping" />
+      <Primary name="Go Shopping" action={() => {
+         history.push("/")
+      }} />
     </div>
   );
 };

@@ -29,7 +29,7 @@ const Authentication = () => {
   const [lastName, setLastName] = useState();
   const [email, setEmail] = useState();
   const [uniqueID, setUniqueID] = useState();
-  const [getCartCount, setGetCartCount] = useState(0);
+
 
   const getItems = async () => {
     const items = await axios(itemsGet);
@@ -138,11 +138,7 @@ const Authentication = () => {
 
   const countCart = async (formData) => {
     const countcart = await axiosMethod(cartCount, formData);
-     if (countcart.data.error === true) {
-       setGetCartCount(0);
-     } else {
-      setGetCartCount(countcart.data.value.cart_count);
-    }
+
     return(countcart);
   };
 
@@ -204,7 +200,6 @@ const Authentication = () => {
     addCart,
     getCart,
     countCart,
-    getCartCount,
     deleteCart,
     updateCart,
 

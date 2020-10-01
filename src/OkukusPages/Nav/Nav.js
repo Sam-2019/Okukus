@@ -44,14 +44,9 @@ const NavHandler = () => {
 };
 
 const Navigation = ({ hamburger, showAlert }) => {
-  const {
-    Auth,
-    countCart,
-    uniqueID,
-    logoutUser,
-    getCartCount,
-  } = useAuthentication();
+  const { Auth, countCart, uniqueID, logoutUser } = useAuthentication();
   const [menu, setMenu] = useState(false);
+  const [getCartCount, setGetCartCount] = useState(0);
 
   let history = useHistory();
 
@@ -59,6 +54,7 @@ const Navigation = ({ hamburger, showAlert }) => {
   formData.set("buyer_unique_id", uniqueID);
 
   const resource = useAsync(countCart, formData);
+  // setGetCartCount(resource.value.cart_count);
 
   return (
     <header>
@@ -100,12 +96,12 @@ const Navigation = ({ hamburger, showAlert }) => {
             </svg>
 
             <span className="cart3000 ">
-              {/* {resource.value === null ? (
+               {resource.value === null ? (
                 <>0</>
               ) : (
                 <>{resource.value.cart_count}</>
-              )} */}
-              {getCartCount}
+              )} 
+       
             </span>
           </div>
 
