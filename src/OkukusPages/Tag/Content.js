@@ -9,6 +9,7 @@ const Content = (props) => {
   const { getTag } = useAuthentication();
 
   let id = props.match.params.id;
+  console.log(id)
 
   var formData = new FormData();
   formData.set("tag_title", id);

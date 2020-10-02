@@ -23,8 +23,8 @@ const Okukus = () => {
       <Navigation />
       <div className="contain ">
         <Route exact path="/" component={Body} />
-        <Route path="/order" component={Order} />
-        <Route path="/confirm" component={Confirm} />.
+        <Route path="/order/:id" component={Order} />
+        <Route path="/confirm" component={Confirm} />
         <Route path="/cart" component={Cart} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />

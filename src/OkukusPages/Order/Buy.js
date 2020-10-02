@@ -48,7 +48,7 @@ const Buy = ({ doneShopping, id }) => {
     hide();
     event.preventDefault();
     var formData = new FormData();
-    console.log(payment_method);
+
 
     if (payment_method === "cash") {
       let empty = location && digital_address && phone_number && payment_method;
