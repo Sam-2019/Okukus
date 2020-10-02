@@ -43,3 +43,42 @@
   padding: 10px 0;
   text-align: center;
 }
+
+@media (max-width: 720px) {
+
+      
+      .welcome_wrapper {
+        border: 1px solid #c9bebedb;
+        border-radius: 0.25em;
+        background-color: #ffffff;
+        margin: 10em 0em;
+      }
+
+      
+      .item-top {
+        display: flex;
+        justify-content: flex-end;
+      }
+      
+      .bi-x-circle {
+        left: 64.8em;
+        right: 5em;
+        width: 1.5em;
+        height: 1.5em;
+        margin: 10px;
+   
+      }
+
+            
+      .welcome_message {
+        padding: 9px 0 10px 0;
+        border-radius: 0.25em;
+        text-align: center;
+        margin: 3em 1em 5em;
+      }
+      
+      .thanks {
+        padding: 10px 0;
+        text-align: center;
+      }
+  }

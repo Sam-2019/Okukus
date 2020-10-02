@@ -21,7 +21,7 @@ const Thanks = () => {
 
 const Welcome = () => {
   const [welcome, setWelcome] = useState(false);
-  
+
   const [message, setMessage] = useState(false);
 
   const [dialog, setDialog] = useState(false);
