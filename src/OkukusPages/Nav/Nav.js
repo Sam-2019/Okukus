@@ -22,8 +22,8 @@ const NavHandler = () => {
 
   const showAlert = () => {
     noAlert(!alert);
-    const slider = alertbox.current;
-    slider.classList.toggle("is-slideBottom-open");
+    const slide = alertbox.current;
+    slide.classList.toggle("is-slideBottom-open");
   };
 
   return (
