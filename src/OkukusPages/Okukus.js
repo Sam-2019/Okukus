@@ -15,6 +15,7 @@ import Profile from "./User/Profile";
 import TagContent from "./Tag/Content";
 import NotFound from "./404/404";
 import Footer from "./Footer/Footer";
+import Welcome from "./Welcome/Welcome";
 
 const Okukus = () => {
   return (

@@ -54,7 +54,7 @@ const Navigation = ({ hamburger, showAlert }) => {
   formData.set("buyer_unique_id", uniqueID);
 
   const resource = useAsync(countCart, formData);
-  console.log(resource)
+
   // setGetCartCount(resource.value.cart_count);
 
   return (
@@ -167,9 +167,13 @@ const Navigation = ({ hamburger, showAlert }) => {
 };
 
 const ProfileMenu = ({ logout, showMenu }) => {
+  let history = useHistory();
   return (
     <div className="profile_menu">
-      <div className="menu_item" onClick={showMenu}>
+      <div
+        className="menu_item"
+        onClick={(() => history.push("/profile"))}
+      >
         Profile
       </div>
       <div

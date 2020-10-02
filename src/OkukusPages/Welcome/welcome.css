@@ -1,0 +1,45 @@
+.welcome {
+  z-index: 5000;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  padding: 10px;
+  background-color: #bfbfbf48;
+  -webkit-transition: all linear 6s;
+  transition: all linear 60s;
+  z-index: 11;
+}
+
+.welcome_wrapper {
+  border: 1px solid #c9bebedb;
+  border-radius: 0.25em;
+  background-color: #ffffff;
+  margin: 15em 30em;
+}
+
+.welcome_message {
+  padding: 9px 0 10px 0;
+  border-radius: 0.25em;
+  text-align: center;
+  margin: 7em 5em 8em;
+}
+
+.item-top {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bi-x-circle {
+  left: 64.8em;
+  right: 5em;
+  width: 1.5em;
+  height: 1.5em;
+  margin: 10px;
+}
+
+.thanks {
+  padding: 10px 0;
+  text-align: center;
+}
