@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
 export const axiosMethod = async (url, formData) => {
@@ -15,26 +15,32 @@ export const axiosMethod = async (url, formData) => {
 //   const [loading, setLoading] = useState(true);
 //   const [success, setSuccess] = useState();
 //   const [error, setError] = useState();
+//   const [message, setMessage] = useState();
 //   const [value, setValue] = useState([]);
 
-//   const fetchData = async () => {
+//   const fetchData = useCallback(async () => {
 //     const result = await getMethod(data);
-//     if (result.status !== 200) {
-//       setError(result.status);
-//     } else {
-//       setTimeout(() => {
-//         setSuccess(result.status);
-//         setValue(result.data);
-//         setLoading(false);
-//       }, 1800);
+
+//     if (result.data.error === true) {
+//       setSuccess(result.status);
+//       setMessage(result.data.message);
+//       setValue(null);
+//       setLoading(false);
+//     } else if (result.data.error === false) {
+//       setValue(result.data.data);
+//       setLoading(false);
+//       setMessage(null);
+//       setError(null);
 //     }
-//   };
+//   }, [getMethod]);
 
 //   useEffect(() => {
-//     fetchData();
-//   }, data);
+//     if (data) {
+//       fetchData();
+//     }
+//   }, [fetchData, data]);
 
-//   return { value, error, loading, success };
+//   return { value, message, error, loading, success };
 // };
 
 export const useAsync = (getMethod, data) => {
@@ -62,7 +68,7 @@ export const useAsync = (getMethod, data) => {
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, [data]);
 
   return { value, message, error, loading, success };
 };
@@ -87,7 +93,7 @@ export const useAsyncc = (getMethod) => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [getMethod]);
 
   return { value, error, loading, success };
 };

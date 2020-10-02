@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
+import AlertBox from '../DialogBox/AlertBox'
 import "./searchbox.css";
 
 const Search = ({ alert }) => {
@@ -45,7 +46,7 @@ const Search = ({ alert }) => {
         </button>
       </div>
 
-      {/* {alert && <AlertBox />} */}
+       {alert && <AlertBox />} 
     </>
   );
 };

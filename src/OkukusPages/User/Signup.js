@@ -96,14 +96,14 @@ function SignUp() {
       </div>
 
       <div className="button_wrapper ">
+        <Primary name="Sign up" action={signup} />
+
         <Secondary
           name="Sign in"
           action={() => {
             history.push("/login");
           }}
         />
-
-        <Primary name="Sign up" action={signup} />
       </div>
     </div>
   );

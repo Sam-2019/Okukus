@@ -30,7 +30,7 @@ function Login() {
     formData.set("password", password);
 
     const data = await loginUser(formData);
-    console.log(data);
+
     if (data.error === true) {
       setError(data.message);
     } else {
@@ -70,6 +70,8 @@ function Login() {
       </div>
 
       <div className="button_wrapper ">
+      <Primary name="Sign in" action={logIn} />
+      
         <Secondary
           name="Sign up"
           action={() => {
@@ -77,7 +79,7 @@ function Login() {
           }}
         />
 
-        <Primary name="Sign in" action={logIn} />
+    
       </div>
     </div>
   );

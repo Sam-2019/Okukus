@@ -90,7 +90,7 @@
 @media (max-width: 720px) {
   .primary,
   .secondary {
-    padding: 6px 20px;
+    padding: 10px 20px;
     margin-bottom: 0.5em;
     width: 100%;
   }

@@ -21,7 +21,6 @@ const Product = (props) => {
 
   const resource = useAsync(getItem, formData);
 
-
   const add2cart = async (event) => {
     setMessage();
     event.preventDefault();
@@ -79,14 +78,14 @@ const Product = (props) => {
         </div>
 
         <div className="button_wrapper ">
-          <Secondary name="Add to cart" action={add2cart} />
-
           <Primary
             name="Buy book"
             action={() => {
               history.push(`/order/${id}`);
             }}
           />
+
+          <Secondary name="Add to cart" action={add2cart} />
         </div>
       </div>
     </div>
