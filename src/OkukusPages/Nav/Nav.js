@@ -172,7 +172,10 @@ const ProfileMenu = ({ logout, showMenu }) => {
     <div className="profile_menu">
       <div
         className="menu_item"
-        onClick={(() => history.push("/profile"))}
+        onClick={() => {
+          history.push("/profile");
+          showMenu();
+        }}
       >
         Profile
       </div>
