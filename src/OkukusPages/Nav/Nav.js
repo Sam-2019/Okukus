@@ -54,6 +54,7 @@ const Navigation = ({ hamburger, showAlert }) => {
   formData.set("buyer_unique_id", uniqueID);
 
   const resource = useAsync(countCart, formData);
+  console.log(resource)
   // setGetCartCount(resource.value.cart_count);
 
   return (
