@@ -18,33 +18,41 @@
   color: #00d919;
 }
 
-.back_icon {
-  text-align: right;
-}
+
 
 .back {
-  font-size: 2.1em;
-  padding: 2.5px 10px;
-  background-color: white;
-  border: 1px solid #00d919;
-  border-radius: 50%;
-  color: #666666;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  margin: 0;
+  border: 1px solid #00d91913;
+  border-radius: 5em;
+  color: #777777;
+  background-color: #00d91913;
 }
 
-.back:hover,
-.back:focus {
-  font-size: 2.1em;
-  padding: 2.5px 10px;
+.back:hover {
   background-color: #00d919;
-  border: 1px solid #ffffff;
-  border-radius: 50%;
   color: #ffffff;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  outline: none;
+  border: 1px solid #00d919;
 }
 
+.back:active {
+  box-shadow: 0 0.125rem 0.25rem #00000013 !important;
+  transform: scale(0.95);
+  background-color: #00d919;
+}
+
+.back:focus {
+  background-color: #00d919;
+  outline: none;
+  box-shadow: 0 0.125rem 0.25rem #00000013 !important;
+}
+
+.bi-arrow-left-circle {
+  width: 2.5em;
+  height: 2.5em;
+}
 
 @media (max-width: 720px) {
+  
+
 }
