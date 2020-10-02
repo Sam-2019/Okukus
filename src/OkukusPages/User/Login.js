@@ -37,7 +37,7 @@ function Login() {
       localStorage.setItem("loginToken", data.token);
       isLoggedIn();
       clearLogin();
-      console.log(window.localStorage);
+
     }
   };
 
