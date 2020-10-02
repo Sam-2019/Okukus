@@ -38,7 +38,7 @@ const Welcome = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setWelcome(true);
-    }, 10000);
+    }, 5000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -46,7 +46,7 @@ const Welcome = () => {
     <>
       {welcome && (
         <div className="welcome ">
-          <div className="welcome_wrapper ">
+          <div className="welcome_wrapper  ">
             {/* <div className="x-circle item">
           <svg
             viewBox="0 0 16 16"
@@ -85,7 +85,7 @@ const Welcome = () => {
               </div>
             </div>
 
-            <div className="welcome_message">
+            <div className="welcome_message ">
               {message ? <Thanks /> : <Message show={show} close={close} />}
             </div>
           </div>

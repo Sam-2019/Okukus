@@ -1,14 +1,13 @@
 .welcome {
-  z-index: 5000;
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
   top: 0;
-  padding: 10px;
+  padding: 15% 30%;
   background-color: #bfbfbf48;
-  -webkit-transition: all linear 6s;
-  transition: all linear 60s;
+  -webkit-transition: all ease 0.7s;
+  transition: all ease 0.7s;
   z-index: 11;
 }
 
@@ -16,7 +15,6 @@
   border: 1px solid #c9bebedb;
   border-radius: 0.25em;
   background-color: #ffffff;
-  margin: 15em 30em;
 }
 
 .item-top {
@@ -33,10 +31,9 @@
 }
 
 .welcome_message {
-  padding: 9px 0 10px 0;
   border-radius: 0.25em;
   text-align: center;
-  margin: 7em 5em 8em;
+  margin: 6em 0em 8em;
 }
 
 .thanks {
@@ -45,15 +42,13 @@
 }
 
 @media (max-width: 720px) {
+  .welcome {
+    padding: 45% 2%;
+  }
   .welcome_wrapper {
-    border: 1px solid #c9bebedb;
-    border-radius: 0.25em;
-    background-color: #ffffff;
-    margin: 10em 0em;
   }
   .welcome_message {
-    padding: 9px 0 10px 0;
-    margin: 3em 1em 5em;
+    margin: 1.5em 0.5em 4em;
   }
 
   .thanks {
