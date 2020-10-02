@@ -62,7 +62,6 @@ const Buy = ({ doneShopping, id }) => {
 
         const data = await createOrder(formData);
         localStorage.setItem("orderID", data.data.order_number);
-        console.log(data.data.order_number)
 
         clearCheckOut();
         doneShopping();
@@ -90,8 +89,7 @@ const Buy = ({ doneShopping, id }) => {
 
         const data = await createOrder(formData);
         localStorage.setItem("orderID", data.data.order_number);
-        console.log(data.data.order_number)
-        console.log(data)
+
 
         clearCheckOut();
         doneShopping();

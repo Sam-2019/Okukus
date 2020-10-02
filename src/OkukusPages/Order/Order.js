@@ -6,9 +6,6 @@ import "./order.css";
 const Order = (props) => {
   const [state, setState] = useState(false);
   let id = props.match.params.id;
-  console.log(id)
-
-
 
   const doneShopping = () => {
     setState(true);
