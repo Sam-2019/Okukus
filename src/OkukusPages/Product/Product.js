@@ -6,7 +6,6 @@ import Secondary from "../Button/Secondary";
 import { okukus } from "../apis";
 import { useAsync } from "../helpers";
 import { useAuthentication } from "../Auth/Context";
-import Alertbox from "../DialogBox/AlertBox";
 import "./product.css";
 
 const Product = (props) => {
