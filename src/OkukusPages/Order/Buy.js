@@ -61,7 +61,8 @@ const Buy = ({ doneShopping, id }) => {
         formData.set("payment_method", payment_method);
 
         const data = await createOrder(formData);
-        console.log(data)
+        localStorage.setItem("orderID", data.data.order_number);
+        console.log(data.data.order_number)
 
         clearCheckOut();
         doneShopping();
@@ -88,6 +89,8 @@ const Buy = ({ doneShopping, id }) => {
         formData.set("momo_transaction_id", momo_transaction_id);
 
         const data = await createOrder(formData);
+        localStorage.setItem("orderID", data.data.order_number);
+        console.log(data.data.order_number)
         console.log(data)
 
         clearCheckOut();
