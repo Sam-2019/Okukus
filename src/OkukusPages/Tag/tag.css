@@ -1,4 +1,4 @@
-.tag_wrapper{
+.tag_wrapper {
   margin: 0 1.5em;
 }
 
@@ -34,6 +34,7 @@
 
 @media (max-width: 720px) {
   .selector {
+    padding: 0.5em 1em;
   }
 
   .another {
