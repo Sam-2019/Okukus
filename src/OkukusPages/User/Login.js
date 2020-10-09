@@ -5,8 +5,6 @@ import Primary from "../Button/Primary";
 import Secondary from "../Button/Secondary";
 import "./user.css";
 
-
-
 function Login() {
   const { loginUser, isLoggedIn } = useAuthentication();
 
@@ -37,7 +35,6 @@ function Login() {
       localStorage.setItem("loginToken", data.token);
       isLoggedIn();
       clearLogin();
-
     }
   };
 
@@ -66,20 +63,29 @@ function Login() {
       </div>
 
       <div className="message_wrapper ">
-        {error ? <div className=" user_message "> {error}</div> : null}
+        {error ? (
+          <div className=" user_message "> {error}</div>
+        ) : (
+          <div
+            className="text-button"
+            onClick={() => {
+              history.push("/reset");
+            }}
+          >
+            Password forgotten?
+          </div>
+        )}
       </div>
 
       <div className="button_wrapper ">
-      <Primary name="Sign in" action={logIn} />
-      
+        <Primary name="Sign in" action={logIn} />
+
         <Secondary
           name="Sign up"
           action={() => {
             history.push("/signup");
           }}
         />
-
-    
       </div>
     </div>
   );

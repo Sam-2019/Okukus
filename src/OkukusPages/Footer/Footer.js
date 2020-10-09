@@ -26,10 +26,11 @@ const Footer = () => {
         <div className="visit ">
           <h5>Visit Our Office</h5>
           <p>
-      OKUKUS
-        
+            OKUKUS
             <br />
             Community 1, Site 4, F7 Tema
+            <br />
+            <span className="d-none d-sm-block ">+23324 508 6885</span>
           </p>
         </div>
 
@@ -77,10 +78,6 @@ const Footer = () => {
                 <i className="icon fab fa-whatsapp whatsapp"></i>
               </span>
             </a>
-
-            <div className="d-none d-sm-block  ">
-              <p className=" contact">+23324 508 6885</p>
-            </div>
 
             <span className="d-sm-none">
               <a

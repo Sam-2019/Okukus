@@ -4,7 +4,7 @@
 
 .hamburger_topline {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .okukus {
@@ -17,8 +17,6 @@
   text-decoration: none;
   color: #00d919;
 }
-
-
 
 .back {
   margin: 0;

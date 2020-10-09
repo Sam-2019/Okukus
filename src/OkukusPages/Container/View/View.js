@@ -5,7 +5,7 @@ import "./view.css";
 
 const View = ({ id, cover_photo_url, product_name, unit_price }) => {
   return (
-    <NavLink to={/product/ + id} className="view_wrapper ">
+    <NavLink to={/product/ + id} className="view_wrapper">
       <div className="item_wrapper ">
         <div className=" item_image_wrapper">
           <img
@@ -14,17 +14,16 @@ const View = ({ id, cover_photo_url, product_name, unit_price }) => {
             className="item_image"
           />
         </div>
+        <div className="name_price">
+          <div className="item_name_wrapper">
+            <span className="item_name">{product_name}</span>
+          </div>
 
-        <div className="item_name_wrapper">
+          <div className=" item_price_wrapper ">
+            <span className="item_price item">₵{unit_price}</span>
 
-          <span className="item_name">{product_name}</span>
-        </div>
-
-        <div className=" item_price_wrapper ">
-          <span className="item_price item">₵{unit_price}</span>
-     
-          {/* <span className="discount item">-5%</span> */}
-       
+            {/* <span className="discount item">-5%</span> */}
+          </div>
         </div>
       </div>
     </NavLink>

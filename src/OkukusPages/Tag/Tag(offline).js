@@ -1,18 +1,13 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { useAuthentication } from "../Auth/Context";
-import { useAsyncc } from "../helpers";
+import tags from "../files/product_tags";
 import "./tag.css";
 
 const Tag = ({ hamburgerClick }) => {
-  const { getTags } = useAuthentication();
-
-  const resource = useAsyncc(getTags);
-
-
+    const [tag] = useState(tags);
   let history = useHistory();
 
-  let tenet = resource.value.map(({ id, title }) => (
+  let tenet = tag.value.map(({ id, title }) => (
     <button
       key={id}
       onClick={() => {

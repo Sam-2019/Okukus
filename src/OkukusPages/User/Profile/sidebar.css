@@ -1,21 +1,16 @@
-
-
-.sidelist {
-  width: 50%;
-  padding: 0 0.5em 0 0.5em;
+.sidebar_wrapper {
 }
 
-.sidebyside {
+.sidelist {
   width: 100%;
-  padding: 0 0.5em;
-  margin-bottom: 0.7em;
+  padding: 0 0.5em 0 0.5em;
 }
 
 .sidebarbtn {
   padding: 3px 0;
   background-color: #00d91913;
   border: 1px solid #00d91913;
-  border-radius: 0.9em;
+  border-radius: 0;
   width: 100%;
   outline: none;
   color: #666666;
@@ -26,7 +21,6 @@
   user-select: none;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-
 }
 
 .sidebarbtn:focus {
@@ -43,34 +37,25 @@
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-@media (min-width: 576px) {
-}
-
-@media (min-width: 720px) {
-
-  .sidelist {
-    width: 100%;
+@media (max-width: 540px) {
+  .sidebar_wrapper {
+    display: flex;
+    justify-content: space-between;
+    overflow: auto;
+    white-space: nowrap;
   }
 
-  .sidebyside {
-    width: 50%;
+  .sidebar_wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sidelist {
   }
 
   .sidebarbtn {
-    padding: 5px;
-    background-color: #00d91913;
+    padding: 7px 12px;
     border: 0px solid #00d91913;
-    border-radius: 0;
-    width: 100%;
-    outline: none;
-    color: #666666;
-    text-align: center;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-      border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    border-radius: 0.9em;
   }
 
   .sidebarbtn:focus {
@@ -80,17 +65,6 @@
   .sidebarbtn-view,
   .sidebarbtn-view:hover,
   .sidebarbtn-view:focus {
-    background-color: #48ff0050;
-    border: 1px solid #00d91913;
-    width: 100%;
-    outline: none;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-      border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    border: 2px solid #00d91913;
   }
-}
-
-@media (min-width: 992px) {
-}
-
-@media (min-width: 1200px) {
 }

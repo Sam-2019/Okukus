@@ -54,6 +54,8 @@
   background-color: #00d919;
   border: 1px solid #00d919;
   color: #ffffff;
+
+  order: 1;
 }
 
 .secondary {
@@ -61,6 +63,7 @@
   border: 1px solid #00d919;
   color: #00d919;
   margin-right: 0.5em;
+  order: 0;
 }
 
 .delete {
@@ -76,7 +79,7 @@
 }
 
 .save {
-  background-color: ffffff;
+  background-color: #ffffff;
   border: 1px solid #d99c00;
   color: #d99c00;
 }
@@ -87,12 +90,20 @@
   color: #ffffff;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 540px) {
   .primary,
   .secondary {
     padding: 10px 20px;
     margin-bottom: 0.5em;
     width: 100%;
+  }
+
+  .primary {
+    order: 0;
+  }
+
+  .secondary {
+    order: 1;
   }
 
   .delete,

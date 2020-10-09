@@ -2,14 +2,11 @@
 
 # dependencies
 /node_modules
-/okukusv1
-/src/Future.js
-/src/Future1.js
-/src/search.js
-/src/reducer.js
+/src/Okukus
 /src/OkukusPages/files
 /src/OkukusPages/ternary.js
 /src/OkukusPages/images
+/src/OkukusPages/Context
 /.pnp
 .pnp.js
 

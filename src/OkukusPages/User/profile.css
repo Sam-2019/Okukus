@@ -1,5 +1,6 @@
 .profile-content {
   display: flex;
+  margin: 1em 0;
 }
 
 .sidebar {
@@ -8,13 +9,18 @@
 
 .view {
   width: 70%;
-  padding: 0.5em 0.5em 0.5em 0.5em;
+  padding: 0em 0.5em 0.5em 0.5em;
 }
 
-@media (max-width: 720px) {
+.view_title{
+  text-align: left;
+}
+
+@media (max-width: 540px) {
   .profile-content {
-    display: flex;
+
     flex-direction: column;
+    margin: 0.5em 0;
   }
 
   .sidebar {
@@ -24,5 +30,9 @@
   .view {
     padding: 0.5em 0.5em 0.5em 0.5em;
     width: 100%;
+  }
+
+  .view_title{
+    text-align: center;
   }
 }

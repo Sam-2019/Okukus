@@ -11,6 +11,7 @@
 
 .product_image {
   border-radius: 0.9em;
+  width: 250px;
 }
 
 .product_detail_wrapper {
@@ -23,6 +24,7 @@
 ._name {
   font-size: 32px;
   font-weight: 300;
+  text-align: left;
 }
 
 ._author {
@@ -102,7 +104,7 @@
   border-color: #ffffff;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 540px) {
   .product_wrapper {
     display: flex;
     flex-direction: column;
@@ -117,16 +119,17 @@
   }
 
   .product_detail_wrapper {
-    width: 100%;
+    width: 95%;
   }
 
   ._name {
     font-size: 17px;
     font-weight: 300;
+    text-align: left;
   }
 
   ._author {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
   }
 
@@ -141,14 +144,14 @@
   }
 
   ._price {
-    font-size: 30px;
-    font-weight: 600;
+    font-size: 25px;
+    font-weight: 500;
   }
 
   .button_wrapper {
     display: flex;
     flex-direction: column;
-    margin: 0.5em 0;
+    margin: 0;
   }
 
   .add_to_cart {

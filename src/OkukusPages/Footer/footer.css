@@ -106,7 +106,7 @@ h5 {
   color: white;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 540px) {
   .footer_wrapper {
     flex-direction: column;
   }

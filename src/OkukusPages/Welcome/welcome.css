@@ -4,7 +4,6 @@
   right: 0;
   bottom: 0;
   top: 0;
-  padding: 15% 30%;
   background-color: #bfbfbf48;
   -webkit-transition: all ease 0.7s;
   transition: all ease 0.7s;
@@ -13,8 +12,11 @@
 
 .welcome_wrapper {
   border: 1px solid #c9bebedb;
+
   border-radius: 0.25em;
   background-color: #ffffff;
+  width: auto;
+  margin: 8em 30%;
 }
 
 .item-top {
@@ -36,19 +38,66 @@
   margin: 6em 0em 8em;
 }
 
+.welcome_input {
+  background-color: #eee;
+  border: 1px solid transparent;
+  outline: none;
+  border-radius: 13px 0 0 13px;
+  padding: 6px 15px;
+  width: 45%;
+}
+
+.welcome_input:hover,
+.welcome_input:focus {
+  border: 1px solid #00d919;
+  -webkit-transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.3s;
+}
+
+.welcome_button {
+  border-radius: 0 13px 13px 0;
+  background-color: #00d919;
+  border: 1px solid #00d919;
+  color: #ffffff;
+  padding: 6px 15px;
+  transition: transform 80ms ease-in;
+  width: auto;
+  margin: 0 0 0 0;
+  align-items: center;
+}
+
+.welcome_button:active {
+  transform: scale(0.95);
+}
+
+.welcome_button:focus {
+  outline: none;
+}
+
 .thanks {
   padding: 10px 0;
   text-align: center;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 540px) {
   .welcome {
-    padding: 45% 2%;
   }
   .welcome_wrapper {
+    width: auto;
+    margin: 10em 4%;
   }
   .welcome_message {
     margin: 1.5em 0.5em 4em;
+  }
+
+  .welcome_input {
+    width: 10em;
+  }
+
+  .welcome_button {
+    padding: 6px 10px;
+    justify-content: space-evenly;
+    width: 4.5em;
   }
 
   .thanks {

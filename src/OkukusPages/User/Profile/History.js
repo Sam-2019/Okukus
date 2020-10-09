@@ -50,7 +50,7 @@ const OrderHistory = () => {
           <Spinner />
         </div>
       ) : (
-        <div>{content}</div>
+        <div className=''>{content}</div>
       )}
 
       {message ? <div className="message_wrapper ">{message} </div> : null}

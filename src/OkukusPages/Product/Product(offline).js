@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import productItem from "../files/products";
-import Spinner from "../Spinner/Spinner";
 import Primary from "../Button/Primary";
 import Secondary from "../Button/Secondary";
 import { okukus } from "../apis";
@@ -9,8 +8,6 @@ import "./product.css";
 
 const Product = (props) => {
   const [product] = useState(productItem);
-  const [loading] = useState(false);
-  const [message] = useState();
 
   let id = props.match.params.id;
 
@@ -18,7 +15,6 @@ const Product = (props) => {
 
   var formData = new FormData();
   formData.set("product_unique_id", id);
-  let view;
 
   return (
     <div className="product_wrapper ">
@@ -51,9 +47,9 @@ const Product = (props) => {
           </div>
         </div>
 
-        <a href="#" className="" hidden>
+        {/* <a href="#" className="" hidden>
           Add Review
-        </a>
+        </a> */}
 
         <div className=" _description">{product[0].product_description}</div>
 

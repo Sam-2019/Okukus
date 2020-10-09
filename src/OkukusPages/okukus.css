@@ -12,7 +12,7 @@
 .wrapper {
   display: flex;
   flex-wrap: wrap;
-  width: 50%;
+  width: 51%;
   display: inline-grid;
   grid-template-columns: 50% 50% 50% 50%;
   padding: 0 0.5em 0.5em 0.5em;
@@ -24,7 +24,7 @@
 .message_wrapper {
 }
 
-@media (max-width: 720px) {
+@media (max-width: 540px) {
   .contain {
     width: 100%;
   }
@@ -32,6 +32,6 @@
   .wrapper {
     width: 100%;
     grid-template-columns: 50% 50%;
-    padding: 0 0.5em 0.5em 0.5em;
+    padding: 0 0.25em 0.5em 0.25em;
   }
 }

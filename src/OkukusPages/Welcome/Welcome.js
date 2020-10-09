@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./welcome.css";
 
 const Message = ({ show }) => {
@@ -8,8 +8,12 @@ const Message = ({ show }) => {
       <div>Please give us your email wai</div>
 
       <form onSubmit={show}>
-        <input type="email" placeholder="example@gmail.com" />
-        <button>Send</button>
+        <input
+          className="welcome_input"
+          type="email"
+          placeholder="example@gmail.com"
+        />
+        <button className="welcome_button">Send</button>
       </form>
     </>
   );
@@ -24,8 +28,6 @@ const Welcome = () => {
 
   const [message, setMessage] = useState(false);
 
-  const [dialog, setDialog] = useState(false);
-
   const show = () => {
     console.log("hi");
     setMessage(true);
@@ -38,7 +40,7 @@ const Welcome = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setWelcome(true);
-    }, 5000);
+    }, 1000);
     return () => clearTimeout(timer);
   }, []);
 

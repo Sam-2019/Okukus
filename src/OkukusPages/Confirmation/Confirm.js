@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import Primary from "../Button/Primary";
 import "./confirm.css";
@@ -6,8 +6,7 @@ import "./confirm.css";
 const Confirm = () => {
   let history = useHistory();
 
-  const OrderID = localStorage.getItem("orderID");
-  const orderNo = OrderID;
+  const orderID = localStorage.getItem("orderID");
 
   return (
     <div className="confirm_wrapper">
@@ -17,7 +16,7 @@ const Confirm = () => {
       </p>
       <p>
         Thank you for shopping with us! Your order{" "}
-        <span className="orderID">{orderNo}</span> has been placed, pending
+        <span className="orderID">{orderID}</span> has been placed, pending
         confirmation.
       </p>
       <p>

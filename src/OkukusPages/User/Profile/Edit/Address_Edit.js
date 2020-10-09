@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Primary from "../../../Button/Primary";
+import Secondary from "../../../Button/Secondary";
 import { useAuthentication } from "../../../Auth/Context";
 import "./edit.css";
 
-const Address_edit = ({ update }) => {
+const Address_edit = ({ update, cancel }) => {
   const { updateUserProfile } = useAuthentication();
 
   const [firstname, setFirstName] = useState("");
@@ -12,6 +13,16 @@ const Address_edit = ({ update }) => {
   const [email1, setEmail1] = useState("");
   const [contact0, setContact0] = useState("");
   const [contact1, setContact1] = useState("");
+
+  const reset = () => {
+    setFirstName("");
+    setLastName("");
+    setEmail0("");
+    setEmail1("");
+    setContact0("");
+    setContact1("");
+    cancel();
+  };
 
   const updateData = async (event) => {
     update();
@@ -33,46 +44,47 @@ const Address_edit = ({ update }) => {
   };
 
   return (
-    <div className="px-2 profile-text">
+    <div className=" ">
       <input
-        className="edit_input  edit_user_name "
+        className="edit_input  "
         placeholder="First Name"
         value={firstname}
         onChange={(e) => setFirstName(e.target.value)}
       />
 
       <input
-        className="edit_input  edit_user_name "
+        className="edit_input  "
         placeholder="Last Name"
         value={lastname}
         onChange={(e) => setLastName(e.target.value)}
       />
       <input
-        className="edit_input  edit_user_email"
+        className="edit_input "
         placeholder="Email"
         value={email0}
         onChange={(e) => setEmail0(e.target.value)}
       />
       <input
-        className="edit_input  edit_user_email"
+        className="edit_input "
         placeholder="Email"
         value={email1}
         onChange={(e) => setEmail1(e.target.value)}
       />
       <input
-        className="edit_input  edit_user_contact"
+        className="edit_input"
         placeholder="Contact"
         value={contact0}
         onChange={(e) => setContact0(e.target.value)}
       />
       <input
-        className="edit_input  edit_user_contact"
+        className="edit_input "
         placeholder="Contact 2"
         value={contact1}
         onChange={(e) => setContact1(e.target.value)}
       />
       <div className="button_wrapper ">
-        <Primary name="Save Changes" action={updateData} />
+        <Primary name="Update" action={updateData} />
+        <Secondary name="Cancel" action={reset} />
       </div>
     </div>
   );

@@ -1,0 +1,48 @@
+.profile_menu {
+  position: absolute;
+  top: 55px;
+  z-index: 9;
+  right: 1%;
+  color: #1973d3;
+  transition: margin 0.5s;
+  -webkit-transition: all ease-in-out 0.5s;
+  transition: all ease-in-out 0.5s;
+  word-wrap: break-word;
+  padding: 4px;
+  background-color: #00ffae;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  text-align: center;
+  width: 10em;
+}
+
+.menu_item {
+  padding: 12px 1.5em;
+  background-color: yellow;
+}
+
+.menu_item:hover {
+  text-decoration: none;
+}
+
+.menu_item:active {
+  transform: scale(0.95);
+}
+
+.menu_item:focus {
+}
+
+@media (max-width: 540px) {
+  .profile_menu {
+    top: 3em;
+    width: 10em;
+  }
+}
+
+@media (max-width: 280px) {
+  .profile_menu {
+    top: 2.6em;
+    width: 10em;
+  }
+}

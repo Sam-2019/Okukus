@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import View from "../Container/View/View";
 import { useAuthentication } from "../Auth/Context";
 import Spinner from "../Spinner/Spinner";
 import { useAsync } from "../helpers";
 import "./search.css";
 
-const Search = (props) => {
+const Content = (props) => {
   const { searchItem } = useAuthentication();
   let searchphrase = props.match.params.id;
 
@@ -43,4 +43,4 @@ const Search = (props) => {
   );
 };
 
-export default Search;
+export default Content;

@@ -69,7 +69,16 @@
 
 
   .search-input {
-    padding: 0.1em 0.2em;
+    font-size: 1rem;
+    background-color: #fff;
+
+    border-right: 0;
+    border-radius: 0.25rem 0 0 0.25rem;
+    outline: 0;
+    color: #252525;
+    border-color: #00d919;
+  margin: 0 auto 0px auto;
+    padding: 8px 15px;
     width: 60%;
   }
 
@@ -81,7 +90,7 @@
   }
 
   .search-button {
-    padding: 0.1em 0.5em;
+    padding: 8px 15px;
   }
 
   

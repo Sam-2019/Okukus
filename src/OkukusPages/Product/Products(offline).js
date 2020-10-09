@@ -27,7 +27,7 @@ const Products = () => {
           <Spinner />
         </div>
       ) : (
-        <div className="wrapper">{content}</div>
+        <div className="wrapper ">{content}</div>
       )}
       
       {message ? <div className="message_wrapper ">{message} </div> : null}
