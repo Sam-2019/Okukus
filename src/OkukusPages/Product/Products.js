@@ -1,49 +1,107 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import useInfiniteScroll from "../useInfinite"
+import View from "../Container/View/View";
+import Spinner from "../Spinner/Spinner";
+import { useAsyncc } from "../helpers";
+import { useAuthentication } from "../Auth/Context";
+import useInfiniteScroll from "../useInfinite";
+import { itemsGet } from "../apis";
+import jsonplaceholder from "./jsonplaceholder";
 
-const Article = () => {
+const Products = () => {
   const [data, setData] = useState([]);
-  const [page, setPage] = useState(1);
-  const [isFetching, setIsFetching] = useInfiniteScroll(moreData);
+  const [data2, setData2] = useState([]);
+  const [more, setMore] = useState(true);
+  const [after, setAfter] = useState(0);
+  const [isFetching, setIsFetching] = useInfiniteScroll(load);
 
-  const loadData = () =>{
-    let url = "https://medrum.herokuapp.com/articles";
-    axios.get(url).then(res => {
-      setData(res.data);
+  const loadData = () => {
+    let url = "https://okukus.com/api_call_dev/get_books.php";
+    axios.get(url).then((res) => {
+      setData2(res.data);
     });
-  }
-  function moreData() {
-    let url = `https://medrum.herokuapp.com/feeds/?source=5718e53e7a84fb1901e05971&page=${page}&sort=latest`;
-    axios.get(url).then(res => {
-      setData([...data, ...res.data]);
-      setPage(page+1)
-      setIsFetching(false)
-    });
-  }
-  
-  useEffect(()=>{
-    loadData()
-  }, [])
+  };
 
-  if (data.length==0) {
-    return <h1>Loading...</h1>;
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        "https://okukus.com/api_call_dev/get_books.php"
+      );
+      console.log(result);
+      setData2(result.data);
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(data2);
+  const perPage = 10;
+
+  const newData = data2.slice(after, after + perPage);
+  console.log(newData);
+
+  function load() {
+    const timer = setTimeout(() => {
+      setData([...data, ...newData]);
+      setMore(newData.length === perPage);
+      setAfter(after + newData.length);
+      setIsFetching(false);
+    }, 500);
+
+    if (newData.length === 0) {
+      setIsFetching(false);
+      clearTimeout(timer);
+    }
   }
+
+  useEffect(() => {
+    load();
+  }, []);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const result = await axios(
+  //       "https://okukus.com/api_call_dev/get_books.php"
+  //     );
+  //     console.log(result);
+  //     setData2(result.data);
+  //   };
+
+  //   fetchData();
+  // }, []);
+
+  let content = data.map((product) => (
+    <View
+      key={product.unique_id}
+      id={product.unique_id}
+      unit_price={product.unit_price}
+      cover_photo_url={product.cover_photo_url}
+      product_name={product.product_name}
+    />
+  ));
 
   return (
-    <>
-      <ul className="list-group-ul">
-        {data.map((article, key) => (
-          <li className="list-group-li" key={key}>
-          {key+1}. {" "}
-            <a href={article.url} target="_blank">
-              {article.title}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </>
+    <div>
+      {/* {resource.loading ? (
+        <div className="spinner_wrapper">
+          <Spinner />
+        </div>
+      ) : (
+        <div className="wrapper">{content}</div>
+      )} */}
+
+      <p>Scroll down to load more!!</p>
+      <div className="wrapper">{content}</div>
+
+      {isFetching ? (
+        <div className="spinner_wrapper">
+          <Spinner />
+        </div>
+      ) : null}
+
+      {/* {message ? <div className="message_wrapper ">{message} </div> : null} */}
+    </div>
   );
 };
 
-export default Article;
+export default Products;
