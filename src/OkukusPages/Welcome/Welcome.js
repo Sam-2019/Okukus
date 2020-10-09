@@ -39,7 +39,7 @@ const Welcome = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setWelcome(true);
+      setWelcome(false);
     }, 1000);
     return () => clearTimeout(timer);
   }, []);

@@ -28,13 +28,13 @@ const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {
   };
 
   const Add = () => {
-    setQty(qty + 1);
     updateItem();
+    setQty(qty + 1);
   };
 
   const Subtract = () => {
-    setQty(qty - 1);
     updateItem();
+    setQty(qty + 1);
   };
 
   const rawsubtotal = qty * unit_price;
@@ -49,8 +49,6 @@ const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {
           alt=" slide"
         />
       </div>
-
-      
 
       <div className=" cart_item_name item">{product_name}</div>
 

@@ -98,8 +98,6 @@ export const useAsyncc = (getMethod) => {
   return { value, error, loading, success };
 };
 
-
-
 export function useOnClickOutside(ref, handler) {
   useEffect(
     () => {

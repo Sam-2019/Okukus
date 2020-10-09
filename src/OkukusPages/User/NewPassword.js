@@ -6,14 +6,12 @@ import "./user.css";
 function Login() {
   const { uniqueID, updateUserPassword, } = useAuthentication();
 
-  const [currentPassword, setCurrentPassword] = useState();
   const [newPassword, setNewPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
 
   const [error, setError] = useState();
 
   const reset = () => {
-    setCurrentPassword("");
     setNewPassword("");
     setConfirmPassword("");
   };
@@ -24,7 +22,6 @@ function Login() {
     var formData = new FormData();
 
     formData.set("buyer_unique_id", uniqueID);
-    formData.set("current_password", currentPassword);
     formData.set("new_password", newPassword);
     formData.set("confirm_password", confirmPassword);
 
@@ -42,13 +39,6 @@ function Login() {
       <div className="user_form  ">
         <h2>Reset Password</h2>
 
-        <input
-          className="input "
-          placeholder="Current Password"
-          value={currentPassword}
-          type="password"
-          onChange={(e) => setCurrentPassword(e.target.value)}
-        />
 
         <input
           className="input "

@@ -1,5 +1,5 @@
 import React from "react";
-import Products from "../Product/Products(offline)";
+import Products from "../Product/Products";
 import Carousel from "../Carousel/Carousel";
 import Welcome from "../Welcome/Welcome";
 import "./body.css";

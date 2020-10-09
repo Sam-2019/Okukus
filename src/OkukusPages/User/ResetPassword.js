@@ -4,28 +4,30 @@ import Primary from "../Button/Primary";
 import "./user.css";
 
 function Login() {
-  const { loginUser } = useAuthentication();
+  const { resetUserAccount } = useAuthentication();
 
   const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
 
-  const clearLogin = () => {
+  const reset = () => {
     setEmail("");
   };
 
   const send = async (event) => {
-    setError();
+    setMessage();
     event.preventDefault();
     var formData = new FormData();
 
-    formData.set("email", email);
+    formData.set("buyer_email", email);
 
-    const data = await loginUser(formData);
+    const data = await resetUserAccount(formData);
+    console.log(data);
 
-    if (data.error === true) {
-      setError(data.message);
-    } else {
-      clearLogin();
+    if (data.data.error === true) {
+      setMessage(data.data.message);
+    } else if (data.data.error === false) {
+      setMessage(data.data.message);
+      reset();
     }
   };
 
@@ -45,7 +47,7 @@ function Login() {
       </div>
 
       <div className="message_wrapper ">
-        {error ? <div className=" user_message "> {error}</div> : null}
+        {message ? <div className=" user_message "> {message}</div> : null}
       </div>
 
       <div className="button_wrapper ">

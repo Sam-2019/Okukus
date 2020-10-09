@@ -14,6 +14,8 @@ export const userPasswordUpdate = `${okukus}/${dev_site}/update_buyer_password.p
 export const userProfileUpdate = `${okukus}/${dev_site}/update_buyer_profile.php`;
 export const userEmailUpdate = `${okukus}/${dev_site}/update_buyer_email.php`;
 
+export const userAccountReset = `${okukus}/${dev_site}/create_password_reset_token.php`;
+
 
 export const itemSearch = `${okukus}/${dev_site}/search.php`;
 
