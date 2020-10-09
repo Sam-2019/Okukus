@@ -8,20 +8,20 @@ import "./history.css";
 
 const OrderHistory = () => {
   const { historyOrder, uniqueID } = useAuthentication();
-  console.log(uniqueID)
+
 
   var formData = new FormData();
   formData.set("buyer_unique_id", uniqueID);
 
   const resource = useAsync(historyOrder, formData);
-  console.log(resource);
+
 
   const [order] = useState(product);
   const [message] = useState("");
   const [loading] = useState(false);
 
   let data = resource.value;
-  console.log(data);
+
 
   let content = order.map(
     ({
