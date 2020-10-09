@@ -1,68 +1,49 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import View from "../Container/View/View";
-import Spinner from "../Spinner/Spinner";
-import { useAsyncc } from "../helpers";
-import { useAuthentication } from "../Auth/Context";
-import useInfiniteScroll from "./useInfinite";
-import { itemsGet } from "../apis";
+import useInfiniteScroll from "../useInfinite"
 
-const Products = () => {
+const Article = () => {
   const [data, setData] = useState([]);
-  const [data2, setData2] = useState([]);
-  const [page, setPage] = useState(5);
+  const [page, setPage] = useState(1);
   const [isFetching, setIsFetching] = useInfiniteScroll(moreData);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios(
-        "https://okukus.com/api_call_dev/get_books.php"
-      );
-      console.log(result);
-      setData2(result.data);
-    };
+  const loadData = () =>{
+    let url = "https://medrum.herokuapp.com/articles";
+    axios.get(url).then(res => {
+      setData(res.data);
+    });
+  }
+  function moreData() {
+    let url = `https://medrum.herokuapp.com/feeds/?source=5718e53e7a84fb1901e05971&page=${page}&sort=latest`;
+    axios.get(url).then(res => {
+      setData([...data, ...res.data]);
+      setPage(page+1)
+      setIsFetching(false)
+    });
+  }
+  
+  useEffect(()=>{
+    loadData()
+  }, [])
 
-    fetchData();
-  }, []);
-
-  function moreData(start, end) {
-    setData([...data, ...data2]);
-    setPage(page + 1);
-    setIsFetching(false);
-    console.log(data)
+  if (data.length==0) {
+    return <h1>Loading...</h1>;
   }
 
-
-
-
-
-  // let content = data.map(
-  //   ({ unique_id, unit_price, product_name, cover_photo_url }) => (
-  //     <View
-  //       key={unique_id}
-  //       id={unique_id}
-  //       unit_price={unit_price}
-  //       cover_photo_url={cover_photo_url}
-  //       product_name={product_name}
-  //     />
-  //   )
-  // );
-
   return (
-    <div>
-      {/* {resource.loading ? (
-        <div className="spinner_wrapper">
-          <Spinner />
-        </div>
-      ) : (
-        <div className="wrapper">{content}</div>
-      )} */}
-
- 
-
-      {/* {message ? <div className="message_wrapper ">{message} </div> : null} */}
-    </div>
+    <>
+      <ul className="list-group-ul">
+        {data.map((article, key) => (
+          <li className="list-group-li" key={key}>
+          {key+1}. {" "}
+            <a href={article.url} target="_blank">
+              {article.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 };
 
-export default Products;
+export default Article;
