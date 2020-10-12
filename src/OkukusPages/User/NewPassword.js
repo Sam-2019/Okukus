@@ -62,9 +62,7 @@ function Login() {
         {message ? <Message message={message} classname="message" /> : null}
       </div>
 
-      <div className="message_wrapper ">
-        {message ? <div className=" user_message "> {message}</div> : null}
-      </div>
+
 
       <div className="button_wrapper ">
         <Button name="Submit" action={updatePassword} classname="primary" />

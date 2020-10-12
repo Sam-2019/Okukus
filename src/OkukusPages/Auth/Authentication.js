@@ -12,6 +12,7 @@ import {
   userProfileUpdate,
   userEmailUpdate,
   userAccountReset,
+  userAccountVerify,
   itemSearch,
   cartAdd,
   cartGet,
@@ -127,6 +128,11 @@ const Authentication = () => {
     return resetAccount;
   };
 
+  const verifyUserAccount = async (formData) => {
+    const verifyAccount = await axiosMethod(userAccountVerify, formData);
+    return verifyAccount;
+  };
+
   const searchItem = async (formData) => {
     const search = await axiosMethod(itemSearch, formData);
     return search;
@@ -201,6 +207,7 @@ const Authentication = () => {
     updateUserProfile,
     updateUserEmail,
     resetUserAccount,
+    verifyUserAccount,
 
     searchItem,
 

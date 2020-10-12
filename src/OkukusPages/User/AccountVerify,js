@@ -1,0 +1,38 @@
+import React, { useState } from "react";
+import { useAuthentication } from "../Auth/Context";
+import Button from "../Button/Button";
+import Message from "../Message/Message";
+import "./user.css";
+
+function AccountVerify() {
+  const { verifyUserAccount } = useAuthentication();
+
+  let id = props.match.params.id;
+  console.log(id);
+
+  var formData = new FormData();
+  formData.set("url_data", id);
+
+  
+  const resource = useAsync(verifyUserAccount, formData);
+  console.log(resource)
+
+
+  return (
+    <div className=" user_wrapper">
+      <div className="user_form  ">
+        <h2>Account Verify</h2>
+      </div>
+
+      <div className="message_wrapper ">
+        {message ? <Message message={message} classname="message" /> : null}
+      </div>
+
+      <div className="button_wrapper ">
+        <Button name="Submit" action={updatePassword} classname="primary" />
+      </div>
+    </div>
+  );
+}
+
+export default AccountVerify;

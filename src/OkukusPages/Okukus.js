@@ -17,6 +17,7 @@ import NotFound from "./404/404";
 import Footer from "./Footer/Footer";
 import ResetPassword from "./User/ResetPassword";
 import NewPassword from "./User/NewPassword";
+import AccountVerify from "./User/AccountVerify";
 
 const Okukus = () => {
   return (
@@ -35,6 +36,7 @@ const Okukus = () => {
         <Route path="/search/:id" component={Search} />
 
         <Route path="/reset" component={ResetPassword} />
+        <Route path="/accountverify/:id" component={AccountVerify} />
         <Route path="/newpassword" component={NewPassword} />
         <Route path="/search/:id" component={Search} />
         {/* <Route component={NotFound} /> */}

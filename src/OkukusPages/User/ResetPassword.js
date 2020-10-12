@@ -5,7 +5,7 @@ import Input from "../Input/Input";
 import Message from "../Message/Message";
 import "./user.css";
 
-function Login() {
+function ResetPassword() {
   const { resetUserAccount } = useAuthentication();
 
   const [email, setEmail] = useState("");
@@ -57,4 +57,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default ResetPassword;
