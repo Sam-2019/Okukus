@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import useInfiniteScroll from "../useInfinite";
 import View from "../Container/View/View";
-
 import Spinner from "../Spinner/Spinner";
 
 const Article = () => {
@@ -21,19 +20,25 @@ const Article = () => {
   function moreData() {
     var formData = new FormData();
     formData.set("offset", offset);
+
     axios({
       method: "post",
       url: "https://okukus.com/api_call_dev/get_books.php",
       data: formData,
       headers: { "Content-Type": "multipart/form-data" },
-    }).then((response) => {
-      setData([...data, ...response.data]);
-      response.data.forEach((d) => {
-        setOffset(offset + response.data.length);
+    })
+      .then((response) => {
+        setData([...data, ...response.data]);
+
+        response.data.forEach((d) => {
+          setOffset(offset + response.data.length);
+        });
+
+        setIsFetching(false);
+      })
+      .catch((error) => {
+        console.log(error);
       });
-      console.log(data);
-      setIsFetching(false);
-    });
   }
 
   useEffect(() => {

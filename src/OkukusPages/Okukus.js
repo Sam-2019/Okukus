@@ -36,6 +36,7 @@ const Okukus = () => {
 
         <Route path="/reset" component={ResetPassword} />
         <Route path="/newpassword" component={NewPassword} />
+        <Route path="/search/:id" component={Search} />
         {/* <Route component={NotFound} /> */}
       </div>
       <Footer />
