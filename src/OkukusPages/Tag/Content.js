@@ -15,7 +15,6 @@ const Content = (props) => {
   formData.set("tag_title", id);
 
   const resource = useAsync(getTag, formData);
-  console.log(resource.value)
 
   let content = resource.value.map(
     ({ unique_id, unit_price, product_name, cover_photo_url }) => (
