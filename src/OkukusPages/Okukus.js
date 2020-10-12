@@ -17,7 +17,7 @@ import TagContent from "./Tag/Content";
 import Footer from "./Footer/Footer";
 import ResetPassword from "./User/ResetPassword";
 import NewPassword from "./User/NewPassword";
-import AccountVerify from "./User/Signup copy 2";
+import AccountVerify from "./User/AccountVerify";
 
 const Okukus = () => {
   return (
