@@ -37,7 +37,7 @@ const Profile = () => {
             active={active}
           />
         </div>
-        <div className=" view ">
+        <div className=" view  ">
         <h4 className="view_title">
         {account ? "Account" : order ? "Order" : "Change Password"}
       </h4>

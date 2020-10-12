@@ -1,25 +1,28 @@
 import React, { useState } from "react";
 import { useAuthentication } from "../../Auth/Context";
-import Primary from "../../Button/Primary";
-import Secondary from "../../Button/Secondary";
+import Input from "../../Input/Input";
+import Button from "../../Button/Button";
+import Message from "../../Message/Message";
 import "./password.css";
 
 const Password = () => {
   const { uniqueID, updateUserPassword, email } = useAuthentication();
 
-  const [currentPassword, setCurrentPassword] = useState();
-  const [newPassword, setNewPassword] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
-  
-  const [message, setMessage] = useState();
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [message, setMessage] = useState("");
 
   const reset = () => {
     setCurrentPassword("");
     setNewPassword("");
     setConfirmPassword("");
+    setMessage('');
   };
 
   const updatePassword = async (event) => {
+
     setMessage();
     event.preventDefault();
     var formData = new FormData();
@@ -30,7 +33,6 @@ const Password = () => {
     formData.set("confirm_password", confirmPassword);
 
     const data = await updateUserPassword(formData);
-    console.log(data);
 
     if (data.data.error === true) {
       setMessage(data.data.message);
@@ -42,42 +44,39 @@ const Password = () => {
 
   return (
     <div className="password  ">
-      <div className="password_detail   ">
-        <div className="profile-body ">
-          <div className="account_email">{email}</div>
-          <input
-            className="edit_input "
-            placeholder="Current Password"
-            value={currentPassword}
-            type="password"
-            onChange={(e) => setCurrentPassword(e.target.value)}
-          />
+      <div className=" password_detail ">
+        <div className="account_email">{email}</div>
+        <Input
+          classname="edit_input "
+          placeholder="Current Password"
+          value={currentPassword}
+          type="password"
+          action={(e) => setCurrentPassword(e.target.value)}
+        />
 
-          <input
-            className="edit_input "
-            placeholder="New Password"
-            value={newPassword}
-            type="password"
-            onChange={(e) => setNewPassword(e.target.value)}
-          />
+        <Input
+          classname="edit_input "
+          placeholder="New Password"
+          value={newPassword}
+          type="password"
+          action={(e) => setNewPassword(e.target.value)}
+        />
 
-          <input
-            className="edit_input "
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            type="password"
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
+        <Input
+          classname="edit_input "
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          type="password"
+          action={(e) => setConfirmPassword(e.target.value)}
+        />
 
-          <div className="message_wrapper ">
-            {message ? <div className=" user_message "> {message}</div> : null}
-          </div>
-
-          <div className="button_wrapper ">
-            <Primary name="Update" action={updatePassword} />
-            <Secondary name="Reset" action={reset} />
-          </div>
+        <div className="message_wrapper ">
+          {message ? <Message classname="message " message={message} /> : null}
         </div>
+      </div>
+      <div className="button_wrapper ">
+        <Button name="Update" action={updatePassword} classname="primary" />
+        <Button name="Reset" action={reset} classname="secondary" />
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 .account {
   display: flex;
   justify-content: space-between;
-  height: 75vh;
+  height: 77vh;
 }
 
 .account_detail {
@@ -11,9 +11,8 @@
 
 .profile-header {
   padding: 0.4rem 1.25rem;
-  border: 1px solid #00000020;
-  border: 1px solid #11111120;
-  border-radius: 0;
+  border: 0.4px solid #7f7f7f57;
+  border-radius: 0.25em 0.25em 0 0;
   display: flex;
   justify-content: space-between;
 }
@@ -24,12 +23,7 @@
   justify-content: space-between;
 }
 
-.worry{
-  width: 100%;
-}
-
-.static{
-
+.static {
 }
 
 .bi-pencil-square {
@@ -57,22 +51,18 @@
 .profile-body {
   padding: 0.4rem 1.25rem;
   background-color: #ffffff;
-  border: 1px solid #00000020;
+  border: 0.4px solid #7f7f7f57;
+  border-radius: 0 0 0.25em 0.25em;
   word-wrap: break-word;
 }
 
-.edit_items{
-  display: flex;
-  flex-direction: column;
-}
-
-.extra_margin{
+.extra_margin {
   margin-bottom: 0.5em;
 }
 .user_contact {
 }
 
-@media (max-width: 540px) {
+@media (max-width: 720px) {
   .account {
     flex-direction: column;
     height: auto;
@@ -81,6 +71,14 @@
   .account_detail {
     width: 100%;
     padding: 0 0 0.5em 0;
+  }
+
+  .profile-header,
+  .item-change {
+  }
+
+  .static {
+    font-size: 105%;
   }
 
   .address_book {

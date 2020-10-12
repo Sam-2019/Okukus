@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useAuthentication } from "../Auth/Context";
-import Button from "../Button/Button";
-import Input from "../Input/Input";
-import Message from "../Message/Message";
+import Primary from "../Button/Primary";
+import Secondary from "../Button/Secondary";
 import "./user.css";
 
 function Login() {
@@ -11,7 +10,7 @@ function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
 
   const clearLogin = () => {
     setEmail("");
@@ -21,7 +20,7 @@ function Login() {
   let history = useHistory();
 
   const logIn = async (event) => {
-    setMessage();
+    setError();
     event.preventDefault();
     var formData = new FormData();
 
@@ -31,7 +30,7 @@ function Login() {
     const data = await loginUser(formData);
 
     if (data.error === true) {
-      setMessage(data.message);
+      setError(data.message);
     } else {
       localStorage.setItem("loginToken", data.token);
       isLoggedIn();
@@ -44,26 +43,28 @@ function Login() {
       <div className="user_form  ">
         <h2>Sign In</h2>
 
-        <Input
+        <input
           type="email"
           placeholder="Email"
-          classname="input"
-          action={(e) => setEmail(e.target.value)}
+          className="input"
+          onChange={(e) => setEmail(e.target.value)}
           value={email}
+          autoComplete="true"
         />
 
-        <Input
+        <input
           type="password"
           placeholder="Password"
-          classname="input"
-          action={(e) => setPassword(e.target.value)}
+          className="input"
+          onChange={(e) => setPassword(e.target.value)}
           value={password}
+          autoComplete="true"
         />
       </div>
 
       <div className="message_wrapper ">
-        {message ? (
-          <div className=" user_message "> {message}</div>
+        {error ? (
+          <div className=" user_message "> {error}</div>
         ) : (
           <div
             className="text-button"
@@ -76,19 +77,14 @@ function Login() {
         )}
       </div>
 
-      <div className="message_wrapper ">
-        {message ? <Message classname="message" message={message} /> : null}
-      </div>
-
       <div className="button_wrapper ">
-        <Button classname="primary" action={logIn} name="Sign in" />
+        <Primary name="Sign in" action={logIn} />
 
-        <Button
-          classname="secondary"
+        <Secondary
+          name="Sign up"
           action={() => {
             history.push("/signup");
           }}
-          name="Sign up"
         />
       </div>
     </div>

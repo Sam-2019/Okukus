@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useAuthentication } from "../Auth/Context";
-import Primary from "../Button/Primary";
+import Button from "../Button/Button";
+import Input from "../Input/Input";
+import Message from "../Message/Message";
 import "./user.css";
 
 function Login() {
@@ -36,22 +38,25 @@ function Login() {
       <div className="user_form  ">
         <h2>Account Reset</h2>
 
-        <input
+        <Input
           type="email"
           placeholder="Email"
-          className="input"
-          onChange={(e) => setEmail(e.target.value)}
+          classname="input"
+          action={(e) => setEmail(e.target.value)}
           value={email}
-          autoComplete="true"
         />
       </div>
 
       <div className="message_wrapper ">
-        {message ? <div className=" user_message "> {message}</div> : null}
+        {message ? <Message message={message} classname="message" /> : null}
+      </div>
+
+      <div className="message_wrapper ">
+        {message ? <div className=" message "> {message}</div> : null}
       </div>
 
       <div className="button_wrapper ">
-        <Primary name="Submit" action={send} />
+        <Button name="Submit" action={send} classname="primary" />
       </div>
     </div>
   );

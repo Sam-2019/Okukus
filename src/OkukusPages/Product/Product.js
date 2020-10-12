@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Spinner from "../Spinner/Spinner";
-import Primary from "../Button/Primary";
-import Secondary from "../Button/Secondary";
+import Button from "../Button/Button";
+import Message from '../Message/Message'
+
 import { okukus } from "../apis";
 import { useAsync } from "../helpers";
 import { useAuthentication } from "../Auth/Context";
@@ -72,19 +73,20 @@ const Product = (props) => {
 
         <div className=" _description">{data.product_description}</div>
 
-        <div className="message_wrapper ">
-          {message ? <div className="user_message "> {message}</div> : null}
-        </div>
+        <div className="message_wrapper">
+        {message ? <Message classname="message" message={message} /> : null}
+      </div>
 
         <div className="button_wrapper ">
-          <Primary
+          <Button
+            classname="primary"
             name="Buy book"
             action={() => {
               history.push(`/order/${id}`);
             }}
           />
 
-          <Secondary name="Add to cart" action={add2cart} />
+          <Button name="Add to cart" action={add2cart} classname="secondary" />
         </div>
       </div>
     </div>

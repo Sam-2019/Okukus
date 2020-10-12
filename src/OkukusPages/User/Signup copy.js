@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useAuthentication } from "../Auth/Context";
 import Input from "../Input/Input";
-import Button from "../Button/Button";
-import Message from '../Message/Message'
+import Primary from "../Button/Primary";
+import Secondary from "../Button/Secondary";
 import "./user.css";
 
 function SignUp() {
@@ -15,7 +15,7 @@ function SignUp() {
   const [password0, setPassword0] = useState("");
   const [password1, setPassword1] = useState("");
 
-  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
 
   let history = useHistory();
 
@@ -28,7 +28,7 @@ function SignUp() {
   };
 
   const signup = async (event) => {
-    setMessage();
+    setError();
     event.preventDefault();
     var formData = new FormData();
 
@@ -42,7 +42,7 @@ function SignUp() {
     console.log(data);
 
     if (data.error === true) {
-      setMessage(data.message);
+      setError(data.message);
     } else {
       localStorage.setItem("loginToken", data.buyer.token);
       isLoggedIn();
@@ -51,68 +51,60 @@ function SignUp() {
   };
 
   return (
-    <div className="user_wrapper item">
-      <div className="user_form item">
+    <div className="user_wrapper ">
+      <div className="user_form">
         <h2>Sign Up</h2>
 
         <Input
-          type="text"
-          placeholder="First Name"
-          classname="input"
+          type={"text"}
+          placeholder={"First Name"}
+          classname={"input"}
           action={(e) => setFirstName(e.target.value)}
           value={firstname}
         />
 
-        <Input
+        <input
           type="text"
           placeholder="Last Name"
-          classname="input"
-          action={(e) => setLastName(e.target.value)}
+          className="input"
+          onChange={(e) => setLastName(e.target.value)}
           value={lastname}
         />
-
-        <Input
+        <input
           type="email"
           placeholder="Email"
-          classname="input"
-          action={(e) => setEmail(e.target.value)}
+          className="input"
+          onChange={(e) => setEmail(e.target.value)}
           value={email}
         />
-
-        <Input
+        <input
           type="password"
           placeholder="Password"
-          classname="input"
-          action={(e) => setPassword0(e.target.value)}
+          className="input"
+          onChange={(e) => setPassword0(e.target.value)}
           value={password0}
         />
-
-        <Input
+        <input
           type="password"
           placeholder="Confirm Password"
-          classname="input"
-          action={(e) => setPassword1(e.target.value)}
+          className="input"
+          onChange={(e) => setPassword1(e.target.value)}
           value={password1}
         />
       </div>
 
       <div className="message_wrapper ">
-        {message ? <Message classname="message" message={message} /> : null}
-      </div>
-
-      <div className="message_wrapper ">
-        {message ? <div className="user_message "> {message}</div> : null}
+        {error ? <div className="user_message "> {error}</div> : null}
       </div>
 
       <div className="button_wrapper ">
-        <Button classname="primary" action={signup} name="Sign up" />
+        <Primary name="Sign up" action={signup} />
 
-        <Button
-          classname="secondary"
+        <Secondary
+          name="Sign in"
           action={() => {
             history.push("/login");
           }}
-          name="Sign in"
         />
       </div>
     </div>

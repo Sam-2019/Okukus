@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Addressedit from "./Edit/Address_Edit";
 import { useAuthentication } from "../../Auth/Context";
-import Primary from "../../Button/Primary";
-import Secondary from "../../Button/Secondary";
+import Button from "../../Button/Button";
+import Input from "../../Input/Input";
+import Message from "../../Message/Message";
 import "./account.css";
 
 const OkukusAccount = () => {
@@ -22,7 +23,7 @@ const OkukusAccount = () => {
   const [last_name, setLastName] = useState();
   const [e_mail, setEmail] = useState();
 
-  const [error, setError] = useState();
+  const [message, setMessage] = useState();
 
   const submitDetail = () => {
     setdetailedit(false);
@@ -43,11 +44,13 @@ const OkukusAccount = () => {
     setdetailedit(false);
     setFirstName("");
     setLastName("");
+    setMessage("");
   };
 
   const cancelEmail = () => {
     setemailedit(false);
     setEmail("");
+    setMessage("");
   };
 
   const cancelAddress = () => {
@@ -55,143 +58,175 @@ const OkukusAccount = () => {
   };
 
   const updateDetail = async (event) => {
+    setMessage("");
     event.preventDefault();
-    var formData = new FormData();
 
-    formData.set("buyer_unique_id", uniqueID);
-    formData.set("firstname", first_name);
-    formData.set("lastname", last_name);
+    let empty = firstName && lastName;
+    if (empty !== "") {
+      setMessage("please complete the forms");
+    } else {
+      var formData = new FormData();
 
-    const data = await updateUserProfile(formData);
-    if (data.data.error === true) {
-      setError(data.data.message);
-    } else if (data.data.error === false) {
-      submitDetail();
+      formData.set("buyer_unique_id", uniqueID);
+      formData.set("firstname", first_name);
+      formData.set("lastname", last_name);
+
+      const data = await updateUserProfile(formData);
+      if (data.data.error === true) {
+        setMessage(data.data.message);
+      } else if (data.data.error === false) {
+        submitDetail();
+        setMessage("");
+      }
     }
   };
 
   const updateEmail = async (event) => {
     event.preventDefault();
-    var formData = new FormData();
 
-    formData.set("buyer_unique_id", uniqueID);
-    formData.set("email", e_mail);
+    setMessage("");
+    let empty = e_mail;
+    if (empty !== "") {
+      setMessage("please complete the form");
+    } else {
+      var formData = new FormData();
 
-    const data = await updateUserEmail(formData);
+      formData.set("buyer_unique_id", uniqueID);
+      formData.set("email", e_mail);
 
-    if (data.data.error === true) {
-      setError(data.data.message);
-    } else if (data.data.error === false) {
-      submitEmail();
+      const data = await updateUserEmail(formData);
+      if (data.data.error === true) {
+        setMessage(data.data.message);
+      } else if (data.data.error === false) {
+        submitEmail();
+      }
     }
   };
 
   return (
-    <div className="account ">
+    <div className="account  ">
       <div className="account_detail ">
-        <div className="profile-header">
+        <div className="profile-header ">
           <div> Details</div>
         </div>
 
         <div className="profile-body ">
-          <div className="edit_items">
-            <div className="item-change  extra_margin">
-              {detailedit ? (
+          <div className="item-change  extra_margin  ">
+            {detailedit ? (
+              <div>
                 <div className="worry">
-                  <input
-                    className="edit_input"
+                  <Input
+                    type="text"
+                    classname="edit_input"
                     placeholder="First Name"
                     value={first_name}
-                    onChange={(e) => setFirstName(e.target.value)}
+                    action={(e) => setFirstName(e.target.value)}
                   />
 
-                  <input
-                    className="edit_input"
+                  <Input
+                    type="text"
+                    classname="edit_input"
                     placeholder="Last Name"
                     value={last_name}
-                    type="text"
-                    onChange={(e) => setLastName(e.target.value)}
+                    action={(e) => setLastName(e.target.value)}
                   />
-
-                  <div className="message_wrapper ">
-                    {error ? (
-                      <div className=" user_message "> {error}</div>
-                    ) : null}
-                  </div>
-
-                  <div className="button_wrapper ">
-                    <Primary name="Update" action={updateDetail} />
-                    <Secondary name="Cancel" action={cancelDetail} />
-                  </div>
                 </div>
-              ) : (
-                <div className="static">
-                  {firstName} {lastName}
-                </div>
-              )}
 
-              {detailedit ? null : (
-                <svg
-                  onClick={() => {
-                    setdetailedit(true);
-                  }}
-                  viewBox="0 0 16 16"
-                  className="bi bi-pencil-square"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                  <path
-                    fillRule="evenodd"
-                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                <div className="message_wrapper ">
+                  {message ? (
+                    <Message classname="message " message={message} />
+                  ) : null}
+                </div>
+
+                <div className="button_wrapper ">
+                  <Button
+                    name="Update"
+                    action={updateDetail}
+                    classname="primary"
                   />
-                </svg>
-              )}
-            </div>
+                  <Button
+                    name="Cancel"
+                    action={cancelDetail}
+                    classname="secondary"
+                  />
+                </div>
+              </div>
+            ) : (
+              <div className="static">
+                {firstName} {lastName}
+              </div>
+            )}
 
-            <div className="item-change">
-              {emailedit ? (
-                <div className=" worry">
-                  <input
-                    className="edit_input"
+            {detailedit ? null : (
+              <svg
+                onClick={() => {
+                  setdetailedit(true);
+                }}
+                viewBox="0 0 16 16"
+                className="bi bi-pencil-square"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                <path
+                  fillRule="evenodd"
+                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                />
+              </svg>
+            )}
+          </div>
+
+          <div className="item-change ">
+            {emailedit ? (
+              <div>
+                <div className=" ">
+                  <Input
+                    classname="edit_input"
                     placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={e_mail}
+                    action={(e) => setEmail(e.target.value)}
                   />
 
                   <div className="message_wrapper ">
-                    {error ? (
-                      <div className=" user_message "> {error}</div>
+                    {message ? (
+                      <Message classname="message " message={message} />
                     ) : null}
                   </div>
-
-                  <div className="button_wrapper ">
-                    <Primary name="Update" action={updateEmail} />
-                    <Secondary name="Cancel" action={cancelEmail} />
-                  </div>
                 </div>
-              ) : (
-                <div className="static">{email}</div>
-              )}
-
-              {emailedit ? null : (
-                <svg
-                  onClick={() => {
-                    setemailedit(true);
-                  }}
-                  viewBox="0 0 16 16"
-                  className="bi bi-pencil-square"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                  <path
-                    fillRule="evenodd"
-                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                <div className="button_wrapper ">
+                  <Button
+                    name="Update"
+                    action={updateEmail}
+                    classname="primary"
                   />
-                </svg>
-              )}
-            </div>
+                  <Button
+                    name="Cancel"
+                    action={cancelEmail}
+                    classname="secondary"
+                  />
+                </div>
+              </div>
+            ) : (
+              <div className="static">{email}</div>
+            )}
+
+            {emailedit ? null : (
+              <svg
+                onClick={() => {
+                  setemailedit(true);
+                }}
+                viewBox="0 0 16 16"
+                className="bi bi-pencil-square"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                <path
+                  fillRule="evenodd"
+                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                />
+              </svg>
+            )}
           </div>
         </div>
       </div>
@@ -225,13 +260,13 @@ const OkukusAccount = () => {
             <Addressedit update={submitAddress} cancel={cancelAddress} />
           ) : (
             <div className="px-2 profile-text">
-              <div className="user_name">
+              <div className="static user_name">
                 {firstName} {lastName}
               </div>
-              <div className="user_email">{email}</div>
-              <div className="user_email">{email}</div>
-              <div className="user_contact">Tel: +233 254 23564 </div>
-              <div className="user_contact">Tel: +233 254 23564 </div>
+              <div className="static user_email">{email}</div>
+              <div className="static user_email">{email}</div>
+              <div className="static user_contact">Tel: +233 254 23564 </div>
+              <div className="static user_contact">Tel: +233 254 23564 </div>
             </div>
           )}
         </div>

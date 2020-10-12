@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import productItem from "../files/products";
-import Primary from "../Button/Primary";
-import Secondary from "../Button/Secondary";
+import Button from '../Button/Button'
 import { okukus } from "../apis";
 import "./product.css";
 
@@ -54,13 +53,15 @@ const Product = (props) => {
         <div className=" _description">{product[0].product_description}</div>
 
         <div className="button_wrapper ">
-          <Secondary name="Add to cart" />
 
-          <Primary
+          <Button name="Add to cart" classname='secondary' />
+
+          <Button
             name="Buy book"
             action={() => {
               history.push(`/order/${id}`);
             }}
+            classname='primary'
           />
 
           {/* <button className="add_to_cart">Add to cart</button>

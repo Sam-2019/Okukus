@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Primary from "../../../Button/Primary";
-import Secondary from "../../../Button/Secondary";
+import Input from "../../../Input/Input";
+import Button from "../../../Button/Button";
+import Message from '../../../Message/Message'
 import { useAuthentication } from "../../../Auth/Context";
-import "./edit.css";
 
 const Address_edit = ({ update, cancel }) => {
   const { updateUserProfile } = useAuthentication();
@@ -14,6 +14,8 @@ const Address_edit = ({ update, cancel }) => {
   const [contact0, setContact0] = useState("");
   const [contact1, setContact1] = useState("");
 
+  const [message, setMessage] = useState("");
+
   const reset = () => {
     setFirstName("");
     setLastName("");
@@ -21,12 +23,9 @@ const Address_edit = ({ update, cancel }) => {
     setEmail1("");
     setContact0("");
     setContact1("");
-    cancel();
   };
 
   const updateData = async (event) => {
-    update();
-    console.log(firstname);
     event.preventDefault();
 
     var formData = new FormData();
@@ -41,50 +40,77 @@ const Address_edit = ({ update, cancel }) => {
 
     const data = await updateUserProfile(formData);
     console.log(data);
+
+    if (data.data.error === true) {
+      setMessage(data.data.message);
+    } else {
+      reset();
+      update();
+    }
   };
 
   return (
     <div className=" ">
-      <input
-        className="edit_input  "
-        placeholder="First Name"
-        value={firstname}
-        onChange={(e) => setFirstName(e.target.value)}
-      />
+      <div>
+        <Input
+          type="text"
+          placeholder="First Name"
+          classname="edit_input"
+          action={(e) => setFirstName(e.target.value)}
+          value={firstname}
+        />
 
-      <input
-        className="edit_input  "
-        placeholder="Last Name"
-        value={lastname}
-        onChange={(e) => setLastName(e.target.value)}
-      />
-      <input
-        className="edit_input "
-        placeholder="Email"
-        value={email0}
-        onChange={(e) => setEmail0(e.target.value)}
-      />
-      <input
-        className="edit_input "
-        placeholder="Email"
-        value={email1}
-        onChange={(e) => setEmail1(e.target.value)}
-      />
-      <input
-        className="edit_input"
-        placeholder="Contact"
-        value={contact0}
-        onChange={(e) => setContact0(e.target.value)}
-      />
-      <input
-        className="edit_input "
-        placeholder="Contact 2"
-        value={contact1}
-        onChange={(e) => setContact1(e.target.value)}
-      />
+        <Input
+          type="text"
+          placeholder="Last Name"
+          classname="edit_input"
+          action={(e) => setLastName(e.target.value)}
+          value={lastname}
+        />
+
+        <Input
+          type="email"
+          placeholder="Email"
+          classname="edit_input"
+          action={(e) => setEmail0(e.target.value)}
+          value={email0}
+        />
+
+        <Input
+          type="email"
+          placeholder="Email"
+          classname="edit_input"
+          action={(e) => setEmail1(e.target.value)}
+          value={email1}
+        />
+
+        <Input
+          type="number"
+          placeholder="Contact"
+          classname="edit_input"
+          action={(e) => setContact0(e.target.value)}
+          value={contact0}
+        />
+
+        <Input
+          type="number"
+          placeholder="Contact 2"
+          classname="edit_input"
+          action={(e) => setContact1(e.target.value)}
+          value={setContact1}
+        />
+
+        <div className="message_wrapper ">
+          {message ? (
+            <Message classname="message " message={message} />
+          ) : null}
+
+        </div>
+      </div>
+
       <div className="button_wrapper ">
-        <Primary name="Update" action={updateData} />
-        <Secondary name="Cancel" action={reset} />
+        <Button classname="primary" action={updateData} name="Update" />
+        <Button classname="secondary" action={cancel} name="Cancel" />
       </div>
     </div>
   );

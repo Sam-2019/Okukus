@@ -1,9 +1,11 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import Primary from "../Button/Primary";
+import { useAuthentication } from "../Auth/Context";
 import "./confirm.css";
 
 const Confirm = () => {
+  const { firstName, lastName } = useAuthentication();
   let history = useHistory();
 
   const orderID = localStorage.getItem("orderID");
@@ -12,7 +14,7 @@ const Confirm = () => {
     <div className="confirm_wrapper">
       <div className="order_placed">Your Order Has Been Placed</div>
       <p className="confirm">
-        Hi <span className="confirm_name">Dave Jone</span>,
+        Hi <span className="confirm_name">{firstName} {lastName}</span>,
       </p>
       <p>
         Thank you for shopping with us! Your order{" "}

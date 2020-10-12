@@ -4,7 +4,6 @@ import "./searchbox.css";
 
 const Search = ({ alert }) => {
   const [query, setQuery] = useState("");
-  const [url, setUrl] = useState("https://okukus.com/search");
 
   let history = useHistory();
 
@@ -16,13 +15,6 @@ const Search = ({ alert }) => {
     }
   }
 
-  function Query2() {
-    if (query === "") {
-      alert();
-    } else {
-      setUrl(`https://okukus.com/search/${query}`);
-    }
-  }
   return (
     <>
       <div className="search_object ">

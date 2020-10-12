@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { useAuthentication } from "../Auth/Context";
-import Primary from "../Button/Primary";
+import Input from "../Input/Input";
+import Button from "../Button/Button";
+import Message from '../Message/Message'
 import "./user.css";
 
 function Login() {
-  const { uniqueID, updateUserPassword, } = useAuthentication();
+  const { uniqueID, updateUserPassword } = useAuthentication();
 
   const [newPassword, setNewPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
 
-  const [error, setError] = useState();
+  const [message, setMessage] = useState();
 
   const reset = () => {
     setNewPassword("");
@@ -17,7 +19,7 @@ function Login() {
   };
 
   const updatePassword = async (event) => {
-    setError();
+    setMessage();
     event.preventDefault();
     var formData = new FormData();
 
@@ -28,7 +30,7 @@ function Login() {
     const data = await updateUserPassword(formData);
 
     if (data.data.error === true) {
-      setError(data.data.message);
+      setMessage(data.data.message);
     } else if (data.data.error === false) {
       reset();
     }
@@ -39,30 +41,33 @@ function Login() {
       <div className="user_form  ">
         <h2>Reset Password</h2>
 
-
-        <input
-          className="input "
+        <Input
+          classname="input "
           placeholder="New Password"
           value={newPassword}
           type="password"
-          onChange={(e) => setNewPassword(e.target.value)}
+          action={(e) => setNewPassword(e.target.value)}
         />
 
-        <input
-          className="input "
+        <Input
+          classname="input "
           placeholder="Confirm Password"
           value={confirmPassword}
           type="password"
-          onChange={(e) => setConfirmPassword(e.target.value)}
+          action={(e) => setConfirmPassword(e.target.value)}
         />
       </div>
 
       <div className="message_wrapper ">
-        {error ? <div className=" user_message "> {error}</div> : null}
+        {message ? <Message message={message} classname="message" /> : null}
+      </div>
+
+      <div className="message_wrapper ">
+        {message ? <div className=" user_message "> {message}</div> : null}
       </div>
 
       <div className="button_wrapper ">
-        <Primary name="Submit" action={updatePassword} />
+        <Button name="Submit" action={updatePassword} classname="primary" />
       </div>
     </div>
   );

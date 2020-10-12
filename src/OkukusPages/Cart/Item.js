@@ -42,7 +42,7 @@ const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {
 
   return (
     <div className="cart_item_wrapper ">
-      <div className="cart_image_wrapper item ">
+      <div className="cart_image_wrapper  ">
         <img
           src={`https://okukus.com/${cover_photo_url}`}
           className=" cart_image "
@@ -50,23 +50,23 @@ const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {
         />
       </div>
 
-      <div className=" cart_item_name item">{product_name}</div>
+      <div className=" cart_item_name ">{product_name}</div>
 
-      <div className="cart_item_detail item">
+      <div className="cart_item_detail ">
         <div className="adjust_qty">
-          <button className="cart_button subtract item " onClick={Subtract}>
+          <button className="cart_button subtract  " onClick={Subtract}>
             -
           </button>
 
           <input
-            className="cart_item_qty item "
+            className="cart_item_qty  "
             type="number"
             onChange={(e) => setQty(e.target.value)}
             placeholder="0"
             value={qty}
           />
 
-          <button className="cart_button add item" onClick={Add}>
+          <button className="cart_button add " onClick={Add}>
             +
           </button>
         </div>

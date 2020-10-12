@@ -180,7 +180,7 @@
   justify-content: space-evenly;
 }
 
-@media (max-width: 540px) {
+@media (max-width: 720px) {
   .cart_item_wrapper {
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
     display: flex;

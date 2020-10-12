@@ -6,22 +6,7 @@
     text-align: center;
   }
   
-  .message_output {
-    margin: 0.4em 0;
-  }
-  
-  .message {
-    background-color: #00d91913;
-    border: 1px solid #00d91913;
-    padding: 2.5px 10px;
-    border-radius: 0.5rem;
-    color: #777777;
-    margin: 0.5em 0;
-    outline: none;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-      border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    width: auto;
-  }
+
   
   .buy_form {
   }

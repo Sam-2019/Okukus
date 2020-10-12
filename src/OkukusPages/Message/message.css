@@ -1,0 +1,24 @@
+.message_wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.message {
+  background-color: #00d91913;
+  border: 1px solid #00d91913;
+  padding: 2.5px 10px;
+  border-radius: 0.5rem;
+  color: #777777;
+  margin: 0 auto 0 auto;
+  text-align: center;
+  outline: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+@media (max-width: 540px) {
+  .message {
+    margin: 0 auto 8px auto;
+  }
+}

@@ -12,33 +12,37 @@ const Content = (props) => {
   var formData = new FormData();
   formData.set("search_phrase", searchphrase);
   const resource = useAsync(searchItem, formData);
+  console.log(resource.message);
 
-
-  let content = resource.value.map(
-    ({ unique_id, unit_price, product_name, cover_photo_url }) => (
-      <View
-        key={unique_id}
-        id={unique_id}
-        unit_price={unit_price}
-        cover_photo_url={cover_photo_url}
-        product_name={product_name}
-      />
-    )
-  );
+  let content;
+  if (resource.value) {
+    content = resource.value.map(
+      ({ unique_id, unit_price, product_name, cover_photo_url }) => (
+        <View
+          key={unique_id}
+          id={unique_id}
+          unit_price={unit_price}
+          cover_photo_url={cover_photo_url}
+          product_name={product_name}
+        />
+      )
+    );
+  }
 
   return (
     <div className="search_wrapper  ">
-      <h4 className='title_item'>Search Results for "{searchphrase}"</h4>
+      <h4 className="title_item">Search Results for "{searchphrase}"</h4>
       <div>
-
-      {resource.loading ? (
-        <Spinner />
-      ) : resource.error ? (
-        <div className="search_message">{resource.message}</div>
-      ) : (
-        <div className="wrapper ">{content}</div>
-      )}
-    </div>
+        {resource.loading ? (
+          <div className="spinner_wrapper">
+            <Spinner />
+          </div>
+        ) : resource.message === "no orders found" ? (
+          <div className=''>No orders found</div>
+        ) : (
+          <div className="wrapper ">{content}</div>
+        )}
+      </div>
     </div>
   );
 };
