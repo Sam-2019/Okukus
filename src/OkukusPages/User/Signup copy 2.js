@@ -30,7 +30,7 @@ const AccountVerify = (props) => {
         </div>
       ) : resource.message ? (
         <div className="message_wrapper ">
-          <Message message={resource.message} classname="message" />
+          <Message message={resource.message} classname="" />
         </div>
       ) : null}
     </div>
