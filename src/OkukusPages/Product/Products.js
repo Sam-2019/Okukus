@@ -11,9 +11,6 @@ const Products = () => {
   const [offset, setOffset] = useState(0);
   const [isFetching, setIsFetching] = useInfiniteScroll(moreData);
 
-  const { getItems } = useAuthentication();
-
-  const resource = useAsyncc(getItems);
 
 
   let url = `https:okukus.com/api_call_dev/get_books.php`;
@@ -51,7 +48,6 @@ const Products = () => {
   }, []);
 
 
-
   let content = data.map(
     ({ unique_id, unit_price, product_name, cover_photo_url }) => (
       <View
@@ -65,7 +61,7 @@ const Products = () => {
   );
   return (
     <>
-      {resource.loading ? (
+      {data.length === 0 ? (
         <div className="spinner_wrapper">
           <Spinner />
         </div>
