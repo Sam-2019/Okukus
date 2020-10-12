@@ -7,6 +7,21 @@
   text-align: center;
 }
 
+.forgotten_password_wrapper{
+
+  text-align: center;
+}
+
+.forgotten_password {
+  color: #6495ed;
+
+}
+
+.forgotten_password:hover,
+.forgotten_password:focus {
+  color: #007bff;
+}
+
 @media (max-width: 540px) {
   .user_wrapper {
     padding: 0.5em;

@@ -1,46 +1,52 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import useInfiniteScroll from "../useInfinite";
 import View from "../Container/View/View";
 import Spinner from "../Spinner/Spinner";
+import useInfiniteScroll from "../useInfinite";
 
 const Article = () => {
   const [data, setData] = useState([]);
-  const [offset, setOffset] = useState(0);
+  const [page, setPage] = useState(0);
   const [isFetching, setIsFetching] = useInfiniteScroll(moreData);
 
-  let url = `https:okukus.com/api_call_dev/get_books.php`;
+  let url = `https://okukus.com/api_call_dev/get_books.php`;
+
+  var formData = new FormData();
+  formData.set("offset", page);
 
   const loadData = () => {
-    axios.get(url).then((res) => {
+    var formData = new FormData();
+    formData.set("offset", page);
+    axios({
+      method: "post",
+      url: url,
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
+    }).then((res) => {
       setData(res.data);
+      console.log(res.data)
     });
+
   };
+
 
   function moreData() {
     var formData = new FormData();
-    formData.set("offset", offset);
+    formData.set("offset", page);
     axios({
       method: "post",
-      url: "https://okukus.com/api_call_dev/get_books.php",
+      url: url,
       data: formData,
       headers: { "Content-Type": "multipart/form-data" },
-    }).then((response) => {
-      setData([...data, ...response.data]);
-      response.data.forEach((d) => {
-        setOffset(offset + response.data.length);
-      });
-      console.log(data);
+    }).then((res) => {
+      setData([...data, ...res.data]);
+      setPage(page + 1);
       setIsFetching(false);
     });
   }
 
   useEffect(() => {
     loadData();
-  }, []);
-
-  useEffect(() => {
-    moreData();
   }, []);
 
   if (data.length == 0) {

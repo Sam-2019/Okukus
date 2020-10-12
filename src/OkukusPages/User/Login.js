@@ -61,20 +61,22 @@ function Login() {
         />
       </div>
 
-      <div className="message_wrapper ">
-        {message ? (
+      {message ? (
+        <div className="message_wrapper ">
           <Message classname="message" message={message} />
-        ) : (
-          <div
-            className="text-button"
+        </div>
+      ) : (
+        <div className="forgotten_password_wrapper">
+          <span
+            className="forgotten_password "
             onClick={() => {
               history.push("/reset");
             }}
           >
             Password forgotten?
-          </div>
-        )}
-      </div>
+          </span>
+        </div>
+      )}
 
       <div className="button_wrapper ">
         <Button classname="primary" action={logIn} name="Sign in" />
