@@ -42,7 +42,7 @@ const Buy = ({ doneShopping, id }) => {
   const [momo_transaction_id, setMomoTransactionID] = useState("");
 
   const [selectedOption, setSelectedOption] = useState(
-    "Click to select a payment method"
+    "Select a payment method"
   );
 
   const clearCheckOut = () => {
@@ -172,7 +172,7 @@ const Buy = ({ doneShopping, id }) => {
         )}
 
         <h4 className="_billing">Billing</h4>
-        <div>Choose a payment method below</div>
+        {/* <div>Choose a payment method below</div> */}
 
         {/* <div className="payment_wrapper">
           <div className="   radio">
@@ -212,7 +212,7 @@ const Buy = ({ doneShopping, id }) => {
             }}
           >
             <option
-              value="Click to select a payment method"
+              value="Select a payment method"
               disabled="disabled"
             >
               Click to select a payment method
