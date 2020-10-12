@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useAuthentication } from "../Auth/Context";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
-import Message from '../Message/Message'
+import Message from "../Message/Message";
 import "./user.css";
 
 function SignUp() {
@@ -39,7 +39,6 @@ function SignUp() {
     formData.set("password1", password1);
 
     const data = await registerUser(formData);
-    console.log(data);
 
     if (data.error === true) {
       setMessage(data.message);
@@ -51,8 +50,8 @@ function SignUp() {
   };
 
   return (
-    <div className="user_wrapper item">
-      <div className="user_form item">
+    <div className="user_wrapper ">
+      <div className="user_form ">
         <h2>Sign Up</h2>
 
         <Input
@@ -98,10 +97,6 @@ function SignUp() {
 
       <div className="message_wrapper ">
         {message ? <Message classname="message" message={message} /> : null}
-      </div>
-
-      <div className="message_wrapper ">
-        {message ? <div className="user_message "> {message}</div> : null}
       </div>
 
       <div className="button_wrapper ">

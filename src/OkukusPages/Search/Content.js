@@ -12,7 +12,7 @@ const Content = (props) => {
   var formData = new FormData();
   formData.set("search_phrase", searchphrase);
   const resource = useAsync(searchItem, formData);
-  console.log(resource.message);
+
 
   let content;
   if (resource.value) {

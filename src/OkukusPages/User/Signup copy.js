@@ -39,7 +39,7 @@ function SignUp() {
     formData.set("password1", password1);
 
     const data = await registerUser(formData);
-    console.log(data);
+
 
     if (data.error === true) {
       setError(data.message);

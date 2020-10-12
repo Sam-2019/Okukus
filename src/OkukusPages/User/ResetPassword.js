@@ -23,7 +23,6 @@ function Login() {
     formData.set("buyer_email", email);
 
     const data = await resetUserAccount(formData);
-    console.log(data);
 
     if (data.data.error === true) {
       setMessage(data.data.message);

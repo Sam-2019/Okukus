@@ -53,7 +53,7 @@ const Product = (props) => {
   // }, [id, getItem]);
 
   const resource = useAsync(getItem, formData);
-  console.log(resource);
+
 
   // if (resource.error) {
   //   content = (

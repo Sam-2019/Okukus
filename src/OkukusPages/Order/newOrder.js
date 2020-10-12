@@ -101,7 +101,6 @@ const Buy = ({ doneShopping, id }) => {
         formData.set("momo_transaction_id", momo_transaction_id);
 
         const data = await createOrder(formData);
-        console.log(data)
         localStorage.setItem("orderID", data.data.order_number);
 
         clearCheckOut();

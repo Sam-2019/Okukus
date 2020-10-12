@@ -39,7 +39,7 @@ const Address_edit = ({ update, cancel }) => {
     formData.set("email", contact1);
 
     const data = await updateUserProfile(formData);
-    console.log(data);
+
 
     if (data.data.error === true) {
       setMessage(data.data.message);

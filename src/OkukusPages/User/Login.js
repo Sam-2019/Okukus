@@ -63,7 +63,7 @@ function Login() {
 
       <div className="message_wrapper ">
         {message ? (
-          <div className=" user_message "> {message}</div>
+          <Message classname="message" message={message} />
         ) : (
           <div
             className="text-button"
@@ -74,10 +74,6 @@ function Login() {
             Password forgotten?
           </div>
         )}
-      </div>
-
-      <div className="message_wrapper ">
-        {message ? <Message classname="message" message={message} /> : null}
       </div>
 
       <div className="button_wrapper ">

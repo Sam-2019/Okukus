@@ -27,7 +27,7 @@ const Products = () => {
       const result = await axios(
         "https://okukus.com/api_call_dev/get_books.php"
       );
-      console.log(result);
+
       setData2(result.data);
     };
 
@@ -38,7 +38,7 @@ const Products = () => {
   const perPage = 10;
 
   const newData = data2.slice(after, after + perPage);
-  console.log(newData);
+
 
   function load() {
     const timer = setTimeout(() => {

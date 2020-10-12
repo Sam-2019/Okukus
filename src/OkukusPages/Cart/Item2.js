@@ -14,7 +14,7 @@ const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {
     formData.set("item_unique_id", id);
 
     const data = await deleteCart(formData);
-    console.log(data);
+
   };
 
   const updateItem = async () => {
@@ -24,7 +24,7 @@ const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {
     formData.set("item_quantity", qty);
 
     const data = await updateCart(formData);
-    console.log(data);
+
   };
 
   const Add = () => {
