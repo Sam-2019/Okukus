@@ -215,7 +215,7 @@ const Buy = ({ doneShopping, id }) => {
               value="Select a payment method"
               disabled="disabled"
             >
-              Click to select a payment method
+             Select a payment method
             </option>
             <option value="Cash" className="option">
               Cash
