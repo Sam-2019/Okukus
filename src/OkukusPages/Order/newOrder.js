@@ -74,7 +74,6 @@ const Buy = ({ doneShopping, id }) => {
         formData.set("payment_method", payment_method);
 
         const data = await createOrder(formData);
-        console.log(data)
         localStorage.setItem("orderID", data.data.order_number);
 
         clearCheckOut();
