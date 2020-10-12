@@ -15,10 +15,13 @@ const Products = () => {
 
   const resource = useAsyncc(getItems);
 
+
   let url = `https:okukus.com/api_call_dev/get_books.php`;
 
   const loadData = () => {
-    setData(resource.value);
+    axios.get(url).then((res) => {
+      setData(res.data);
+    });
   };
 
   function moreData() {
@@ -26,7 +29,7 @@ const Products = () => {
     formData.set("offset", offset);
     axios({
       method: "post",
-      url: url,
+      url: "https://okukus.com/api_call_dev/get_books.php",
       data: formData,
       headers: { "Content-Type": "multipart/form-data" },
     }).then((response) => {
@@ -34,7 +37,7 @@ const Products = () => {
       response.data.forEach((d) => {
         setOffset(offset + response.data.length);
       });
-      console.log(data);
+
       setIsFetching(false);
     });
   }
@@ -47,6 +50,8 @@ const Products = () => {
     moreData();
   }, []);
 
+
+
   let content = data.map(
     ({ unique_id, unit_price, product_name, cover_photo_url }) => (
       <View
@@ -58,7 +63,6 @@ const Products = () => {
       />
     )
   );
-
   return (
     <>
       {resource.loading ? (
