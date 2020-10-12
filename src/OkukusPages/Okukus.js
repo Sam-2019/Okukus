@@ -13,11 +13,11 @@ import Login from "./User/Login";
 import SignUp from "./User/Signup";
 import Profile from "./User/Profile";
 import TagContent from "./Tag/Content";
-import NotFound from "./404/404";
+
 import Footer from "./Footer/Footer";
 import ResetPassword from "./User/ResetPassword";
 import NewPassword from "./User/NewPassword";
-import AccountVerify from "./User/AccountVerify";
+import AccountVerify from "./User/Signup copy 2";
 
 const Okukus = () => {
   return (
@@ -25,21 +25,23 @@ const Okukus = () => {
       <Navigation />
       <div className="contain  ">
         <Route exact path="/" component={Body} />
-        <Route path="/order/:id" component={Order} />
+        
         <Route path="/confirm" component={Confirm} />
         <Route path="/cart" component={Cart} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
         <Route path="/profile" component={Profile} />
+
+        <Route path="/order/:id" component={Order} />
         <Route path="/product/:id" component={Product} />
         <Route path="/tag/:id" component={TagContent} />
         <Route path="/search/:id" component={Search} />
+        <Route path="/verify/:id" component={AccountVerify} />
+        <Route path="/search/:id" component={Search} />
 
         <Route path="/reset" component={ResetPassword} />
-        <Route path="/accountverify/:id" component={AccountVerify} />
+
         <Route path="/newpassword" component={NewPassword} />
-        <Route path="/search/:id" component={Search} />
-        {/* <Route component={NotFound} /> */}
       </div>
       <Footer />
     </Router>

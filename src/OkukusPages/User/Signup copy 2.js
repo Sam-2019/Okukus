@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { useAuthentication } from "../Auth/Context";
 import Message from "../Message/Message";
 import Spinner from "../Spinner/Spinner";
+import { useAsync } from "../helpers";
 import "./user.css";
 
-function AccountVerify() {
+const AccountVerify = (props) => {
   const { verifyUserAccount } = useAuthentication();
+  
 
   let id = props.match.params.id;
   console.log(id);
@@ -28,11 +30,11 @@ function AccountVerify() {
         </div>
       ) : resource.message ? (
         <div className="message_wrapper ">
-          <Message message={message} classname="message" />
+          <Message message={resource.message} classname="message" />
         </div>
       ) : null}
     </div>
   );
-}
+};
 
 export default AccountVerify;
