@@ -111,7 +111,7 @@ const OkukusAccount = () => {
         </div>
 
         <div className="profile-body ">
-          <div className="item-change  extra_margin  ">
+          <div className="item-change extra_margin  ">
             {detailedit ? (
               <div>
                 <div className="worry">
@@ -229,6 +229,7 @@ const OkukusAccount = () => {
             )}
           </div>
         </div>
+
       </div>
 
       <div className="address_book">

@@ -13,8 +13,7 @@ const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {
     formData.set("buyer_unique_id", uniqueID);
     formData.set("item_unique_id", id);
 
-    const data = await deleteCart(formData);
-
+    await deleteCart(formData);
   };
 
   const updateItem = async () => {
@@ -23,8 +22,7 @@ const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {
     formData.set("item_unique_id", id);
     formData.set("item_quantity", qty);
 
-    const data = await updateCart(formData);
-
+    await updateCart(formData);
   };
 
   const Add = () => {
@@ -34,7 +32,7 @@ const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {
 
   const Subtract = () => {
     updateItem();
-    setQty(qty + 1);
+    setQty(qty - 1);
   };
 
   const rawsubtotal = qty * unit_price;

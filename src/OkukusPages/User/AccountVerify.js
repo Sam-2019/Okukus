@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { useAuthentication } from "../Auth/Context";
 import Message from "../Message/Message";
 import Spinner from "../Spinner/Spinner";
+import { useHistory } from "react-router-dom";
 import { useAsync } from "../helpers";
 import "./user.css";
 
 const AccountVerify = (props) => {
   const { verifyUserAccount } = useAuthentication();
-  
+
+  let history = useHistory();
 
   let id = props.match.params.id;
   console.log(id);
@@ -18,20 +20,24 @@ const AccountVerify = (props) => {
   const resource = useAsync(verifyUserAccount, formData);
   console.log(resource);
 
+  const push = () => {
+    history.push("/newpassword");
+  };
+
+  if (resource.message === "valid") {
+    push();
+  } 
+
   return (
     <div className=" user_wrapper">
-      <div className="user_form  ">
-        <h2>Account Verify</h2>
-      </div>
+ 
+        <div className='page_title'>Account Verify</div>
+
 
       {resource.loading ? (
-        <div className="spinner_wrapper">
-          <Spinner />
-        </div>
+        <Spinner />
       ) : resource.message ? (
-        <div className="message_wrapper ">
-          <Message message={resource.message} classname="" />
-        </div>
+        <Message message={resource.message} classname="message" />
       ) : null}
     </div>
   );

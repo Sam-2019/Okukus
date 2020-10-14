@@ -44,8 +44,8 @@ const Cart = () => {
   }
 
   return (
-    <div className="cart_wrapper">
-      <h2> Cart</h2>
+    <div className="cart_wrapper " >
+      <div className='page_title'> Cart</div>
 
       {/* <div className="cart_itemwrapper item ">
         <div className="imagewrapper item ">Item</div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAuthentication } from "../Auth/Context";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
-import Message from '../Message/Message'
+import Message from "../Message/Message";
 import "./user.css";
 
 function Login() {
@@ -38,31 +38,27 @@ function Login() {
 
   return (
     <div className=" user_wrapper">
-      <div className="user_form  ">
-        <h2>Reset Password</h2>
+      <div className="page_title">Reset Password</div>
 
-        <Input
-          classname="input "
-          placeholder="New Password"
-          value={newPassword}
-          type="password"
-          action={(e) => setNewPassword(e.target.value)}
-        />
+      <Input
+        classname="input "
+        placeholder="New Password"
+        value={newPassword}
+        type="password"
+        action={(e) => setNewPassword(e.target.value)}
+      />
 
-        <Input
-          classname="input "
-          placeholder="Confirm Password"
-          value={confirmPassword}
-          type="password"
-          action={(e) => setConfirmPassword(e.target.value)}
-        />
-      </div>
+      <Input
+        classname="input "
+        placeholder="Confirm Password"
+        value={confirmPassword}
+        type="password"
+        action={(e) => setConfirmPassword(e.target.value)}
+      />
 
       <div className="message_wrapper ">
         {message ? <Message message={message} classname="message" /> : null}
       </div>
-
-
 
       <div className="button_wrapper ">
         <Button name="Submit" action={updatePassword} classname="primary" />

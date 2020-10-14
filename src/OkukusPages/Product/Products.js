@@ -7,6 +7,31 @@ import Spinner from "../Spinner/Spinner";
 const Product = () => {
   const [data, setData] = useState([]);
   const [offset, setOffset] = useState(0);
+
+  let url = `https:okukus.com/api_call_dev/get_books.php`;
+
+  const loadData = () => {
+    var formData = new FormData();
+    formData.set("offset", offset);
+
+    axios({
+      method: "post",
+      url: url,
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+      .then((response) => {
+        setData(response.data);
+
+        response.data.forEach((d) => {
+          setOffset(offset + 1);
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const moreData = () => {
     var formData = new FormData();
     formData.set("offset", offset);
@@ -30,19 +55,7 @@ const Product = () => {
         console.log(error);
       });
   };
-
   const [isFetching, setIsFetching] = useInfiniteScroll(moreData);
-
-  let url = `https:okukus.com/api_call_dev/get_books.php`;
-
-  const loadData = () => {
-    axios.get(url).then((res) => {
-      setData(res.data);
-    });
-  };
-
-
-
   useEffect(() => {
     loadData();
   }, []);
@@ -51,8 +64,8 @@ const Product = () => {
     moreData();
   }, []);
 
-  if (data.length == 0) {
-    return <h1>Loading...</h1>;
+  if (data.length === 0) {
+    return <Spinner />;
   }
 
   let content = data.map(
@@ -68,9 +81,9 @@ const Product = () => {
   );
 
   return (
-    <>
+    <div className="products_wrapper">
       <div className="wrapper">{content}</div>
-    </>
+    </div>
   );
 };
 

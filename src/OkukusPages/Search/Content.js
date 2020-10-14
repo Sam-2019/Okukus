@@ -1,4 +1,7 @@
 import React from "react";
+import {
+  useParams
+} from "react-router-dom";
 import View from "../Container/View/View";
 import { useAuthentication } from "../Auth/Context";
 import Spinner from "../Spinner/Spinner";
@@ -9,10 +12,11 @@ const Content = (props) => {
   const { searchItem } = useAuthentication();
   let searchphrase = props.match.params.id;
 
+  
+
   var formData = new FormData();
   formData.set("search_phrase", searchphrase);
   const resource = useAsync(searchItem, formData);
-
 
   let content;
   if (resource.value) {
@@ -30,17 +34,15 @@ const Content = (props) => {
   }
 
   return (
-    <div className="search_wrapper  ">
-      <h4 className="title_item">Search Results for "{searchphrase}"</h4>
+    <div className="search_wrapper   ">
+      <div className="page_title">Search Results for "{searchphrase}"</div>
       <div>
         {resource.loading ? (
-          <div className="spinner_wrapper">
-            <Spinner />
-          </div>
+          <Spinner />
         ) : resource.message === "no orders found" ? (
-          <div className=''>No orders found</div>
+          <div className="">No orders found</div>
         ) : (
-          <div className="wrapper ">{content}</div>
+          <div className="products_wrapper ">{content}</div>
         )}
       </div>
     </div>

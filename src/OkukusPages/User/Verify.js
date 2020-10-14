@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useAuthentication } from "../Auth/Context";
 import Message from "../Message/Message";
 import Spinner from "../Spinner/Spinner";
@@ -7,7 +7,6 @@ import "./user.css";
 
 const AccountVerify = (props) => {
   const { verifyUserAccount } = useAuthentication();
-  
 
   let id = props.match.params.id;
   console.log(id);

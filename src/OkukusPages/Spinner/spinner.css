@@ -1,4 +1,8 @@
+.spinner_wrapper {
+  text-align: center;
+  padding: 5em;
+}
+
 .spinner {
-    color: #00d919;
-  }
-  
+  color: #00d919;
+}

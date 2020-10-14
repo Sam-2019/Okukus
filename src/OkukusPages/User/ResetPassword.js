@@ -34,17 +34,15 @@ function ResetPassword() {
 
   return (
     <div className=" user_wrapper">
-      <div className="user_form  ">
-        <h2>Account Reset</h2>
+      <div className="page_title">Account Reset</div>
 
-        <Input
-          type="email"
-          placeholder="Email"
-          classname="input"
-          action={(e) => setEmail(e.target.value)}
-          value={email}
-        />
-      </div>
+      <Input
+        type="email"
+        placeholder="Email"
+        classname="input"
+        action={(e) => setEmail(e.target.value)}
+        value={email}
+      />
 
       <div className="message_wrapper ">
         {message ? <Message message={message} classname="message" /> : null}

@@ -1,7 +1,8 @@
 .account {
   display: flex;
   justify-content: space-between;
-  height: 77vh;
+
+
 }
 
 .account_detail {
@@ -10,7 +11,7 @@
 }
 
 .profile-header {
-  padding: 0.4rem 1.25rem;
+  padding: 0.55rem 1.25rem;
   border: 0.4px solid #7f7f7f57;
   border-radius: 0.25em 0.25em 0 0;
   display: flex;
@@ -21,9 +22,11 @@
   border-radius: 0;
   display: flex;
   justify-content: space-between;
+
 }
 
 .static {
+
 }
 
 .bi-pencil-square {
@@ -49,11 +52,12 @@
 }
 
 .profile-body {
-  padding: 0.4rem 1.25rem;
+  padding: 0.75rem 1.25rem;
   background-color: #ffffff;
   border: 0.4px solid #7f7f7f57;
   border-radius: 0 0 0.25em 0.25em;
   word-wrap: break-word;
+  min-height: 7em;
 }
 
 .extra_margin {
@@ -74,7 +78,8 @@
   }
 
   .profile-header,
-  .item-change {
+  .profile-body {
+    padding: 0.55rem 1.25rem;
   }
 
   .static {

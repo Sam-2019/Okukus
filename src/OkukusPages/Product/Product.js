@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Spinner from "../Spinner/Spinner";
 import Button from "../Button/Button";
 import Message from '../Message/Message'
@@ -13,6 +13,7 @@ const Product = (props) => {
   const { getItem, addCart, uniqueID } = useAuthentication();
   const [message, setMessage] = useState();
 
+  
   let id = props.match.params.id;
   let history = useHistory();
 

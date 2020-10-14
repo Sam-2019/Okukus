@@ -1,3 +1,8 @@
-img .carousel{
+img .carousel {
+  border-radius: 0.9em;
+}
+@media (max-width: 540px) {
+  img .carousel {
     border-radius: 0.9em;
+  }
 }

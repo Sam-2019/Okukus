@@ -1,6 +1,6 @@
 .user_wrapper {
   padding: 0.5em;
-  height: 65vh;
+  margin: 1em 0;
 }
 
 .user_form {
@@ -25,6 +25,5 @@
 @media (max-width: 540px) {
   .user_wrapper {
     padding: 0.5em;
-    height: auto;
   }
 }

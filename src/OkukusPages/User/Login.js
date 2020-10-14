@@ -40,26 +40,24 @@ function Login() {
   };
 
   return (
-    <div className=" user_wrapper">
-      <div className="user_form  ">
-        <h2>Sign In</h2>
+    <div className=" user_wrapper item">
+      <div className="page_title">Sign In</div>
 
-        <Input
-          type="email"
-          placeholder="Email"
-          classname="input"
-          action={(e) => setEmail(e.target.value)}
-          value={email}
-        />
+      <Input
+        type="email"
+        placeholder="Email"
+        classname="input"
+        action={(e) => setEmail(e.target.value)}
+        value={email}
+      />
 
-        <Input
-          type="password"
-          placeholder="Password"
-          classname="input"
-          action={(e) => setPassword(e.target.value)}
-          value={password}
-        />
-      </div>
+      <Input
+        type="password"
+        placeholder="Password"
+        classname="input"
+        action={(e) => setPassword(e.target.value)}
+        value={password}
+      />
 
       {message ? (
         <div className="message_wrapper ">

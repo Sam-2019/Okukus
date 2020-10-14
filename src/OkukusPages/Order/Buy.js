@@ -130,8 +130,9 @@ const Buy = ({ doneShopping, id }) => {
   return (
     <div className="buy_wrapper ">
       <div>
+      <div className="page_title">Order</div>
         <div className="buy_form">
-          <h2>Order</h2>
+       
 
           <Input
             type="text"

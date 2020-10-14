@@ -25,8 +25,6 @@ const Profile = () => {
   }
 
   return (
-    <div>
-
 
       <div className="profile-content ">
         <div className=" sidebar ">
@@ -38,13 +36,13 @@ const Profile = () => {
           />
         </div>
         <div className=" view  ">
-        <h4 className="view_title">
-        {account ? "Account" : order ? "Order" : "Change Password"}
-      </h4>
+          <div className="page_title">
+            {account ? "Account" : order ? "Order" : "Change Password"}
+          </div>
           {account ? <Account /> : order ? <OrderHistory /> : <Password />}
         </div>
       </div>
-    </div>
+
   );
 };
 

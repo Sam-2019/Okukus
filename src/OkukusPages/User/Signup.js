@@ -50,50 +50,48 @@ function SignUp() {
   };
 
   return (
-    <div className="user_wrapper ">
-      <div className="user_form ">
-        <h2>Sign Up</h2>
+    <div className="user_wrapper item">
+      <div className="page_title">Sign Up</div>
 
-        <Input
-          type="text"
-          placeholder="First Name"
-          classname="input"
-          action={(e) => setFirstName(e.target.value)}
-          value={firstname}
-        />
+      <Input
+        type="text"
+        placeholder="First Name"
+        classname="input"
+        action={(e) => setFirstName(e.target.value)}
+        value={firstname}
+      />
 
-        <Input
-          type="text"
-          placeholder="Last Name"
-          classname="input"
-          action={(e) => setLastName(e.target.value)}
-          value={lastname}
-        />
+      <Input
+        type="text"
+        placeholder="Last Name"
+        classname="input"
+        action={(e) => setLastName(e.target.value)}
+        value={lastname}
+      />
 
-        <Input
-          type="email"
-          placeholder="Email"
-          classname="input"
-          action={(e) => setEmail(e.target.value)}
-          value={email}
-        />
+      <Input
+        type="email"
+        placeholder="Email"
+        classname="input"
+        action={(e) => setEmail(e.target.value)}
+        value={email}
+      />
 
-        <Input
-          type="password"
-          placeholder="Password"
-          classname="input"
-          action={(e) => setPassword0(e.target.value)}
-          value={password0}
-        />
+      <Input
+        type="password"
+        placeholder="Password"
+        classname="input"
+        action={(e) => setPassword0(e.target.value)}
+        value={password0}
+      />
 
-        <Input
-          type="password"
-          placeholder="Confirm Password"
-          classname="input"
-          action={(e) => setPassword1(e.target.value)}
-          value={password1}
-        />
-      </div>
+      <Input
+        type="password"
+        placeholder="Confirm Password"
+        classname="input"
+        action={(e) => setPassword1(e.target.value)}
+        value={password1}
+      />
 
       <div className="message_wrapper ">
         {message ? <Message classname="message" message={message} /> : null}

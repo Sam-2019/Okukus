@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./okukus.css";
 
 import Navigation from "./Nav/Nav";
@@ -14,6 +14,8 @@ import SignUp from "./User/Signup";
 import Profile from "./User/Profile";
 import TagContent from "./Tag/Content";
 
+import NotFound from './404/404'
+
 import Footer from "./Footer/Footer";
 import ResetPassword from "./User/ResetPassword";
 import NewPassword from "./User/NewPassword";
@@ -23,25 +25,66 @@ const Okukus = () => {
   return (
     <Router>
       <Navigation />
-      <div className="contain  ">
-        <Route exact path="/" component={Body} />
-        
-        <Route path="/confirm" component={Confirm} />
-        <Route path="/cart" component={Cart} />
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={SignUp} />
-        <Route path="/profile" component={Profile} />
+      <div className="contain ">
+      <Switch>
+          <Route exact path="/">
+            <Body />
+          </Route>
 
-        <Route path="/order/:id" component={Order} />
-        <Route path="/product/:id" component={Product} />
-        <Route path="/tag/:id" component={TagContent} />
-        <Route path="/search/:id" component={Search} />
-        <Route path="/verify/:id" component={AccountVerify} />
-        <Route path="/search/:id" component={Search} />
+          <Route path="/confirm">
+            <Confirm />
+          </Route>
 
-        <Route path="/reset" component={ResetPassword} />
+          <Route path="/cart">
+            <Cart />
+          </Route>
 
-        <Route path="/newpassword" component={NewPassword} />
+          <Route path="/login">
+            <Login />
+          </Route>
+
+          <Route path="/signup">
+            <SignUp />
+          </Route>
+
+          <Route path="/profile">
+            <Profile />
+          </Route>
+
+          <Route path="/order/:id">
+            <Order />
+          </Route>
+
+          <Route path="/product/:id">
+            <Product />
+          </Route>
+
+          <Route path="/tag/:id">
+            <TagContent />
+          </Route>
+
+          <Route path="/search/:id">
+            <Search />
+          </Route>
+
+          <Route path="/verify/:id">
+            <AccountVerify />
+          </Route>
+
+          <Route path="/reset">
+            <ResetPassword />
+          </Route>
+
+          <Route path="/newpassword">
+            <NewPassword />
+          </Route>
+
+          <Route>
+            <NotFound />
+          </Route>
+
+
+        </Switch>
       </div>
       <Footer />
     </Router>

@@ -6,7 +6,8 @@ import "./404.css";
 const NotFound = () => {
   return (
     <div className="not-found-wrapper item">
-      <NavLink to="/" className="not-found">
+
+      <NavLink to="/" className="not-found ">
         <b>404</b>
       </NavLink>
 

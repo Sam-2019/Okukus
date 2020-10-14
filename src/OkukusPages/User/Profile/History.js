@@ -40,9 +40,7 @@ const OrderHistory = () => {
   return (
     <div>
       {resource.loading ? (
-        <div className="spinner_wrapper">
-          <Spinner />
-        </div>
+        <Spinner />
       ) : resource.message === "no orders found" ? (
         <div>No orders found</div>
       ) : (

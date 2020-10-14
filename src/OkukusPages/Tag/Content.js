@@ -10,7 +10,6 @@ const Content = (props) => {
 
   let id = props.match.params.id;
 
-
   var formData = new FormData();
   formData.set("tag_title", id);
 
@@ -31,10 +30,14 @@ const Content = (props) => {
   return (
     <>
       <div className="tag_content">
-        <h4> {id}</h4>
+        <div className="page_title"> {id}</div>
       </div>
 
-      {resource.loading ? <Spinner /> : <div className="wrapper">{content}</div>}
+      {resource.loading ? (
+        <Spinner />
+      ) : (
+        <div className="wrapper">{content}</div>
+      )}
     </>
   );
 };
