@@ -40,7 +40,7 @@ function Login() {
   };
 
   return (
-    <div className=" user_wrapper item">
+    <div className=" user_wrapper ">
       <div className="page_title">Sign In</div>
 
       <Input

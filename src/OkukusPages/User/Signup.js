@@ -50,7 +50,7 @@ function SignUp() {
   };
 
   return (
-    <div className="user_wrapper item">
+    <div className="user_wrapper ">
       <div className="page_title">Sign Up</div>
 
       <Input
