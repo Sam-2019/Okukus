@@ -26,7 +26,7 @@ import {
 import { axiosMethod } from "../helpers";
 
 const Authentication = () => {
-  const [Auth, setAuth] = useState(true);
+  const [Auth, setAuth] = useState(false);
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [email, setEmail] = useState();
