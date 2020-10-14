@@ -15,8 +15,6 @@ const Product = (props) => {
 
   let { id } = useParams();
 
-  console.log(id);
-
   let history = useHistory();
 
   var formData = new FormData();
