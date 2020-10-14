@@ -3,7 +3,7 @@
   margin: 1em 0;
 }
 
-.title_item{
+.title_item {
   text-align: center;
 }
 
@@ -12,8 +12,25 @@
   font-weight: 500;
 }
 
+.products_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 51%;
+  display: inline-grid;
+  grid-template-columns: 50% 50% 50% 50%;
+  padding: 0 0.5em 0.5em 0.5em;
+}
+
 @media (max-width: 720px) {
   .search_message {
     padding: 10em 0;
+  }
+}
+
+@media (max-width: 540px) {
+  .products_wrapper {
+    width: 100%;
+    grid-template-columns: 50% 50%;
+    padding: 0 0.25em 0.5em 0.25em;
   }
 }

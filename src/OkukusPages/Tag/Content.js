@@ -41,7 +41,7 @@ const Content = (props) => {
       {resource.loading ? (
         <Spinner />
       ) : (
-        <div className="wrapper">{content}</div>
+        <div className="products_wrapper">{content}</div>
       )}
     </>
   );
