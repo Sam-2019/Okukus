@@ -1,4 +1,7 @@
 import React from "react";
+import {
+  useParams
+} from "react-router-dom";
 import { useAuthentication } from "../Auth/Context";
 import Message from "../Message/Message";
 import Spinner from "../Spinner/Spinner";
@@ -11,8 +14,9 @@ const AccountVerify = (props) => {
 
   let history = useHistory();
 
-  let id = props.match.params.id;
-  console.log(id);
+
+  let { id } = useParams();
+  console.log(id)
 
   var formData = new FormData();
   formData.set("url_data", id);

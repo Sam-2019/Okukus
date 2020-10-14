@@ -1,4 +1,7 @@
 import React from "react";
+import {
+  useParams
+} from "react-router-dom";
 import View from "../Container/View/View";
 import Spinner from "../Spinner/Spinner";
 import { useAuthentication } from "../Auth/Context";
@@ -8,7 +11,9 @@ import "./content.css";
 const Content = (props) => {
   const { getTag } = useAuthentication();
 
-  let id = props.match.params.id;
+
+  let { id } = useParams();
+  console.log(id)
 
   var formData = new FormData();
   formData.set("tag_title", id);

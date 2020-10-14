@@ -10,12 +10,16 @@ import "./search.css";
 
 const Content = (props) => {
   const { searchItem } = useAuthentication();
-  let searchphrase = props.match.params.id;
+
+
+  let { id } = useParams();
+  console.log(id)
+
 
   
 
   var formData = new FormData();
-  formData.set("search_phrase", searchphrase);
+  formData.set("search_phrase", id);
   const resource = useAsync(searchItem, formData);
 
   let content;
@@ -35,7 +39,7 @@ const Content = (props) => {
 
   return (
     <div className="search_wrapper   ">
-      <div className="page_title">Search Results for "{searchphrase}"</div>
+      <div className="page_title">Search Results for "{id}"</div>
       <div>
         {resource.loading ? (
           <Spinner />
