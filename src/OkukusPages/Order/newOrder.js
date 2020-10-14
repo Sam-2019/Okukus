@@ -13,7 +13,7 @@ const Order = (props) => {
 
 
   let { id } = useParams();
-  console.log(id)
+
 
   const [state, setState] = useState(false);
 

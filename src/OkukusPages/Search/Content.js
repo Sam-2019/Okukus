@@ -13,7 +13,7 @@ const Content = (props) => {
 
 
   let { id } = useParams();
-  console.log(id)
+
 
 
   

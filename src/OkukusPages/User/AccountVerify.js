@@ -16,7 +16,7 @@ const AccountVerify = (props) => {
 
 
   let { id } = useParams();
-  console.log(id)
+
 
   var formData = new FormData();
   formData.set("url_data", id);
