@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import Spinner from "../Spinner/Spinner";
 import Button from "../Button/Button";
-import Message from '../Message/Message'
+import Message from "../Message/Message";
 
 import { okukus } from "../apis";
 import { useAsync } from "../helpers";
@@ -13,8 +13,10 @@ const Product = (props) => {
   const { getItem, addCart, uniqueID } = useAuthentication();
   const [message, setMessage] = useState();
 
-  
-  let id = props.match.params.id;
+  let { id } = useParams();
+
+  console.log(id);
+
   let history = useHistory();
 
   var formData = new FormData();
@@ -75,8 +77,8 @@ const Product = (props) => {
         <div className=" _description">{data.product_description}</div>
 
         <div className="message_wrapper">
-        {message ? <Message classname="message" message={message} /> : null}
-      </div>
+          {message ? <Message classname="message" message={message} /> : null}
+        </div>
 
         <div className="button_wrapper ">
           <Button
