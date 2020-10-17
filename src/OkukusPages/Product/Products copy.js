@@ -24,11 +24,11 @@ const Products = () => {
   return (
     <div>
       {resource.loading ? (
-        <div className="spinner_wrapper">
+
           <Spinner />
-        </div>
+    
       ) : (
-        <div className="wrapper">{content}</div>
+        <div className="products_wrapper">{content}</div>
       )}
 
       {/* {message ? <div className="message_wrapper ">{message} </div> : null} */}
