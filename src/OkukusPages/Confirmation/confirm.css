@@ -21,7 +21,12 @@
   font-size: 18px;
 }
 
-@media (max-width: 720px) {
+._confirm {
+  text-align: justify;
+  margin: 0.5em 0 0.5em 0;
+}
+
+@media (max-width: 540px) {
   .confirm_wrapper {
     text-align: justify;
   }

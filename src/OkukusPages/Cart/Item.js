@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import Button from '../Button/Button'
 import Delete from "../Button/Delete";
 import Save from "../Button/Save";
 import { useAuthentication } from "../Auth/Context";
+import './item.css'
 
 const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {
   const { deleteCart, updateCart, uniqueID } = useAuthentication();
@@ -80,6 +82,10 @@ const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {
       <div className="cart_actions ">
         <Save name="Save" action={updateItem} />
         <Delete name="Delete " action={deleteItem} />
+
+
+        <Button name="Save" action={updateItem} classname='save' />
+        <Button name="Delete " action={deleteItem } classname='delete' />
       </div>
     </div>
   );

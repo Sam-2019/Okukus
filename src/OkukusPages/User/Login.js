@@ -64,9 +64,9 @@ function Login() {
           <Message classname="message" message={message} />
         </div>
       ) : (
-        <div className="forgotten_password_wrapper">
+        <div className="forgotten_password_wrapper ">
           <span
-            className="forgotten_password "
+            className="forgotten_password  "
             onClick={() => {
               history.push("/reset");
             }}

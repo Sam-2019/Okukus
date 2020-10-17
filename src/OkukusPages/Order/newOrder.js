@@ -1,42 +1,29 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useAuthentication } from "../Auth/Context";
-import {
-  useParams
-} from "react-router-dom";
-import Confirm from "../Confirmation/Confirm";
+import { useParams, useHistory } from "react-router-dom";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import Message from "../Message/Message";
 import "./neworder.css";
 
 const Order = (props) => {
-
-
   let { id } = useParams();
-
-
-  const [state, setState] = useState(false);
-
-  const doneShopping = () => {
-    setState(true);
-  };
 
   return (
     <div className="order_">
-      {state ? <Confirm /> : <Buy doneShopping={doneShopping} id={id} />}
+      <Buy id={id} />
     </div>
   );
 };
 
 export default Order;
 
-const Buy = ({ doneShopping, id }) => {
+const Buy = ({ id }) => {
   const { createOrder, uniqueID } = useAuthentication();
 
   const [momo, setMomo] = useState(false);
   const [message, setMessage] = useState("");
   const [display, setDisplay] = useState(false);
-
 
   const [product_unique_id, setProductUniqueID] = useState(id);
   const [location, setLocation] = useState("");
@@ -47,12 +34,11 @@ const Buy = ({ doneShopping, id }) => {
   const [momo_number, setMomoNumber] = useState("");
   const [momo_transaction_id, setMomoTransactionID] = useState("");
 
-  const [selectedOption, setSelectedOption] = useState(
-    "Select a payment method"
-  );
+  const [selectedOption, setSelectedOption] = useState("");
 
-  const clearCheckOut = () => {
+  let history = useHistory();
 
+  const clear = () => {
     setProductUniqueID("");
     setLocation("");
     setDigitalAddress("");
@@ -61,6 +47,10 @@ const Buy = ({ doneShopping, id }) => {
     setMomoName("");
     setMomoNumber("");
     setMomoTransactionID("");
+  };
+
+  const confirm = () => {
+    history.push("/confirm");
   };
 
   const submit = async (event) => {
@@ -82,8 +72,10 @@ const Buy = ({ doneShopping, id }) => {
         const data = await createOrder(formData);
         localStorage.setItem("orderID", data.data.order_number);
 
-        clearCheckOut();
-        doneShopping();
+        if (data.data.order_number !== "") {
+          clear();
+          confirm();
+        } else return;
       } else setMessage("Please fill above");
     } else if (payment_method === "momo") {
       let empty =
@@ -109,8 +101,10 @@ const Buy = ({ doneShopping, id }) => {
         const data = await createOrder(formData);
         localStorage.setItem("orderID", data.data.order_number);
 
-        clearCheckOut();
-        doneShopping();
+        if (data.data.order_number !== "") {
+          clear();
+          confirm();
+        } else return;
       } else {
         setMessage("Please fill below");
         setDisplay(!display);
@@ -136,6 +130,8 @@ const Buy = ({ doneShopping, id }) => {
   useEffect(() => {
     dodo();
   }, [dodo]);
+
+  console.log(selectedOption);
 
   return (
     <div className="buy_wrapper ">
@@ -207,7 +203,7 @@ const Buy = ({ doneShopping, id }) => {
           </div>
         </div> */}
 
-        <div className="payment-wrapper ">
+        <div className="payment_wrapper ">
           <select
             className="input"
             value={selectedOption}
@@ -216,11 +212,8 @@ const Buy = ({ doneShopping, id }) => {
               dodo();
             }}
           >
-            <option
-              value="Select a payment method"
-              disabled="disabled"
-            >
-             Select a payment method
+            <option value="" disabled selected>
+              Select a payment method
             </option>
             <option value="Cash" className="option">
               Cash

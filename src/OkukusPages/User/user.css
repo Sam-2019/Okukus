@@ -7,14 +7,12 @@
   text-align: center;
 }
 
-.forgotten_password_wrapper{
-
+.forgotten_password_wrapper {
   text-align: center;
 }
 
 .forgotten_password {
   color: #6495ed;
-
 }
 
 .forgotten_password:hover,

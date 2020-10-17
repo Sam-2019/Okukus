@@ -1,13 +1,16 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import Item from "./Item";
 import { useAuthentication } from "../Auth/Context";
 import { useAsync } from "../helpers";
+import Button from '../Button/Button'
 import Spinner from "../Spinner/Spinner";
 import Empty from "./Empty Cart";
 import "./cart.css";
 
 const Cart = () => {
   const { getCart, uniqueID } = useAuthentication();
+  let history = useHistory();
 
   var formData = new FormData();
   formData.set("buyer_unique_id", uniqueID);
@@ -44,8 +47,8 @@ const Cart = () => {
   }
 
   return (
-    <div className="cart_wrapper " >
-      <div className='page_title'> Cart</div>
+    <div className="cart_wrapper ">
+      <div className="page_title"> Cart</div>
 
       {/* <div className="cart_itemwrapper item ">
         <div className="imagewrapper item ">Item</div>
@@ -75,6 +78,18 @@ const Cart = () => {
             <div className="cart_total_wrapper  ">
               <div className="cart_total">Total</div>
               <div className="cart_total_amount  ">Total</div>
+            </div>
+
+            <div className="right_button_wrapper ">
+              <Button name="Check Out" classname="primary" />
+
+              <Button
+                name="Continue Shopping"
+                classname="secondary"
+                action={() => {
+                  history.push("/");
+                }}
+              />
             </div>
           </>
         )}

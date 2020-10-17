@@ -87,7 +87,7 @@ const Navigation = ({ hamburger, showAlert }) => {
         </div>
 
         <div className="two ">
-          <div className="cart  " onClick={() => history.push("/cart")}>
+          <div className="cartIcon  " onClick={() => history.push("/cart")}>
             <svg
               viewBox="0 0 16 16"
               className="bi bi-cart3 navIcon"

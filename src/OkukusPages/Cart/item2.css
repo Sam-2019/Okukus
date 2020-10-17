@@ -1,64 +1,4 @@
-.cart_wrapper {
-  padding: 0.5em;
 
-  font-size: 15px;
-  margin: 1em 0;
-}
-
-.empty_cart {
-  text-align: center;
-}
-
-.empty_cart_message {
-  margin: 2em 0 1em 0;
-}
-
-.cart_stack {
-  font-size: 4.5em;
-  text-align: center;
-  color: #00d919;
-}
-
-/* .cart_itemwrapper {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 0.5em;
-    margin: 0 0em 0.6em 0em;
-    align-items: center;
-   width: 90%; 
-  }
-  
-  .imagewrapper {
-  
-    width: 42%;
-    text-align: center;
-  }
-  
-  .cart_itemdetail {
-    width: 40%;
-    display: flex;
-    justify-content: space-between;
-  
-  }  */
-
-.cart_total_wrapper {
-  display: flex;
-  justify-content: flex-end;
-  margin: 0 0em 0.5em 0em;
-}
-
-.cart_total {
-  padding: 0.5em 0em;
-  margin: 0 1.6em 0 0;
-}
-
-.cart_total_amount {
-  padding: 0.5em 3em;
-  background-color: rgb(255, 255, 255);
-  border: 0.4px solid #7f7f7f57;
-  border-radius: 0.25em;
-}
 
 .cart_item_wrapper {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
@@ -74,17 +14,24 @@
 }
 
 .cart_image_wrapper {
-  width: 14%;
+  width: 15.9%;
   text-align: center;
 }
 
 .cart_image {
-  width: 70px;
+  width: 60px;
 }
 
+
+
+.notice{
+  display: flex;
+  flex-direction: column;
+  width: 83%;
+}
 .secondhalf{
   display: flex;
-  width: 85%;
+
 }
 
 .cart_item_name {
@@ -196,13 +143,19 @@
   }
 
   .cart_image_wrapper {
-    width: 30%;
+    width: 20%;
+  }
+
+  .notice{
+    display: flex;
+    flex-direction: column;
+    width: 79%;
   }
 
   .secondhalf {
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 100%;
   }
 
   .cart_item_name {
@@ -212,11 +165,12 @@
   .cart_item_detail {
     width: 100%;
     margin: 0.2em 0;
+
   }
 
   .cart_item_qty {
     width: 4em;
-    margin: 0 0;
+
   }
 
   .cart_actions {
@@ -235,9 +189,7 @@
     align-items: center;
   }
 
-  .cart_button {
-    display: none;
-  }
+
 
   /* .cart_button:active {
     transform: scale(0.95);
@@ -270,3 +222,25 @@
     justify-content: space-between;
   }
 }
+
+
+@media (max-width: 540px) {
+  .cart_image_wrapper {
+
+    text-align: center;
+  }
+  
+  .cart_image {
+    width: 50px;
+  }
+
+  .notice{
+    display: flex;
+    flex-direction: column;
+    width: 78%;
+  }
+
+
+
+}
+

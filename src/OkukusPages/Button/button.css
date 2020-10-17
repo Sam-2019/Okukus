@@ -24,7 +24,7 @@
   text-transform: uppercase;
   transition: transform 80ms ease-in;
   width: auto;
-  margin: 0.5em;
+  margin: 0 0.5em;
   align-items: center;
 }
 
@@ -90,11 +90,20 @@
   color: #ffffff;
 }
 
+.button_wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.right_button_wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
 @media (max-width: 540px) {
   .primary,
   .secondary {
     padding: 10px 20px;
-    margin-bottom: 0.5em;
     width: 100%;
   }
 
@@ -111,5 +120,15 @@
     padding: 6px 10px;
     justify-content: space-evenly;
     width: 100%;
+  }
+
+  .button_wrapper {
+    display: flex;
+  }
+
+  .right_button_wrapper {
+    display: flex;
+    flex-direction: column;
+
   }
 }

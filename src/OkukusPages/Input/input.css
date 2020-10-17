@@ -1,11 +1,24 @@
-.input,
+.input {
+  background-color: #eee;
+  border: 1px solid transparent;
+  outline: none;
+  border-radius: 5px;
+  padding: 12px 15px;
+  margin: 0 auto;
+}
+
 .edit_input {
   background-color: #eee;
   border: 1px solid transparent;
   outline: none;
   border-radius: 5px;
   padding: 12px 15px;
-  margin: 0 auto 8px auto;
+}
+
+.input:not(:last-child),
+.edit_input:not(:last-child),
+.hi_hi:not(:last-child) {
+  margin-bottom: 0.5rem;
 }
 
 .input {
@@ -17,10 +30,22 @@
   width: 100%;
 }
 
+.hi_hi {
+  width: 100%;
+  background-color: #eee;
+  border: 1px solid transparent;
+  outline: none;
+  border-radius: 5px;
+  padding: 12px 15px;
+  margin-bottom: 0.5rem;
+}
+
 .input:hover,
 .input:focus,
 .edit_input:hover,
-.edit_input:focus {
+.edit_input:focus,
+.hi_hi:hover,
+.hi_hi:focus {
   border: 1px solid #00d919;
   -webkit-transition: all ease-in-out 0.3s;
   transition: all ease-in-out 0.3s;
@@ -34,10 +59,18 @@
   .edit_input {
     width: 100%;
   }
+
+  .hi_hi {
+    width: 100%;
+  }
 }
 
 @media (max-width: 320px) {
   .input {
+    width: 100%;
+  }
+
+  .hi_hi {
     width: 100%;
   }
 }

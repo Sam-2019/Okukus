@@ -75,7 +75,7 @@
   border-radius: 0.2em;
 }
 
-.cart {
+.cartIcon {
   margin: 0;
   padding: 0.2em 0em 0.2em 0.25em;
   border-radius: 0.2em;
@@ -101,12 +101,12 @@
 }
 
 .justify:active,
-.cart:active,
+.cartIcon:active,
 .profile:active {
   transform: scale(0.95);
 }
 
-.cart:focus,
+.cartIcon:focus,
 .profile:focus {
   outline: none;
 }
@@ -186,7 +186,7 @@
     border-radius: 0.2em;
   }
 
-  .cart {
+  .cartIcon {
     margin: 0;
     padding: 0.2em 0 0.2em 0.25em;
     border-radius: 0.2em;
@@ -203,13 +203,13 @@
   }
 
   .justify:active,
-  .cart:active,
+  .cartIcon:active,
   .profile:active {
     box-shadow: 0 0.125rem 0.25rem #00000013 !important;
     transform: scale(0.95);
   }
 
-  .cart:focus,
+  .cartIcon:focus,
   .profile:focus {
     outline: none;
     box-shadow: 0 0.125rem 0.25rem #00000013 !important;

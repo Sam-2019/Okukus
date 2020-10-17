@@ -8,11 +8,12 @@ import Search from "./Search/Content";
 import Product from "./Product/Product";
 import Order from "./Order/newOrder";
 import Confirm from "./Confirmation/Confirm";
-import Cart from "./Cart/Cart";
+import Cart from "./Cart/Cart(offline)";
 import Login from "./User/Login";
 import SignUp from "./User/Signup";
 import Profile from "./User/Profile";
 import TagContent from "./Tag/Content";
+import Checkout from './Checkout/Checkout'
 
 import NotFound from './404/404'
 
@@ -37,6 +38,10 @@ const Okukus = () => {
 
           <Route path="/cart">
             <Cart />
+          </Route>
+
+          <Route path="/checkout">
+            <Checkout />
           </Route>
 
           <Route path="/login">

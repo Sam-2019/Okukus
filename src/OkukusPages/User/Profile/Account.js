@@ -113,24 +113,22 @@ const OkukusAccount = () => {
         <div className="profile-body ">
           <div className="item-change extra_margin  ">
             {detailedit ? (
-              <div>
-                <div className="worry">
-                  <Input
-                    type="text"
-                    classname="edit_input"
-                    placeholder="First Name"
-                    value={first_name}
-                    action={(e) => setFirstName(e.target.value)}
-                  />
+               <div className="itemme ">
+                <Input
+                  type="text"
+                  classname="hi_hi"
+                  placeholder="First Name"
+                  value={first_name}
+                  action={(e) => setFirstName(e.target.value)}
+                />
 
-                  <Input
-                    type="text"
-                    classname="edit_input"
-                    placeholder="Last Name"
-                    value={last_name}
-                    action={(e) => setLastName(e.target.value)}
-                  />
-                </div>
+                <Input
+                  type="text"
+                  classname="hi_hi"
+                  placeholder="Last Name"
+                  value={last_name}
+                  action={(e) => setLastName(e.target.value)}
+                />
 
                 <div className="message_wrapper ">
                   {message ? (
@@ -178,21 +176,20 @@ const OkukusAccount = () => {
 
           <div className="item-change ">
             {emailedit ? (
-              <div>
-                <div className=" ">
-                  <Input
-                    classname="edit_input"
-                    placeholder="Email"
-                    value={e_mail}
-                    action={(e) => setEmail(e.target.value)}
-                  />
+              <div className="itemme ">
+                <Input
+                  classname="hi_hi"
+                  placeholder="Email"
+                  value={e_mail}
+                  action={(e) => setEmail(e.target.value)}
+                />
 
-                  <div className="message_wrapper ">
-                    {message ? (
-                      <Message classname="message " message={message} />
-                    ) : null}
-                  </div>
+                <div className="message_wrapper ">
+                  {message ? (
+                    <Message classname="message " message={message} />
+                  ) : null}
                 </div>
+
                 <div className="button_wrapper ">
                   <Button
                     name="Update"
@@ -229,7 +226,6 @@ const OkukusAccount = () => {
             )}
           </div>
         </div>
-
       </div>
 
       <div className="address_book">

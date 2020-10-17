@@ -1,9 +1,13 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import products from "../files/products";
 import Item from "./Item2";
-import "./cart2.css";
+import "./cart.css";
+import Button from "../Button/Button";
 
 const Cart = () => {
+  let history = useHistory();
+
   let content = products.map(
     ({ unique_id, unit_price, product_name, cover_photo_url, stock }) => (
       <Item
@@ -18,15 +22,43 @@ const Cart = () => {
   );
 
   return (
-    <div className="cart_wrapper">
-      <h2 className="text-center "> Cart</h2>
+    <div className="cart ">
+      <div className="page_title"> Cart</div>
 
-      <div className="not_empty">
-        <div>
-          {content}
-          <div className="cart_total_wrapper  ">
-            <div className="cart_total">Total</div>
-            <div className="cart_total_amount ">Total</div>
+      <div className=" cart_wrapper">
+        <div className="content">{content}</div>
+
+        <div className="summary_wrapper item ">
+          <div className="summary">Cart Summary</div>
+
+          <div className="summary_item_wrapper  ">
+            <div className="summary_item">Subtotal</div>
+            <div className="summary_amount ">2,000,000</div>
+          </div>
+
+          <div className="summary_item_wrapper  ">
+            <div className="summary_item">Shipping</div>
+            <div className="summary_amount ">2,000</div>
+          </div>
+
+          <div className="summary_item_wrapper  ">
+            <div className="summary_item">Order Total</div>
+            <div className="summary_amount ">Total</div>
+          </div>
+
+          <div className="summary_item_wrapper  ">
+            <div className="summary_item">Total (Ghc)</div>
+            <div className="summary_amount ">Total</div>
+          </div>
+
+          <div className="button_wrapper ">
+            <Button
+              name="Check Out"
+              classname="primary"
+              action={() => {
+                history.push("/checkout");
+              }}
+            />
           </div>
         </div>
       </div>

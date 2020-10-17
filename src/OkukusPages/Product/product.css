@@ -61,11 +61,7 @@
   margin: 0.5em 0 0 0;
 }
 
-.button_wrapper {
-  display: flex;
-  justify-content: center;
-  margin: 0.5em 0 0 0;
-}
+
 
 .add_to_cart,
 .buy_product {
@@ -149,11 +145,7 @@
     font-weight: 500;
   }
 
-  .button_wrapper {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-  }
+
 
   .add_to_cart {
     color: #00d919;
