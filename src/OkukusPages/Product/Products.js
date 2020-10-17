@@ -1,59 +1,15 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import useInfiniteScroll from "../useInfinite";
+import React from "react";
 import View from "../Container/View/View";
 import Spinner from "../Spinner/Spinner";
+import { useAsyncc } from "../helpers";
+import { useAuthentication } from "../Auth/Context";
 
-const Article = () => {
-  const [data, setData] = useState([]);
-  const [offset, setOffset] = useState(0);
-  const [isFetching, setIsFetching] = useInfiniteScroll(moreData);
+const Products = () => {
+  const { getItems } = useAuthentication();
 
-  let url = `https:okukus.com/api_call_dev/get_books.php`;
+  const resource = useAsyncc(getItems);
 
-  const loadData = () => {
-    axios.get(url).then((res) => {
-      setData(res.data);
-    });
-  };
-
-  function moreData() {
-    var formData = new FormData();
-    formData.set("offset", offset);
-
-    axios({
-      method: "post",
-      url: "https://okukus.com/api_call_dev/get_books.php",
-      data: formData,
-      headers: { "Content-Type": "multipart/form-data" },
-    })
-      .then((response) => {
-        setData([...data, ...response.data]);
-
-        response.data.forEach((d) => {
-          setOffset(offset + response.data.length);
-        });
-
-        setIsFetching(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  useEffect(() => {
-    moreData();
-  }, []);
-
-  if (data.length == 0) {
-    return <Spinner />;
-  }
-
-  let content = data.map(
+  let content = resource.value.map(
     ({ unique_id, unit_price, product_name, cover_photo_url }) => (
       <View
         key={unique_id}
@@ -66,10 +22,18 @@ const Article = () => {
   );
 
   return (
-    <>
-      <div className="products_wrapper">{content}</div>
-    </>
+    <div>
+      {resource.loading ? (
+
+          <Spinner />
+    
+      ) : (
+        <div className="products_wrapper">{content}</div>
+      )}
+
+      {/* {message ? <div className="message_wrapper ">{message} </div> : null} */}
+    </div>
   );
 };
 
-export default Article;
+export default Products;
