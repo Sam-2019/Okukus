@@ -3,14 +3,14 @@
 # dependencies
 /node_modules
 /src/Okukus
-/src/OkukusPages/files
+
 /src/OkukusPages/ternary.js
 /src/OkukusPages/images
 /src/OkukusPages/Context
 /src/OkukusPages/Product/Product(offline).js
 /src/OkukusPages/Product/Products(offline).js
 /src/OkukusPages/Tag/Tag(offline).js
-/src/OkukusPages/Cart/Cart(offline).js
+
 /.pnp
 .pnp.js
 
