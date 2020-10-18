@@ -36,7 +36,7 @@ const momoData = [
     name: "Dan Doe",
     tel: "+233240506040",
     transactionID: " 32145698752",
-  }
+  },
 ];
 
 const Checkout = () => {
@@ -73,38 +73,43 @@ const Checkout = () => {
     <div className="checkout ">
       <div className="checktout_wrapper ">
         <div className="shippingxpayment">
-          <div className="section shipping ">
-            <div className="page_title"> Shipping Information</div>
+        <div className="page_title"> Shipping Information</div>
 
+          <div className="section shipping ">
+   
             <div className="shipping_selection">
               <div className="shipping_radio">
                 {addressData.map((item) => (
-                  <div className="">
+                  <div className=" select item">
                     <input
                       type="radio"
-                      className=""
+                      className="  "
                       id={item.id}
                       name="shipping"
                       value={item.id}
                       required
                     />
-                    <label className="" htmlFor={item.id}>
+
+                    <label className="label-size" htmlFor={item.id}>
+                      
+                      <div>{item.name},</div>
+                      <div>{item.tel},</div>
                       <div>
-                        {item.name}, {item.tel}
+                        {item.box}, {item.community},
                       </div>
                       <div>
-                        {item.box}, {item.community}
+                        {item.town}, {item.region},
                       </div>
                       <div>
-                        {item.town}, {item.region}, {item.country},
-                        {item.country_code}
+                        {item.country}, {""}
+                        {item.country_code}.
                       </div>
                     </label>
                   </div>
                 ))}
               </div>
 
-              <div className="shipping_new">
+              <div className="shipping_new ">
                 {address ? (
                   <>
                     <div className="address_input_wrapper ">
@@ -162,13 +167,13 @@ const Checkout = () => {
               </div>
             </div>
           </div>
+          <div className="page_title">Payment Method</div>
 
           <div className="section payment">
-            <div className="page_title">Payment Method</div>
-
+  
             <div className="payment_method  ">
               <div className="payment_select ">
-                <button
+                <div
                   onClick={cashActivate}
                   className={
                     active === "Cash"
@@ -177,10 +182,10 @@ const Checkout = () => {
                   }
                 >
                   Cash
-                </button>
+                </div>
               </div>
               <div className="payment_select">
-                <button
+                <div
                   onClick={momoActivate}
                   className={
                     active === "Momo"
@@ -189,7 +194,7 @@ const Checkout = () => {
                   }
                 >
                   Momo
-                </button>
+                </div>
               </div>
 
               {/* <div className="page_title">
@@ -202,8 +207,7 @@ const Checkout = () => {
                 <div className="momo_radio ">
                   {momoData.map((momo) => (
                     <div className="">
-         
-                      <label className="" htmlFor={momo.id}>
+                      <label className="label-size" htmlFor={momo.id}>
                         <div>{momo.name},</div>
 
                         <div>{momo.tel}</div>
@@ -255,33 +259,45 @@ const Checkout = () => {
           </div>
         </div>
 
-        <div className="summary_wrapper ">
-          <div className="page_title"> Summary</div>
+        <div className="summary_wrapper  ">
+        <div className="page_title"> Summary</div>
+          <div className="new_wrapper">
+    
 
-          <div className="summary_item_wrapper  ">
-            <div className="summary_item">Subtotal</div>
-            <div className="summary_amount ">2,000,000</div>
-          </div>
+            <div className="summary_item_wrapper  ">
+              <div className="summary_item">Subtotal</div>
+              <div className="summary_amount ">2,000,000</div>
+            </div>
 
-          <div className="summary_item_wrapper  ">
-            <div className="summary_item">Shipping</div>
-            <div className="summary_amount ">2,000</div>
-          </div>
+            <div className="summary_item_wrapper  ">
+              <div className="summary_item">Shipping</div>
+              <div className="summary_amount ">2,000</div>
+            </div>
 
-          <div className="summary_item_wrapper  ">
-            <div className="summary_item">Order Total</div>
-            <div className="summary_amount ">Total</div>
-          </div>
+            <div className="summary_item_wrapper  ">
+              <div className="summary_item">Order Total</div>
+              <div className="summary_amount ">Total</div>
+            </div>
 
-          <div className="summary_item_wrapper  ">
-            <div className="summary_item">Total (Ghc)</div>
-            <div className="summary_amount ">Total</div>
-          </div>
+            <div className="summary_item_wrapper  ">
+              <div className="summary_item">Total (Ghc)</div>
+              <div className="summary_amount ">Total</div>
+            </div>
 
-          <div className="button_wrapper ">
-            <Button name="Place Order" classname="primary" />
+            <div className="button_wrapper ">
+              <Button
+                name="Check Out"
+                classname="primary"
+                action={() => {
+                  history.push("/checkout");
+                }}
+              />
+            </div>
           </div>
         </div>
+     
+     
+     
       </div>
     </div>
   );

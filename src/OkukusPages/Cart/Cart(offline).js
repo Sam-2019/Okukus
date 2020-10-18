@@ -23,42 +23,49 @@ const Cart = () => {
 
   return (
     <div className="cart ">
-      <div className="page_title"> Cart</div>
+
 
       <div className=" cart_wrapper">
-        <div className="content">{content}</div>
 
-        <div className="summary_wrapper item ">
-          <div className="summary">Cart Summary</div>
+        <div className="content">
+        <div className="page_title"> Cart</div>
+          <div>{content}</div>
+        </div>
 
-          <div className="summary_item_wrapper  ">
-            <div className="summary_item">Subtotal</div>
-            <div className="summary_amount ">2,000,000</div>
-          </div>
+        <div className="summary_wrapper  ">
+        <div className="page_title"> Summary</div>
+          <div className="new_wrapper">
+       
 
-          <div className="summary_item_wrapper  ">
-            <div className="summary_item">Shipping</div>
-            <div className="summary_amount ">2,000</div>
-          </div>
+            <div className="summary_item_wrapper  ">
+              <div className="summary_item">Subtotal</div>
+              <div className="summary_amount ">2,000,000</div>
+            </div>
 
-          <div className="summary_item_wrapper  ">
-            <div className="summary_item">Order Total</div>
-            <div className="summary_amount ">Total</div>
-          </div>
+            <div className="summary_item_wrapper  ">
+              <div className="summary_item">Shipping</div>
+              <div className="summary_amount ">2,000</div>
+            </div>
 
-          <div className="summary_item_wrapper  ">
-            <div className="summary_item">Total (Ghc)</div>
-            <div className="summary_amount ">Total</div>
-          </div>
+            <div className="summary_item_wrapper  ">
+              <div className="summary_item">Order Total</div>
+              <div className="summary_amount ">Total</div>
+            </div>
 
-          <div className="button_wrapper ">
-            <Button
-              name="Check Out"
-              classname="primary"
-              action={() => {
-                history.push("/checkout");
-              }}
-            />
+            <div className="summary_item_wrapper  ">
+              <div className="summary_item">Total (Ghc)</div>
+              <div className="summary_amount ">Total</div>
+            </div>
+
+            <div className="button_wrapper ">
+              <Button
+                name="Check Out"
+                classname="primary"
+                action={() => {
+                  history.push("/checkout");
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>

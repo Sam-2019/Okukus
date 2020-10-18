@@ -37,6 +37,19 @@
   width: auto;
 }
 
+.select {
+  display: flex;
+  justify-content: space-around;
+}
+
+input[radio='checked'] {
+  font-size: 30px;
+}
+
+.down {
+
+}
+
 .shipping_new {
   width: 58%;
 }
@@ -89,8 +102,8 @@
 }
 
 .payment_mode {
-  border-radius: 13px;
-  font-size: 1em;
+
+  font-size: 1.5em;
   padding: 6px 30px;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -156,7 +169,11 @@
 }
 
 .label-custom {
+
+
 }
+
+
 
 @media (max-width: 768px) {
 }
@@ -171,26 +188,55 @@
     width: 100%;
   }
 
-
-
   .shipping_selection {
     display: flex;
     flex-direction: column;
   }
 
+  .select {
+    display: flex;
+    flex-direction: row;
+
+  }
+
+  .label-size{
+    font-size: 19px;
+  }
+
+  .down {
+
+  }
+
+  .shipping_new {
+    width: 100%;
+  }
+
   .payment_method {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .momo_selected {
     display: flex;
     flex-direction: column;
   }
 
-  
-.momo_selected {
-  display: flex;
-  flex-direction: column;
-}
+  .momo_new {
+    width: 100%;
+  }
+
+  .momo_input {
+    width: 100%;
+  }
 
   .address_input_wrapper {
     display: flex;
     flex-direction: column;
   }
+
+  .shippingxpayment:not(:last-child) {
+    margin-bottom: 0.7rem;
+  }
 }
+
