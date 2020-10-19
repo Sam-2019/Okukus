@@ -20,6 +20,7 @@ const AccountVerify = (props) => {
   const resource = useAsync(verifyUserAccount, formData);
   console.log(resource);
   setEmail(resource.value.email)
+  console.log(email)
 
   // if (resource.message === "link is valid") {
   //   dontShow(true);
