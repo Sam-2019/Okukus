@@ -26,12 +26,19 @@ const AccountVerify = () => {
 
   return (
     <div className=" user_wrapper">
-      <div className="page_title">Account Verify</div>
+      <div className="page_title">
+        Account Verify
+        {resource.message === "link is valid" ? (
+          <>Account Verify</>
+        ) : (
+          <>Reset Password</>
+        )}
+      </div>
 
       {resource.loading ? (
         <Spinner />
       ) : resource.message === "link is valid" ? (
-        <NewPassword email={resource.value.email}/>
+        <NewPassword email={resource.value.email} />
       ) : (
         <Message message={resource.message} classname="message" />
       )}
@@ -41,10 +48,8 @@ const AccountVerify = () => {
 
 export default AccountVerify;
 
-const NewPassword = ({email}) => {
+const NewPassword = ({ email }) => {
   const { userPasswordReset } = useAuthentication();
-
-  console.log(email)
 
   const [newPassword, setNewPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
@@ -66,7 +71,7 @@ const NewPassword = ({email}) => {
     formData.set("confirm_password", confirmPassword);
 
     const data = await userPasswordReset(formData);
-    console.log(data)
+    console.log(data);
 
     if (data.data.error === true) {
       setMessage(data.data.message);
@@ -76,8 +81,6 @@ const NewPassword = ({email}) => {
   };
   return (
     <div>
-      <div className="page_title">Reset Password</div>
-
       <Input
         classname="input "
         placeholder="New Password"
