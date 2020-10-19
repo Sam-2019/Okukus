@@ -29,7 +29,7 @@ const AccountVerify = (props) => {
   };
 
   if (resource.message === "valid") {
-    push();
+  
   } 
 
   return (
