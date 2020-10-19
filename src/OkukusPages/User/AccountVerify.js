@@ -18,7 +18,7 @@ const AccountVerify = () => {
   formData.set("url_data", id);
 
   const resource = useAsync(verifyUserAccount, formData);
-  console.log(resource);
+  console.log(resource.value);
 
 
 
