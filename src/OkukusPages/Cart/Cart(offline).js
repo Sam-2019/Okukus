@@ -8,7 +8,6 @@ import Button from "../Button/Button";
 import Spinner from "../Spinner/Spinner";
 import Empty from "./Empty Cart";
 import "./cart.css";
-import { cartSummary } from "../apis";
 
 const Cart = () => {
   const { getCart, uniqueID, summaryCart } = useAuthentication();
@@ -20,7 +19,7 @@ const Cart = () => {
   const resource = useAsync(getCart, formData);
 
   const cartSummary = useAsync(summaryCart, formData);
-  console.log(cartSummary)
+  console.log(cartSummary);
 
   let content;
 
@@ -52,8 +51,8 @@ const Cart = () => {
   }
 
   return (
-    <div className="cart ">
-      <div className=" cart_wrapper">
+    <div className="cart item ">
+      <div className=" cart_wrapper item">
         {resource.loading ? (
           <Spinner />
         ) : resource.error || resource.message === "cart is empty" ? (
@@ -61,7 +60,7 @@ const Cart = () => {
           <Empty />
         ) : (
           <>
-            <div className="content">
+            <div className="content item">
               <div className="page_title"> Cart</div>
 
               <div>{content}</div>
@@ -70,20 +69,20 @@ const Cart = () => {
             <div className="summary_wrapper  ">
               <div className="page_title"> Summary</div>
               <div className="new_wrapper">
-                <div className="summary_item_wrapper  ">
+                {/* <div className="summary_item_wrapper  ">
                   <div className="summary_item">Subtotal</div>
                   <div className="summary_amount ">2,000,000</div>
-                </div>
+                </div> */}
 
                 <div className="summary_item_wrapper  ">
-                  <div className="summary_item">Shipping</div>
+                  <div className="summary_item">Quantity</div>
                   <div className="summary_amount ">2,000</div>
                 </div>
 
-                <div className="summary_item_wrapper  ">
+                {/* <div className="summary_item_wrapper  ">
                   <div className="summary_item">Order Total</div>
                   <div className="summary_amount ">Total</div>
-                </div>
+                </div> */}
 
                 <div className="summary_item_wrapper  ">
                   <div className="summary_item">Total (Ghc)</div>

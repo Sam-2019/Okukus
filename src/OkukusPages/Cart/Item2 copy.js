@@ -1,43 +1,44 @@
 import React, { useState, useRef } from "react";
-import Button from '../Button/Button'
-import Delete from "../Button/Delete";
-import Save from "../Button/Save";
+import Button from "../Button/Button";
+
 import { useAuthentication } from "../Auth/Context";
 import "./item2.css";
 
-const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {  const { deleteCart, updateCart, uniqueID } = useAuthentication();
-const [qty, setQty] = useState(Number(quantity));
+const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {
+  const { deleteCart, updateCart, uniqueID } = useAuthentication();
+  const [qty, setQty] = useState(0);
 
-const deleteItem = async (event) => {
-  event.preventDefault();
-  var formData = new FormData();
-  formData.set("buyer_unique_id", uniqueID);
-  formData.set("item_unique_id", id);
+  // const [qty, setQty] = useState(Number(quantity));
 
-  await deleteCart(formData);
-};
+  const deleteItem = async (event) => {
+    // event.preventDefault();
+    // var formData = new FormData();
+    // formData.set("buyer_unique_id", uniqueID);
+    // formData.set("item_unique_id", id);
+    // const data = await deleteCart(formData);
+  };
 
-const updateItem = async () => {
-  var formData = new FormData();
-  formData.set("buyer_unique_id", uniqueID);
-  formData.set("item_unique_id", id);
-  formData.set("item_quantity", qty);
+  const updateItem = async () => {
+    var formData = new FormData();
+    formData.set("buyer_unique_id", uniqueID);
+    formData.set("item_unique_id", id);
+    formData.set("item_quantity", qty);
 
-  await updateCart(formData);
-};
+    const data = await updateCart(formData);
+  };
 
-const Add = () => {
-  updateItem();
-  setQty(qty + 1);
-};
+  const Add = () => {
+    setQty(qty + 1);
+    updateItem();
+  };
 
-const Subtract = () => {
-  updateItem();
-  setQty(qty - 1);
-};
+  const Subtract = () => {
+    setQty(qty - 1);
+    updateItem();
+  };
 
-const rawsubtotal = qty * unit_price;
-const subtotal = Intl.NumberFormat().format(rawsubtotal);
+  const rawsubtotal = qty * unit_price;
+  const subtotal = Intl.NumberFormat().format(rawsubtotal);
 
   return (
     <>
