@@ -61,7 +61,7 @@ export const useAsync = (getMethod, data) => {
     } else if (result.data.error === false) {
       setValue(result.data.data);
       setLoading(false);
-      setMessage(null);
+      setMessage(result.data.message);
       setError(null);
     }
   }, [getMethod, data]);
