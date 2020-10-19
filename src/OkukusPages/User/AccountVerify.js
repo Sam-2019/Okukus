@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffec } from "react";
 import { useParams } from "react-router-dom";
 import { useAuthentication } from "../Auth/Context";
 import Message from "../Message/Message";
@@ -8,7 +8,7 @@ import Spinner from "../Spinner/Spinner";
 import { useAsync } from "../helpers";
 import "./user.css";
 
-const AccountVerify = (props) => {
+const AccountVerify = () => {
   const { verifyUserAccount } = useAuthentication();
   const [email, setEmail] = useState();
 
@@ -18,9 +18,13 @@ const AccountVerify = (props) => {
   formData.set("url_data", id);
 
   const resource = useAsync(verifyUserAccount, formData);
-  console.log(resource);
+  console.log(resource.value.email);
 
-  setEmail(resource.value.email);
+  useEffect(() => {
+    if (resource.value) {
+      setEmail(resource.value.email);
+    }
+  }, [fetchData, data]);
 
   // if (resource.message === "link is valid") {
   //   dontShow(true);

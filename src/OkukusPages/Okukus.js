@@ -75,6 +75,10 @@ const Okukus = () => {
             <AccountVerify />
           </Route>
 
+          <Route path="/user_verify/:id">
+            <UserVerify />
+          </Route>
+
           <Route path="/reset">
             <ResetPassword />
           </Route>
