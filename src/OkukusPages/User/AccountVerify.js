@@ -21,11 +21,16 @@ const AccountVerify = (props) => {
   formData.set("url_data", id);
 
   const resource = useAsync(verifyUserAccount, formData);
+  console.log(resource);
+
+  const push = () => {
+    history.push("/newpassword");
+  };
 
   let content;
 
   if (resource.value) {
-console.log(hi)
+console.log('hi')
   } 
 
   return (
