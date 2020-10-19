@@ -3,7 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { useAuthentication } from "../Auth/Context";
 import Message from "../Message/Message";
 import Spinner from "../Spinner/Spinner";
-import Button from "../../Button/Button";
+import Button from "../Button/Button";
 import { useAsync } from "../helpers";
 import "./user.css";
 
