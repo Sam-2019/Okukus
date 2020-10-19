@@ -20,8 +20,6 @@ const AccountVerify = () => {
   const resource = useAsync(verifyUserAccount, formData);
   console.log(resource.value.email);
 
-
-
   // if (resource.message === "link is valid") {
   //   dontShow(true);
   // }
@@ -32,8 +30,6 @@ const AccountVerify = () => {
 
       {resource.loading ? (
         <Spinner />
-      ) : resource.message === "link is valid" ? (
-        <NewPassword />
       ) : (
         <Message message={resource.message} classname="message" />
       )}
@@ -61,7 +57,6 @@ const NewPassword = () => {
     event.preventDefault();
     var formData = new FormData();
 
-    formData.set("buyer_email", "");
     formData.set("new_password", newPassword);
     formData.set("confirm_password", confirmPassword);
 
