@@ -25,18 +25,8 @@ const AccountVerify = (props) => {
   let content;
 
   if (resource.value) {
-    content = (
-      <div>
-        Hello
-      </div>
-     ) 
-  } else {
-    content = (
-      <div>
-        Hi
-      </div>
-     ) 
-  }
+console.log(hi)
+  } 
 
   return (
     <div className=" user_wrapper">
@@ -46,7 +36,7 @@ const AccountVerify = (props) => {
 
       {resource.loading ? (
         <Spinner />
-      ) : <div>{content}</div>}
+      ): null}
     </div>
   );
 };
