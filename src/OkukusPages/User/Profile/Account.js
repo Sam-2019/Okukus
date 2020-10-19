@@ -113,7 +113,7 @@ const OkukusAccount = () => {
       var formData = new FormData();
 
 
-      formData.set("buyer_email", e_mail);
+      formData.set("buyer_email", email);
 
       const data = await verifyCreateEmail(formData);
       console.log(data)
