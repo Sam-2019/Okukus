@@ -5,7 +5,6 @@ import Message from "../Message/Message";
 import Spinner from "../Spinner/Spinner";
 import { useHistory } from "react-router-dom";
 import { useAsync } from "../helpers";
-import NewPassword from "./NewPassword";
 import "./user.css";
 
 const AccountVerify = (props) => {
