@@ -27,11 +27,11 @@ const AccountVerify = () => {
   return (
     <div className=" user_wrapper">
       <div className="page_title">
-        Account Verify
+  
         {resource.message === "link is valid" ? (
-          <>Account Verify</>
+          <>   Reset Password</>
         ) : (
-          <>Reset Password</>
+          <>Account Verify</>
         )}
       </div>
 
