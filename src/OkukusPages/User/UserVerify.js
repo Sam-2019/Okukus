@@ -22,25 +22,24 @@ function UserVerify() {
       {resource.loading ? (
         <Spinner />
       ) : (
-
         <>
-        <div className="message_wrapper ">
-          <Message message={resource.message} classname="message" />
-        </div>
+          <div className="message_wrapper ">
+            <Message message={resource.message} classname="message" />
+          </div>
 
-        <div className="button_wrapper ">
-        <Button
-          name="    Go Shopping"
-          action={() => {
-            history.push("/");
-          }}
-          classname="primary"
-        />
-      </div>
+          {resource.error === true ? null : (
+            <div className="button_wrapper ">
+              <Button
+                name="    Go Shopping"
+                action={() => {
+                  history.push("/");
+                }}
+                classname="primary"
+              />
+            </div>
+          )}
         </>
       )}
-
-    
     </div>
   );
 }
