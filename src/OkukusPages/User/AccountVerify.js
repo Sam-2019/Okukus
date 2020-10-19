@@ -20,11 +20,7 @@ const AccountVerify = () => {
   const resource = useAsync(verifyUserAccount, formData);
   console.log(resource.value.email);
 
-  useEffect(() => {
-    if (resource.value.email) {
-      setEmail(resource.value.email);
-    } else return;
-  }, []);
+
 
   // if (resource.message === "link is valid") {
   //   dontShow(true);
