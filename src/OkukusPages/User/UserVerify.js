@@ -7,13 +7,13 @@ import { useAsync } from "../helpers";
 import "./user.css";
 
 function UserVerify() {
-  const { updateUserPassword } = useAuthentication();
+  const { verifyReadEmail } = useAuthentication();
 
   let { id } = useParams();
 
   var formData = new FormData();
   formData.set("url_data", id);
-  const resource = useAsync(updateUserPassword, formData);
+  const resource = useAsync(verifyReadEmail, formData);
   console.log(resource);
 
   return (

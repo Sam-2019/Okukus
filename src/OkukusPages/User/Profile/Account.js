@@ -14,6 +14,7 @@ const OkukusAccount = () => {
     uniqueID,
     updateUserProfile,
     updateUserEmail,
+    verifyCreateEmail
   } = useAuthentication();
   const [detailedit, setdetailedit] = useState(false);
   const [emailedit, setemailedit] = useState(false);
@@ -24,6 +25,7 @@ const OkukusAccount = () => {
   const [e_mail, setEmail] = useState();
 
   const [message, setMessage] = useState();
+  const [verifyMessage, setVerifyMessage] = useState();
 
   const submitDetail = () => {
     setdetailedit(false);
@@ -102,6 +104,24 @@ const OkukusAccount = () => {
       }
     }
   };
+
+  const verifyAccount = async (event) => {
+    event.preventDefault();
+
+    setVerifyMessage("");
+
+      var formData = new FormData();
+
+
+      formData.set("buyer_email", e_mail);
+
+      const data = await verifyCreateEmail(formData);
+      console.log(data)
+      if (data.data.error === true) {
+        setVerifyMessage(data.data.message);
+      } else if (data.data.error === false) {
+      }
+    }
 
   return (
     <div className="account  ">
@@ -229,6 +249,19 @@ const OkukusAccount = () => {
               </div>
             )}
           </div>
+       
+       <div>
+       <div className="message_wrapper ">
+                  {verifyMessage ? (
+                    <Message classname="message " message={verifyMessage} />
+                  ) : null}
+                </div>
+
+         <button onClick={verifyAccount}>
+           Verify Accout
+         </button>
+       </div>
+       
         </div>
       </div>
 

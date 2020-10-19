@@ -14,9 +14,16 @@ export const userPasswordUpdate = `${okukus}/${dev_site}/update_buyer_password.p
 export const userProfileUpdate = `${okukus}/${dev_site}/update_buyer_profile.php`;
 export const userEmailUpdate = `${okukus}/${dev_site}/update_buyer_email.php`;
 
+//forgot my passsword first step
 export const userAccountReset = `${okukus}/${dev_site}/create_password_reset_token.php`;
-
 export const userAccountVerify = `${okukus}/${dev_site}/read_password_reset_token.php`;
+
+//verify user account
+export const userCreateEmailVerify = `${okukus}/${dev_site}/create_email_verification_token.php`;
+export const userReadEmailVerify = `${okukus}/${dev_site}/read_email_verification_token.php`;
+
+//password reset
+export const passwordReset = `${okukus}/${dev_site}/update_buyer_password_reset.php`;
 
 export const itemSearch = `${okukus}/${dev_site}/search.php`;
 

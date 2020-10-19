@@ -13,6 +13,11 @@ import {
   userEmailUpdate,
   userAccountReset,
   userAccountVerify,
+
+  userCreateEmailVerify,
+  userReadEmailVerify,
+  passwordReset,
+
   itemSearch,
   cartAdd,
   cartGet,
@@ -133,6 +138,21 @@ const Authentication = () => {
     return verifyAccount;
   };
 
+  const verifyCreateEmail = async (formData) => {
+    const createEmailVerify = await axiosMethod(userCreateEmailVerify, formData);
+    return createEmailVerify;
+  };
+
+  const verifyReadEmail = async (formData) => {
+    const readEmailVerify = await axiosMethod(userReadEmailVerify, formData);
+    return readEmailVerify;
+  };
+
+  const userPasswordReset = async (formData) => {
+    const resetPassword = await axiosMethod(passwordReset, formData);
+    return resetPassword;
+  };
+
   const searchItem = async (formData) => {
     const search = await axiosMethod(itemSearch, formData);
     return search;
@@ -208,6 +228,11 @@ const Authentication = () => {
     updateUserEmail,
     resetUserAccount,
     verifyUserAccount,
+
+    verifyCreateEmail,
+    verifyReadEmail,
+
+    userPasswordReset,
 
     searchItem,
 

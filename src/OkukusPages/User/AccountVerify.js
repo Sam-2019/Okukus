@@ -9,8 +9,8 @@ import { useAsync } from "../helpers";
 import "./user.css";
 
 const AccountVerify = () => {
-  const { verifyUserAccount } = useAuthentication();
-
+  const { verifyUserAccount, UserPasswordReset } = useAuthentication();
+  const [email, setEmail] = useState();
 
   let { id } = useParams();
 
@@ -20,7 +20,11 @@ const AccountVerify = () => {
   const resource = useAsync(verifyUserAccount, formData);
   console.log(resource.value.email);
 
-
+  useEffect(() => {
+    if (resource.value.email) {
+      setEmail(resource.value.email);
+    } else return;
+  }, []);
 
   // if (resource.message === "link is valid") {
   //   dontShow(true);
@@ -43,14 +47,13 @@ const AccountVerify = () => {
 
 export default AccountVerify;
 
-const NewPassword =() => {
-  const { updateUserPassword } = useAuthentication();
+const NewPassword = () => {
+  const { userPasswordReset } = useAuthentication();
 
   const [newPassword, setNewPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
 
   const [message, setMessage] = useState();
-
 
   const reset = () => {
     setNewPassword("");
@@ -62,11 +65,11 @@ const NewPassword =() => {
     event.preventDefault();
     var formData = new FormData();
 
-    formData.set("buyer_email", 'email');
+    formData.set("buyer_email", "moteyrakim@gmail.com");
     formData.set("new_password", newPassword);
     formData.set("confirm_password", confirmPassword);
 
-    const data = await updateUserPassword(formData);
+    const data = await userPasswordReset(formData);
 
     if (data.data.error === true) {
       setMessage(data.data.message);
