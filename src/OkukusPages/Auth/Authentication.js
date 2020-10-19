@@ -36,6 +36,8 @@ const Authentication = () => {
   const [lastName, setLastName] = useState();
   const [email, setEmail] = useState();
   const [uniqueID, setUniqueID] = useState();
+  const [verfifcationStatus, setVerificationStatus] = useState();
+
 
 
   const getItems = async () => {
@@ -66,6 +68,7 @@ const Authentication = () => {
     setLastName();
     setEmail();
     setUniqueID();
+    setVerificationStatus()
   };
 
   const loginUser = async (formData) => {
@@ -97,7 +100,8 @@ const Authentication = () => {
           setFirstName(data.buyer.firstname),
           setLastName(data.buyer.lastname),
           setEmail(data.buyer.email),
-          setUniqueID(data.buyer.unique_id)
+          setUniqueID(data.buyer.unique_id),
+          setVerificationStatus(data.buyer.verification_status)
         );
       }
     }
@@ -250,6 +254,7 @@ const Authentication = () => {
     lastName,
     email,
     uniqueID,
+    verfifcationStatus
   };
 };
 

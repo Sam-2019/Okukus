@@ -15,6 +15,7 @@ const OkukusAccount = () => {
     updateUserProfile,
     updateUserEmail,
     verifyCreateEmail,
+    verfifcationStatus,
   } = useAuthentication();
   const [detailedit, setdetailedit] = useState(false);
   const [emailedit, setemailedit] = useState(false);
@@ -258,11 +259,15 @@ const OkukusAccount = () => {
             </div>
 
             <div className="button_wrapper ">
-              <Button
-                name="      Verify Account"
-                action={verifyAccount}
-                classname="primary"
-              />
+              {verfifcationStatus ? (
+                <Button name="   Account Verified" classname="secondary" />
+              ) : (
+                <Button
+                  name="      Verify Account"
+                  action={verifyAccount}
+                  classname="primary"
+                />
+              )}
             </div>
           </div>
         </div>
