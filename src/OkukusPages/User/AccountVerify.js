@@ -11,6 +11,7 @@ import "./user.css";
 
 const AccountVerify = (props) => {
   const { verifyUserAccount } = useAuthentication();
+  const [email, setEmail] = useState();
 
   let { id } = useParams();
 
@@ -19,6 +20,7 @@ const AccountVerify = (props) => {
 
   const resource = useAsync(verifyUserAccount, formData);
   console.log(resource);
+  setEmail(resource.value.email)
 
   // if (resource.message === "link is valid") {
   //   dontShow(true);
