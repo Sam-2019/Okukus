@@ -10,8 +10,6 @@ import "./user.css";
 
 const AccountVerify = () => {
   const { verifyUserAccount } = useAuthentication();
-  const [email, setEmail] = useState();
-
   let { id } = useParams();
 
   var formData = new FormData();
@@ -27,9 +25,8 @@ const AccountVerify = () => {
   return (
     <div className=" user_wrapper">
       <div className="page_title">
-  
         {resource.message === "link is valid" ? (
-          <>   Reset Password</>
+          <> Reset Password</>
         ) : (
           <>Account Verify</>
         )}
