@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import {
   itemsGet,
@@ -26,6 +26,9 @@ import {
 import { axiosMethod } from "../helpers";
 
 const Authentication = () => {
+
+  
+
   const [Auth, setAuth] = useState(true);
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
@@ -130,7 +133,7 @@ const Authentication = () => {
 
   const verifyUserAccount = async (formData) => {
     const verifyAccount = await axiosMethod(userAccountVerify, formData);
-    return verifyAccount;
+    console.log(verifyAccount);
   };
 
   const searchItem = async (formData) => {
@@ -180,6 +183,7 @@ const Authentication = () => {
   };
 
   useEffect(() => {
+
     const unsubscribe = isLoggedIn((loginToken) => {
       if (loginToken) {
         setAuth(true);

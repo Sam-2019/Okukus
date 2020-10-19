@@ -21,7 +21,7 @@ const AccountVerify = (props) => {
   var formData = new FormData();
   formData.set("url_data", id);
 
-  const resource = useAsync(verifyUserAccount, formData);
+  const resource = verifyUserAccount(formData)
   console.log(resource);
 
   const push = () => {
