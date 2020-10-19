@@ -14,7 +14,7 @@ const OkukusAccount = () => {
     uniqueID,
     updateUserProfile,
     updateUserEmail,
-    verifyCreateEmail
+    verifyCreateEmail,
   } = useAuthentication();
   const [detailedit, setdetailedit] = useState(false);
   const [emailedit, setemailedit] = useState(false);
@@ -110,19 +110,18 @@ const OkukusAccount = () => {
 
     setVerifyMessage("");
 
-      var formData = new FormData();
+    var formData = new FormData();
 
+    formData.set("buyer_email", email);
 
-      formData.set("buyer_email", email);
-
-      const data = await verifyCreateEmail(formData);
-      console.log(data)
-      if (data.data.error === true) {
-        setVerifyMessage(data.data.message);
-      } else if (data.data.error === false) {
-        setVerifyMessage(data.data.message);
-      }
+    const data = await verifyCreateEmail(formData);
+    console.log(data);
+    if (data.data.error === true) {
+      setVerifyMessage(data.data.message);
+    } else if (data.data.error === false) {
+      setVerifyMessage(data.data.message);
     }
+  };
 
   return (
     <div className="account  ">
@@ -250,19 +249,22 @@ const OkukusAccount = () => {
               </div>
             )}
           </div>
-       
-       <div>
-       <div className="message_wrapper ">
-                  {verifyMessage ? (
-                    <Message classname="message " message={verifyMessage} />
-                  ) : null}
-                </div>
 
-         <button onClick={verifyAccount}>
-           Verify Accout
-         </button>
-       </div>
-       
+          <div>
+            <div className="message_wrapper ">
+              {verifyMessage ? (
+                <Message classname="message " message={verifyMessage} />
+              ) : null}
+            </div>
+
+            <div className="button_wrapper ">
+              <Button
+                name="      Verify Account"
+                action={verifyAccount}
+                classname="primary"
+              />
+            </div>
+          </div>
         </div>
       </div>
 
