@@ -13,6 +13,8 @@ function Login({email}) {
 
   const [message, setMessage] = useState();
 
+  console.log(email)
+
   const reset = () => {
     setNewPassword("");
     setConfirmPassword("");

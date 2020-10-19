@@ -31,6 +31,8 @@ const AccountVerify = (props) => {
     setNewPassword(true);
   }
 
+  console.log(email);
+
   return (
     <div className=" user_wrapper">
       <div className="page_title">Account Verify</div>
