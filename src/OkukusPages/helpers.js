@@ -64,11 +64,11 @@ export const useAsync = (getMethod, data) => {
       setMessage(result.data.message);
       setError(null);
     }
-  }, [getMethod, data]);
+  }, []);
 
   useEffect(() => {
     fetchData();
-  }, [data, fetchData]);
+  }, []);
 
   return { value, message, error, loading, success };
 };
@@ -101,7 +101,7 @@ export const useAsyncc = (getMethod) => {
 export function useOnClickOutside(ref, handler) {
   useEffect(
     () => {
-      const listener = event => {
+      const listener = (event) => {
         // Do nothing if clicking ref's element or descendent elements
         if (!ref.current || ref.current.contains(event.target)) {
           return;
@@ -122,4 +122,5 @@ export function useOnClickOutside(ref, handler) {
     // ... but to optimize you can wrap handler in useCallback before ...
     // ... passing it into this hook.
     [ref, handler]
-  )}
+  );
+}

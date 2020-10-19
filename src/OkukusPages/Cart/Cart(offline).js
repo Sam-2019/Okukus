@@ -9,6 +9,7 @@ import Spinner from "../Spinner/Spinner";
 import Empty from "./Empty Cart";
 import "./cart.css";
 
+
 const Cart = () => {
   const { getCart, uniqueID, summaryCart } = useAuthentication();
   let history = useHistory();
