@@ -34,11 +34,7 @@ const AccountVerify = (props) => {
         <Message message={resource.message} classname="message" />
       ) : null}
 
-      <div>
-        SHow
-      </div>
-
- 
+      {resource.value ? <NewPassword /> : <div>Show</div>}
     </div>
   );
 };
