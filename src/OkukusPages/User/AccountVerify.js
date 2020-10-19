@@ -10,7 +10,7 @@ import "./user.css";
 
 const AccountVerify = (props) => {
   const { verifyUserAccount, updateUserPassword } = useAuthentication();
-  const [showPage, noPage] = useState(false);
+  const [showPage, noPage] = useState(true);
   const [email, setEmail] = useState();
 
   let history = useHistory();
@@ -28,7 +28,7 @@ const AccountVerify = (props) => {
 
   if (resource.message === "link is valid") {
     setEmail(resource.value.email);
-    noPage(true);
+
   }
 
   console.log(email);
@@ -43,11 +43,7 @@ const AccountVerify = (props) => {
         <Message message={resource.message} classname="message" />
       ) : null}
 
-      <div>
-        {showPage ? <NewPassword />: null}
-      </div>
-
-
+      <div>{showPage ? <NewPassword /> : null}</div>
     </div>
   );
 };
