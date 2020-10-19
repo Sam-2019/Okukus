@@ -21,18 +21,22 @@ const AccountVerify = (props) => {
   formData.set("url_data", id);
 
   const resource = useAsync(verifyUserAccount, formData);
-  console.log(resource);
 
-  const push = () => {
-    history.push("/newpassword");
-  };
+  let content;
 
-    useEffect(() => {
-      if (resource.message === "link is valid") {
-        history.push("/newpassword");
-        console.log('hi')
-      } 
-    }, []);
+  if (resource.value) {
+    content = (
+      <div>
+        Hello
+      </div>
+     ) 
+  } else {
+    content = (
+      <div>
+        Hi
+      </div>
+     ) 
+  }
 
   return (
     <div className=" user_wrapper">
@@ -42,9 +46,7 @@ const AccountVerify = (props) => {
 
       {resource.loading ? (
         <Spinner />
-      ) : resource.message ? (
-        <Message message={resource.message} classname="message" />
-      ) : null}
+      ) : <div>{content}</div>}
     </div>
   );
 };
