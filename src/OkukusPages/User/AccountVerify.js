@@ -20,13 +20,9 @@ const AccountVerify = (props) => {
   const resource = useAsync(verifyUserAccount, formData);
   console.log(resource);
 
-  const push = () => {
-    history.push("/newpassword");
-  };
-
-  if (resource.message === "link is valid") {
-    dontShow(true);
-  }
+  // if (resource.message === "link is valid") {
+  //   dontShow(true);
+  // }
 
   return (
     <div className=" user_wrapper">
@@ -38,7 +34,11 @@ const AccountVerify = (props) => {
         <Message message={resource.message} classname="message" />
       ) : null}
 
-      {show && <NewPassword />}
+      <div>
+        SHow
+      </div>
+
+ 
     </div>
   );
 };
