@@ -65,7 +65,7 @@ const NewPassword = () => {
     event.preventDefault();
     var formData = new FormData();
 
-    formData.set("buyer_email", "moteyrakim@gmail.com");
+    formData.set("buyer_email", "");
     formData.set("new_password", newPassword);
     formData.set("confirm_password", confirmPassword);
 
