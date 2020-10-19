@@ -9,7 +9,7 @@ import { useAsync } from "../helpers";
 import "./user.css";
 
 const AccountVerify = () => {
-  const { verifyUserAccount, UserPasswordReset } = useAuthentication();
+  const { verifyUserAccount } = useAuthentication();
   const [email, setEmail] = useState();
 
   let { id } = useParams();

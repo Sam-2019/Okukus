@@ -22,12 +22,13 @@ function UserVerify() {
       {resource.loading ? (
         <Spinner />
       ) : (
+
+        <>
         <div className="message_wrapper ">
           <Message message={resource.message} classname="message" />
         </div>
-      )}
 
-      <div className="button_wrapper ">
+        <div className="button_wrapper ">
         <Button
           name="    Go Shopping"
           action={() => {
@@ -36,6 +37,10 @@ function UserVerify() {
           classname="primary"
         />
       </div>
+        </>
+      )}
+
+    
     </div>
   );
 }
