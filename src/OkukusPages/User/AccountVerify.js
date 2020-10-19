@@ -19,8 +19,7 @@ const AccountVerify = (props) => {
 
   const resource = useAsync(verifyUserAccount, formData);
   console.log(resource);
-  setEmail(resource.value.email)
-  console.log(email)
+
 
   // if (resource.message === "link is valid") {
   //   dontShow(true);
@@ -50,6 +49,7 @@ const NewPassword = ({  }) => {
    const [confirmPassword, setConfirmPassword] = useState();
 
    const [message, setMessage] = useState();
+   const [email, setEmail] = useState();
 
 
 
@@ -63,7 +63,7 @@ const NewPassword = ({  }) => {
      event.preventDefault();
      var formData = new FormData();
 
-     formData.set("buyer_unique_id", '');
+     formData.set("buyer_unique_id", email);
      formData.set("new_password", newPassword);
      formData.set("confirm_password", confirmPassword);
 
