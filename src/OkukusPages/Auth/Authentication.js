@@ -133,7 +133,7 @@ const Authentication = () => {
 
   const verifyUserAccount = async (formData) => {
     const verifyAccount = await axiosMethod(userAccountVerify, formData);
-    console.log(verifyAccount);
+    return verifyAccount;
   };
 
   const searchItem = async (formData) => {
