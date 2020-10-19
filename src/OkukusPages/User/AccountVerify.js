@@ -61,11 +61,12 @@ const NewPassword = ({email}) => {
     event.preventDefault();
     var formData = new FormData();
 
-    formData.set("buyer_email", "");
+    formData.set("buyer_email", email);
     formData.set("new_password", newPassword);
     formData.set("confirm_password", confirmPassword);
 
     const data = await userPasswordReset(formData);
+    console.log(data)
 
     if (data.data.error === true) {
       setMessage(data.data.message);
