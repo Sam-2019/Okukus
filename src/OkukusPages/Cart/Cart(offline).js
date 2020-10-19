@@ -8,15 +8,19 @@ import Button from "../Button/Button";
 import Spinner from "../Spinner/Spinner";
 import Empty from "./Empty Cart";
 import "./cart.css";
+import { cartSummary } from "../apis";
 
 const Cart = () => {
-  const { getCart, uniqueID } = useAuthentication();
+  const { getCart, uniqueID, summaryCart } = useAuthentication();
   let history = useHistory();
 
   var formData = new FormData();
   formData.set("buyer_unique_id", uniqueID);
 
   const resource = useAsync(getCart, formData);
+
+  const cartSummary = useAsync(summaryCart, formData);
+  console.log(cartSummary)
 
   let content;
 

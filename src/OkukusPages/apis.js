@@ -33,6 +33,8 @@ export const cartCount = `${okukus}/${dev_site}/get_cart_count.php`;
 export const cartUpdate = `${okukus}/${dev_site}/update_cart_item.php`;
 export const cartDelete = `${okukus}/${dev_site}/delete_cart_item.php`;
 
+export const cartSummary = `${okukus}/${dev_site}/read_cart_summary.php`;
+
 export const orderCreate = `${okukus}/${dev_site}/create_order.php`;
 export const orderHistory = `${okukus}/${dev_site}/get_order_history.php`;
 export const orderDetail = `${okukus}/${dev_site}/get_order_details.php`;
