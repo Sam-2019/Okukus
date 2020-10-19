@@ -5,12 +5,12 @@ import Message from "../Message/Message";
 import Spinner from "../Spinner/Spinner";
 import { useHistory } from "react-router-dom";
 import { useAsync } from "../helpers";
-import NewPassword from './NewPassword'
+import NewPassword from "./NewPassword";
 import "./user.css";
 
 const AccountVerify = (props) => {
   const { verifyUserAccount, updateUserPassword } = useAuthentication();
-  const [newPassword, setNewPassword] = useState(false);
+  const [show, dontShow] = useState(false);
 
   let history = useHistory();
   let { id } = useParams();
@@ -26,7 +26,7 @@ const AccountVerify = (props) => {
   };
 
   if (resource.message === "link is valid") {
-    push();
+    dontShow(true);
   }
 
   return (
@@ -39,9 +39,13 @@ const AccountVerify = (props) => {
         <Message message={resource.message} classname="message" />
       ) : null}
 
-      {newPassword && <NewPassword />}
+      {show && <NewPassword />}
     </div>
   );
 };
 
 export default AccountVerify;
+
+const NewPassword = () => {
+  return <div>Show</div>;
+};
