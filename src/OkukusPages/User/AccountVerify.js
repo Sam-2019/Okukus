@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 import {
   useParams
 } from "react-router-dom";
@@ -11,6 +11,7 @@ import "./user.css";
 
 const AccountVerify = (props) => {
   const { verifyUserAccount } = useAuthentication();
+  const [newPassword, setNewPassword] = useState(false)
 
   let history = useHistory();
   let { id } = useParams();
@@ -26,9 +27,12 @@ const AccountVerify = (props) => {
     history.push("/newpassword");
   };
 
-  if (resource.message === "valid") {
-    push();
-  } 
+    useEffect(() => {
+      if (resource.message === "link is valid") {
+        history.push("/newpassword");
+        console.log('hi')
+      } 
+    }, []);
 
   return (
     <div className=" user_wrapper">
