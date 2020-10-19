@@ -17,7 +17,7 @@ import "./user.css";
 
 
 const AccountVerify = (props) => {
-  const { verifyUserAccount, updateUserPassword } = useAuthentication();
+  const { verifyUserAccount } = useAuthentication();
   const [showPage, noPage] = useState(false);
   const [email, setEmail] = useState();
 
@@ -36,7 +36,7 @@ const AccountVerify = (props) => {
 
   if (resource.message === "link is valid") {
     setEmail(resource.value.email);
-    noPage(true);
+
   }
 
   console.log(email);
@@ -51,7 +51,7 @@ const AccountVerify = (props) => {
         <Message message={resource.message} classname="message" />
       )}
 
-      <div>{showPage === true ? <Conponent email={email} /> : null}</div>
+      <Conponent email={email} />
     </div>
   );
 };
