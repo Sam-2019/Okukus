@@ -43,7 +43,7 @@ const AccountVerify = (props) => {
         <Message message={resource.message} classname="message" />
       ) : null}
 
-
+<NewPassword />
     </div>
   );
 };
