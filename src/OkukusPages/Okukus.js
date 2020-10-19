@@ -19,7 +19,6 @@ import NotFound from './404/404'
 
 import Footer from "./Footer/Footer";
 import ResetPassword from "./User/ResetPassword";
-import NewPassword from "./User/NewPassword";
 import AccountVerify from "./User/AccountVerify";
 
 const Okukus = () => {

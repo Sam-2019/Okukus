@@ -6,7 +6,7 @@ import Message from "../Message/Message";
 import "./user.css";
 
 function Login({email}) {
-  const { uniqueID, updateUserPassword } = useAuthentication();
+  const {  updateUserPassword } = useAuthentication();
 
   const [newPassword, setNewPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();

@@ -3,25 +3,17 @@ import { useParams } from "react-router-dom";
 import { useAuthentication } from "../Auth/Context";
 import Message from "../Message/Message";
 import Spinner from "../Spinner/Spinner";
-import { useHistory } from "react-router-dom";
 import { useAsync } from "../helpers";
-
 
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 import "./user.css";
-
-
-
-
-
 
 const AccountVerify = (props) => {
   const { verifyUserAccount } = useAuthentication();
   const [showPage, noPage] = useState(false);
   const [email, setEmail] = useState();
 
-  let history = useHistory();
   let { id } = useParams();
 
   var formData = new FormData();
@@ -30,14 +22,9 @@ const AccountVerify = (props) => {
   const resource = useAsync(verifyUserAccount, formData);
   console.log(resource);
 
-  const push = () => {
-    history.push("/newpassword");
-  };
-
   if (resource.message === "link is valid") {
     setEmail(resource.value.email);
-
-  }
+  } else return;
 
   console.log(email);
 
@@ -50,16 +37,13 @@ const AccountVerify = (props) => {
       ) : (
         <Message message={resource.message} classname="message" />
       )}
-
-      <Conponent email={email} />
     </div>
   );
 };
 
 export default AccountVerify;
 
-
-function Conponent({email}) {
+function Conponent({ email }) {
   const { updateUserPassword } = useAuthentication();
 
   const [newPassword, setNewPassword] = useState();
