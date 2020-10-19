@@ -5,7 +5,6 @@ import Message from "../Message/Message";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 import Spinner from "../Spinner/Spinner";
-import NewPassword from './NewPassword'
 import { useAsync } from "../helpers";
 import "./user.css";
 
