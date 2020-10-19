@@ -20,8 +20,6 @@ const AccountVerify = () => {
   const resource = useAsync(verifyUserAccount, formData);
   console.log(resource.value);
 
-
-
   // if (resource.message === "link is valid") {
   //   dontShow(true);
   // }
@@ -33,7 +31,7 @@ const AccountVerify = () => {
       {resource.loading ? (
         <Spinner />
       ) : resource.message === "link is valid" ? (
-        <NewPassword />
+        <NewPassword email={resource.value.email}/>
       ) : (
         <Message message={resource.message} classname="message" />
       )}
@@ -43,8 +41,10 @@ const AccountVerify = () => {
 
 export default AccountVerify;
 
-const NewPassword = () => {
+const NewPassword = ({email}) => {
   const { userPasswordReset } = useAuthentication();
+
+  console.log(email)
 
   const [newPassword, setNewPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
