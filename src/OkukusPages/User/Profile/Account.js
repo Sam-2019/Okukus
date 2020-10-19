@@ -120,6 +120,7 @@ const OkukusAccount = () => {
       if (data.data.error === true) {
         setVerifyMessage(data.data.message);
       } else if (data.data.error === false) {
+        setVerifyMessage(data.data.message);
       }
     }
 
