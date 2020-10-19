@@ -12,6 +12,7 @@ const OrderHistory = () => {
   formData.set("buyer_unique_id", uniqueID);
 
   const resource = useAsync(historyOrder, formData);
+  console.log(resource)
 
   let content;
 

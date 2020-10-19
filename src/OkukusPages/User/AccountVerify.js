@@ -13,15 +13,13 @@ const AccountVerify = (props) => {
   const { verifyUserAccount } = useAuthentication();
 
   let history = useHistory();
-
-
   let { id } = useParams();
 
 
   var formData = new FormData();
   formData.set("url_data", id);
 
-  const resource = verifyUserAccount(formData)
+  const resource = useAsync(verifyUserAccount, formData);
   console.log(resource);
 
   const push = () => {
@@ -29,7 +27,7 @@ const AccountVerify = (props) => {
   };
 
   if (resource.message === "valid") {
-  
+    push();
   } 
 
   return (
