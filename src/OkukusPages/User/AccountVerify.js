@@ -32,11 +32,11 @@ const AccountVerify = (props) => {
 
       {resource.loading ? (
         <Spinner />
-      ) : resource.message ? (
+      ) : resource.message === "link is valid" ? (
+        <NewPassword />
+      ) : (
         <Message message={resource.message} classname="message" />
-      ) : null}
-
-      {resource.loading === false ? <NewPassword /> : <div>Nope</div>}
+      )}
     </div>
   );
 };
