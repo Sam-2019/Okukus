@@ -20,6 +20,7 @@ const AccountVerify = (props) => {
   const resource = useAsync(verifyUserAccount, formData);
   console.log(resource);
 
+  setEmail(resource.value.email);
 
   // if (resource.message === "link is valid") {
   //   dontShow(true);
@@ -32,7 +33,7 @@ const AccountVerify = (props) => {
       {resource.loading ? (
         <Spinner />
       ) : resource.message === "link is valid" ? (
-        <NewPassword />
+        <NewPassword buyer_email={email} />
       ) : (
         <Message message={resource.message} classname="message" />
       )}
@@ -42,66 +43,64 @@ const AccountVerify = (props) => {
 
 export default AccountVerify;
 
-const NewPassword = ({  }) => {
-   const { updateUserPassword } = useAuthentication();
+const NewPassword = ({ buyer_email }) => {
+  const { updateUserPassword } = useAuthentication();
 
-   const [newPassword, setNewPassword] = useState();
-   const [confirmPassword, setConfirmPassword] = useState();
+  const [newPassword, setNewPassword] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
 
-   const [message, setMessage] = useState();
-   const [email, setEmail] = useState();
+  const [message, setMessage] = useState();
+  const email = useState(buyer_email);
 
+  const reset = () => {
+    setNewPassword("");
+    setConfirmPassword("");
+  };
 
+  const updatePassword = async (event) => {
+    setMessage();
+    event.preventDefault();
+    var formData = new FormData();
 
-   const reset = () => {
-     setNewPassword("");
-     setConfirmPassword("");
-   };
+    formData.set("buyer_email", email);
+    formData.set("new_password", newPassword);
+    formData.set("confirm_password", confirmPassword);
 
-   const updatePassword = async (event) => {
-     setMessage();
-     event.preventDefault();
-     var formData = new FormData();
+    const data = await updateUserPassword(formData);
 
-     formData.set("buyer_unique_id", email);
-     formData.set("new_password", newPassword);
-     formData.set("confirm_password", confirmPassword);
+    if (data.data.error === true) {
+      setMessage(data.data.message);
+    } else if (data.data.error === false) {
+      reset();
+    }
+  };
+  return (
+    <div>
+      <div className="page_title">Reset Password</div>
 
-     const data = await updateUserPassword(formData);
+      <Input
+        classname="input "
+        placeholder="New Password"
+        value={newPassword}
+        type="password"
+        action={(e) => setNewPassword(e.target.value)}
+      />
 
-     if (data.data.error === true) {
-       setMessage(data.data.message);
-     } else if (data.data.error === false) {
-       reset();
-     }
-   };
-   return (
-     <div>
-       <div className="page_title">Reset Password</div>
+      <Input
+        classname="input "
+        placeholder="Confirm Password"
+        value={confirmPassword}
+        type="password"
+        action={(e) => setConfirmPassword(e.target.value)}
+      />
 
-       <Input
-         classname="input "
-         placeholder="New Password"
-         value={newPassword}
-         type="password"
-         action={(e) => setNewPassword(e.target.value)}
-       />
+      <div className="message_wrapper ">
+        {message ? <Message message={message} classname="message" /> : null}
+      </div>
 
-       <Input
-         classname="input "
-         placeholder="Confirm Password"
-         value={confirmPassword}
-         type="password"
-         action={(e) => setConfirmPassword(e.target.value)}
-       />
-
-       <div className="message_wrapper ">
-         {message ? <Message message={message} classname="message" /> : null}
-       </div>
-
-       <div className="button_wrapper ">
-         <Button name="Submit" action={updatePassword} classname="primary" />
-       </div>
-     </div>
-   );
- };
+      <div className="button_wrapper ">
+        <Button name="Submit" action={updatePassword} classname="primary" />
+      </div>
+    </div>
+  );
+};
