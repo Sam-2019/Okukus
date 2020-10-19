@@ -5,7 +5,7 @@ import Button from "../Button/Button";
 import Message from "../Message/Message";
 import "./user.css";
 
-function Login() {
+function Login({email}) {
   const { uniqueID, updateUserPassword } = useAuthentication();
 
   const [newPassword, setNewPassword] = useState();
@@ -23,7 +23,7 @@ function Login() {
     event.preventDefault();
     var formData = new FormData();
 
-    formData.set("buyer_unique_id", uniqueID);
+    formData.set("buyer_unique_id", email);
     formData.set("new_password", newPassword);
     formData.set("confirm_password", confirmPassword);
 

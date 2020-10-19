@@ -80,9 +80,6 @@ const Okukus = () => {
             <ResetPassword />
           </Route>
 
-          <Route path="/newpassword">
-            <NewPassword />
-          </Route>
 
           <Route>
             <NotFound />
