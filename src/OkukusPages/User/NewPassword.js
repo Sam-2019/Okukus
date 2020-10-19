@@ -39,7 +39,7 @@ function Login({email}) {
   };
 
   return (
-    <div className=" user_wrapper">
+    <div className="r">
       <div className="page_title">Reset Password</div>
 
       <Input
