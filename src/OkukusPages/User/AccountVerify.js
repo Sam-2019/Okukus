@@ -32,7 +32,7 @@ const AccountVerify = (props) => {
       {resource.loading ? (
         <Spinner />
       ) : resource.message === "link is valid" ? (
-        <NewPassword email={email} />
+        <NewPassword />
       ) : (
         <Message message={resource.message} classname="message" />
       )}
@@ -42,7 +42,7 @@ const AccountVerify = (props) => {
 
 export default AccountVerify;
 
-const NewPassword = ({ email }) => {
+const NewPassword = ({  }) => {
    const { updateUserPassword } = useAuthentication();
 
    const [newPassword, setNewPassword] = useState();
@@ -50,7 +50,7 @@ const NewPassword = ({ email }) => {
 
    const [message, setMessage] = useState();
 
-   console.log(email);
+
 
    const reset = () => {
      setNewPassword("");
