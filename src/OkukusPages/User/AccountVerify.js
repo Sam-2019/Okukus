@@ -31,6 +31,7 @@ const AccountVerify = (props) => {
 
   if (resource.value) {
 console.log('hi')
+push()
   } 
 
   return (
