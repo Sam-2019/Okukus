@@ -63,7 +63,7 @@ const NewPassword = ({  }) => {
      event.preventDefault();
      var formData = new FormData();
 
-     formData.set("buyer_unique_id", email);
+     formData.set("buyer_unique_id", '');
      formData.set("new_password", newPassword);
      formData.set("confirm_password", confirmPassword);
 
