@@ -1,4 +1,4 @@
-import React, { useState, useEffec } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAuthentication } from "../Auth/Context";
 import Message from "../Message/Message";
@@ -10,7 +10,7 @@ import "./user.css";
 
 const AccountVerify = () => {
   const { verifyUserAccount } = useAuthentication();
-  const [email, setEmail] = useState();
+
 
   let { id } = useParams();
 
@@ -20,11 +20,7 @@ const AccountVerify = () => {
   const resource = useAsync(verifyUserAccount, formData);
   console.log(resource.value.email);
 
-  useEffect(() => {
-    if (resource.value) {
-      setEmail(resource.value.email);
-    }
-  }, [fetchData, data]);
+
 
   // if (resource.message === "link is valid") {
   //   dontShow(true);
@@ -37,7 +33,7 @@ const AccountVerify = () => {
       {resource.loading ? (
         <Spinner />
       ) : resource.message === "link is valid" ? (
-        <NewPassword buyer_email={email} />
+        <NewPassword />
       ) : (
         <Message message={resource.message} classname="message" />
       )}
@@ -47,14 +43,14 @@ const AccountVerify = () => {
 
 export default AccountVerify;
 
-const NewPassword = ({ buyer_email }) => {
+const NewPassword =() => {
   const { updateUserPassword } = useAuthentication();
 
   const [newPassword, setNewPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
 
   const [message, setMessage] = useState();
-  const email = useState(buyer_email);
+
 
   const reset = () => {
     setNewPassword("");
@@ -66,7 +62,7 @@ const NewPassword = ({ buyer_email }) => {
     event.preventDefault();
     var formData = new FormData();
 
-    formData.set("buyer_email", email);
+    formData.set("buyer_email", 'email');
     formData.set("new_password", newPassword);
     formData.set("confirm_password", confirmPassword);
 

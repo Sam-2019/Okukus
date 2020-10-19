@@ -5,15 +5,13 @@ import Button from "../Button/Button";
 import Message from "../Message/Message";
 import "./user.css";
 
-function Login({email}) {
-  const {  updateUserPassword } = useAuthentication();
+function Login() {
+  const { uniqueID, updateUserPassword } = useAuthentication();
 
   const [newPassword, setNewPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
 
   const [message, setMessage] = useState();
-
-  console.log(email)
 
   const reset = () => {
     setNewPassword("");
@@ -25,7 +23,7 @@ function Login({email}) {
     event.preventDefault();
     var formData = new FormData();
 
-    formData.set("buyer_unique_id", email);
+    formData.set("buyer_unique_id", uniqueID);
     formData.set("new_password", newPassword);
     formData.set("confirm_password", confirmPassword);
 
@@ -39,7 +37,7 @@ function Login({email}) {
   };
 
   return (
-    <div className="r">
+    <div className=" user_wrapper">
       <div className="page_title">Reset Password</div>
 
       <Input

@@ -14,6 +14,7 @@ import SignUp from "./User/Signup";
 import Profile from "./User/Profile";
 import TagContent from "./Tag/Content";
 import Checkout from './Checkout/Checkout'
+import UserVerify from './User/UserVerify'
 
 import NotFound from './404/404'
 
