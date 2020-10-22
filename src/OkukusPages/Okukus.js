@@ -8,7 +8,7 @@ import Search from "./Search/Content";
 import Product from "./Product/Product";
 import Order from "./Order/newOrder";
 import Confirm from "./Confirmation/Confirm";
-import Cart from "./Cart/Cart(offline) copy";
+import Cart from "./Cart/Cart(offline)";
 import Login from "./User/Login";
 import SignUp from "./User/Signup";
 import Profile from "./User/Profile";

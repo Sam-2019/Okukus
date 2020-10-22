@@ -74,20 +74,20 @@ const Product = () => {
 
         <div className=" _description">{data.product_description}</div>
 
-        <div className="message_wrapper">
-          {message ? <Message classname="message" message={message} /> : null}
-        </div>
+       
+          {message ? <Message class_name="message" message={message} /> : null}
+    
 
         <div className="button_wrapper ">
           <Button
-            classname="primary"
+            class_name="primary"
             name="Buy book"
             action={() => {
               history.push(`/order/${id}`);
             }}
           />
 
-          <Button name="Add to cart" action={add2cart} classname="secondary" />
+          <Button name="Add to cart" action={add2cart} class_name="secondary" />
         </div>
       </div>
     </div>

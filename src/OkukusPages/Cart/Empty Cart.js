@@ -1,5 +1,6 @@
 import React from "react";
-
+import { useHistory } from "react-router-dom";
+import Button from '../Button/Button'
 
 const EmptyCart = () => {
   let history = useHistory();
