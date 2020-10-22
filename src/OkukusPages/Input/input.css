@@ -1,4 +1,7 @@
-.input {
+.input,
+.edit_input,
+.hi_hi,
+.checkout_input {
   background-color: #eee;
   border: 1px solid transparent;
   outline: none;
@@ -7,17 +10,10 @@
   margin: 0 auto;
 }
 
-.edit_input {
-  background-color: #eee;
-  border: 1px solid transparent;
-  outline: none;
-  border-radius: 5px;
-  padding: 12px 15px;
-}
-
 .input:not(:last-child),
 .edit_input:not(:last-child),
-.hi_hi:not(:last-child) {
+.hi_hi:not(:last-child),
+.checkout_input:not(:last-child) {
   margin-bottom: 0.5rem;
 }
 
@@ -26,18 +22,13 @@
   display: block;
 }
 
-.edit_input {
+.edit_input,
+.hi_hi {
   width: 100%;
 }
 
-.hi_hi {
+.checkout_input {
   width: 100%;
-  background-color: #eee;
-  border: 1px solid transparent;
-  outline: none;
-  border-radius: 5px;
-  padding: 12px 15px;
-  margin-bottom: 0.5rem;
 }
 
 .input:hover,
@@ -45,10 +36,18 @@
 .edit_input:hover,
 .edit_input:focus,
 .hi_hi:hover,
-.hi_hi:focus {
+.hi_hi:focus,
+.checkout_input:hover,
+.checkout_input:focus {
   border: 1px solid #00d919;
   -webkit-transition: all ease-in-out 0.3s;
   transition: all ease-in-out 0.3s;
+}
+
+@media (max-width: 768px) {
+  .checkout_input {
+    width: 100%;
+  }
 }
 
 @media (max-width: 540px) {
@@ -56,21 +55,17 @@
     width: 80%;
   }
 
-  .edit_input {
-    width: 100%;
-  }
-
-  .hi_hi {
+  .edit_input,
+  .hi_hi,
+  .checkout_input {
     width: 100%;
   }
 }
 
 @media (max-width: 320px) {
-  .input {
-    width: 100%;
-  }
-
-  .hi_hi {
+  .input,
+  .hi_hi,
+  .checkout_input {
     width: 100%;
   }
 }

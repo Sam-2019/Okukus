@@ -34,4 +34,8 @@
   .order_placed {
     font-size: 26px;
   }
+
+  ._confirm {
+    font-size: 25px;
+  }
 }

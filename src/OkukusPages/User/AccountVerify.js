@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuthentication } from "../Auth/Context";
 import Message from "../Message/Message";
@@ -37,7 +37,7 @@ const AccountVerify = () => {
       ) : resource.message === "link is valid" ? (
         <NewPassword email={resource.value.email} />
       ) : (
-        <Message message={resource.message} classname="message" />
+        <Message message={resource.message} class_name="message" />
       )}
     </div>
   );
@@ -79,27 +79,25 @@ const NewPassword = ({ email }) => {
   return (
     <div>
       <Input
-        classname="input "
+        class_name="input "
         placeholder="New Password"
-        value={newPassword}
+        content={newPassword}
         type="password"
         action={(e) => setNewPassword(e.target.value)}
       />
 
       <Input
-        classname="input "
+        class_name="input "
         placeholder="Confirm Password"
-        value={confirmPassword}
+        content={confirmPassword}
         type="password"
         action={(e) => setConfirmPassword(e.target.value)}
       />
 
-      <div className="message_wrapper ">
-        {message ? <Message message={message} classname="message" /> : null}
-      </div>
+      {message ? <Message message={message} class_name="message" /> : null}
 
       <div className="button_wrapper ">
-        <Button name="Submit" action={updatePassword} classname="primary" />
+        <Button name="Submit" action={updatePassword} class_name="primary" />
       </div>
     </div>
   );

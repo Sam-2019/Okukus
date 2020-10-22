@@ -63,7 +63,7 @@ const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {
             type="number"
             onChange={(e) => setQty(e.target.value)}
             placeholder="0"
-            value={qty}
+            content={qty}
           />
 
           <button className="cart_button add " onClick={Add}>
@@ -84,8 +84,8 @@ const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {
         <Delete name="Delete " action={deleteItem} />
 
 
-        <Button name="Save" action={updateItem} classname='save' />
-        <Button name="Delete " action={deleteItem } classname='delete' />
+        <Button name="Save" action={updateItem} class_name='save' />
+        <Button name="Delete " action={deleteItem } class_name='delete' />
       </div>
     </div>
   );

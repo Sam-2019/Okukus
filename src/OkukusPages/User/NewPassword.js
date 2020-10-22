@@ -11,7 +11,7 @@ function Login() {
   const [newPassword, setNewPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
 
-  const [message, setMessage] = useState();
+  const [message, setMessage] = useState("");
 
   const reset = () => {
     setNewPassword("");
@@ -41,27 +41,25 @@ function Login() {
       <div className="page_title">Reset Password</div>
 
       <Input
-        classname="input "
+        class_name="input "
         placeholder="New Password"
-        value={newPassword}
+        content={newPassword}
         type="password"
         action={(e) => setNewPassword(e.target.value)}
       />
 
       <Input
-        classname="input "
+        class_name="input "
         placeholder="Confirm Password"
-        value={confirmPassword}
+        content={confirmPassword}
         type="password"
         action={(e) => setConfirmPassword(e.target.value)}
       />
 
-      <div className="message_wrapper ">
-        {message ? <Message message={message} classname="message" /> : null}
-      </div>
+      {message ? <Message message={message} class_name="message" /> : null}
 
       <div className="button_wrapper ">
-        <Button name="Submit" action={updatePassword} classname="primary" />
+        <Button name="Submit" action={updatePassword} class_name="primary" />
       </div>
     </div>
   );

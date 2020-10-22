@@ -9,10 +9,12 @@
 
 .forgotten_password_wrapper {
   text-align: center;
+  margin-bottom: 0.5rem;
 }
 
 .forgotten_password {
   color: #6495ed;
+  cursor: default;
 }
 
 .forgotten_password:hover,

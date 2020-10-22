@@ -28,7 +28,7 @@ const NavHandler = () => {
   };
 
   return (
-    <header className='head'>
+    <header className="head">
       <div ref={hamburger} className="slideRight">
         <Hamburger hamburger={hamburgerShow} />
       </div>
@@ -134,15 +134,13 @@ const Navigation = ({ hamburger, showAlert }) => {
 
               {menu ? (
                 <div ref={ref}>
-   <ProfileMenu
-                  logout={logoutUser}
-              
-                  showMenu={() => {
-                    setMenu(!menu);
-                  }}
-                />
+                  <ProfileMenu
+                    logout={logoutUser}
+                    showMenu={() => {
+                      setMenu(!menu);
+                    }}
+                  />
                 </div>
-             
               ) : null}
             </>
           ) : (

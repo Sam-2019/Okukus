@@ -1,7 +1,5 @@
 import React from "react";
-import {
-  useParams
-} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import View from "../Container/View/View";
 import { useAuthentication } from "../Auth/Context";
 import Spinner from "../Spinner/Spinner";
@@ -11,12 +9,7 @@ import "./search.css";
 const Content = (props) => {
   const { searchItem } = useAuthentication();
 
-
   let { id } = useParams();
-
-
-
-  
 
   var formData = new FormData();
   formData.set("search_phrase", id);

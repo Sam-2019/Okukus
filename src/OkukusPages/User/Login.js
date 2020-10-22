@@ -46,23 +46,21 @@ function Login() {
       <Input
         type="email"
         placeholder="Email"
-        classname="input"
+        class_name="input"
         action={(e) => setEmail(e.target.value)}
-        value={email}
+        content={email}
       />
 
       <Input
         type="password"
         placeholder="Password"
-        classname="input"
+        class_name="input"
         action={(e) => setPassword(e.target.value)}
-        value={password}
+        content={password}
       />
 
       {message ? (
-        <div className="message_wrapper ">
-          <Message classname="message" message={message} />
-        </div>
+        <Message class_name="message" message={message} />
       ) : (
         <div className="forgotten_password_wrapper ">
           <span
@@ -77,10 +75,10 @@ function Login() {
       )}
 
       <div className="button_wrapper ">
-        <Button classname="primary" action={logIn} name="Sign in" />
+        <Button class_name="primary" action={logIn} name="Sign in" />
 
         <Button
-          classname="secondary"
+          class_name="secondary"
           action={() => {
             history.push("/signup");
           }}

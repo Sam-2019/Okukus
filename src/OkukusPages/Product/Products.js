@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import View from "../Container/View/View";
 import Spinner from "../Spinner/Spinner";
 import axios from "axios";
@@ -10,28 +10,18 @@ const App = () => {
 
   let url = `https://okukus.com/api_call_dev/get_books.php`;
 
-  const loadData = () => {
+  const loadData = useCallback(() => {
     axios.get(url).then((res) => {
       setData(res.data);
       setOffset(offset + res.data.length);
     });
-  };
+  }, [offset, url]);
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [loadData]);
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if (!isFetching) return;
-    fetchMoreListItems();
-  }, [isFetching]);
-
-  function handleScroll() {
+  const handleScroll = useCallback(() => {
     if (
       window.innerHeight + document.documentElement.scrollTop !==
         document.documentElement.offsetHeight ||
@@ -39,9 +29,14 @@ const App = () => {
     )
       return;
     setIsFetching(true);
-  }
+  }, [setIsFetching, isFetching]);
 
-  function fetchMoreListItems() {
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
+  const fetchMoreListItems = useCallback(() => {
     var formData = new FormData();
     formData.set("offset", offset);
 
@@ -58,9 +53,12 @@ const App = () => {
         console.log(data.length);
       }, 2000);
     });
-  }
+  }, [offset, data.length]);
 
-  console.log(isFetching);
+  useEffect(() => {
+    if (!isFetching) return;
+    fetchMoreListItems();
+  }, [isFetching, fetchMoreListItems]);
 
   let view;
 

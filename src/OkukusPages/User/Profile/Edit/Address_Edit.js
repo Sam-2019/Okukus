@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Input from "../../../Input/Input";
 import Button from "../../../Button/Button";
-import Message from '../../../Message/Message'
+import Message from "../../../Message/Message";
 import { useAuthentication } from "../../../Auth/Context";
 
 const Address_edit = ({ update, cancel }) => {
@@ -40,7 +40,6 @@ const Address_edit = ({ update, cancel }) => {
 
     const data = await updateUserProfile(formData);
 
-
     if (data.data.error === true) {
       setMessage(data.data.message);
     } else {
@@ -51,66 +50,61 @@ const Address_edit = ({ update, cancel }) => {
 
   return (
     <div className=" ">
-      <div>
+    
         <Input
           type="text"
           placeholder="First Name"
-          classname="edit_input"
+          class_name="edit_input"
           action={(e) => setFirstName(e.target.value)}
-          value={firstname}
+          content={firstname}
         />
 
         <Input
           type="text"
           placeholder="Last Name"
-          classname="edit_input"
+          class_name="edit_input"
           action={(e) => setLastName(e.target.value)}
-          value={lastname}
+          content={lastname}
         />
 
         <Input
           type="email"
           placeholder="Email"
-          classname="edit_input"
+          class_name="edit_input"
           action={(e) => setEmail0(e.target.value)}
-          value={email0}
+          content={email0}
         />
 
         <Input
           type="email"
           placeholder="Email"
-          classname="edit_input"
+          class_name="edit_input"
           action={(e) => setEmail1(e.target.value)}
-          value={email1}
+          content={email1}
         />
 
         <Input
           type="number"
           placeholder="Contact"
-          classname="edit_input"
+          class_name="edit_input"
           action={(e) => setContact0(e.target.value)}
-          value={contact0}
+          content={contact0}
         />
 
         <Input
           type="number"
           placeholder="Contact 2"
-          classname="edit_input"
+          class_name="edit_input"
           action={(e) => setContact1(e.target.value)}
-          value={setContact1}
+          content={setContact1}
         />
 
-        <div className="message_wrapper ">
-          {message ? (
-            <Message classname="message " message={message} />
-          ) : null}
-
-        </div>
-      </div>
+        {message ? <Message class_name="message " message={message} /> : null}
+ 
 
       <div className="button_wrapper ">
-        <Button classname="primary" action={updateData} name="Update" />
-        <Button classname="secondary" action={cancel} name="Cancel" />
+        <Button class_name="primary" action={updateData} name="Update" />
+        <Button class_name="secondary" action={cancel} name="Cancel" />
       </div>
     </div>
   );

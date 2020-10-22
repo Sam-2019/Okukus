@@ -81,11 +81,11 @@ const Cart = () => {
             </div>
 
             <div className="right_button_wrapper ">
-              <Button name="Check Out" classname="primary" />
+              <Button name="Check Out" class_name="primary" />
 
               <Button
                 name="Continue Shopping"
-                classname="secondary"
+                class_name="secondary"
                 action={() => {
                   history.push("/");
                 }}

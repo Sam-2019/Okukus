@@ -8,15 +8,15 @@ import Search from "./Search/Content";
 import Product from "./Product/Product";
 import Order from "./Order/newOrder";
 import Confirm from "./Confirmation/Confirm";
-import Cart from "./Cart/Cart(offline)";
+import Cart from "./Cart/Cart(offline) copy";
 import Login from "./User/Login";
 import SignUp from "./User/Signup";
 import Profile from "./User/Profile";
 import TagContent from "./Tag/Content";
-import Checkout from './Checkout/Checkout'
-import UserVerify from './User/UserVerify'
+import Checkout from "./Checkout/Checkout";
+import UserVerify from "./User/UserVerify";
 
-import NotFound from './404/404'
+import NotFound from "./404/404";
 
 import Footer from "./Footer/Footer";
 import ResetPassword from "./User/ResetPassword";
@@ -27,13 +27,9 @@ const Okukus = () => {
     <Router>
       <Navigation />
       <div className="contain ">
-      <Switch>
+        <Switch>
           <Route exact path="/">
             <Body />
-          </Route>
-
-          <Route path="/confirm">
-            <Confirm />
           </Route>
 
           <Route path="/cart">
@@ -60,6 +56,10 @@ const Okukus = () => {
             <Order />
           </Route>
 
+          <Route path="/confirm/:id">
+            <Confirm />
+          </Route>
+
           <Route path="/product/:id">
             <Product />
           </Route>
@@ -84,12 +84,9 @@ const Okukus = () => {
             <ResetPassword />
           </Route>
 
-
           <Route>
             <NotFound />
           </Route>
-
-
         </Switch>
       </div>
       <Footer />

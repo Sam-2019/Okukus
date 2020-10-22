@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory,useParams } from "react-router-dom";
 import productItem from "../files/products";
 import Button from '../Button/Button'
 import { okukus } from "../apis";
@@ -7,8 +7,7 @@ import "./product.css";
 
 const Product = (props) => {
   const [product] = useState(productItem);
-
-  let id = props.match.params.id;
+  let { id } = useParams();
 
   let history = useHistory();
 

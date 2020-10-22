@@ -60,7 +60,7 @@ const Cart = () => {
             <div className="button_wrapper ">
               <Button
                 name="Check Out"
-                classname="primary"
+                class_name="primary"
                 action={() => {
                   history.push("/checkout");
                 }}

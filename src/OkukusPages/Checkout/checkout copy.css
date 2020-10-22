@@ -28,6 +28,11 @@
 .shipping {
 }
 
+.shipping_selection {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* .shipping_radio {
   width: auto;
 } */
@@ -51,11 +56,6 @@ input[radio="checked"] {
 } */
 
 .shipping_new {
-  width: 20.5em;
-}
-
-.momo_new {
-  width: 20.5em;
 }
 
 .custom-radio:not(:last-child) {
@@ -82,6 +82,10 @@ input[radio="checked"] {
   margin-bottom: 0.5rem;
 }
 
+.address_input {
+  width: 100%;
+}
+
 .payment_method {
   display: flex;
   margin: 0 auto;
@@ -105,7 +109,6 @@ input[radio="checked"] {
   background-color: #ffffff;
   border: 1px solid #00d919;
   color: #00d919;
-  cursor: default;
 }
 
 .payment_mode:focus {
@@ -120,10 +123,30 @@ input[radio="checked"] {
   color: #ffffff;
   width: 100%;
   outline: none;
-  cursor: default;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
+.momo_selected {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .momo_radio {
+  width: 42%;
+}
+
+.momo_new {
+  width: 58%;
+} */
+
+.momo_new {
+}
+
+/* .momo_input_wrapper {
+  text-align: right;
+  margin-bottom: 0.5rem;
+} */
 
 .momo_input_wrapper {
 }
@@ -154,6 +177,11 @@ input[radio="checked"] {
     width: 100%;
   }
 
+  .shipping_selection {
+    display: flex;
+    flex-direction: column;
+  }
+
   .select {
     display: flex;
     flex-direction: row;
@@ -172,20 +200,20 @@ input[radio="checked"] {
 
   .payment_method {
     width: 100%;
-    margin: 0.5em 0;
     display: flex;
     flex-direction: row;
   }
 
-  .payment_select {
-    padding: 0.4em 0;
-  }
-
-  .payment_mode {
-    padding: 6px 20px;
+  .momo_selected {
+    display: flex;
+    flex-direction: column;
   }
 
   .momo_new {
+    width: 100%;
+  }
+
+  .momo_input {
     width: 100%;
   }
 

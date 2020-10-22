@@ -110,7 +110,6 @@ const Authentication = () => {
 
   const updateUserPassword = async (formData) => {
     const updatePassword = await axiosMethod(userPasswordUpdate, formData);
-
     return updatePassword;
   };
 
@@ -185,14 +184,16 @@ const Authentication = () => {
   };
 
   
-  const summaryCart = async (formData) => {
-    const summarycart = await axiosMethod(cartSummary, formData);
-    return summarycart;
-  };
+
 
   const updateCart = async (formData) => {
     const updatecart = await axiosMethod(cartUpdate, formData);
     return updatecart;
+  };
+
+  const summaryCart = async (formData) => {
+    const summarycart = await axiosMethod(cartSummary, formData);
+    return summarycart;
   };
 
   const createOrder = async (formData) => {

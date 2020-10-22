@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import View from "../Container/View/View";
 import Spinner from "../Spinner/Spinner";
 import product from "../files/products";
@@ -27,7 +28,7 @@ const Products = () => {
           <Spinner />
         </div>
       ) : (
-        <div className="wrapper ">{content}</div>
+        <div className="products_wrapper ">{content}</div>
       )}
       
       {message ? <div className="message_wrapper ">{message} </div> : null}

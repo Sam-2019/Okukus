@@ -6,7 +6,7 @@ import Input from "../Input/Input";
 import Message from "../Message/Message";
 import "./neworder.css";
 
-const Order = (props) => {
+const Order = () => {
   let { id } = useParams();
 
   return (
@@ -21,9 +21,13 @@ export default Order;
 const Buy = ({ id }) => {
   const { createOrder, uniqueID } = useAuthentication();
 
+  const [orderID, setOrderID] = useState();
+
   const [momo, setMomo] = useState(false);
   const [message, setMessage] = useState("");
   const [display, setDisplay] = useState(false);
+
+  const [momoDisplay, setMomoDisplay] = useState(false);
 
   const [product_unique_id, setProductUniqueID] = useState(id);
   const [location, setLocation] = useState("");
@@ -50,11 +54,12 @@ const Buy = ({ id }) => {
   };
 
   const confirm = () => {
-    history.push("/confirm");
+    history.push(`/confirm/${orderID}`);
   };
 
   const submit = async (event) => {
     setDisplay(false);
+    setMomoDisplay(false);
     setMessage("");
     event.preventDefault();
     var formData = new FormData();
@@ -70,9 +75,10 @@ const Buy = ({ id }) => {
         formData.set("payment_method", payment_method);
 
         const data = await createOrder(formData);
-        localStorage.setItem("orderID", data.data.order_number);
 
         if (data.data.order_number !== "") {
+          setOrderID(data.data.order_number);
+          localStorage.setItem("orderID", data.data.order_number);
           clear();
           confirm();
         } else return;
@@ -107,7 +113,7 @@ const Buy = ({ id }) => {
         } else return;
       } else {
         setMessage("Please fill below");
-        setDisplay(!display);
+        setMomoDisplay(!momoDisplay);
       }
     } else {
       setMessage("Please fill all fields");
@@ -141,35 +147,37 @@ const Buy = ({ id }) => {
           <Input
             type="text"
             placeholder="Location"
-            classname="input"
+            class_name="input"
             action={(e) => setLocation(e.target.value)}
-            value={location}
+            content={location}
             required
           />
 
           <Input
             type="text"
             placeholder="Digital Address"
-            classname="input"
+            class_name="input"
             action={(e) => setDigitalAddress(e.target.value)}
-            value={digital_address}
+            content={digital_address}
             required
           />
 
           <Input
             type="number"
             placeholder="Phone Number"
-            classname="input"
-            value={phone_number}
+            class_name="input"
+            content={phone_number}
             action={(e) => setPhoneNumber(e.target.value)}
             required
           />
         </div>
 
         {display && (
-          <div className="message_wrapper ">
-            {message ? <Message message={message} classname="message" /> : null}
-          </div>
+          <>
+            {message ? (
+              <Message message={message} class_name="message" />
+            ) : null}
+          </>
         )}
 
         <h4 className="_billing">Billing</h4>
@@ -182,7 +190,7 @@ const Buy = ({ id }) => {
                 type="radio"
                 id="cash"
                 name="payment_option"
-                value={payment_method}
+                content={payment_method}
                 onClick={cashCheck}
               />{" "}
               Cash on Delivery
@@ -195,7 +203,7 @@ const Buy = ({ id }) => {
                 type="radio"
                 id="momo"
                 name="payment_option"
-                value={payment_method}
+                content={payment_method}
                 onClick={momoCheck}
               />{" "}
               Mobile Money
@@ -212,13 +220,13 @@ const Buy = ({ id }) => {
               dodo();
             }}
           >
-            <option value="" disabled selected>
+            <option content="" disabled defaultValue>
               Select a payment method
             </option>
-            <option value="Cash" className="option">
+            <option content="Cash" className="option">
               Cash
             </option>
-            <option value="Momo">Momo</option>
+            <option content="Momo">Momo</option>
           </select>
 
           {/* <div>Selected option: {selectedOption}</div>
@@ -249,12 +257,12 @@ const Buy = ({ id }) => {
             fill the fields below
           </div>
 
-          {display && (
-            <div className="message_wrapper ">
+          {momoDisplay && (
+            <>
               {message === "Please fill below" ? (
-                <Message message={message} classname="message" />
+                <Message message={message} class_name="message" />
               ) : null}
-            </div>
+            </>
           )}
         </div>
       )}
@@ -264,30 +272,30 @@ const Buy = ({ id }) => {
           <Input
             type="text"
             placeholder="Name "
-            classname="input"
+            class_name="input"
             action={(e) => setMomoName(e.target.value)}
-            value={momo_name}
+            content={momo_name}
           />
 
           <Input
             type="number"
             placeholder="Number"
-            classname="input"
+            class_name="input"
             action={(e) => setMomoNumber(e.target.value)}
-            value={momo_number}
+            content={momo_number}
           />
 
           <Input
             type="number"
             placeholder="Transaction ID"
-            classname="input"
+            class_name="input"
             action={(e) => setMomoTransactionID(e.target.value)}
-            value={momo_transaction_id}
+            content={momo_transaction_id}
           />
         </div>
       )}
 
-      <Button name="Check Out" classname="primary" action={submit} />
+      <Button name="Check Out" class_name="primary" action={submit} />
     </div>
   );
 };

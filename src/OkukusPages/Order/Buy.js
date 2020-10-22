@@ -20,7 +20,6 @@ const Buy = ({ doneShopping, id }) => {
   const [momo_number, setMomoNumber] = useState("");
   const [momo_transaction_id, setMomoTransactionID] = useState("");
 
-  
   const [selectedOption, setSelectedOption] = useState("Choose");
 
   const cashCheck = () => {
@@ -130,44 +129,42 @@ const Buy = ({ doneShopping, id }) => {
   return (
     <div className="buy_wrapper ">
       <div>
-      <div className="page_title">Order</div>
+        <div className="page_title">Order</div>
         <div className="buy_form">
-       
-
           <Input
             type="text"
             placeholder="Location"
-            classname="input"
+            class_name="input"
             action={(e) => setLocation(e.target.value)}
-            value={location}
+            content={location}
             required
           />
 
           <Input
             type="text"
             placeholder="Digital Address"
-            classname="input"
+            class_name="input"
             action={(e) => setDigitalAddress(e.target.value)}
-            value={digital_address}
+            content={digital_address}
             required
           />
 
           <Input
             type="number"
             placeholder="Phone Number"
-            classname="input"
-            value={phone_number}
+            class_name="input"
+            content={phone_number}
             action={(e) => setPhoneNumber(e.target.value)}
             required
           />
         </div>
 
         {display && (
-          <div className="message_wrapper ">
+          <>
             {message === "Please fill all fields" ? (
-              <div className="user_message"> {message} </div>
+              <Message class_name="message" message={message} />
             ) : null}
-          </div>
+          </>
         )}
 
         <h4 className="">Billing</h4>
@@ -180,7 +177,7 @@ const Buy = ({ doneShopping, id }) => {
                 type="radio"
                 id="cash"
                 name="payment_option"
-                value={payment_method}
+                content={payment_method}
                 click={cashCheck}
               />{" "}
               Cash on Delivery
@@ -193,37 +190,35 @@ const Buy = ({ doneShopping, id }) => {
                 type="radio"
                 id="momo"
                 name="payment_option"
-                value={payment_method}
+                content={payment_method}
                 click={momoCheck}
               />{" "}
               Mobile Money
             </label>
           </div>
         </div>
-     
-        <div className="payment_wrapper">
-        <select
-          className="input"
-          value={selectedOption}
-          onChange={(e) => {
-            setSelectedOption(e.target.value);
-            dodo();
-          }}
-        >
-          <option value="Choose" disabled="disabled">
-            Choose
-          </option>
-          <option value="Cash" className='option'>Cash</option>
-          <option value="Momo">Momo</option>
-        </select>
-        <br />
-        <div>Selected option: {selectedOption}</div>
-        <div>Payment method: {payment_method}</div>
 
- 
+        <div className="payment_wrapper">
+          <select
+            className="input"
+            value={selectedOption}
+            onChange={(e) => {
+              setSelectedOption(e.target.value);
+              dodo();
+            }}
+          >
+            <option value="Choose" disabled="disabled">
+              Choose
+            </option>
+            <option value="Cash">
+              Cash
+            </option>
+            <option value="Momo">Momo</option>
+          </select>
+          <br />
+          <div>Selected option: {selectedOption}</div>
+          <div>Payment method: {payment_method}</div>
         </div>
-     
-     
       </div>
 
       {momo && (
@@ -253,36 +248,36 @@ const Buy = ({ doneShopping, id }) => {
             <h5>MOMO</h5>
 
             {display && (
-              <div className="message_wrapper">
+              <>
                 {message === "Please fill below" ? (
-                  <div className="user_message "> {message} </div>
+                  <Message class_name="message" message={message} />
                 ) : null}
-              </div>
+              </>
             )}
 
             <div className="momo_form ">
               <Input
                 type="text"
                 placeholder="Name "
-                classname="input"
+                class_name="input"
                 aciton={(e) => setMomoName(e.target.value)}
-                value={momo_name}
+                content={momo_name}
               />
 
               <Input
                 type="number"
                 placeholder="Number"
-                classname="input"
+                class_name="input"
                 action={(e) => setMomoNumber(e.target.value)}
-                value={momo_number}
+                content={momo_number}
               />
 
               <Input
                 type="number"
                 placeholder="Transaction ID"
-                classname="input"
+                class_name="input"
                 action={(e) => setMomoTransactionID(e.target.value)}
-                value={momo_transaction_id}
+                content={momo_transaction_id}
               />
             </div>
           </div>
@@ -290,7 +285,7 @@ const Buy = ({ doneShopping, id }) => {
       )}
 
       <div className="button_wrapper ">
-        <Button name="Check Out" action={buy} classname="primary" />
+        <Button name="Check Out" action={buy} class_name="primary" />
       </div>
     </div>
   );

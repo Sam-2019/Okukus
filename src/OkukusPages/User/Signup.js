@@ -56,52 +56,50 @@ function SignUp() {
       <Input
         type="text"
         placeholder="First Name"
-        classname="input"
+        class_name="input"
         action={(e) => setFirstName(e.target.value)}
-        value={firstname}
+        content={firstname}
       />
 
       <Input
         type="text"
         placeholder="Last Name"
-        classname="input"
+        class_name="input"
         action={(e) => setLastName(e.target.value)}
-        value={lastname}
+        content={lastname}
       />
 
       <Input
         type="email"
         placeholder="Email"
-        classname="input"
+        class_name="input"
         action={(e) => setEmail(e.target.value)}
-        value={email}
+        content={email}
       />
 
       <Input
         type="password"
         placeholder="Password"
-        classname="input"
+        class_name="input"
         action={(e) => setPassword0(e.target.value)}
-        value={password0}
+        content={password0}
       />
 
       <Input
         type="password"
         placeholder="Confirm Password"
-        classname="input"
+        class_name="input"
         action={(e) => setPassword1(e.target.value)}
-        value={password1}
+        content={password1}
       />
 
-      <div className="message_wrapper ">
-        {message ? <Message classname="message" message={message} /> : null}
-      </div>
+      {message ? <Message class_name="message" message={message} /> : null}
 
       <div className="button_wrapper ">
-        <Button classname="primary" action={signup} name="Sign up" />
+        <Button class_name="primary" action={signup} name="Sign up" />
 
         <Button
-          classname="secondary"
+          class_name="secondary"
           action={() => {
             history.push("/login");
           }}

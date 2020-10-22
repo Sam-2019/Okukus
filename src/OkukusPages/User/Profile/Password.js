@@ -18,11 +18,10 @@ const Password = () => {
     setCurrentPassword("");
     setNewPassword("");
     setConfirmPassword("");
-    setMessage('');
+    setMessage("");
   };
 
   const updatePassword = async (event) => {
-
     setMessage();
     event.preventDefault();
     var formData = new FormData();
@@ -44,39 +43,40 @@ const Password = () => {
 
   return (
     <div className="password  ">
-      <div className=" password_detail ">
+      <div className=" password_detail  ">
         <div className="account_email">{email}</div>
         <Input
-          classname="edit_input "
+          class_name="edit_input "
           placeholder="Current Password"
-          value={currentPassword}
+          content={currentPassword}
           type="password"
           action={(e) => setCurrentPassword(e.target.value)}
         />
 
         <Input
-          classname="edit_input "
+          class_name="edit_input "
           placeholder="New Password"
-          value={newPassword}
+          content={newPassword}
           type="password"
           action={(e) => setNewPassword(e.target.value)}
         />
 
         <Input
-          classname="edit_input "
+          class_name="edit_input "
           placeholder="Confirm Password"
-          value={confirmPassword}
+          content={confirmPassword}
           type="password"
           action={(e) => setConfirmPassword(e.target.value)}
         />
 
-        <div className="message_wrapper ">
-          {message ? <Message classname="message " message={message} /> : null}
-        </div>
-      </div>
+   </div>
+
+   {message ? <Message class_name="message " message={message} /> : null}
+   
+
       <div className="button_wrapper ">
-        <Button name="Update" action={updatePassword} classname="primary" />
-        <Button name="Reset" action={reset} classname="secondary" />
+        <Button name="Update" action={updatePassword} class_name="primary" />
+        <Button name="Reset" action={reset} class_name="secondary" />
       </div>
     </div>
   );

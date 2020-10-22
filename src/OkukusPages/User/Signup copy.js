@@ -58,7 +58,7 @@ function SignUp() {
         <Input
           type={"text"}
           placeholder={"First Name"}
-          classname={"input"}
+          class_name={"input"}
           action={(e) => setFirstName(e.target.value)}
           value={firstname}
         />

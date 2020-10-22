@@ -20,6 +20,7 @@
 .menu_item {
   padding: 12px 1.5em;
   background-color: yellow;
+  cursor: default;
 }
 
 .menu_item:hover {

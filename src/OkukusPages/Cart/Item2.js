@@ -1,43 +1,42 @@
-import React, { useState, useRef } from "react";
-import Button from '../Button/Button'
-import Delete from "../Button/Delete";
-import Save from "../Button/Save";
+import React, { useState } from "react";
+import Button from "../Button/Button";
 import { useAuthentication } from "../Auth/Context";
 import "./item2.css";
 
-const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {  const { deleteCart, updateCart, uniqueID } = useAuthentication();
-const [qty, setQty] = useState(Number(quantity));
+const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {
+  const { deleteCart, updateCart, uniqueID } = useAuthentication();
+  const [qty, setQty] = useState(Number(quantity));
 
-const deleteItem = async (event) => {
-  event.preventDefault();
-  var formData = new FormData();
-  formData.set("buyer_unique_id", uniqueID);
-  formData.set("item_unique_id", id);
+  const deleteItem = async (event) => {
+    event.preventDefault();
+    var formData = new FormData();
+    formData.set("buyer_unique_id", uniqueID);
+    formData.set("item_unique_id", id);
 
-  await deleteCart(formData);
-};
+    await deleteCart(formData);
+  };
 
-const updateItem = async () => {
-  var formData = new FormData();
-  formData.set("buyer_unique_id", uniqueID);
-  formData.set("item_unique_id", id);
-  formData.set("item_quantity", qty);
+  const updateItem = async () => {
+    var formData = new FormData();
+    formData.set("buyer_unique_id", uniqueID);
+    formData.set("item_unique_id", id);
+    formData.set("item_quantity", qty);
 
-  await updateCart(formData);
-};
+    await updateCart(formData);
+  };
 
-const Add = () => {
-  updateItem();
-  setQty(qty + 1);
-};
+  const Add = () => {
+    updateItem();
+    setQty(qty + 1);
+  };
 
-const Subtract = () => {
-  updateItem();
-  setQty(qty - 1);
-};
+  const Subtract = () => {
+    updateItem();
+    setQty(qty - 1);
+  };
 
-const rawsubtotal = qty * unit_price;
-const subtotal = Intl.NumberFormat().format(rawsubtotal);
+  const rawsubtotal = qty * unit_price;
+  const subtotal = Intl.NumberFormat().format(rawsubtotal);
 
   return (
     <>
@@ -66,7 +65,7 @@ const subtotal = Intl.NumberFormat().format(rawsubtotal);
                 type="number"
                 onChange={(e) => setQty(e.target.value)}
                 placeholder="0"
-                value={qty}
+                content={qty}
               />
 
               <button className="cart_button add " onClick={Add}>
@@ -76,7 +75,6 @@ const subtotal = Intl.NumberFormat().format(rawsubtotal);
 
             <div className="cart_item_detail  ">
               <div className="cart_item_subtotal">
-        
                 <input
                   className="cart_item_qty  "
                   type="number"
@@ -84,7 +82,6 @@ const subtotal = Intl.NumberFormat().format(rawsubtotal);
                   placeholder="0"
                   value={qty}
                 />
-         
               </div>
 
               <div className="cart_item_price ">
@@ -93,22 +90,19 @@ const subtotal = Intl.NumberFormat().format(rawsubtotal);
               </div>
 
               <div className="cart_item_subtotal">{subtotal}</div>
-
             </div>
             {/* 
         <div className="cart_actions item ">
-            <Button name="S" action={updateItem} classname='save' />
-        <Button name="D " action={deleteItem } classname='delete' />
+            <Button name="S" action={updateItem} class_name='save' />
+        <Button name="D " action={deleteItem } class_name='delete' />
 
 
         </div> */}
-
-         
           </div>
 
           <div className="left_button_wrapper">
-            <Button name="D" classname="" />
-            <Button name="S" classname="" />
+            <Button name="Delete" class_name="delete" action={deleteItem} />
+            <Button name="Save" class_name="save" />
           </div>
         </div>
       </div>

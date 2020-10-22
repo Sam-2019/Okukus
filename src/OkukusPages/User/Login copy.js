@@ -48,7 +48,7 @@ function Login() {
           placeholder="Email"
           className="input"
           onChange={(e) => setEmail(e.target.value)}
-          value={email}
+          content={email}
           autoComplete="true"
         />
 
@@ -57,7 +57,7 @@ function Login() {
           placeholder="Password"
           className="input"
           onChange={(e) => setPassword(e.target.value)}
-          value={password}
+          content={password}
           autoComplete="true"
         />
       </div>

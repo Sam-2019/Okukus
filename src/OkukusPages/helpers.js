@@ -64,11 +64,11 @@ export const useAsync = (getMethod, data) => {
       setMessage(result.data.message);
       setError(null);
     }
-  }, []);
+  }, [data, getMethod]);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   return { value, message, error, loading, success };
 };

@@ -28,9 +28,7 @@ const AccountVerify = (props) => {
           <Spinner />
         </div>
       ) : resource.message ? (
-        <div className="message_wrapper ">
-          <Message message={resource.message} classname="message" />
-        </div>
+        <Message message={resource.message} class_name="message" />
       ) : null}
     </div>
   );

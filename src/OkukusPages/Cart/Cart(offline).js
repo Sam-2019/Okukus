@@ -1,6 +1,5 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import products from "../files/products";
 import Item from "./Item2";
 import { useAuthentication } from "../Auth/Context";
 import { useAsync } from "../helpers";
@@ -8,7 +7,6 @@ import Button from "../Button/Button";
 import Spinner from "../Spinner/Spinner";
 import Empty from "./Empty Cart";
 import "./cart.css";
-
 
 const Cart = () => {
   const { getCart, uniqueID, summaryCart } = useAuthentication();
@@ -52,16 +50,16 @@ const Cart = () => {
   }
 
   return (
-    <div className="cart item ">
-      <div className=" cart_wrapper item">
+    <div className="cart  ">
+      <div className=" ">
         {resource.loading ? (
           <Spinner />
         ) : resource.error || resource.message === "cart is empty" ? (
           //   <span className="text-danger">{resource.message}</span>//
           <Empty />
         ) : (
-          <>
-            <div className="content item">
+          <div className=" cart_wrapper ">
+            <div className="content ">
               <div className="page_title"> Cart</div>
 
               <div>{content}</div>
@@ -93,7 +91,7 @@ const Cart = () => {
                 <div className="button_wrapper ">
                   <Button
                     name="Check Out"
-                    classname="primary"
+                    class_name="primary"
                     action={() => {
                       history.push("/checkout");
                     }}
@@ -101,7 +99,7 @@ const Cart = () => {
                 </div>
               </div>
             </div>
-          </>
+          </div>
         )}
       </div>
     </div>

@@ -67,7 +67,7 @@ const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {
                 type="number"
                 onChange={(e) => setQty(e.target.value)}
                 placeholder="0"
-                value={qty}
+                content={qty}
               />
 
               <button className="cart_button add " onClick={Add}>
@@ -83,7 +83,7 @@ const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {
                   type="number"
                   onChange={(e) => setQty(e.target.value)}
                   placeholder="0"
-                  value={qty}
+                  content={qty}
                 />
          
               </div>
@@ -98,8 +98,8 @@ const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {
             </div>
             {/* 
         <div className="cart_actions item ">
-            <Button name="S" action={updateItem} classname='save' />
-        <Button name="D " action={deleteItem } classname='delete' />
+            <Button name="S" action={updateItem} class_name='save' />
+        <Button name="D " action={deleteItem } class_name='delete' />
 
 
         </div> */}
@@ -108,8 +108,8 @@ const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {
           </div>
 
           <div className="left_button_wrapper">
-            <Button name="D" classname="" />
-            <Button name="S" classname="" />
+            <Button name="D" class_name="" />
+            <Button name="S" class_name="" />
           </div>
         </div>
       </div>

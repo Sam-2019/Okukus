@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useAuthentication } from "../Auth/Context";
 import Message from "../Message/Message";
@@ -23,9 +23,7 @@ function UserVerify() {
         <Spinner />
       ) : (
         <>
-          <div className="message_wrapper ">
-            <Message message={resource.message} classname="message" />
-          </div>
+          <Message message={resource.message} class_name="message" />
 
           {resource.error === true ? null : (
             <div className="button_wrapper ">
@@ -34,7 +32,7 @@ function UserVerify() {
                 action={() => {
                   history.push("/");
                 }}
-                classname="primary"
+                class_name="primary"
               />
             </div>
           )}

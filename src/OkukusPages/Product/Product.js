@@ -9,7 +9,7 @@ import { useAsync } from "../helpers";
 import { useAuthentication } from "../Auth/Context";
 import "./product.css";
 
-const Product = (props) => {
+const Product = () => {
   const { getItem, addCart, uniqueID } = useAuthentication();
   const [message, setMessage] = useState();
 

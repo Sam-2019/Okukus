@@ -9,7 +9,7 @@ const Search = ({ alert }) => {
 
   function Query() {
     if (query === "") {
-      alert();
+      // alert();
     } else {
       history.push(`/search/${query}`);
     }

@@ -28,7 +28,7 @@ const OkukusAccount = () => {
   const [message, setMessage] = useState();
   const [verifyMessage, setVerifyMessage] = useState();
 
-  console.log(verfifcationStatus)
+  console.log(verfifcationStatus);
 
   const submitDetail = () => {
     setdetailedit(false);
@@ -139,36 +139,34 @@ const OkukusAccount = () => {
               <div className="itemme ">
                 <Input
                   type="text"
-                  classname="hi_hi"
+                  class_name="hi_hi"
                   placeholder="First Name"
-                  value={first_name}
+                  content={first_name}
                   action={(e) => setFirstName(e.target.value)}
                 />
 
                 <Input
                   type="text"
-                  classname="hi_hi"
+                  class_name="hi_hi"
                   placeholder="Last Name"
-                  value={last_name}
+                  content={last_name}
                   action={(e) => setLastName(e.target.value)}
                 />
 
-                <div className="message_wrapper ">
-                  {message ? (
-                    <Message classname="message " message={message} />
-                  ) : null}
-                </div>
+                {message ? (
+                  <Message class_name="message " message={message} />
+                ) : null}
 
                 <div className="button_wrapper ">
                   <Button
                     name="Update"
                     action={updateDetail}
-                    classname="primary"
+                    class_name="primary"
                   />
                   <Button
                     name="Cancel"
                     action={cancelDetail}
-                    classname="secondary"
+                    class_name="secondary"
                   />
                 </div>
               </div>
@@ -179,10 +177,12 @@ const OkukusAccount = () => {
             )}
 
             {detailedit ? null : (
-              <div classname="baseline">
+              <div class_name="baseline">
                 <svg
                   onClick={() => {
                     setdetailedit(true);
+                    setemailedit(false);
+                    setaddressedit(false);
                   }}
                   viewBox="0 0 16 16"
                   className="bi bi-pencil-square"
@@ -203,28 +203,26 @@ const OkukusAccount = () => {
             {emailedit ? (
               <div className="itemme ">
                 <Input
-                  classname="hi_hi"
+                  class_name="hi_hi"
                   placeholder="Email"
-                  value={e_mail}
+                  content={e_mail}
                   action={(e) => setEmail(e.target.value)}
                 />
 
-                <div className="message_wrapper ">
-                  {message ? (
-                    <Message classname="message " message={message} />
-                  ) : null}
-                </div>
+                {message ? (
+                  <Message class_name="message " message={message} />
+                ) : null}
 
                 <div className="button_wrapper ">
                   <Button
                     name="Update"
                     action={updateEmail}
-                    classname="primary"
+                    class_name="primary"
                   />
                   <Button
                     name="Cancel"
                     action={cancelEmail}
-                    classname="secondary"
+                    class_name="secondary"
                   />
                 </div>
               </div>
@@ -233,10 +231,12 @@ const OkukusAccount = () => {
             )}
 
             {emailedit ? null : (
-              <div classname="baseline">
+              <div class_name="baseline">
                 <svg
                   onClick={() => {
                     setemailedit(true);
+                    setdetailedit(false);
+                    setaddressedit(false);
                   }}
                   viewBox="0 0 16 16"
                   className="bi bi-pencil-square"
@@ -253,21 +253,19 @@ const OkukusAccount = () => {
             )}
           </div>
 
-          <div>
-            <div className="message_wrapper ">
-              {verifyMessage ? (
-                <Message classname="message " message={verifyMessage} />
-              ) : null}
-            </div>
+          <div className="">
+            {verifyMessage ? (
+              <Message class_name="message " message={verifyMessage} />
+            ) : null}
 
             <div className="button_wrapper ">
               {verfifcationStatus ? (
-                <Button name="   Account Verified" classname="secondary" />
+                <Button name="   Account Verified" class_name="secondary" />
               ) : (
                 <Button
                   name="      Verify Account"
                   action={verifyAccount}
-                  classname="primary"
+                  class_name="primary"
                 />
               )}
             </div>
@@ -280,10 +278,12 @@ const OkukusAccount = () => {
           <div>Address Book</div>
 
           {addressedit ? null : (
-            <div classname="baseline">
+            <div class_name="baseline ">
               <svg
                 onClick={() => {
                   setaddressedit(true);
+                  setemailedit(false);
+                  setdetailedit(false);
                 }}
                 viewBox="0 0 16 16"
                 className="bi bi-pencil-square"

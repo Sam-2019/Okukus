@@ -39,17 +39,17 @@ function ResetPassword() {
       <Input
         type="email"
         placeholder="Email"
-        classname="input"
+        class_name="input"
         action={(e) => setEmail(e.target.value)}
-        value={email}
+        content={email}
       />
 
       <div className="message_wrapper ">
-        {message ? <Message message={message} classname="message" /> : null}
+        {message ? <Message message={message} class_name="message" /> : null}
       </div>
 
       <div className="button_wrapper ">
-        <Button name="Submit" action={send} classname="primary" />
+        <Button name="Submit" action={send} class_name="primary" />
       </div>
     </div>
   );

@@ -13,12 +13,11 @@
   margin: 0 auto 0 auto;
   text-align: center;
   outline: none;
+  margin: 0 auto 8px auto;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 @media (max-width: 540px) {
-  .message {
-    margin: 0 auto 8px auto;
-  }
+
 }

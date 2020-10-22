@@ -1,4 +1,5 @@
 import React, { createContext, Component } from "react";
+import axios from "axios";
 import {
   itemsGet,
   itemGet,
@@ -12,6 +13,11 @@ import {
   userEmailUpdate,
   userAccountReset,
   userAccountVerify,
+
+  userCreateEmailVerify,
+  userReadEmailVerify,
+  passwordReset,
+
   itemSearch,
   cartAdd,
   cartGet,
@@ -22,7 +28,6 @@ import {
   orderHistory,
   orderDetail,
 } from "../apis";
-import axios from "axios";
 import {axiosMethod} from '../helpers'
 
 export const auth = createContext();
@@ -40,6 +45,7 @@ class AuthProvider extends Component {
     lastName: null,
     email: null,
     uniqueID: null,
+    verfifcationStatus: null
   };
 
   getItems = async () => {
@@ -70,6 +76,7 @@ class AuthProvider extends Component {
     setLastName();
     setEmail();
     setUniqueID();
+    setVerificationStatus()
   };
 
   loginUser = async (formData) => {
@@ -101,7 +108,8 @@ class AuthProvider extends Component {
           setFirstName(data.buyer.firstname),
           setLastName(data.buyer.lastname),
           setEmail(data.buyer.email),
-          setUniqueID(data.buyer.unique_id)
+          setUniqueID(data.buyer.unique_id),
+          setVerificationStatus(data.buyer.verification_status)
         );
       }
     }
@@ -141,6 +149,21 @@ class AuthProvider extends Component {
     return verifyAccount;
   };
 
+   verifyCreateEmail = async (formData) => {
+    const createEmailVerify = await axiosMethod(userCreateEmailVerify, formData);
+    return createEmailVerify;
+  };
+
+   verifyReadEmail = async (formData) => {
+    const readEmailVerify = await axiosMethod(userReadEmailVerify, formData);
+    return readEmailVerify;
+  };
+
+   userPasswordReset = async (formData) => {
+    const resetPassword = await axiosMethod(passwordReset, formData);
+    return resetPassword;
+  };
+
   searchItem = async (formData) => {
     const search = await axiosMethod(itemSearch, formData);
     return search;
@@ -172,6 +195,11 @@ class AuthProvider extends Component {
     return updatecart;
   };
 
+   summaryCart = async (formData) => {
+    const summarycart = await axiosMethod(cartSummary, formData);
+    return summarycart;
+  };
+
   createOrder = async (formData) => {
     const createorder = await axiosMethod(orderCreate, formData);
     return createorder;
@@ -196,13 +224,23 @@ class AuthProvider extends Component {
       getTags: this.getTags,
       getTag: this.getTag,
 
-      orderItem: this.orderItem,
-      orderHistory: this.orderHistory,
+
 
       logoutUser: this.logoutUser,
       loginUser: this.loginUser,
       registerUser: this.registerUser,
       isLoggedIn: this.isLoggedIn,
+
+      updateUserPassword: this.updateUserPassword,
+      updateUserProfile: this.updateUserProfile,
+      updateUserEmail: this.updateUserEmail,
+      resetUserAccount: this.resetUserAccount,
+      verifyUserAccount: this.verifyUserAccount,
+  
+      verifyCreateEmail: this.verifyCreateEmail,
+      verifyReadEmail: this.verifyReadEmail,
+  
+      userPasswordReset: this.userPasswordReset,
 
       searchItem: this.searchItem,
 
@@ -211,6 +249,7 @@ class AuthProvider extends Component {
       countCart: this.countCart,
       deleteCart: this.deleteCart,
       updateCart: this.updateCart,
+      summaryCart: this.summaryCart,
 
       createOrder: this.createOrder,
       historyOrder: this.historyOrder,
@@ -220,6 +259,7 @@ class AuthProvider extends Component {
       lastName: this.lastname,
       email: this.email,
       uniqueID: this.uniqueID,
+      verfifcationStatus: this.verfifcationStatus
     };
     return (
       <auth.Provider value={contextValue}>{this.props.children}</auth.Provider>

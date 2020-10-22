@@ -3,7 +3,6 @@
   font-size: 15px;
   margin: 1em 0;
   height: 50vh;
-  text-align: center;
 }
 
 .not-found {
@@ -29,6 +28,26 @@
   }
 }
 
-.not-found-message {
+.not-found-header {
   font-size: 12px;
+}
+
+.not-found-body {
+  font-size: 12px;
+}
+
+.not-found-body:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 540px) {
+  .not-found-wrapper {
+    text-align: justify;
+  }
+  .not-found-header {
+    font-size: 20px;
+  }
+  .not-found-body {
+    font-size: 20px;
+  }
 }
