@@ -1,12 +1,12 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import Button from '../Button/Button'
+import Button from "../Button/Button";
 
 const EmptyCart = () => {
   let history = useHistory();
   return (
     <div className="empty_cart">
-            <div className="page_title"> Cart</div>
+      <div className="page_title"> Cart</div>
       <div className="cart_stack">
         <svg
           viewBox="0 0 16 16"

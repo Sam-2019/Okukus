@@ -28,8 +28,6 @@ const OkukusAccount = () => {
   const [message, setMessage] = useState();
   const [verifyMessage, setVerifyMessage] = useState();
 
-  console.log(verfifcationStatus);
-
   const submitDetail = () => {
     setdetailedit(false);
     setFirstName("");

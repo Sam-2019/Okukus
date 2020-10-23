@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import Item from "./Item2";
 import { useAuthentication } from "../Auth/Context";
 import { useAsync } from "../helpers";
-import Button from "../Button/Button";
 import Spinner from "../Spinner/Spinner";
 import Empty from "./Empty Cart";
 import Summary from "../Checkout/Summary";

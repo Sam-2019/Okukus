@@ -19,6 +19,7 @@ const Checkout = () => {
 
   const [location, setLocation] = useState("");
   const [digital_address, setDigitalAddress] = useState("");
+  const [phone_number, setPhoneNumber] = useState("");
 
   const [momo_name, setMomoName] = useState("");
   const [momo_number, setMomoNumber] = useState("");
@@ -69,6 +70,15 @@ const Checkout = () => {
                   class_name="checkout_input"
                   action={(e) => setDigitalAddress(e.target.value)}
                   content={digital_address}
+                  required
+                />
+
+                <Input
+                  type="number"
+                  placeholder="Phone Number"
+                  class_name="input"
+                  content={phone_number}
+                  action={(e) => setPhoneNumber(e.target.value)}
                   required
                 />
               </div>
