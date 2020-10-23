@@ -85,7 +85,7 @@ setTValue(cartSummary.value.total_amount)
     load();
   }, [load]);
 
-
+// orders placed, payment made
 
   const submit = async (event) => {
     setMessage();
@@ -105,7 +105,7 @@ setTValue(cartSummary.value.total_amount)
         formData.set("payment_method", active);
 
         const data = await checkoutCart(formData);
-        console.log(data)
+
 
         if (data) {
           setMessage(data.message)
@@ -113,15 +113,12 @@ setTValue(cartSummary.value.total_amount)
         } else return;
       } else setMessage("Please all fields");
     }  else if (active === "Momo") {
-      console.log(
-        uniqueID, location,digital_address,phone_number,active,momo_name,momo_number,momo_transaction_id
-      )
+ 
           setMessage();
       let empty =
         location &&
         digital_address &&
         phone_number &&
-        payment_method &&
         momo_name &&
         momo_number &&
         momo_transaction_id;
@@ -137,7 +134,12 @@ setTValue(cartSummary.value.total_amount)
         formData.set("momo_transaction_id", momo_transaction_id);
 
         const data = await checkoutCart(formData);
-        console.log(data)
+
+
+             if (data) {
+          setMessage(data.message)
+          clear();
+        } else return;
 
 
       } else {
