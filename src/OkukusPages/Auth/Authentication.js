@@ -24,6 +24,7 @@ import {
   cartCount,
   cartUpdate,
   cartDelete,
+  cartCheckout,
   cartSummary,
   orderCreate,
   orderHistory,
@@ -189,6 +190,12 @@ const Authentication = () => {
     return updatecart;
   };
 
+
+    const checkoutCart = async (formData) => {
+    const checkoutcart = await axiosMethod(cartCheckout, formData);
+    return checkoutcart;
+  };
+
   const summaryCart = async (formData) => {
     const summarycart = await axiosMethod(cartSummary, formData);
     return summarycart;
@@ -251,6 +258,7 @@ const Authentication = () => {
     countCart,
     deleteCart,
     updateCart,
+    checkoutCart,
     summaryCart,
 
     createOrder,

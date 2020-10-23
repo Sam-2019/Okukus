@@ -1,15 +1,16 @@
 import React from "react";
-import { useParams, useHistory } from "react-router-dom";
+import {  useHistory } from "react-router-dom";
 import Button from "../Button/Button";
 import { useAuthentication } from "../Auth/Context";
 import "./confirm.css";
 
 const Confirm = () => {
   const { firstName, lastName } = useAuthentication();
-  let { id } = useParams();
+
   let history = useHistory();
 
   const orderID = localStorage.getItem("orderID");
+
 
   return (
     <div className="confirm_wrapper">
@@ -25,7 +26,7 @@ const Confirm = () => {
           ,
         </div>{" "}
         Thank you for shopping with us! Your order{" "}
-        <span className="orderID">{(orderID, id)}</span> has been placed,
+        <span className="orderID">{orderID}</span> has been placed,
         pending confirmation. We will call you within 24 hours (calling hours:
         Mon-Fri 8:30am-5:30pm) to confirm your order. You will also receive
         confirmation messages through your email. Once the order is confirmed,

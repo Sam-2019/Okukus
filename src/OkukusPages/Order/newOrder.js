@@ -30,10 +30,13 @@ const Buy = ({ id }) => {
   const [momoDisplay, setMomoDisplay] = useState(false);
 
   const [product_unique_id, setProductUniqueID] = useState(id);
+
   const [location, setLocation] = useState("");
   const [digital_address, setDigitalAddress] = useState("");
   const [phone_number, setPhoneNumber] = useState("");
+  
   const [payment_method, setPaymentMethod] = useState("");
+
   const [momo_name, setMomoName] = useState("");
   const [momo_number, setMomoNumber] = useState("");
   const [momo_transaction_id, setMomoTransactionID] = useState("");
@@ -54,7 +57,7 @@ const Buy = ({ id }) => {
   };
 
   const confirm = () => {
-    history.push(`/confirm/${orderID}`);
+    history.push("/confirm");
   };
 
   const submit = async (event) => {
@@ -75,13 +78,15 @@ const Buy = ({ id }) => {
         formData.set("payment_method", payment_method);
 
         const data = await createOrder(formData);
+        setOrderID(data.data.order_number);
 
         if (data.data.order_number !== "") {
-          setOrderID(data.data.order_number);
           localStorage.setItem("orderID", data.data.order_number);
+
           clear();
-          confirm();
         } else return;
+
+        confirm();
       } else setMessage("Please fill above");
     } else if (payment_method === "momo") {
       let empty =
@@ -105,12 +110,12 @@ const Buy = ({ id }) => {
         formData.set("momo_transaction_id", momo_transaction_id);
 
         const data = await createOrder(formData);
-        localStorage.setItem("orderID", data.data.order_number);
 
         if (data.data.order_number !== "") {
+          localStorage.setItem("orderID", data.data.order_number);
           clear();
-          confirm();
         } else return;
+        confirm();
       } else {
         setMessage("Please fill below");
         setMomoDisplay(!momoDisplay);
@@ -137,7 +142,7 @@ const Buy = ({ id }) => {
     dodo();
   }, [dodo]);
 
-  console.log(selectedOption);
+  // console.log(selectedOption);
 
   return (
     <div className="buy_wrapper ">

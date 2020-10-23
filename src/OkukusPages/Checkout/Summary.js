@@ -3,9 +3,10 @@ import { useHistory } from "react-router-dom";
 import { useAuthentication } from "../Auth/Context";
 import { useAsync } from "../helpers";
 import Button from "../Button/Button";
+import Message from '../Message/Message'
 
-const Cart = () => {
-  const { uniqueID, summaryCart } = useAuthentication();
+const Summary = ({ submit, message, display  }) => {
+  const { uniqueID, summaryCart} = useAuthentication();
   let history = useHistory();
 
   var formData = new FormData();
@@ -24,7 +25,7 @@ const Cart = () => {
         <div className="summary_item_wrapper  ">
           <div className="summary_item">Quantity</div>
           <div className="summary_amount ">
-            {cartSummary.value.total_quantity}
+            {/* {cartSummary.value.total_quantity} */}
           </div>
         </div>
 
@@ -36,15 +37,22 @@ const Cart = () => {
         <div className="summary_item_wrapper  ">
           <div className="summary_item">Total (Ghc)</div>
           <div className="summary_amount">
-            {cartSummary.value.total_amount}
-          </div>
+            {/* {cartSummary.value.total_amount} */}
+            </div>
         </div>
+
+ 
+            {message ? (
+              <Message message={message} class_name="message" />
+            ) : null}
+ 
 
         <div className="button_wrapper ">
           <Button
             name="Check Out"
             class_name="primary"
             action={() => {
+              submit();
               history.push("/checkout");
             }}
           />
@@ -54,4 +62,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default Summary;

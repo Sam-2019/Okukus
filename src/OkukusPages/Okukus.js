@@ -56,7 +56,7 @@ const Okukus = () => {
             <Order />
           </Route>
 
-          <Route path="/confirm/:id">
+          <Route path="/confirm">
             <Confirm />
           </Route>
 

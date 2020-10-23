@@ -6,11 +6,16 @@ import "./checkout.css";
 import Summary from "./Summary";
 
 const Checkout = () => {
-  const { uniqueID } = useAuthentication();
+  const { uniqueID, checkoutCart } = useAuthentication();
   let history = useHistory();
 
   var formData = new FormData();
   formData.set("buyer_unique_id", uniqueID);
+
+  const [message, setMessage] = useState("");
+  const [display, setDisplay] = useState(false);
+
+  const [momoDisplay, setMomoDisplay] = useState(false);
 
   const [active, setActive] = useState("");
   const [address, setAddress] = useState(false);
@@ -21,9 +26,13 @@ const Checkout = () => {
   const [digital_address, setDigitalAddress] = useState("");
   const [phone_number, setPhoneNumber] = useState("");
 
+  const [payment_method, setPaymentMethod] = useState("");
+
   const [momo_name, setMomoName] = useState("");
   const [momo_number, setMomoNumber] = useState("");
   const [momo_transaction_id, setMomoTransactionID] = useState("");
+
+  const [selectedOption, setSelectedOption] = useState("");
 
   const cash = active === "Cash";
   const momo = active === "Momo";
@@ -45,6 +54,46 @@ const Checkout = () => {
   function addMomoAccount() {
     setAddMomo(!addMomo);
   }
+
+  const clear = () => {
+    setLocation("");
+    setDigitalAddress("");
+    setPhoneNumber("");
+    setPaymentMethod("");
+    setMomoName("");
+    setMomoNumber("");
+    setMomoTransactionID("");
+  };
+
+  console.log(active);
+
+  const submit = async (event) => {
+    setMessage();
+
+    var formData = new FormData();
+
+    if (active === "Cash") {
+      let empty = location && digital_address && phone_number;
+      if (empty !== "") {
+        formData.set("buyer_unique_id", uniqueID);
+
+        formData.set("location", location);
+        formData.set("digital_address", digital_address);
+        formData.set("phone_number", phone_number);
+
+        formData.set("payment_method", active);
+
+        const data = await checkoutCart(formData);
+        console.log(data)
+
+        if (data.data.order_number !== "") {
+          clear();
+        } else return;
+      } else setMessage("Please fill above");
+    } else {
+      setMessage("Please fill all fields");
+    }
+  };
 
   return (
     <div className="checkout ">
@@ -76,7 +125,7 @@ const Checkout = () => {
                 <Input
                   type="number"
                   placeholder="Phone Number"
-                  class_name="input"
+                  class_name="checkout_input"
                   content={phone_number}
                   action={(e) => setPhoneNumber(e.target.value)}
                   required
@@ -147,7 +196,7 @@ const Checkout = () => {
         </div>
 
         <div className="summary_wrapper  ">
-          <Summary />
+          <Summary submit={submit} message={message} display={display}/>
         </div>
       </div>
     </div>
