@@ -5,7 +5,7 @@ import { useAsync } from "../helpers";
 import Button from "../Button/Button";
 import Message from '../Message/Message'
 
-const Summary = ({ submit, message, display  }) => {
+const Summary = () => {
   const { uniqueID, summaryCart} = useAuthentication();
   let history = useHistory();
 
@@ -25,7 +25,7 @@ const Summary = ({ submit, message, display  }) => {
         <div className="summary_item_wrapper  ">
           <div className="summary_item">Quantity</div>
           <div className="summary_amount ">
-            {/* {cartSummary.value.total_quantity} */}
+            {cartSummary.value.total_quantity} 
           </div>
         </div>
 
@@ -37,14 +37,10 @@ const Summary = ({ submit, message, display  }) => {
         <div className="summary_item_wrapper  ">
           <div className="summary_item">Total (Ghc)</div>
           <div className="summary_amount">
-            {/* {cartSummary.value.total_amount} */}
+             {cartSummary.value.total_amount} 
             </div>
         </div>
 
- 
-            {message ? (
-              <Message message={message} class_name="message" />
-            ) : null}
  
 
         <div className="button_wrapper ">

@@ -4,11 +4,12 @@ import { useAuthentication } from "../Auth/Context";
 import Message from '../Message/Message'
 import Button from "../Button/Button";
 import Input from "../Input/Input";
+import { useAsync } from "../helpers";
 import "./checkout.css";
 
 
 const Checkout = () => {
-  const { uniqueID, checkoutCart } = useAuthentication();
+  const { uniqueID,summaryCart, checkoutCart } = useAuthentication();
   let history = useHistory();
 
   var formData = new FormData();
@@ -68,6 +69,11 @@ const Checkout = () => {
   };
 
   console.log(active);
+
+  
+  var formData = new FormData();
+  formData.set("buyer_unique_id", uniqueID);
+  const cartSummary = useAsync(summaryCart, formData);
 
   const submit = async (event) => {
     setMessage();
@@ -239,7 +245,7 @@ const Checkout = () => {
         <div className="summary_item_wrapper  ">
           <div className="summary_item">Quantity</div>
           <div className="summary_amount ">
-            {/* {cartSummary.value.total_quantity} */}
+             {cartSummary.value.total_quantity} 
           </div>
         </div>
 
@@ -251,7 +257,7 @@ const Checkout = () => {
         <div className="summary_item_wrapper  ">
           <div className="summary_item">Total (Ghc)</div>
           <div className="summary_amount">
-            {/* {cartSummary.value.total_amount} */}
+            {cartSummary.value.total_amount}
             </div>
         </div>
 
