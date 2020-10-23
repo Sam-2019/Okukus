@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useAuthentication } from "../Auth/Context";
+import Message from '../Message/Message'
+import Button from "../Button/Button";
 import Input from "../Input/Input";
 import "./checkout.css";
-import Summary from "./Summary";
+
 
 const Checkout = () => {
   const { uniqueID, checkoutCart } = useAuthentication();
@@ -86,11 +88,42 @@ const Checkout = () => {
         const data = await checkoutCart(formData);
         console.log(data)
 
-        if (data.data.order_number !== "") {
+        if (data.data) {
+          setMessage(data.data.message)
           clear();
         } else return;
       } else setMessage("Please fill above");
-    } else {
+    }  else if (payment_method === "momo") {
+      let empty =
+        location &&
+        digital_address &&
+        phone_number &&
+        payment_method &&
+        momo_name &&
+        momo_number &&
+        momo_transaction_id;
+
+      if (empty !== "") {
+        formData.set("buyer_unique_id", uniqueID);
+        formData.set("location", location);
+        formData.set("digital_address", digital_address);
+        formData.set("phone_number", phone_number);
+        formData.set("payment_method", payment_method);
+        formData.set("momo_name", momo_name);
+        formData.set("momo_number", momo_number);
+        formData.set("momo_transaction_id", momo_transaction_id);
+
+        const data = await checkoutCart(formData);
+        if (data.data) {
+  setMessage(data.data.message)
+          clear();
+        } else return;
+
+      } else {
+        setMessage("Please fill below");
+        setMomoDisplay(!momoDisplay);
+      }
+    }else {
       setMessage("Please fill all fields");
     }
   };
@@ -196,7 +229,51 @@ const Checkout = () => {
         </div>
 
         <div className="summary_wrapper  ">
-          <Summary submit={submit} message={message} display={display}/>
+           <div>
+      <div className="page_title"> Summary</div>
+      <div className="new_wrapper">
+        {/* <div className="summary_item_wrapper  ">
+                  <div className="summary_item">Subtotal</div>
+                  <div className="summary_amount ">2,000,000</div>
+                </div> */}
+
+        <div className="summary_item_wrapper  ">
+          <div className="summary_item">Quantity</div>
+          <div className="summary_amount ">
+            {/* {cartSummary.value.total_quantity} */}
+          </div>
+        </div>
+
+        {/* <div className="summary_item_wrapper  ">
+                  <div className="summary_item">Order Total</div>
+                  <div className="summary_amount ">Total</div>
+                </div> */}
+
+        <div className="summary_item_wrapper  ">
+          <div className="summary_item">Total (Ghc)</div>
+          <div className="summary_amount">
+            {/* {cartSummary.value.total_amount} */}
+            </div>
+        </div>
+
+ 
+            {message ? (
+              <Message message={message} class_name="message" />
+            ) : null}
+ 
+
+        <div className="button_wrapper ">
+          <Button
+            name="Check Out"
+            class_name="primary"
+            action={() => {
+              submit();
+              history.push("/checkout");
+            }}
+          />
+        </div>
+      </div>
+    </div>
         </div>
       </div>
     </div>

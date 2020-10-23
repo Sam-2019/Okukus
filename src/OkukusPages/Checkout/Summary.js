@@ -52,7 +52,6 @@ const Summary = ({ submit, message, display  }) => {
             name="Check Out"
             class_name="primary"
             action={() => {
-              submit();
               history.push("/checkout");
             }}
           />
