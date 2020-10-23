@@ -245,7 +245,7 @@ const Checkout = () => {
         <div className="summary_item_wrapper  ">
           <div className="summary_item">Quantity</div>
           <div className="summary_amount ">
-             {/* {cartSummary.value.total_quantity}  */}
+             {cartSummary.value.total_quantity} 
           </div>
         </div>
 
@@ -257,7 +257,7 @@ const Checkout = () => {
         <div className="summary_item_wrapper  ">
           <div className="summary_item">Total (Ghc)</div>
           <div className="summary_amount">
-            {/* {cartSummary.value.total_amount} */}
+            {cartSummary.value.total_amount}
             </div>
         </div>
 
