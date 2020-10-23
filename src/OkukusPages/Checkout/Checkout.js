@@ -38,8 +38,6 @@ const Checkout = () => {
   const [momo_number, setMomoNumber] = useState("");
   const [momo_transaction_id, setMomoTransactionID] = useState("");
 
-  const [selectedOption, setSelectedOption] = useState("");
-
   const cash = active === "Cash";
   const momo = active === "Momo";
 
@@ -76,7 +74,6 @@ const Checkout = () => {
   const cartSummary = useAsync(summaryCart, formData);
 
   const load =()=>{
-  
     if (cartSummary.value) {
 setTQty(cartSummary.value.total_quantity)
 setTValue(cartSummary.value.total_amount)
@@ -96,6 +93,7 @@ setTValue(cartSummary.value.total_amount)
     var formData = new FormData();
 
     if (active === "Cash") {
+             setMessage();
       let empty = location && digital_address && phone_number;
       if (empty !== "") {
         formData.set("buyer_unique_id", uniqueID);
@@ -109,12 +107,16 @@ setTValue(cartSummary.value.total_amount)
         const data = await checkoutCart(formData);
         console.log(data)
 
-        if (data.data) {
-          setMessage(data.data.message)
+        if (data) {
+          setMessage(data.message)
           clear();
         } else return;
       } else setMessage("Please all fields");
-    }  else if (active === "momo") {
+    }  else if (active === "Momo") {
+      console.log(
+        uniqueID, location,digital_address,phone_number,active,momo_name,momo_number,momo_transaction_id
+      )
+          setMessage();
       let empty =
         location &&
         digital_address &&
@@ -135,10 +137,8 @@ setTValue(cartSummary.value.total_amount)
         formData.set("momo_transaction_id", momo_transaction_id);
 
         const data = await checkoutCart(formData);
-        if (data.data) {
-  setMessage(data.data.message)
-          clear();
-        } else return;
+        console.log(data)
+
 
       } else {
         setMessage("Please all fields");
@@ -229,7 +229,7 @@ setTValue(cartSummary.value.total_amount)
 
                   <Input
                     type="number"
-                    placeholder="Number"
+                    placeholder="Momo Number"
                     class_name="checkout_input"
                     action={(e) => setMomoNumber(e.target.value)}
                     content={momo_number}
