@@ -92,8 +92,8 @@ const Checkout = () => {
           setMessage(data.data.message)
           clear();
         } else return;
-      } else setMessage("Please fill above");
-    }  else if (payment_method === "momo") {
+      } else setMessage("Please all fields");
+    }  else if (active === "momo") {
       let empty =
         location &&
         digital_address &&
@@ -108,7 +108,7 @@ const Checkout = () => {
         formData.set("location", location);
         formData.set("digital_address", digital_address);
         formData.set("phone_number", phone_number);
-        formData.set("payment_method", payment_method);
+        formData.set("payment_method", active);
         formData.set("momo_name", momo_name);
         formData.set("momo_number", momo_number);
         formData.set("momo_transaction_id", momo_transaction_id);
@@ -120,8 +120,7 @@ const Checkout = () => {
         } else return;
 
       } else {
-        setMessage("Please fill below");
-        setMomoDisplay(!momoDisplay);
+        setMessage("Please all fields");
       }
     }else {
       setMessage("Please fill all fields");
