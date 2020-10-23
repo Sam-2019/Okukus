@@ -6,19 +6,17 @@ import { useAsync } from "../helpers";
 import Button from "../Button/Button";
 import Spinner from "../Spinner/Spinner";
 import Empty from "./Empty Cart";
+import Summary from "../Checkout/Summary";
 import "./cart.css";
 
 const Cart = () => {
-  const { getCart, uniqueID, summaryCart } = useAuthentication();
+  const { getCart, uniqueID } = useAuthentication();
   let history = useHistory();
 
   var formData = new FormData();
   formData.set("buyer_unique_id", uniqueID);
 
   const resource = useAsync(getCart, formData);
-
-  const cartSummary = useAsync(summaryCart, formData);
-  console.log(cartSummary);
 
   let content;
 
@@ -66,38 +64,7 @@ const Cart = () => {
             </div>
 
             <div className="summary_wrapper  ">
-              <div className="page_title"> Summary</div>
-              <div className="new_wrapper">
-                {/* <div className="summary_item_wrapper  ">
-                  <div className="summary_item">Subtotal</div>
-                  <div className="summary_amount ">2,000,000</div>
-                </div> */}
-
-                <div className="summary_item_wrapper  ">
-                  <div className="summary_item">Quantity</div>
-                  <div className="summary_amount ">2,000</div>
-                </div>
-
-                {/* <div className="summary_item_wrapper  ">
-                  <div className="summary_item">Order Total</div>
-                  <div className="summary_amount ">Total</div>
-                </div> */}
-
-                <div className="summary_item_wrapper  ">
-                  <div className="summary_item">Total (Ghc)</div>
-                  <div className="summary_amount ">Total</div>
-                </div>
-
-                <div className="button_wrapper ">
-                  <Button
-                    name="Check Out"
-                    class_name="primary"
-                    action={() => {
-                      history.push("/checkout");
-                    }}
-                  />
-                </div>
-              </div>
+              <Summary />
             </div>
           </div>
         )}

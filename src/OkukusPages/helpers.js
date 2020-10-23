@@ -93,7 +93,7 @@ export const useAsyncc = (getMethod) => {
 
   useEffect(() => {
     fetchData();
-  }, [getMethod, fetchData]);
+  }, [fetchData]);
 
   return { value, error, loading, success };
 };

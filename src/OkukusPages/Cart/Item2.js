@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../Button/Button";
 import { useAuthentication } from "../Auth/Context";
 import "./item2.css";
@@ -25,15 +25,19 @@ const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {
     await updateCart(formData);
   };
 
-  const Add = () => {
+  useEffect(() => {
     updateItem();
-    setQty(qty + 1);
-  };
+  }, [updateItem]);
 
-  const Subtract = () => {
-    updateItem();
-    setQty(qty - 1);
-  };
+  // const Add = () => {
+  //   updateItem();
+  //   setQty(qty + 1);
+  // };
+
+  // const Subtract = () => {
+  //   updateItem();
+  //   setQty(qty - 1);
+  // };
 
   const rawsubtotal = qty * unit_price;
   const subtotal = Intl.NumberFormat().format(rawsubtotal);

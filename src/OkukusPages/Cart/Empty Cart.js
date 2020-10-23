@@ -6,6 +6,7 @@ const EmptyCart = () => {
   let history = useHistory();
   return (
     <div className="empty_cart">
+            <div className="page_title"> Cart</div>
       <div className="cart_stack">
         <svg
           viewBox="0 0 16 16"

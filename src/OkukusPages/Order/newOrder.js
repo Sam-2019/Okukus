@@ -220,13 +220,13 @@ const Buy = ({ id }) => {
               dodo();
             }}
           >
-            <option content="" disabled defaultValue>
+            <option value="" disabled defaultValue>
               Select a payment method
             </option>
-            <option content="Cash" className="option">
+            <option value="Cash" className="option">
               Cash
             </option>
-            <option content="Momo">Momo</option>
+            <option value="Momo">Momo</option>
           </select>
 
           {/* <div>Selected option: {selectedOption}</div>

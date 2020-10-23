@@ -36,7 +36,7 @@ const Confirm = () => {
 
       <Button
         name="Continue Shopping"
-        classname="primary"
+        class_name="primary"
         action={() => {
           history.push("/");
           localStorage.removeItem("orderID");

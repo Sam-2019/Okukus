@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useAuthentication } from "../Auth/Context";
 import Input from "../Input/Input";
 import "./checkout.css";
-import Button from "../Button/Button";
+import Summary from "./Summary";
 
 const Checkout = () => {
+  const { uniqueID } = useAuthentication();
   let history = useHistory();
+
+  var formData = new FormData();
+  formData.set("buyer_unique_id", uniqueID);
 
   const [active, setActive] = useState("");
   const [address, setAddress] = useState(false);
@@ -132,38 +137,7 @@ const Checkout = () => {
         </div>
 
         <div className="summary_wrapper  ">
-          <div className="page_title"> Summary</div>
-          <div className="new_wrapper">
-            <div className="summary_item_wrapper  ">
-              <div className="summary_item">Subtotal</div>
-              <div className="summary_amount ">2,000,000</div>
-            </div>
-
-            <div className="summary_item_wrapper  ">
-              <div className="summary_item">Shipping</div>
-              <div className="summary_amount ">2,000</div>
-            </div>
-
-            <div className="summary_item_wrapper  ">
-              <div className="summary_item">Order Total</div>
-              <div className="summary_amount ">Total</div>
-            </div>
-
-            <div className="summary_item_wrapper  ">
-              <div className="summary_item">Total (Ghc)</div>
-              <div className="summary_amount ">Total</div>
-            </div>
-
-            <div className="button_wrapper ">
-              <Button
-                name="Check Out"
-                class_name="primary"
-                action={() => {
-                  history.push("/checkout");
-                }}
-              />
-            </div>
-          </div>
+          <Summary />
         </div>
       </div>
     </div>
