@@ -70,10 +70,10 @@ const Checkout = () => {
 
   console.log(active);
 
-  
-  var formData = new FormData();
+
   formData.set("buyer_unique_id", uniqueID);
   const cartSummary = useAsync(summaryCart, formData);
+  console.log(cartSummary)
 
   const submit = async (event) => {
     setMessage();
@@ -245,7 +245,7 @@ const Checkout = () => {
         <div className="summary_item_wrapper  ">
           <div className="summary_item">Quantity</div>
           <div className="summary_amount ">
-             {cartSummary.value.total_quantity} 
+             {/* {cartSummary.value.total_quantity}  */}
           </div>
         </div>
 
@@ -257,7 +257,7 @@ const Checkout = () => {
         <div className="summary_item_wrapper  ">
           <div className="summary_item">Total (Ghc)</div>
           <div className="summary_amount">
-            {cartSummary.value.total_amount}
+            {/* {cartSummary.value.total_amount} */}
             </div>
         </div>
 
