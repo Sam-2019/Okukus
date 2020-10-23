@@ -193,7 +193,7 @@ const Authentication = () => {
 
     const checkoutCart = async (formData) => {
     const checkoutcart = await axiosMethod(cartCheckout, formData);
-    return checkoutcart;
+    return checkoutcart.data;
   };
 
   const summaryCart = async (formData) => {

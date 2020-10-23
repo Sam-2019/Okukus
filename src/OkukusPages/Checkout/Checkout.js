@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useAuthentication } from "../Auth/Context";
 import Message from '../Message/Message'
@@ -12,8 +12,11 @@ const Checkout = () => {
   const { uniqueID,summaryCart, checkoutCart } = useAuthentication();
   let history = useHistory();
 
-  var formData = new FormData();
-  formData.set("buyer_unique_id", uniqueID);
+  const [tQty, setTQty] = useState("");
+  const [tValue, setTValue] = useState("");
+
+
+
 
   const [message, setMessage] = useState("");
   const [display, setDisplay] = useState(false);
@@ -68,12 +71,24 @@ const Checkout = () => {
     setMomoTransactionID("");
   };
 
-  console.log(active);
-
-
+    var formData = new FormData();
   formData.set("buyer_unique_id", uniqueID);
   const cartSummary = useAsync(summaryCart, formData);
-  console.log(cartSummary)
+
+  const load =()=>{
+  
+    if (cartSummary.value) {
+setTQty(cartSummary.value.total_quantity)
+setTValue(cartSummary.value.total_amount)
+    } else return
+}
+
+
+  useEffect(() => {
+    load();
+  }, [load]);
+
+
 
   const submit = async (event) => {
     setMessage();
@@ -245,7 +260,7 @@ const Checkout = () => {
         <div className="summary_item_wrapper  ">
           <div className="summary_item">Quantity</div>
           <div className="summary_amount ">
-             {cartSummary.value.total_quantity} 
+             {tQty}
           </div>
         </div>
 
@@ -257,7 +272,7 @@ const Checkout = () => {
         <div className="summary_item_wrapper  ">
           <div className="summary_item">Total (Ghc)</div>
           <div className="summary_amount">
-            {cartSummary.value.total_amount}
+            {tValue}
             </div>
         </div>
 
