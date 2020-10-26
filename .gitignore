@@ -6,7 +6,7 @@
 /src/public/bootstrap.css
 /src/Okukus
 /src/OkukusPages/files
-/src/OkukusPages/ternary.js
+
 /src/OkukusPages/images
 /src/OkukusPages/404/404 copy.js
 /src/OkukusPages/Button/Delete.js
@@ -42,16 +42,32 @@
 
 /src/OkukusPages/Product/Dexktop.js
 /src/OkukusPages/Product/jsonplaceholder.js
-/src/OkukusPages/Product/III.text
+/src/OkukusPages/Product/III.txt
+/src/OkukusPages/Product/newProducts.js
+/src/OkukusPages/Product/newProductss.js
 /src/OkukusPages/Product/note.js
 /src/OkukusPages/Product/Pagination.js
 /src/OkukusPages/Product/Pagination2.js
+/src/OkukusPages/Product/Product(offline).js
+/src/OkukusPages/Product/Product2.js
+/src/OkukusPages/Product/Product3.js
+/src/OkukusPages/Product/Products copy.js
+/src/OkukusPages/Product/Products(offline).js
 /src/OkukusPages/Product/react-infinite-scroll-hook.txt
 
-/src/OkukusPages/Product/Product(offline).js
-/src/OkukusPages/Product/Products(offline).js
 /src/OkukusPages/Tag/Tag(offline).js
-/src/OkukusPages/Cart/Cart(offline).js
+
+/src/OkukusPages/User/Profile/History(offline).js
+
+/src/OkukusPages/User/Login copy.js
+/src/OkukusPages/User/Signup copy.js
+
+/src/OkukusPages/Okukus copy.js
+
+/src/OkukusPages/ternary.js
+/src/OkukusPages/trial
+/src/OkukusPages/useInfinite.js
+
 /.pnp
 .pnp.js
 
