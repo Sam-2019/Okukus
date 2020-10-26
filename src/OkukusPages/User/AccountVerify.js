@@ -20,7 +20,8 @@ const AccountVerify = () => {
   const resource = useAsync(verifyUserAccount, formData);
 
   if (resource.message === "link is valid") {
-
+    localStorage.setItem("email", resource.value.email);
+    history.push("/new_password");
   }
 
   return (

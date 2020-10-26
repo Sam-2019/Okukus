@@ -98,7 +98,7 @@ const Okukus = () => {
             <AccountVerify />
           </Route>
 
-          <Route path="/new_password/:id">
+          <Route path="/new_password">
             <NewPassword />
           </Route>
 
