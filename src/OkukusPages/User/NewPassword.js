@@ -47,7 +47,7 @@ function Login() {
     <div className=" user_wrapper">
       <div className="page_title">Reset Password</div>
 
-      {error === true ? (
+      {error === false ? (
         <div>
           <Input
             class_name="input "
@@ -70,7 +70,7 @@ function Login() {
       {message ? <Message message={message} class_name="message" /> : null}
 
       <div className="button_wrapper ">
-        {error === true ? (
+        {error === false ? (
           <Button name="Submit" action={updatePassword} class_name="primary" />
         ) : (
           <Button
