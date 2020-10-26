@@ -3,7 +3,7 @@ import View from "../Container/View/View";
 import Spinner from "../Spinner/Spinner";
 import Button from "../Button/Button";
 import axios from "axios";
-import {itemsGet} from "../apis";
+import { itemsGet } from "../apis";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -18,7 +18,7 @@ const App = () => {
       setOffset(offset + result.data.length);
     };
     fetchData();
-  }, [offset]);
+  }, []);
 
   function load() {
     setLoading(true);
@@ -35,11 +35,9 @@ const App = () => {
         setData((prevState) => [...prevState, ...response.data]);
         setOffset(offset + response.data.length);
         setLoading(false);
-        console.log(data.length);
-      }, 500);
+      }, 100);
     });
   }
-
 
   let content = data.map(
     ({ unique_id, unit_price, product_name, cover_photo_url }) => (
@@ -52,7 +50,6 @@ const App = () => {
       />
     )
   );
-
 
   return (
     <>
