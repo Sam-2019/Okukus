@@ -35,7 +35,7 @@ function Login() {
 
     const data = await updateUserPassword(formData);
 
-    if (data.data.error === true) {
+    if (data.data.error) {
       setMessage(data.data.message);
       setError(data.data.error);
     } else if (data.data.error === false) {
@@ -47,32 +47,28 @@ function Login() {
     <div className=" user_wrapper">
       <div className="page_title">Reset Password</div>
 
-      {error === false ? (
-        <div>
-          <Input
-            class_name="input "
-            placeholder="New Password"
-            content={newPassword}
-            type="password"
-            action={(e) => setNewPassword(e.target.value)}
-          />
+      <div>
+        <Input
+          class_name="input "
+          placeholder="New Password"
+          content={newPassword}
+          type="password"
+          action={(e) => setNewPassword(e.target.value)}
+        />
 
-          <Input
-            class_name="input "
-            placeholder="Confirm Password"
-            content={confirmPassword}
-            type="password"
-            action={(e) => setConfirmPassword(e.target.value)}
-          />
-        </div>
-      ) : null}
+        <Input
+          class_name="input "
+          placeholder="Confirm Password"
+          content={confirmPassword}
+          type="password"
+          action={(e) => setConfirmPassword(e.target.value)}
+        />
+      </div>
 
       {message ? <Message message={message} class_name="message" /> : null}
 
       <div className="button_wrapper ">
-        {error === false ? (
-          <Button name="Submit" action={updatePassword} class_name="primary" />
-        ) : (
+        {error ? (
           <Button
             name="Login"
             action={() => {
@@ -80,6 +76,8 @@ function Login() {
             }}
             class_name="primary"
           />
+        ) : (
+          <Button name="Submit" action={updatePassword} class_name="primary" />
         )}
       </div>
     </div>
