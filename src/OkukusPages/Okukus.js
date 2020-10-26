@@ -13,7 +13,7 @@ import Login from "./User/Login";
 import SignUp from "./User/Signup";
 import Profile from "./User/Profile";
 import TagContent from "./Tag/Content";
-// import CheckOut from "./CheckOut/CheckOut";
+import CheckOut from "./CheckOut/CheckOut";
 import UserVerify from "./User/UserVerify";
 
 import NotFound from "./404/404";
@@ -36,9 +36,9 @@ const Okukus = () => {
             <Cart />
           </Route>
 
-          {/* <Route path="/checkout">
+          <Route path="/checkout">
             <CheckOut />
-          </Route> */}
+          </Route>
 
           <Route path="/login">
             <Login />

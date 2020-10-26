@@ -7,7 +7,7 @@ import Input from "../Input/Input";
 import { useAsync } from "../helpers";
 import "./checkout.css";
 
-const Checkout = ({ state }) => {
+const Main = ({ state }) => {
     const { uniqueID, summaryCart, checkoutCart } = useAuthentication();
     let history = useHistory();
   
@@ -281,4 +281,4 @@ const Checkout = ({ state }) => {
   };
   
 
-export default Checkout;
+export default Main;
