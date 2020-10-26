@@ -3,11 +3,7 @@ import View from "../Container/View/View";
 import Spinner from "../Spinner/Spinner";
 import Button from "../Button/Button";
 import axios from "axios";
-
-const okukus = "https://okukus.com";
-const live_site = "api_call";
-const dev_site = `${live_site}_dev`;
-const itemsGet = `${okukus}/${dev_site}/get_books.php`;
+import {itemsGet} from "../apis";
 
 const App = () => {
   const [data, setData] = useState([]);
