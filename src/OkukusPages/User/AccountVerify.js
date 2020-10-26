@@ -46,6 +46,11 @@ const AccountVerify = () => {
 export default AccountVerify;
 
 const NewPassword = ({ email }) => {
+
+  const redirect = () => {
+    history.push("/login");
+  }
+
   const { userPasswordReset } = useAuthentication();
 
   const [newPassword, setNewPassword] = useState();
@@ -74,6 +79,8 @@ const NewPassword = ({ email }) => {
       setMessage(data.data.message);
     } else if (data.data.error === false) {
       reset();
+      setMessage(data.data.message);
+      redirect()
     }
   };
   return (
