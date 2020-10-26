@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useAuthentication } from "../Auth/Context";
 import Message from "../Message/Message";
 import Input from "../Input/Input";
@@ -12,15 +12,17 @@ const AccountVerify = () => {
   const { verifyUserAccount } = useAuthentication();
   let { id } = useParams();
 
+  let history = useHistory();
+
   var formData = new FormData();
   formData.set("url_data", id);
 
   const resource = useAsync(verifyUserAccount, formData);
-  console.log(resource.value);
 
-  // if (resource.message === "link is valid") {
-  //   dontShow(true);
-  // }
+  if (resource.message === "link is valid") {
+    localStorage.setItem("email", resource.value.email);
+    history.push("/new_password");
+  }
 
   return (
     <div className=" user_wrapper">
@@ -34,8 +36,6 @@ const AccountVerify = () => {
 
       {resource.loading ? (
         <Spinner />
-      ) : resource.message === "link is valid" ? (
-        <NewPassword email={resource.value.email} />
       ) : (
         <Message message={resource.message} class_name="message" />
       )}
@@ -45,67 +45,63 @@ const AccountVerify = () => {
 
 export default AccountVerify;
 
-const NewPassword = ({ email }) => {
+// const NewPassword = ({ email }) => {
 
-  const redirect = () => {
-    history.push("/login");
-  }
+//   const { userPasswordReset } = useAuthentication();
 
-  const { userPasswordReset } = useAuthentication();
+//   const [newPassword, setNewPassword] = useState();
+//   const [confirmPassword, setConfirmPassword] = useState();
 
-  const [newPassword, setNewPassword] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
+//   const [message, setMessage] = useState();
 
-  const [message, setMessage] = useState();
+//   const reset = () => {
+//     setNewPassword("");
+//     setConfirmPassword("");
+//   };
 
-  const reset = () => {
-    setNewPassword("");
-    setConfirmPassword("");
-  };
+//   const updatePassword = async (event) => {
+//     setMessage();
+//     event.preventDefault();
+//     var formData = new FormData();
 
-  const updatePassword = async (event) => {
-    setMessage();
-    event.preventDefault();
-    var formData = new FormData();
+//     formData.set("buyer_email", email);
+//     formData.set("new_password", newPassword);
+//     formData.set("confirm_password", confirmPassword);
 
-    formData.set("buyer_email", email);
-    formData.set("new_password", newPassword);
-    formData.set("confirm_password", confirmPassword);
+//     const data = await userPasswordReset(formData);
+//     console.log(data);
 
-    const data = await userPasswordReset(formData);
-    console.log(data);
+//     if (data.data.error === true) {
+//       setMessage(data.data.message);
+//     } else if (data.data.error === false) {
+//       reset();
+//       setMessage(data.data.message);
 
-    if (data.data.error === true) {
-      setMessage(data.data.message);
-    } else if (data.data.error === false) {
-      reset();
-      setMessage(data.data.message);
-      redirect()
-    }
-  };
-  return (
-    <div>
-      <Input
-        class_name="input "
-        placeholder="New Password"
-        content={newPassword}
-        type="password"
-        action={(e) => setNewPassword(e.target.value)}
-      />
+//     }
+//   };
+//   return (
+//     <div>
+//       <Input
+//         class_name="input "
+//         placeholder="New Password"
+//         content={newPassword}
+//         type="password"
+//         action={(e) => setNewPassword(e.target.value)}
+//       />
 
-      <Input
-        class_name="input "
-        placeholder="Confirm Password"
-        content={confirmPassword}
-        type="password"
-        action={(e) => setConfirmPassword(e.target.value)}
-      />
+//       <Input
+//         class_name="input "
+//         placeholder="Confirm Password"
+//         content={confirmPassword}
+//         type="password"
+//         action={(e) => setConfirmPassword(e.target.value)}
+//       />
 
-      {message ? <Message message={message} class_name="message" /> : null}
+//       {message ? <Message message={message} class_name="message" /> : null}
 
-      <div className="button_wrapper ">
-        <Button name="Submit" action={updatePassword} class_name="primary" />
-      </div>
-    </div>
-  );
-};
+//       <div className="button_wrapper ">
+//         <Button name="Submit" action={updatePassword} class_name="primary" />
+//       </div>
+//     </div>
+//   );
+// };

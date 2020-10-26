@@ -21,6 +21,7 @@ import SignUp from "./User/Signup";
 import Profile from "./User/Profile";
 import TagContent from "./Tag/Content";
 import UserVerify from "./User/UserVerify";
+import NewPassword from './User/NewPassword'
 
 import NotFound from "./404/404";
 
@@ -95,6 +96,10 @@ const Okukus = () => {
 
           <Route path="/verify/:id">
             <AccountVerify />
+          </Route>
+
+          <Route path="/new_password/:id">
+            <NewPassword />
           </Route>
 
           <Route path="/user_verify/:id">
