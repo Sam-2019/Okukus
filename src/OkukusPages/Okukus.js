@@ -13,14 +13,15 @@ import Login from "./User/Login";
 import SignUp from "./User/Signup";
 import Profile from "./User/Profile";
 import TagContent from "./Tag/Content";
-import CheckOut from "./CheckOut/CheckOut";
+import Checkout from "./CheckOut/CheckOut";
 import UserVerify from "./User/UserVerify";
 
 import NotFound from "./404/404";
 
-import Footer from "./Footer/Footer";
 import ResetPassword from "./User/ResetPassword";
 import AccountVerify from "./User/AccountVerify";
+
+import Footer from "./Footer/Footer";
 
 const Okukus = () => {
   return (
@@ -37,7 +38,7 @@ const Okukus = () => {
           </Route>
 
           <Route path="/checkout">
-            <CheckOut />
+            <Checkout />
           </Route>
 
           <Route path="/login">
@@ -52,12 +53,12 @@ const Okukus = () => {
             <Profile />
           </Route>
 
-          <Route path="/order/:id">
-            <Order />
-          </Route>
-
           <Route path="/confirm">
             <Confirm />
+          </Route>
+
+          <Route path="/order/:id">
+            <Order />
           </Route>
 
           <Route path="/product/:id">
