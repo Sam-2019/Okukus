@@ -1,31 +1,42 @@
 import React, { useState, useEffect, useCallback } from "react";
 import View from "../Container/View/View";
 import Spinner from "../Spinner/Spinner";
-import Button from "../Button/Button";
 import axios from "axios";
-
-const okukus = "https://okukus.com";
-const live_site = "api_call";
-const dev_site = `${live_site}_dev`;
-const itemsGet = `${okukus}/${dev_site}/get_books.php`;
 
 const App = () => {
   const [data, setData] = useState([]);
   const [offset, setOffset] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const [isFetching, setIsFetching] = useState(false);
+
+  let url = `https://okukus.com/api_call_dev/get_books.php`;
+
+  const loadData = useCallback(() => {
+    axios.get(url).then((res) => {
+      setData(res.data);
+      setOffset(offset + res.data.length);
+    });
+  }, [offset, url]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios(itemsGet);
-      setLoading(false);
-      setData(result.data);
-      setOffset(offset + result.data.length);
-    };
-    fetchData();
-  }, []);
+    loadData();
+  }, [loadData]);
 
-  function load() {
-    setLoading(true);
+  const handleScroll = useCallback(() => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop !==
+        document.documentElement.offsetHeight ||
+      isFetching
+    )
+      return;
+    setIsFetching(true);
+  }, [setIsFetching, isFetching]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
+  const fetchMoreListItems = useCallback(() => {
     var formData = new FormData();
     formData.set("offset", offset);
 
@@ -37,12 +48,17 @@ const App = () => {
     }).then((response) => {
       setTimeout(() => {
         setData((prevState) => [...prevState, ...response.data]);
+        setIsFetching(false);
         setOffset(offset + response.data.length);
-        setLoading(false);
         console.log(data.length);
-      }, 500);
+      }, 2000);
     });
-  }
+  }, [offset, data.length]);
+
+  useEffect(() => {
+    if (!isFetching) return;
+    fetchMoreListItems();
+  }, [isFetching, fetchMoreListItems]);
 
   let view;
 
@@ -70,7 +86,7 @@ const App = () => {
 
   return (
     <>
-      <div className="products_wrapper">{content}</div>
+      <div className="products_wrapper">{view}</div>
 
       {/* {data.map((item) => (
         <div key={item.id}>
@@ -79,16 +95,8 @@ const App = () => {
           </p>
         </div>
       ))} */}
-
-      <div>
-        {loading ? (
-          <Spinner />
-        ) : (
-          <div className="button_wrapper margin ">
-            <Button class_name="primary" name="Load more" action={load} />
-          </div>
-        )}
-      </div>
+      {isFetching ? <Spinner /> : null}
+      <div>{!isFetching ? <>End </> : null}</div>
     </>
   );
 };

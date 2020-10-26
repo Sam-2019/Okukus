@@ -28,6 +28,10 @@
   align-items: center;
 }
 
+.margin{
+  margin: 0.5em;
+}
+
 .primary:active,
 .secondary:active,
 .delete:active,
