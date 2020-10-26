@@ -1,7 +1,9 @@
 import React from "react";
 import { useAuthentication } from "../Auth/Context";
 import { useAsync } from "../helpers";
+import Spinner from "../Spinner/Spinner";
 import Empty from "./Empty Cart";
+import NotEmpty from "./NotEmpty";
 import "./cart.css";
 
 const Cart = () => {
@@ -10,13 +12,18 @@ const Cart = () => {
   var formData = new FormData();
   formData.set("buyer_unique_id", uniqueID);
 
-  const resource = useAsync(getCart, formData);
-  console.log(resource);
+  const cartData = useAsync(getCart, formData);
 
   return (
     <div className="cart  ">
       <div className=" ">
-        <Empty />
+        {cartData.loading ? (
+          <Spinner />
+        ) : cartData.error || cartData.message === "cart is empty" ? (
+          <Empty />
+        ) : (
+          <NotEmpty cart={cartData.value}  />
+        )}
       </div>
     </div>
   );
