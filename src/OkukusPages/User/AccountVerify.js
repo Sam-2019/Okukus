@@ -34,7 +34,7 @@ const AccountVerify = () => {
 
       {resource.loading ? (
         <Spinner />
-      ) : resource.message === "link is valid" ? (
+      ) : resource.error === false ? (
         <NewPassword email={resource.value.email} />
       ) : (
         <Message message={resource.message} class_name="message" />
@@ -74,6 +74,7 @@ const NewPassword = ({ email }) => {
       setMessage(data.data.message);
     } else if (data.data.error === false) {
       reset();
+      setMessage(data.data.message);
     }
   };
   return (
@@ -97,7 +98,17 @@ const NewPassword = ({ email }) => {
       {message ? <Message message={message} class_name="message" /> : null}
 
       <div className="button_wrapper ">
-        <Button name="Submit" action={updatePassword} class_name="primary" />
+        {data.data.error === true ? (
+          <Button name="Submit" action={updatePassword} class_name="primary" />
+        ) : (
+          <Button
+            name="Submit"
+            action={() => {
+              history.push("/login");
+            }}
+            class_name="primary"
+          />
+        )}
       </div>
     </div>
   );
