@@ -7,7 +7,7 @@ import Input from "../Input/Input";
 import { useAsync } from "../helpers";
 import "./checkout.css";
 
-const Main = ({ state }) => {
+const Main = ({ main_state }) => {
     const { uniqueID, summaryCart, checkoutCart } = useAuthentication();
     let history = useHistory();
   
@@ -96,7 +96,7 @@ const Main = ({ state }) => {
           if (data) {
             setMessage(data.message);
             clear();
-            state(false);
+            main_state(false);
           } else return;
         } else setMessage("Please all fields");
       } else if (active === "Momo") {
@@ -124,7 +124,7 @@ const Main = ({ state }) => {
           if (data) {
             setMessage(data.message);
             clear();
-            state(false);
+            main_state(false);
           } else return;
         } else {
           setMessage("Please all fields");
@@ -268,7 +268,7 @@ const Main = ({ state }) => {
                     class_name="primary"
                     action={() => {
                       submit();
-                      history.push("/checkout");
+                      history.push("/confirm_orders");
                     }}
                   />
                 </div>

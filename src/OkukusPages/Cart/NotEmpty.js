@@ -1,6 +1,6 @@
 import React from "react";
 import Item from "./Item2";
-import Summary from "../CheckOut/Summary";
+import Summary from "../Checkout/Summary";
 import "./cart.css";
 
 const NotEmpty = ({ cart }) => {

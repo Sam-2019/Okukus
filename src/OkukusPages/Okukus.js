@@ -9,11 +9,11 @@ import Product from "./Product/Product";
 import Order from "./Order/newOrder";
 import Confirm from "./Confirmation/Confirm";
 import Cart from "./Cart/Cart";
+import Checkout from "./Checkout/Checkout";
 import Login from "./User/Login";
 import SignUp from "./User/Signup";
 import Profile from "./User/Profile";
 import TagContent from "./Tag/Content";
-import Checkout from "./CheckOut/CheckOut";
 import UserVerify from "./User/UserVerify";
 
 import NotFound from "./404/404";
@@ -37,7 +37,7 @@ const Okukus = () => {
             <Cart />
           </Route>
 
-          <Route path="/checkout">
+          <Route path="/confirm_orders">
             <Checkout />
           </Route>
 
@@ -88,6 +88,7 @@ const Okukus = () => {
           <Route>
             <NotFound />
           </Route>
+          
         </Switch>
       </div>
       <Footer />

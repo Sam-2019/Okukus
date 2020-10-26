@@ -10,7 +10,7 @@ const CheckOut = () => {
     setState(false);
   };
 
-  return <div>{state ? <Main state={changeState} /> : <Complete />}</div>;
+  return <div>{state ? <Main main_state={changeState} /> : <Complete />}</div>;
 };
 
 export default CheckOut;

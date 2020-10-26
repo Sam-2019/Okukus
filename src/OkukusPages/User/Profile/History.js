@@ -73,9 +73,8 @@ const NoContent = () => {
       </div>
 
       <div className=" empty_cart_message">
-        <div>Cmon man! You ain't got no history?</div>
-
-        <div>Buy something asap!</div>
+        <div>You have no items in your order history!</div>
+        <div>Please visit the homepage to make a purchase.</div>
       </div>
 
       <Button
