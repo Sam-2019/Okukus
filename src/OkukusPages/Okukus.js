@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { useAuthentication } from "./Auth/Context";
 import "./okukus.css";
 
 import Navigation from "./Nav/Nav";
@@ -24,6 +25,7 @@ import AccountVerify from "./User/AccountVerify";
 import Footer from "./Footer/Footer";
 
 const Okukus = () => {
+  const { Auth } = useAuthentication();
   return (
     <Router>
       <Navigation />
@@ -37,9 +39,11 @@ const Okukus = () => {
             <Cart />
           </Route>
 
-          <Route path="/confirm_orders">
-            <Checkout />
-          </Route>
+          {Auth && (
+            <Route path="/confirm_orders">
+              <Checkout />
+            </Route>
+          )}
 
           <Route path="/login">
             <Login />
@@ -49,17 +53,23 @@ const Okukus = () => {
             <SignUp />
           </Route>
 
-          <Route path="/profile">
-            <Profile />
-          </Route>
+          {Auth && (
+            <Route path="/profile">
+              <Profile />
+            </Route>
+          )}
 
-          <Route path="/confirm">
-            <Confirm />
-          </Route>
+          {Auth && (
+            <Route path="/confirm">
+              <Confirm />
+            </Route>
+          )}
 
-          <Route path="/order/:id">
-            <Order />
-          </Route>
+          {Auth && (
+            <Route path="/order/:id">
+              <Order />
+            </Route>
+          )}
 
           <Route path="/product/:id">
             <Product />
@@ -88,7 +98,12 @@ const Okukus = () => {
           <Route>
             <NotFound />
           </Route>
-          
+
+          {Auth && <Redirect from="/login" to="/" />}
+          {Auth && <Redirect from="/signup" to="/" />}
+
+          {!Auth && <Redirect from="/order/:id" to="/" />}
+          {!Auth && <Redirect from="/profile" to="/" />}
         </Switch>
       </div>
       <Footer />

@@ -10,7 +10,7 @@ import { useAuthentication } from "../Auth/Context";
 import "./product.css";
 
 const Product = () => {
-  const { getItem, addCart, uniqueID } = useAuthentication();
+  const { Auth, getItem, addCart, uniqueID } = useAuthentication();
   const [message, setMessage] = useState();
 
   let { id } = useParams();
@@ -74,21 +74,35 @@ const Product = () => {
 
         <div className=" _description">{data.product_description}</div>
 
-       
-          {message ? <Message class_name="message" message={message} /> : null}
-    
+        {message ? <Message class_name="message" message={message} /> : null}
 
-        <div className="button_wrapper ">
-          <Button
-            class_name="primary"
-            name="Buy book"
-            action={() => {
-              history.push(`/order/${id}`);
-            }}
-          />
+        {Auth ? (
+          <div className="button_wrapper ">
+            <Button
+              class_name="primary"
+              name="Buy book"
+              action={() => {
+                history.push(`/order/${id}`);
+              }}
+            />
 
-          <Button name="Add to cart" action={add2cart} class_name="secondary" />
-        </div>
+            <Button
+              name="Add to cart"
+              action={add2cart}
+              class_name="secondary"
+            />
+          </div>
+        ) : (
+          <div className="button_wrapper ">
+            <Button
+              class_name="primary"
+              name="Buy book"
+              action={() => {
+                history.push("/login");
+              }}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
