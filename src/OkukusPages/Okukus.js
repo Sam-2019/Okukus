@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import { useAuthentication } from "./Auth/Context";
 import "./okukus.css";
 
@@ -45,12 +50,10 @@ const Okukus = () => {
             </Route>
           )}
 
-          <Route path="/login">
-            <Login />
-          </Route>
+          <Route path="/login">{Auth ? <Redirect to="/" /> : <Login />}</Route>
 
           <Route path="/signup">
-            <SignUp />
+            {Auth ? <Redirect to="/" /> : <SignUp />}
           </Route>
 
           {Auth && (
@@ -70,6 +73,13 @@ const Okukus = () => {
               <Order />
             </Route>
           )}
+
+          <Route path="/order/:id">
+            {!Auth ? <Redirect to="/" /> : <Order />}
+          </Route>
+          <Route path="/profile">
+            {!Auth ? <Redirect to="/" /> : <Profile />}
+          </Route>
 
           <Route path="/product/:id">
             <Product />
@@ -98,12 +108,6 @@ const Okukus = () => {
           <Route>
             <NotFound />
           </Route>
-
-          {Auth && <Redirect from="/login" to="/" />}
-          {Auth && <Redirect from="/signup" to="/" />}
-
-          {!Auth && <Redirect from="/order/:id" to="/" />}
-          {!Auth && <Redirect from="/profile" to="/" />}
         </Switch>
       </div>
       <Footer />
