@@ -2,15 +2,56 @@
 
 # dependencies
 /node_modules
+# public
+/src/public/bootstrap.css
 /src/Okukus
-# /src/OkukusPages/files
+/src/OkukusPages/files
 /src/OkukusPages/ternary.js
 /src/OkukusPages/images
+/src/OkukusPages/404/404 copy.js
+/src/OkukusPages/Button/Delete.js
+/src/OkukusPages/Button/Primary.js
+/src/OkukusPages/Button/Save.js
+/src/OkukusPages/Button/Secondary.js
+/src/OkukusPages/Carousel/okuks0.jpg
+/src/OkukusPages/Carousel/okuks1.jpg
+/src/OkukusPages/Carousel/okuks3.jpg
+/src/OkukusPages/Carousel/okuks4.jpg
+/src/OkukusPages/Cart/Cart(offline) copy.js
+/src/OkukusPages/Cart/Cart(offline).js
+/src/OkukusPages/Cart/Item.js
+/src/OkukusPages/Cart/item.css
+/src/OkukusPages/Cart/Item2 copy.js
+
+/src/OkukusPages/Checkout copy 2.js
+/src/OkukusPages/Checkout copy.css
+/src/OkukusPages/Checkout copy.js
+
 /src/OkukusPages/Context
+/src/OkukusPages/Nav/nav.css
+/src/OkukusPages/Nav/Nav.js
+/src/OkukusPages/Nav/Nav2.js
+/src/OkukusPages/Nav/nnav.css
+/src/OkukusPages/Nav/NNav.js
+/src/OkukusPages/Nav/oldNav.js
+/src/OkukusPages/Notify/notify - Copy.js
+/src/OkukusPages/Notify/notify - Copy.css
+
+/src/OkukusPages/Order/Buy.js
+/src/OkukusPages/Order/rough cut
+
+/src/OkukusPages/Product/Dexktop.js
+/src/OkukusPages/Product/jsonplaceholder.js
+/src/OkukusPages/Product/III.text
+/src/OkukusPages/Product/note.js
+/src/OkukusPages/Product/Pagination.js
+/src/OkukusPages/Product/Pagination2.js
+/src/OkukusPages/Product/react-infinite-scroll-hook.txt
+
 /src/OkukusPages/Product/Product(offline).js
 /src/OkukusPages/Product/Products(offline).js
 /src/OkukusPages/Tag/Tag(offline).js
-# /src/OkukusPages/Cart/Cart(offline).js
+/src/OkukusPages/Cart/Cart(offline).js
 /.pnp
 .pnp.js
 
