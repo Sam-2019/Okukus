@@ -16,7 +16,7 @@ const AccountVerify = () => {
   formData.set("url_data", id);
 
   const resource = useAsync(verifyUserAccount, formData);
-  console.log(resource.value);
+
 
   // if (resource.message === "link is valid") {
   //   dontShow(true);
@@ -71,7 +71,7 @@ const NewPassword = ({ email }) => {
     formData.set("confirm_password", confirmPassword);
 
     const data = await userPasswordReset(formData);
-    console.log(data);
+
 
     if (data.data.error === true) {
       setMessage(data.data.message);
