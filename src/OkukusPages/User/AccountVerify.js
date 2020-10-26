@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory,useParams } from "react-router-dom";
 import { useAuthentication } from "../Auth/Context";
 import Message from "../Message/Message";
 import Input from "../Input/Input";
@@ -52,6 +52,9 @@ const NewPassword = ({ email }) => {
   const [confirmPassword, setConfirmPassword] = useState();
 
   const [message, setMessage] = useState();
+  const [error, setError] = useState();
+
+  let history = useHistory();
 
   const reset = () => {
     setNewPassword("");
@@ -72,9 +75,11 @@ const NewPassword = ({ email }) => {
 
     if (data.data.error === true) {
       setMessage(data.data.message);
+      setError(data.data.error);
     } else if (data.data.error === false) {
       reset();
       setMessage(data.data.message);
+      setError(data.data.error);
     }
   };
   return (
@@ -98,7 +103,7 @@ const NewPassword = ({ email }) => {
       {message ? <Message message={message} class_name="message" /> : null}
 
       <div className="button_wrapper ">
-        {data.data.error === true ? (
+        {error === true ? (
           <Button name="Submit" action={updatePassword} class_name="primary" />
         ) : (
           <Button
