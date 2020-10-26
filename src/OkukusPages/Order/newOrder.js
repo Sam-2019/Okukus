@@ -21,8 +21,6 @@ export default Order;
 const Buy = ({ id }) => {
   const { createOrder, uniqueID } = useAuthentication();
 
-  const [orderID, setOrderID] = useState();
-
   const [momo, setMomo] = useState(false);
   const [message, setMessage] = useState("");
   const [display, setDisplay] = useState(false);
@@ -78,7 +76,7 @@ const Buy = ({ id }) => {
         formData.set("payment_method", payment_method);
 
         const data = await createOrder(formData);
-        setOrderID(data.data.order_number);
+  
 
         if (data.data.order_number !== "") {
           localStorage.setItem("orderID", data.data.order_number);

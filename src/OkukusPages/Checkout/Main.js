@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { useAuthentication } from "../Auth/Context";
-import Complete from "./Complete";
 import Message from "../Message/Message";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
@@ -18,22 +17,20 @@ const Checkout = ({ state }) => {
     const [message, setMessage] = useState("");
   
     const [active, setActive] = useState("");
-    const [address, setAddress] = useState(false);
+    // const [address, setAddress] = useState(false);
     const [momoDetails, setMomoDetails] = useState(false);
-    const [addMomo, setAddMomo] = useState(false);
+    // const [addMomo, setAddMomo] = useState(false);
   
     const [location, setLocation] = useState("");
     const [digital_address, setDigitalAddress] = useState("");
     const [phone_number, setPhoneNumber] = useState("");
   
-    const [payment_method, setPaymentMethod] = useState("");
-  
     const [momo_name, setMomoName] = useState("");
     const [momo_number, setMomoNumber] = useState("");
     const [momo_transaction_id, setMomoTransactionID] = useState("");
   
-    const cash = active === "Cash";
-    const momo = active === "Momo";
+    // const cash = active === "Cash";
+    // const momo = active === "Momo";
   
     function cashActivate() {
       setActive("Cash");
@@ -45,19 +42,18 @@ const Checkout = ({ state }) => {
       setMomoDetails(true);
     }
   
-    function showAddress() {
-      setAddress(!address);
-    }
+    // function showAddress() {
+    //   setAddress(!address);
+    // }
   
-    function addMomoAccount() {
-      setAddMomo(!addMomo);
-    }
+    // function addMomoAccount() {
+    //   setAddMomo(!addMomo);
+    // }
   
     const clear = () => {
       setLocation("");
       setDigitalAddress("");
       setPhoneNumber("");
-      setPaymentMethod("");
       setMomoName("");
       setMomoNumber("");
       setMomoTransactionID("");
@@ -67,12 +63,12 @@ const Checkout = ({ state }) => {
     formData.set("buyer_unique_id", uniqueID);
     const cartSummary = useAsync(summaryCart, formData);
   
-    const load = () => {
+    const load = useCallback(() => {
       if (cartSummary.value) {
         setTQty(cartSummary.value.total_quantity);
         setTValue(cartSummary.value.total_amount);
       } else return;
-    };
+    }, [cartSummary.value])
   
     useEffect(() => {
       load();

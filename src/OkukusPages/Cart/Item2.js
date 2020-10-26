@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Button from "../Button/Button";
 import { useAuthentication } from "../Auth/Context";
 import "./item2.css";
@@ -16,14 +16,14 @@ const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {
     await deleteCart(formData);
   };
 
-  const updateItem = async () => {
+  const updateItem = useCallback(async () => {
     var formData = new FormData();
     formData.set("buyer_unique_id", uniqueID);
     formData.set("item_unique_id", id);
     formData.set("item_quantity", qty);
 
     await updateCart(formData);
-  };
+  }, [uniqueID, id, qty, updateCart])
 
   useEffect(() => {
     updateItem();

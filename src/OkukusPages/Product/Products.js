@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import View from "../Container/View/View";
 import Spinner from "../Spinner/Spinner";
 import Button from "../Button/Button";
@@ -18,7 +18,7 @@ const App = () => {
       setOffset(offset + result.data.length);
     };
     fetchData();
-  }, []);
+  }, [offset]);
 
   function load() {
     setLoading(true);
@@ -40,7 +40,6 @@ const App = () => {
     });
   }
 
-  let view;
 
   let content = data.map(
     ({ unique_id, unit_price, product_name, cover_photo_url }) => (
@@ -54,15 +53,6 @@ const App = () => {
     )
   );
 
-  if (data.length === 0) {
-    view = (
-      <>
-        <Spinner />
-      </>
-    );
-  } else {
-    view = <>{content} </>;
-  }
 
   return (
     <>

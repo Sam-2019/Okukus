@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import Button from "../Button/Button";
 import { useHistory } from "react-router-dom";
 import "./404.css";

@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import { useAuthentication } from "../Auth/Context";
 import { useAsync } from "../helpers";
 import Button from "../Button/Button";
-import Message from '../Message/Message'
 
 const Summary = () => {
   const { uniqueID, summaryCart} = useAuthentication();

@@ -1,5 +1,4 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import Item from "./Item2";
 import { useAuthentication } from "../Auth/Context";
 import { useAsync } from "../helpers";
@@ -10,7 +9,6 @@ import "./cart.css";
 
 const Cart = () => {
   const { getCart, uniqueID } = useAuthentication();
-  let history = useHistory();
 
   var formData = new FormData();
   formData.set("buyer_unique_id", uniqueID);
