@@ -74,7 +74,7 @@ function Login() {
           <Button name="Submit" action={updatePassword} class_name="primary" />
         ) : (
           <Button
-            name="Submit"
+            name="Login"
             action={() => {
               history.push("/login");
             }}
