@@ -4,7 +4,7 @@ import { useAuthentication } from "../Auth/Context";
 import { useAsync } from "../helpers";
 import Spinner from "../Spinner/Spinner";
 import Empty from "./Empty Cart";
-import Summary from "../Checkout/Summary";
+import Summary from "../CheckOut/Summary";
 import "./cart.css";
 
 const Cart = () => {
