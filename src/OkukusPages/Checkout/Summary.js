@@ -47,7 +47,7 @@ const Summary = () => {
             name="Check Out"
             class_name="primary"
             action={() => {
-              history.push("/checkout");
+              history.push("/confirm_orders");
             }}
           />
         </div>
