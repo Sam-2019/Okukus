@@ -18,7 +18,6 @@ const Password = () => {
     setCurrentPassword("");
     setNewPassword("");
     setConfirmPassword("");
-    setMessage("");
   };
 
   const updatePassword = async (event) => {
@@ -34,10 +33,11 @@ const Password = () => {
     const data = await updateUserPassword(formData);
 
     if (data.data.error === true) {
+      reset();
       setMessage(data.data.message);
     } else if (data.data.error === false) {
-      setMessage(data.data.message);
       reset();
+      setMessage(data.data.message);
     }
   };
 
@@ -68,11 +68,9 @@ const Password = () => {
           type="password"
           action={(e) => setConfirmPassword(e.target.value)}
         />
+      </div>
 
-   </div>
-
-   {message ? <Message class_name="message " message={message} /> : null}
-   
+      {message ? <Message class_name="message " message={message} /> : null}
 
       <div className="button_wrapper ">
         <Button name="Update" action={updatePassword} class_name="primary" />

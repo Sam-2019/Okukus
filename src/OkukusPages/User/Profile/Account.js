@@ -271,7 +271,7 @@ const OkukusAccount = () => {
         </div>
       </div>
 
-      <div className="address_book">
+      {/* <div className="address_book">
         <div className="profile-header">
           <div>Address Book</div>
 
@@ -314,7 +314,7 @@ const OkukusAccount = () => {
             </div>
           )}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
