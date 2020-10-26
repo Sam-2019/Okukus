@@ -18,7 +18,7 @@ function Login() {
   const email = localStorage.getItem("email");
 
   let history = useHistory();
-  
+
   const reset = () => {
     setNewPassword("");
     setConfirmPassword("");
@@ -37,6 +37,7 @@ function Login() {
 
     if (data.data.error === true) {
       setMessage(data.data.message);
+      setError(data.data.error);
     } else if (data.data.error === false) {
       reset();
     }
