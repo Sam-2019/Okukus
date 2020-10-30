@@ -13,6 +13,20 @@ const Vhistory = ({
   status,
   unique_id,
 }) => {
+  let statusColor;
+
+  if (status === "pending") {
+    statusColor = <small className="_status pending">{status}</small>;
+  } else if (status === "processed" || "shipped") {
+    statusColor = <small className="_status processed_shipped">{status}</small>;
+  } else if (status === "fulfilled") {
+    statusColor = <small className="_status fulfilled">{status}</small>;
+  } else if (status === "fulfilled") {
+    statusColor = <small className="_status cancelled">{status}</small>;
+  } else {
+    statusColor = <small className="">{status}</small>;
+  }
+
   return (
     <div className="order_wrapper ">
       <div className=" image_wrapper  ">
@@ -44,9 +58,7 @@ const Vhistory = ({
             <small className="">{datetime_ordered}</small>
           </div>
 
-          <div className="order_status">
-            <small className="bg-warning">{status}</small>
-          </div>
+          <div className="order_status">{statusColor}</div>
         </div>
       </div>
     </div>

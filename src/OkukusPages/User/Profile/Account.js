@@ -116,7 +116,6 @@ const OkukusAccount = () => {
     formData.set("buyer_email", email);
 
     const data = await verifyCreateEmail(formData);
-    console.log(data);
     if (data.data.error === true) {
       setVerifyMessage(data.data.message);
     } else if (data.data.error === false) {

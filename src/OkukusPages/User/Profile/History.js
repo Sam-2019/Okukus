@@ -32,7 +32,7 @@ const OrderHistory = () => {
         unique_id,
       }) => (
         <Vhistory
-          key={id}
+          key={unique_id}
           id={unique_id}
           amount={amount}
           cover_photo_url={cover_photo_url}

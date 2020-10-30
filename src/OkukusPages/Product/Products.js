@@ -16,7 +16,6 @@ const App = () => {
       setLoading(false);
       setData(result.data);
       setOffset(offset + result.data.length);
-      console.log(offset);
     };
     fetchData();
   }, []);
@@ -37,7 +36,7 @@ const App = () => {
         setOffset(offset + response.data.length);
         setLoading(false);
       }, 100);
-      console.log(offset);
+
 
     });
   }
@@ -53,7 +52,7 @@ const App = () => {
       />
     )
   );
-      console.log(data.length);
+
   return (
     <>
       <div className="products_wrapper">{content}</div>

@@ -9,13 +9,11 @@ const AccountVerify = (props) => {
   const { verifyUserAccount } = useAuthentication();
 
   let id = props.match.params.id;
-  console.log(id);
 
   var formData = new FormData();
   formData.set("url_data", id);
 
   const resource = useAsync(verifyUserAccount, formData);
-  console.log(resource);
 
   return (
     <div className=" user_wrapper">

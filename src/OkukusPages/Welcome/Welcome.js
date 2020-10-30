@@ -88,7 +88,6 @@ const Welcome = () => {
 
   const checkSession = () => {
     let sessionKey = sessionStorage.getItem("key");
-    console.log(sessionKey);
 
     if (sessionKey) {
       setWelcome(false);

@@ -15,7 +15,6 @@ function UserVerify() {
   var formData = new FormData();
   formData.set("url_data", id);
   const resource = useAsync(verifyReadEmail, formData);
-  console.log(resource);
 
   return (
     <div className="user_wrapper">
