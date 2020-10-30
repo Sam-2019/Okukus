@@ -1,46 +1,103 @@
 import React, { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { useAuthentication } from "../Auth/Context";
 import "./welcome.css";
 
-const Message = ({ show }) => {
-  return (
-    <>
-      <div>Welcome to OKUKUS.com</div>
-      <div>Please give us your email wai</div>
+// const Message = ({ show }) => {
+//   const [email, setEmail] = useState("");
 
-      <form onSubmit={show}>
-        <input
-          className="welcome_input"
-          type="email"
-          placeholder="example@gmail.com"
-        />
-        <button className="welcome_button">Send</button>
-      </form>
-    </>
-  );
-};
+//   const { welcomeUser } = useAuthentication();
 
-const Thanks = () => {
-  return <div className="thanks">Thanks</div>;
-};
+//   const clear = () => {
+//     setEmail("");
+//   };
+
+//   const submit = async (event) => {
+//     setEmail();
+//     event.preventDefault();
+//     var formData = new FormData();
+
+//     formData.set("visitor_email", email);
+
+//     const data = await welcomeUser(formData);
+//     console.log(data);
+
+//     if (data.error === true) {
+//     } else {
+//       clear();
+//       show();
+//     }
+//   };
+
+//   return (
+//     <>
+//       <div>Welcome to OKUKUS.com</div>
+//       <div>Please give us your email wai</div>
+
+//       <form onSubmit={submit}>
+//         <input
+//           className="welcome_input"
+//           type="email"
+//           placeholder="example@gmail.com"
+//           onChange={(e) => setEmail(e.target.value)}
+//         />
+//         <button className="welcome_button">Send</button>
+//       </form>
+//     </>
+//   );
+// };
+
+// const Thanks = () => {
+//   return <div className="thanks">Thanks</div>;
+// };
 
 const Welcome = () => {
+  const { welcomeUser } = useAuthentication();
+
   const [welcome, setWelcome] = useState(false);
-
-  const [message, setMessage] = useState(false);
-
-  const show = () => {
-    console.log("hi");
-    setMessage(true);
-  };
+  const [message, setMessage] = useState();
+  const [email, setEmail] = useState("");
+  const number = uuidv4();
 
   const close = () => {
     setWelcome(false);
   };
 
+  const clear = () => {
+    setEmail("");
+  };
+
+  const submit = async (event) => {
+    setEmail();
+    event.preventDefault();
+    var formData = new FormData();
+
+    formData.set("visitor_email", email);
+
+    const data = await welcomeUser(formData);
+    console.log(data);
+
+    if (data.error === true) {
+      return;
+    } else if (data.data.message) {
+      setMessage(data.data.message);
+      clear();
+      sessionStorage.setItem("key", number);
+    }
+  };
+
+  const checkSession = () => {
+    let sessionKey = sessionStorage.getItem("key");
+
+    if (sessionKey) {
+      setWelcome(true);
+    } else return;
+  };
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      setWelcome(false);
-    }, 1000);
+      checkSession();
+    }, 3000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -87,8 +144,25 @@ const Welcome = () => {
               </div>
             </div>
 
-            <div className="welcome_message ">
-              {message ? <Thanks /> : <Message show={show} close={close} />}
+            <div className="welcome_message  ">
+              {message ? (
+                <>{message}</>
+              ) : (
+                <>
+                  <div>Welcome to OKUKUS.com</div>
+                  <div>Please give us your email wai</div>
+
+                  <form onSubmit={submit}>
+                    <input
+                      className="welcome_input"
+                      type="email"
+                      placeholder="example@gmail.com"
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <button className="welcome_button">Send</button>
+                  </form>
+                </>
+              )}
             </div>
           </div>
         </div>

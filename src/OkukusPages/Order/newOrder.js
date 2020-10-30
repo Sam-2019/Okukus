@@ -32,7 +32,7 @@ const Buy = ({ id }) => {
   const [location, setLocation] = useState("");
   const [digital_address, setDigitalAddress] = useState("");
   const [phone_number, setPhoneNumber] = useState("");
-  
+
   const [payment_method, setPaymentMethod] = useState("");
 
   const [momo_name, setMomoName] = useState("");
@@ -76,15 +76,16 @@ const Buy = ({ id }) => {
         formData.set("payment_method", payment_method);
 
         const data = await createOrder(formData);
-  
+        console.log(data);
 
-        if (data.data.order_number !== "") {
+        if (data.data.error) {
+          return;
+        } else if (data.data.order_number !== "") {
           localStorage.setItem("orderID", data.data.order_number);
 
           clear();
+          confirm();
         } else return;
-
-        confirm();
       } else setMessage("Please fill above");
     } else if (payment_method === "momo") {
       let empty =
@@ -108,12 +109,18 @@ const Buy = ({ id }) => {
         formData.set("momo_transaction_id", momo_transaction_id);
 
         const data = await createOrder(formData);
+        console.log(data);
 
-        if (data.data.order_number !== "") {
+        if (data.data.error) {
+          return;
+        } else if (data.data.order_number !== "") {
           localStorage.setItem("orderID", data.data.order_number);
+
           clear();
+          confirm();
         } else return;
-        confirm();
+
+   
       } else {
         setMessage("Please fill below");
         setMomoDisplay(!momoDisplay);

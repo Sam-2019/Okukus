@@ -40,3 +40,5 @@ export const cartSummary = `${okukus}/${dev_site}/read_cart_summary.php`;
 export const orderCreate = `${okukus}/${dev_site}/create_order.php`;
 export const orderHistory = `${okukus}/${dev_site}/get_order_history.php`;
 export const orderDetail = `${okukus}/${dev_site}/get_order_details.php`;
+
+export const userWelcome = `${okukus}/${dev_site}/create_newsletter_subscription.php`;

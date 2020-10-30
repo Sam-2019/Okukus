@@ -78,7 +78,7 @@ const Navigation = () => {
               </svg>
             </div>
           ) : (
-            <div className="profile">Login</div>
+            <div className="profile ">Login</div>
           )}
         </div>
 

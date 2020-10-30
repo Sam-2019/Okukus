@@ -2,10 +2,16 @@ import React from "react";
 import { okukus } from "../../apis";
 
 const Vhistory = ({
-  product_name,
   cover_photo_url,
-  unit_price,
-  datetime_created,
+  amount,
+  datetime_ordered,
+  id,
+  order_number,
+  product_author,
+  product_name,
+  product_unique_id,
+  status,
+  unique_id,
 }) => {
   return (
     <div className="order_wrapper ">
@@ -25,21 +31,21 @@ const Vhistory = ({
         <div className="  ">
           <div className=" " hidden>
             <span className="order-qty">1 x </span>
-            <span> $40</span>
+            <span> ₵40</span>
           </div>
 
           <div className="order_price">
-            <span>${unit_price}</span>
+            <span>₵{amount}</span>
           </div>
         </div>
 
         <div className="order_date_status">
           <div className=" date">
-            <small className="">{datetime_created}</small>
+            <small className="">{datetime_ordered}</small>
           </div>
 
           <div className="order_status">
-            <small className="bg-warning">pending</small>
+            <small className="bg-warning">{status}</small>
           </div>
         </div>
       </div>

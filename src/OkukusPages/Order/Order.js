@@ -5,7 +5,7 @@ import "./order.css";
 
 const Order = (props) => {
   const [state, setState] = useState(false);
-  const [confirm, setConfirm] = useState(0);
+  const [confirm, setConfirm] = useState();
   let id = props.match.params.id;
 
   const doneShopping = () => {

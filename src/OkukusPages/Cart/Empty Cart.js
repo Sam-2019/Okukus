@@ -1,8 +1,10 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { useAuthentication } from "../Auth/Context";
 import Button from "../Button/Button";
 
 const EmptyCart = () => {
+  const { Auth } = useAuthentication();
   let history = useHistory();
   return (
     <div className="empty_cart">
@@ -24,9 +26,13 @@ const EmptyCart = () => {
       <div className=" empty_cart_message">
         <div>Your cart is empty!.</div>
 
-        <div>Already have an account?</div>
+        {Auth ? null : (
+          <>
+            <div>Already have an account?</div>
 
-        <div>Login to see items in your cart.</div>
+            <div>Login to see items in your cart.</div>
+          </>
+        )}
       </div>
 
       <Button

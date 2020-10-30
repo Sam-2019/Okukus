@@ -29,6 +29,8 @@ import {
   orderCreate,
   orderHistory,
   orderDetail,
+
+  userWelcome
 } from "../apis";
 import { axiosMethod } from "../helpers";
 
@@ -216,6 +218,11 @@ const Authentication = () => {
     return detailorder;
   };
 
+  const welcomeUser = async (formData) => {
+    const welcomeuser = await axiosMethod(userWelcome, formData);
+    return welcomeuser;
+  };
+
   useEffect(() => {
     const unsubscribe = isLoggedIn((loginToken) => {
       if (loginToken) {
@@ -269,7 +276,9 @@ const Authentication = () => {
     lastName,
     email,
     uniqueID,
-    verfifcationStatus
+    verfifcationStatus,
+
+    welcomeUser
   };
 };
 

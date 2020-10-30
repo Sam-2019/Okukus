@@ -14,26 +14,35 @@ const OrderHistory = () => {
   formData.set("buyer_unique_id", uniqueID);
 
   const resource = useAsync(historyOrder, formData);
+  console.log(resource);
 
   let content;
 
   if (resource.value) {
     content = resource.value.map(
       ({
-        id,
-        unique_id,
-        product_name,
         cover_photo_url,
-        unit_price,
-        datetime_created,
+        amount,
+        datetime_ordered,
+        id,
+        order_number,
+        product_author,
+        product_name,
+        product_unique_id,
+        status,
+        unique_id,
       }) => (
         <Vhistory
           key={id}
           id={unique_id}
-          unit_price={unit_price}
+          amount={amount}
           cover_photo_url={cover_photo_url}
           product_name={product_name}
-          datetime_created={datetime_created}
+          datetime_ordered={datetime_ordered}
+          order_number={order_number}
+          product_author={product_author}
+          product_unique_id={product_unique_id}
+          status={status}
         />
       )
     );

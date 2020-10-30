@@ -40,6 +40,7 @@ function Login() {
       setError(data.data.error);
     } else if (data.data.error === false) {
       reset();
+      localStorage.removeItem("email");
     }
   };
 
