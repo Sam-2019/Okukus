@@ -75,7 +75,7 @@ const Welcome = () => {
     formData.set("visitor_email", email);
 
     const data = await welcomeUser(formData);
-    console.log(data);
+
 
     if (data.error === true) {
       return;

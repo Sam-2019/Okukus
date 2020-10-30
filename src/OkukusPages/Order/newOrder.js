@@ -76,7 +76,6 @@ const Buy = ({ id }) => {
         formData.set("payment_method", payment_method);
 
         const data = await createOrder(formData);
-        console.log(data);
 
         if (data.data.error) {
           return;
@@ -109,7 +108,7 @@ const Buy = ({ id }) => {
         formData.set("momo_transaction_id", momo_transaction_id);
 
         const data = await createOrder(formData);
-        console.log(data);
+
 
         if (data.data.error) {
           return;
