@@ -88,11 +88,11 @@ const Welcome = () => {
 
   const checkSession = () => {
     let sessionKey = sessionStorage.getItem("key");
-    console.log(sessionKey)
+    console.log(sessionKey);
 
     if (sessionKey) {
-      setWelcome(true);
-    } else return;
+      setWelcome(false);
+    } else setWelcome(true);
   };
 
   useEffect(() => {
