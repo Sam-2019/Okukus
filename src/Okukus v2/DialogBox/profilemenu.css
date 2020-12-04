@@ -1,0 +1,51 @@
+.profile_menu {
+  position: absolute;
+  top: 55px;
+  z-index: 9;
+  right: 1%;
+  color: #282828;
+  transition: margin 0.5s;
+  -webkit-transition: all ease-in-out 0.5s;
+  transition: all ease-in-out 0.5s;
+  word-wrap: break-word;
+  padding: 2px;
+   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.222) !important;
+  background-color: #00ff55;
+  text-align: center;
+  width: 10em;
+  font-weight: 500;
+
+}
+
+.menu_item {
+  padding: 12px 1em;
+  border: 1px solid #00ff55;
+  background-color: #ffffff;
+  cursor: default;
+  font-size: 17px;
+}
+
+.menu_item:hover {
+  text-decoration: none;
+}
+
+.menu_item:active {
+  transform: scale(0.95);
+}
+
+.menu_item:focus {
+}
+
+@media (max-width: 540px) {
+  .profile_menu {
+    top: 3em;
+    width: 10em;
+  }
+}
+
+@media (max-width: 280px) {
+  .profile_menu {
+    top: 2.6em;
+    width: 10em;
+  }
+}

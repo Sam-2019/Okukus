@@ -1,0 +1,49 @@
+import React, { useState, useEffect } from 'react'
+
+const fetchUsers = (limit, skip) => {
+    // Make sure you send 'limit' and 'skip' as query parameters to your node.js server
+    fetch(`/api/users?limit=${limit}&skip=${skip}`) 
+        .then((res) => {
+            this.setState({
+                users: res.data;
+            })
+        })
+}
+
+const userList = () => {
+
+    const [users, setUsers] = useState([]);
+    const [limit, setLimit] = useState(20);
+    const [skip, setSkip] = useState(0);
+
+    const nextPage = () => {
+        setSkip(skip + limit)
+    }
+
+    const previousPage = () => {
+        setSkip(skip - limit)
+    }
+
+    useEffect(() => {
+        fetchUsers(limit, skip)
+    }, [skip, limit])
+
+
+    return (<div> 
+        <div> 
+            { 
+                users.map(user => 
+                    <div> 
+                        <span> { user.name } </span>
+                        <span> { user.email } </span>
+                        <span> { user.lastLogin } </span>
+                    </div>
+                )
+            }
+        </div>
+        <div> 
+            <div onClick={nextPage}> Previous Page </div>
+            <div onClick={previousPage}> Next Page </div> 
+        </div>
+    </div>)
+}

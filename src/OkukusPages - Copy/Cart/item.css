@@ -1,0 +1,148 @@
+
+
+.cart_item_wrapper {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0.5em;
+  margin: 0 0em 0.6em 0em;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  border: 0.4px solid #7f7f7f57;
+  border-radius: 0.25em;
+}
+
+.cart_image_wrapper {
+  width: 10%;
+  text-align: center;
+}
+
+.cart_image {
+  width: 40px;
+}
+
+.cart_item_name {
+  width: 23%;
+  text-align: center;
+  font-size: auto;
+}
+
+.cart_item_detail {
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0em 0em 0em 0em;
+  align-items: center;
+}
+
+.cart_item_price {
+}
+
+.adjust_qty {
+  display: flex;
+  align-items: center;
+}
+
+.cart_button {
+  border-radius: 50%;
+  border: 1px solid #00d919;
+  background-color: transparent;
+  color: transparent;
+  font-size: 20px;
+  transition: transform 80ms ease-in;
+  width: auto;
+  align-items: baseline;
+  font-weight: 500;
+}
+
+.cart_button:active {
+  transform: scale(0.95);
+}
+
+.cart_button:focus {
+  outline: none;
+}
+
+.cart_button {
+  background-color: transparent;
+  border-color: #ffffff;
+}
+
+.subtract {
+  background-color: #00d91920;
+  color: #777777;
+  padding: 1px 12px;
+  text-align: center;
+}
+
+.cart_item_qty {
+  background-color: #eee;
+  border: 1px solid transparent;
+  outline: none;
+  border-radius: 5px;
+  text-align: center;
+  width: 4em;
+}
+
+.cart_item_qty:hover,
+.cart_item_qty:focus {
+  border: 1px solid #00d919;
+  -webkit-transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.3s;
+}
+
+.cart_item_qty:active {
+  border: 1px solid #00d919;
+  -webkit-transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.3s;
+}
+
+.add {
+  background-color: #00d91930;
+  color: #777777;
+  padding: 1px 10px;
+  text-align: center;
+}
+
+.cart_actions {
+  width: auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+@media (max-width: 540px) {
+  .cart_image_wrapper {
+    width: 17%;
+  }
+
+  .cart_itemwrapper {
+    display: none;
+  }
+
+  .cart_item_name {
+    width: 80%;
+  }
+
+  .cart_item_detail {
+    width: 100%;
+    margin: 0.2em 0;
+    justify-content: space-around;
+  }
+
+  .cart_item_qty {
+    width: 2.5em;
+    margin: 0 0;
+  }
+
+  .cart_actions {
+    width: 100%;
+    order: 0;
+    justify-content: space-evenly;
+    margin: auto;
+  }
+
+  .cart_button {
+    width: 100%;
+  }
+}
