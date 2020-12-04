@@ -1,0 +1,29 @@
+.user_wrapper {
+  padding: 0.5em;
+  margin: 1em 0;
+}
+
+.user_form {
+  text-align: center;
+}
+
+.forgotten_password_wrapper {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.forgotten_password {
+  color: #6495ed;
+  cursor: default;
+}
+
+.forgotten_password:hover,
+.forgotten_password:focus {
+  color: #007bff;
+}
+
+@media (max-width: 540px) {
+  .user_wrapper {
+    padding: 0.5em;
+  }
+}

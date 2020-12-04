@@ -1,0 +1,112 @@
+.back {
+  font-size: 2.1em;
+  padding: 2.5px 10px;
+  background-color: transparent;
+  border: 1px solid #00d919;
+  border-radius: 50%;
+  color: #666666;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+  border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.back:hover,
+.back:focus {
+  font-size: 2.1em;
+  padding: 2.5px 10px;
+  background-color: #00d919;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  color: #ffffff;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.main {
+  background-color: #ffffff;
+  color: #000000;
+  font-weight: 350;
+  -webkit-transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.3s;
+  padding: 1em 1em;
+}
+
+.backdrop {
+  background-color: #3a3a3ae0;
+}
+
+.selector-link{
+  text-decoration: none;
+  color: #666666;
+
+}
+
+.selector-link:hover{
+  text-decoration: none;
+  color: #fafafa;
+}
+
+.selector-link:focus{
+  text-decoration: none;
+  color: #00d919;
+}
+
+.selector-link:active{
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.selector {
+  background-color: #00d91913;
+  border: 1px solid #00d91913;
+  padding: 2.5px 10px;
+  border-radius: 0.5rem;
+  color: #777777;
+  margin: 8px 0;
+  width: 100%;
+  outline: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+  border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.selector:hover,
+.selector:focus {
+  background-color: #00d919;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  padding: 2.5px 10px;
+  border-radius: 0.5rem;
+  margin: 8px 0;
+  width: 100%;
+  outline: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+  border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.selector:active {
+
+  color: #003cff;
+
+}
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+  .main {
+    background-color: #ffffff;
+    color: #000000;
+    font-weight: 350;
+    -webkit-transition: all ease-in-out 0.3s;
+    transition: all ease-in-out 0.3s;
+  }
+
+  .backdrop {
+    background-color: transparent;
+  }
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+}

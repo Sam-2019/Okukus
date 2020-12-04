@@ -1,0 +1,41 @@
+.confirm_wrapper {
+  padding: 0.5em;
+  text-align: center;
+  margin: 1em 0;
+}
+
+.order_placed {
+  font-size: 21px;
+}
+
+.confirm {
+  margin: 10px 0 8px 0;
+}
+
+.confirm_name {
+  font-size: 18px;
+}
+
+.orderID {
+  color: #00d919;
+  font-size: 18px;
+}
+
+._confirm {
+  text-align: justify;
+  margin: 0.5em 0 0.5em 0;
+}
+
+@media (max-width: 540px) {
+  .confirm_wrapper {
+    text-align: justify;
+  }
+
+  .order_placed {
+    font-size: 26px;
+  }
+
+  ._confirm {
+    font-size: 25px;
+  }
+}
