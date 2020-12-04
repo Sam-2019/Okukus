@@ -6,11 +6,12 @@ import Button from "../Button/Button";
 import Message from "../Message/Message";
 import "./user.css";
 
-function Login() {
+function NewPassword() {
   const { updateUserPassword } = useAuthentication();
+  const [loading, setLoading] = useState(false);
 
-  const [newPassword, setNewPassword] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [message, setMessage] = useState("");
   const [error, setError] = useState();
@@ -29,44 +30,55 @@ function Login() {
     event.preventDefault();
     var formData = new FormData();
 
-    formData.set("buyer_unique_id", email);
-    formData.set("new_password", newPassword);
-    formData.set("confirm_password", confirmPassword);
+    let empty = newPassword && confirmPassword;
 
-    const data = await updateUserPassword(formData);
+    if (empty !== "") {
+      setLoading(true);
+      formData.set("buyer_unique_id", email);
+      formData.set("new_password", newPassword);
+      formData.set("confirm_password", confirmPassword);
 
-    if (data.data.error) {
-      setMessage(data.data.message);
-      setError(data.data.error);
-    } else if (data.data.error === false) {
-      reset();
-      localStorage.removeItem("email");
-    }
+      const data = await updateUserPassword(formData);
+      console.log(data);
+
+      if (data.error === true) {
+        setMessage(data.message);
+        setError(data.error);
+        setLoading(false);
+      } else if (data.error === false) {
+        reset();
+        localStorage.removeItem("email");
+        setLoading(false);
+      }
+    } else if (empty === "") {
+      setMessage("Please fill the form");
+    } else return;
   };
 
   return (
     <div className=" user_wrapper">
       <div className="page_title">Reset Password</div>
 
-      <div>
-        <Input
-          class_name="input "
-          placeholder="New Password"
-          content={newPassword}
-          type="password"
-          action={(e) => setNewPassword(e.target.value)}
-        />
+      <div className='wrapper-test'>
+      <Input
+        class_name="input "
+        placeholder="New Password"
+        content={newPassword}
+        type="password"
+        action={(e) => setNewPassword(e.target.value)}
+      />
 
-        <Input
-          class_name="input "
-          placeholder="Confirm Password"
-          content={confirmPassword}
-          type="password"
-          action={(e) => setConfirmPassword(e.target.value)}
-        />
+      <Input
+        class_name="input "
+        placeholder="Confirm Password"
+        content={confirmPassword}
+        type="password"
+        action={(e) => setConfirmPassword(e.target.value)}
+      />
+
+      <div className="message_wrapper ">
+        {message ? <Message message={message} class_name="message" /> : null}
       </div>
-
-      {message ? <Message message={message} class_name="message" /> : null}
 
       <div className="button_wrapper ">
         {error ? (
@@ -78,11 +90,19 @@ function Login() {
             class_name="primary"
           />
         ) : (
-          <Button name="Submit" action={updatePassword} class_name="primary" />
+          <Button
+            name="Submit"
+            action={updatePassword}
+            class_name="primary"
+            loading={loading}
+          />
         )}
       </div>
+      </div>
+
+
     </div>
   );
 }
 
-export default Login;
+export default NewPassword;

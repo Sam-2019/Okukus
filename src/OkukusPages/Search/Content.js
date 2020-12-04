@@ -1,18 +1,18 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import View from "../Container/View/View";
 import { useAuthentication } from "../Auth/Context";
 import Spinner from "../Spinner/Spinner";
 import { useAsync } from "../helpers";
 import "./search.css";
 
-const Content = (props) => {
+const Content = () => {
   const { searchItem } = useAuthentication();
 
-  let { id } = useParams();
+  let query = new URLSearchParams(useLocation().search).get("q");
 
   var formData = new FormData();
-  formData.set("search_phrase", id);
+  formData.set("search_phrase", query);
   const resource = useAsync(searchItem, formData);
 
   let content;
@@ -32,10 +32,11 @@ const Content = (props) => {
 
   return (
     <div className="search_wrapper   ">
-      <div className="page_title">Search Results for "{id}"</div>
+      <div className="page_title">Search Results for "{query}"</div>
+
       <div>
         {resource.loading ? (
-          <Spinner />
+          <Spinner size="big" />
         ) : resource.message === "no orders found" ? (
           <div className="">No orders found</div>
         ) : (

@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { useAuthentication } from "../../Auth/Context";
 import { useAsync } from "../../helpers";
-import Vhistory from "../../Container/View/V-history";
+import Vhistory from "../../Container/View/OrderHistory";
 import Spinner from "../../Spinner/Spinner";
 import Button from "../../Button/Button";
 import "./history.css";
@@ -14,43 +14,18 @@ const OrderHistory = () => {
   formData.set("buyer_unique_id", uniqueID);
 
   const resource = useAsync(historyOrder, formData);
+  // console.log(JSON.stringify(resource.value));
 
   let content;
 
   if (resource.value) {
-    content = resource.value.map(
-      ({
-        cover_photo_url,
-        amount,
-        datetime_ordered,
-        id,
-        order_number,
-        product_author,
-        product_name,
-        product_unique_id,
-        status,
-        unique_id,
-      }) => (
-        <Vhistory
-          key={unique_id}
-          id={unique_id}
-          amount={amount}
-          cover_photo_url={cover_photo_url}
-          product_name={product_name}
-          datetime_ordered={datetime_ordered}
-          order_number={order_number}
-          product_author={product_author}
-          product_unique_id={product_unique_id}
-          status={status}
-        />
-      )
-    );
+    content = resource.value.map((items, i) => <Vhistory key={i} {...items} />);
   }
 
   return (
     <div>
       {resource.loading ? (
-        <Spinner />
+        <Spinner size="big" />
       ) : resource.message === "no orders found" ? (
         <NoContent />
       ) : (

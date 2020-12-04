@@ -46,7 +46,7 @@ const NavHandler = () => {
 
 const Navigation = ({ hamburger, showAlert }) => {
   const ref = useRef();
-  const { Auth, countCart, uniqueID, logoutUser } = useAuthentication();
+  const { countCart, uniqueID, logoutUser, Auth } = useAuthentication();
   const [menu, setMenu] = useState(false);
 
   useOnClickOutside(ref, () => setMenu(false));
@@ -63,9 +63,9 @@ const Navigation = ({ hamburger, showAlert }) => {
 
   return (
     <header>
-      <nav className="nav_header  ">
-        <div className=" one">
-          <div className=" justify" onClick={hamburger}>
+      <nav className="nav_header   ">
+        <div className=" one ">
+          <div className=" justify " onClick={hamburger}>
             <svg
               viewBox="0 0 16 16"
               className="bi bi-justify navIcon "
@@ -79,14 +79,14 @@ const Navigation = ({ hamburger, showAlert }) => {
             </svg>
           </div>
 
-          <div className="  insider2">
+          <div className="  insider2 ">
             <NavLink to="/" activeClassName=" home">
               OKUKUS
             </NavLink>
           </div>
         </div>
 
-        <div className="two ">
+        <div className="two  ">
           <div className="cartIcon  " onClick={() => history.push("/cart")}>
             <svg
               viewBox="0 0 16 16"
@@ -111,48 +111,46 @@ const Navigation = ({ hamburger, showAlert }) => {
             </span>
           </div>
 
-          {Auth ? (
-            <>
-              <div className=" profile " onClick={() => setMenu(!menu)}>
-                <svg
-                  viewBox="0 0 16 16"
-                  className="bi bi-person-circle navIcon"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
-                  <path
-                    fillRule="evenodd"
-                    d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-                  />
-                  <path
-                    fillRule="evenodd"
-                    d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"
-                  />
-                </svg>
-              </div>
-
-              {menu ? (
-                <div ref={ref}>
-                  <ProfileMenu
-                    logout={logoutUser}
-                    showMenu={() => {
-                      setMenu(!menu);
-                    }}
-                  />
-                </div>
-              ) : null}
-            </>
-          ) : (
-            <div
-              className="profile"
-              onClick={() => {
-                history.push("/login");
-              }}
-            >
-              Login
+          <>
+            <div className=" profile " onClick={() => setMenu(!menu)}>
+              <svg
+                viewBox="0 0 16 16"
+                className="bi bi-person-circle navIcon"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
+                <path
+                  fillRule="evenodd"
+                  d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+                />
+                <path
+                  fillRule="evenodd"
+                  d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"
+                />
+              </svg>
             </div>
-          )}
+
+            {menu ? (
+              <div ref={ref}>
+                <ProfileMenu
+                  logout={logoutUser}
+                  showMenu={() => {
+                    setMenu(!menu);
+                  }}
+                />
+              </div>
+            ) : null}
+          </>
+
+          <div
+            className="profile"
+            onClick={() => {
+              history.push("/login");
+            }}
+          >
+            Login
+          </div>
         </div>
 
         <div className="three ">

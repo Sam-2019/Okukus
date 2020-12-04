@@ -9,6 +9,7 @@ import "./user.css";
 function Login() {
   const { loginUser, isLoggedIn } = useAuthentication();
 
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -25,23 +26,38 @@ function Login() {
     event.preventDefault();
     var formData = new FormData();
 
-    formData.set("email", email);
-    formData.set("password", password);
+    let empty = email && password;
+    if (empty !== "") {
+      setLoading(true);
+      formData.set("email", email);
+      formData.set("password", password);
+      
+      const data = await loginUser(formData);
+      console.log(data);
 
-    const data = await loginUser(formData);
+      if (data.error === true) {
+        setMessage(data.message);
+        setLoading(false);
+      } else if (data.error === false) {
+        localStorage.setItem("loginToken", data.token);
+        isLoggedIn();
+        clearLogin();
+        setLoading(false);
+      } else return;
+    } else if (empty === "") {
 
-    if (data.error === true) {
-      setMessage(data.message);
-    } else {
-      localStorage.setItem("loginToken", data.token);
-      isLoggedIn();
-      clearLogin();
-    }
+      setMessage("Please fill the form");
+    } else return;
   };
 
   return (
     <div className=" user_wrapper ">
       <div className="page_title">Sign In</div>
+
+      <div className='wrapper-test '>
+
+
+
 
       <Input
         type="email"
@@ -66,7 +82,7 @@ function Login() {
           <span
             className="forgotten_password  "
             onClick={() => {
-              history.push("/reset");
+              history.push("/account/reset");
             }}
           >
             Password forgotten?
@@ -75,7 +91,12 @@ function Login() {
       )}
 
       <div className="button_wrapper ">
-        <Button class_name="primary" action={logIn} name="Sign in" />
+        <Button
+          class_name="primary"
+          action={logIn}
+          loading={loading}
+          name="Sign in"
+        />
 
         <Button
           class_name="secondary"
@@ -84,6 +105,7 @@ function Login() {
           }}
           name="Sign up"
         />
+      </div>
       </div>
     </div>
   );

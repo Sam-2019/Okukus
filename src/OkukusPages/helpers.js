@@ -54,21 +54,28 @@ export const useAsync = (getMethod, data) => {
     const result = await getMethod(data);
 
     if (result.data.error === true) {
-      setSuccess(result.status);
-      setMessage(result.data.message);
-      setValue(null);
-      setLoading(false);
+      setTimeout(() => {
+        setError(result.data.error);
+        setSuccess(result.status);
+        setMessage(result.data.message);
+        setLoading(false);
+        setValue(null);
+      }, 1000);
     } else if (result.data.error === false) {
-      setValue(result.data.data);
-      setLoading(false);
-      setMessage(result.data.message);
-      setError(null);
+      setTimeout(() => {
+        setValue(result.data.data);
+        setLoading(false);
+        setSuccess(result.status);
+        setMessage(result.data.message);
+        setError(null);
+      }, 1000);
     }
   }, [data, getMethod]);
 
   useEffect(() => {
     fetchData();
   }, [fetchData]);
+
 
   return { value, message, error, loading, success };
 };
@@ -83,11 +90,16 @@ export const useAsyncc = (getMethod) => {
     const result = await getMethod();
 
     if (result.status !== 200) {
-      setError(result.status);
+
+        setLoading(false);
+        setError(result.status);
+
     } else {
-      setSuccess(result.status);
-      setValue(result.data);
-      setLoading(false);
+
+        setSuccess(result.status);
+        setValue(result.data);
+        setLoading(false);
+
     }
   }, [getMethod]);
 

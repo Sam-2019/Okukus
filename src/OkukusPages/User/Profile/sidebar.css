@@ -7,9 +7,9 @@
 }
 
 .sidebarbtn {
-  padding: 3px 0;
+  padding: 4px 0;
   background-color: #00d91913;
-  border: 1px solid #00d91913;
+  border: 1px #00d91913;
   border-radius: 0;
   width: 100%;
   outline: none;
@@ -50,6 +50,7 @@
   }
 
   .sidelist {
+    padding: 10px 7px 2px;
   }
 
   .sidebarbtn {

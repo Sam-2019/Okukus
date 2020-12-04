@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Addressedit from "./Edit/Address_Edit";
 import { useAuthentication } from "../../Auth/Context";
 import Button from "../../Button/Button";
 import Input from "../../Input/Input";
@@ -19,13 +18,16 @@ const OkukusAccount = () => {
   } = useAuthentication();
   const [detailedit, setdetailedit] = useState(false);
   const [emailedit, setemailedit] = useState(false);
-  const [addressedit, setaddressedit] = useState(false);
 
-  const [first_name, setFirstName] = useState();
-  const [last_name, setLastName] = useState();
-  const [e_mail, setEmail] = useState();
+  const [loading1, setLoading1] = useState(false);
+  const [loading2, setLoading2] = useState(false);
+  const [loading3, setLoading3] = useState(false);
 
-  const [message, setMessage] = useState();
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
+  const [e_mail, setEmail] = useState("");
+
+  const [message, setMessage] = useState("");
   const [verifyMessage, setVerifyMessage] = useState();
 
   const submitDetail = () => {
@@ -39,71 +41,73 @@ const OkukusAccount = () => {
     setEmail("");
   };
 
-  const submitAddress = () => {
-    setaddressedit(false);
-  };
-
   const cancelDetail = () => {
     setdetailedit(false);
     setFirstName("");
     setLastName("");
     setMessage("");
+    setLoading1(false);
   };
 
   const cancelEmail = () => {
     setemailedit(false);
     setEmail("");
     setMessage("");
-  };
-
-  const cancelAddress = () => {
-    setaddressedit(false);
+    setLoading2(false);
   };
 
   const updateDetail = async (event) => {
     setMessage("");
     event.preventDefault();
 
-    let empty = firstName && lastName;
-    if (empty !== "") {
-      setMessage("please complete the forms");
-    } else {
-      var formData = new FormData();
+    var formData = new FormData();
 
+    let empty = first_name && last_name;
+    if (empty !== "") {
+      setLoading1(true);
       formData.set("buyer_unique_id", uniqueID);
       formData.set("firstname", first_name);
       formData.set("lastname", last_name);
 
       const data = await updateUserProfile(formData);
-      if (data.data.error === true) {
-        setMessage(data.data.message);
-      } else if (data.data.error === false) {
+      if (data.error === true) {
+        setMessage(data.message);
+        setLoading1(false);
+      } else if (data.error === false) {
         submitDetail();
-        setMessage("");
+        setMessage(data.message);
+        setLoading1(false);
       }
-    }
+    } else if (empty === "") {
+      setMessage("Please fill the form");
+    } else return;
   };
 
   const updateEmail = async (event) => {
     event.preventDefault();
-
     setMessage("");
-    let empty = e_mail;
-    if (empty !== "") {
-      setMessage("please complete the form");
-    } else {
-      var formData = new FormData();
 
+    var formData = new FormData();
+
+    let empty = e_mail;
+
+    if (empty !== "") {
+      setLoading2(true);
       formData.set("buyer_unique_id", uniqueID);
       formData.set("email", e_mail);
 
       const data = await updateUserEmail(formData);
-      if (data.data.error === true) {
-        setMessage(data.data.message);
-      } else if (data.data.error === false) {
+      console.log(data);
+      if (data.error === true) {
+        setMessage(data.message);
+        setLoading2(false);
+      } else if (data.error === false) {
         submitEmail();
+        setLoading2(false);
       }
-    }
+    } else if (empty === "") {
+      setMessage("Please fill the form");
+    } else return;
   };
 
   const verifyAccount = async (event) => {
@@ -113,14 +117,25 @@ const OkukusAccount = () => {
 
     var formData = new FormData();
 
-    formData.set("buyer_email", email);
+    let empty = email;
 
-    const data = await verifyCreateEmail(formData);
-    if (data.data.error === true) {
-      setVerifyMessage(data.data.message);
-    } else if (data.data.error === false) {
-      setVerifyMessage(data.data.message);
-    }
+    if (empty !== "") {
+      setLoading3(true);
+      formData.set("buyer_email", email);
+
+      const data = await verifyCreateEmail(formData);
+      console.log(data);
+
+      if (data.error === true) {
+        setVerifyMessage(data.message);
+        setLoading3(false);
+      } else if (data.error === false) {
+        setVerifyMessage(data.message);
+        setLoading3(false);
+      } else return;
+    } else if (empty === "") {
+      setMessage("User email empty");
+    } else return;
   };
 
   return (
@@ -159,6 +174,7 @@ const OkukusAccount = () => {
                     name="Update"
                     action={updateDetail}
                     class_name="primary"
+                    loading={loading1}
                   />
                   <Button
                     name="Cancel"
@@ -179,7 +195,6 @@ const OkukusAccount = () => {
                   onClick={() => {
                     setdetailedit(true);
                     setemailedit(false);
-                    setaddressedit(false);
                   }}
                   viewBox="0 0 16 16"
                   className="bi bi-pencil-square"
@@ -215,6 +230,7 @@ const OkukusAccount = () => {
                     name="Update"
                     action={updateEmail}
                     class_name="primary"
+                    loading={loading2}
                   />
                   <Button
                     name="Cancel"
@@ -233,7 +249,6 @@ const OkukusAccount = () => {
                   onClick={() => {
                     setemailedit(true);
                     setdetailedit(false);
-                    setaddressedit(false);
                   }}
                   viewBox="0 0 16 16"
                   className="bi bi-pencil-square"
@@ -252,15 +267,19 @@ const OkukusAccount = () => {
 
           <div className="">
             {verifyMessage ? (
-              <Message class_name="message " message={verifyMessage} />
+              <Message
+                class_name="message "
+                message={verifyMessage}
+                loading={loading3}
+              />
             ) : null}
 
             <div className="button_wrapper ">
               {verfifcationStatus ? (
-                <Button name="   Account Verified" class_name="secondary" />
+                <Button name="Account Verified" class_name="secondary" />
               ) : (
                 <Button
-                  name="      Verify Account"
+                  name="Verify Account"
                   action={verifyAccount}
                   class_name="primary"
                 />

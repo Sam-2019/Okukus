@@ -30,7 +30,7 @@ const Footer = () => {
             <br />
             Community 1, Site 4, F7 Tema
             <br />
-            <span className="d-none d-sm-block ">+23324 508 6885</span>
+            <span className="d-none d-sm-block ">+233 30 321 7258</span>
           </p>
         </div>
 
@@ -81,7 +81,7 @@ const Footer = () => {
 
             <span className="d-sm-none">
               <a
-                href="tel:+233245086885"
+                href="tel:+233303217258"
                 className=" text-decoration-none      "
               >
                 <span>

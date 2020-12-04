@@ -1,35 +1,12 @@
 import React from "react";
-import Item from "./Item2";
+import Item from "../Container/View/CartItems";
 import Summary from "../Checkout/Summary";
 import "./cart.css";
 
 const NotEmpty = ({ cart }) => {
   let content;
 
-  content = cart.map(
-    ({
-      unique_id,
-      unit_price,
-      product_name,
-      cover_photo_url,
-      quantity,
-      product_unique_id,
-      stock,
-      price_change,
-      buyer_unique_id,
-      existence,
-      availablity,
-    }) => (
-      <Item
-        key={unique_id}
-        id={unique_id}
-        unit_price={unit_price}
-        cover_photo_url={cover_photo_url}
-        product_name={product_name}
-        quantity={quantity}
-      />
-    )
-  );
+  content = cart.map((items, i) => <Item key={i} {...items} />);
 
   return (
     <div className=" cart_wrapper ">

@@ -1,44 +1,63 @@
 import React, { useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, useLocation } from "react-router-dom";
 import { useAuthentication } from "../Auth/Context";
 import Message from "../Message/Message";
-import Input from "../Input/Input";
-import Button from "../Button/Button";
 import Spinner from "../Spinner/Spinner";
 import { useAsync } from "../helpers";
 import "./user.css";
 
 const AccountVerify = () => {
   const { verifyUserAccount } = useAuthentication();
+  const [message, setMessage] = useState("");
   let { id } = useParams();
-
   let history = useHistory();
 
+  let token = new URLSearchParams(useLocation().search).get("token");
+  let email = new URLSearchParams(useLocation().search).get("email");
+
   var formData = new FormData();
-  formData.set("url_data", id);
+  formData.set("url_data", token);
+  formData.set("url_data", email);
+  // formData.set("url_data", id);
 
   const resource = useAsync(verifyUserAccount, formData);
 
-  if (resource.message === "link is valid") {
-    localStorage.setItem("email", resource.value.email);
-    history.push("/new_password");
-  }
+  if (resource.error === true) {
+    setMessage(resource.message);
+  } else if (resource.error === false) {
+    let response = "link is valid";
+    if (resource.message === response) {
+      localStorage.setItem("email", resource.value.email);
+      history.push("/account/reset/pwd");
+    } else return;
+  } else return;
+
+  // if (resource.message === "link is valid") {
+  //   localStorage.setItem("email", resource.value.email);
+  //   history.push("/account/reset/pwd");
+  // } else if (resource.message === "") {
+  //   return;
+  // }
 
   return (
     <div className=" user_wrapper">
-      <div className="page_title">
+      {/* <div className="page_title">
         {resource.message === "link is valid" ? (
           <> Reset Password</>
         ) : (
           <>Account Verify</>
         )}
-      </div>
+      </div> */}
 
-      {resource.loading ? (
-        <Spinner />
-      ) : (
-        <Message message={resource.message} class_name="message" />
-      )}
+      <div className="page_title">Account Verify</div>
+
+      <div className="wrapper-test">
+        {resource.loading ? (
+          <Spinner size="big" />
+        ) : (
+          <Message message={message} class_name="message" />
+        )}
+      </div>
     </div>
   );
 };

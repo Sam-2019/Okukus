@@ -21,6 +21,8 @@ export default Order;
 const Buy = ({ id }) => {
   const { createOrder, uniqueID } = useAuthentication();
 
+  const [loading, setLoading] = useState(false);
+
   const [momo, setMomo] = useState(false);
   const [message, setMessage] = useState("");
   const [display, setDisplay] = useState(false);
@@ -55,7 +57,7 @@ const Buy = ({ id }) => {
   };
 
   const confirm = () => {
-    history.push("/confirm");
+    history.push("/order/confirm");
   };
 
   const submit = async (event) => {
@@ -68,6 +70,7 @@ const Buy = ({ id }) => {
     if (payment_method === "cash") {
       let empty = location && digital_address && phone_number && payment_method;
       if (empty !== "") {
+        setLoading(true);
         formData.set("buyer_unique_id", uniqueID);
         formData.set("product_unique_id", product_unique_id);
         formData.set("location", location);
@@ -76,15 +79,19 @@ const Buy = ({ id }) => {
         formData.set("payment_method", payment_method);
 
         const data = await createOrder(formData);
+        console.log(data);
 
-        if (data.data.error) {
-          return;
-        } else if (data.data.order_number !== "") {
-          localStorage.setItem("orderID", data.data.order_number);
+        if (data.error) {
+     
+        } else if (data.order_number !== "") {
+          localStorage.setItem("orderID", data.order_number);
 
           clear();
+
           confirm();
-        } else return;
+        } else {
+          setLoading(false);
+        }
       } else setMessage("Please fill above");
     } else if (payment_method === "momo") {
       let empty =
@@ -97,6 +104,7 @@ const Buy = ({ id }) => {
         momo_transaction_id;
 
       if (empty !== "") {
+        setLoading(true);
         formData.set("buyer_unique_id", uniqueID);
         formData.set("product_unique_id", product_unique_id);
         formData.set("location", location);
@@ -108,18 +116,18 @@ const Buy = ({ id }) => {
         formData.set("momo_transaction_id", momo_transaction_id);
 
         const data = await createOrder(formData);
+        console.log(data);
 
-
-        if (data.data.error) {
-          return;
-        } else if (data.data.order_number !== "") {
-          localStorage.setItem("orderID", data.data.order_number);
+        if (data.error) {
+          setLoading(false);
+        } else if (data.order_number !== "") {
+          localStorage.setItem("orderID", data.order_number);
 
           clear();
           confirm();
-        } else return;
-
-   
+        } else {
+          setLoading(false);
+        }
       } else {
         setMessage("Please fill below");
         setMomoDisplay(!momoDisplay);
@@ -152,34 +160,33 @@ const Buy = ({ id }) => {
     <div className="buy_wrapper ">
       <div>
         <div className="page_title">Order</div>
-        <div className="buy_form">
-          <Input
-            type="text"
-            placeholder="Location"
-            class_name="input"
-            action={(e) => setLocation(e.target.value)}
-            content={location}
-            required
-          />
 
-          <Input
-            type="text"
-            placeholder="Digital Address"
-            class_name="input"
-            action={(e) => setDigitalAddress(e.target.value)}
-            content={digital_address}
-            required
-          />
+        <Input
+          type="text"
+          placeholder="Location"
+          class_name="input"
+          action={(e) => setLocation(e.target.value)}
+          content={location}
+          required
+        />
 
-          <Input
-            type="number"
-            placeholder="Phone Number"
-            class_name="input"
-            content={phone_number}
-            action={(e) => setPhoneNumber(e.target.value)}
-            required
-          />
-        </div>
+        <Input
+          type="text"
+          placeholder="Digital Address"
+          class_name="input"
+          action={(e) => setDigitalAddress(e.target.value)}
+          content={digital_address}
+          required
+        />
+
+        <Input
+          type="number"
+          placeholder="Phone Number"
+          class_name="input"
+          content={phone_number}
+          action={(e) => setPhoneNumber(e.target.value)}
+          required
+        />
 
         {display && (
           <>
@@ -189,7 +196,7 @@ const Buy = ({ id }) => {
           </>
         )}
 
-        <h4 className="_billing">Billing</h4>
+        <h4 className="_billing ">Billing</h4>
         {/* <div>Choose a payment method below</div> */}
 
         {/* <div className="payment_wrapper">
@@ -304,7 +311,12 @@ const Buy = ({ id }) => {
         </div>
       )}
 
-      <Button name="Check Out" class_name="primary" action={submit} />
+      <Button
+        name="Check Out"
+        class_name="primary"
+        action={submit}
+        loading={loading}
+      />
     </div>
   );
 };

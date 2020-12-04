@@ -11,7 +11,7 @@ const Search = ({ alert }) => {
     if (query === "") {
       // alert();
     } else {
-      history.push(`/search/${query}`);
+      history.push(`/search?q=${query}`);
     }
   }
 

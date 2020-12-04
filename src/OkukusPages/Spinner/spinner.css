@@ -1,8 +1,25 @@
-.spinner_wrapper {
+.big {
   text-align: center;
   padding: 5em;
+  color: #00d919;
 }
 
-.spinner {
+.medium {
+  text-align: center;
+  padding: 0px 15.5px;
+}
+
+.green {
   color: #00d919;
+}
+
+.white {
+  color: #ffffff;
+}
+
+@media (max-width: 540px) {
+  .medium {
+    padding: 5.2px 0;
+    width: 100%;
+  }
 }

@@ -10,7 +10,7 @@ const ProfileMenu = ({ logout, showMenu }) => {
       <div
         className="menu_item "
         onClick={() => {
-          history.push("/profile");
+          history.push("/user/profile");
           showMenu();
         }}
       >

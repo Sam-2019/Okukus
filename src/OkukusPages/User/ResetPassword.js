@@ -7,6 +7,7 @@ import "./user.css";
 
 function ResetPassword() {
   const { resetUserAccount } = useAuthentication();
+  const [loading, setLoading] = useState(false);
 
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -16,40 +17,53 @@ function ResetPassword() {
   };
 
   const send = async (event) => {
-    setMessage();
+    setMessage("");
     event.preventDefault();
     var formData = new FormData();
 
-    formData.set("buyer_email", email);
+    if (email !== "") {
+      setLoading(true);
+      formData.set("buyer_email", email);
 
-    const data = await resetUserAccount(formData);
+      const data = await resetUserAccount(formData);
+      console.log(data);
 
-    if (data.data.error === true) {
-      setMessage(data.data.message);
-    } else if (data.data.error === false) {
-      setMessage(data.data.message);
-      reset();
-    }
+      if (data.error === true) {
+        setMessage(data.message);
+        setLoading(false);
+      } else if (data.error === false) {
+        setMessage(data.message);
+        setLoading(false);
+        reset();
+      } else return;
+    } else if (email === "") {
+      setMessage("Please enter your email");
+    } else return;
   };
 
   return (
     <div className=" user_wrapper">
       <div className="page_title">Account Reset</div>
 
-      <Input
-        type="email"
-        placeholder="Email"
-        class_name="input"
-        action={(e) => setEmail(e.target.value)}
-        content={email}
-      />
+      <div className="wrapper-test">
+        <Input
+          type="email"
+          placeholder="Email"
+          class_name="input"
+          action={(e) => setEmail(e.target.value)}
+          content={email}
+        />
 
-      <div className="message_wrapper ">
         {message ? <Message message={message} class_name="message" /> : null}
-      </div>
 
-      <div className="button_wrapper ">
-        <Button name="Submit" action={send} class_name="primary" />
+        <div className="button_wrapper ">
+          <Button
+            name="Submit"
+            action={send}
+            class_name="primary"
+            loading={loading}
+          />
+        </div>
       </div>
     </div>
   );

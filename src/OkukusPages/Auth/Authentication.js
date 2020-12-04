@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import useStateWithCallback from "use-state-with-callback";
 import {
   itemsGet,
   itemGet,
@@ -13,11 +14,9 @@ import {
   userEmailUpdate,
   userAccountReset,
   userAccountVerify,
-
   userCreateEmailVerify,
   userReadEmailVerify,
   passwordReset,
-
   itemSearch,
   cartAdd,
   cartGet,
@@ -29,13 +28,23 @@ import {
   orderCreate,
   orderHistory,
   orderDetail,
-
-  userWelcome
+  wishCreate,
+  wishList,
+  wishDelete,
+  userWelcome,
 } from "../apis";
 import { axiosMethod } from "../helpers";
 
 const Authentication = () => {
-  const [Auth, setAuth] = useState(false);
+  const [Auth, setAuth] = useStateWithCallback(false, (Auth) => {
+    if (Auth === true) {
+      isLoggedIn();
+    } else {
+      isLoggedIn();
+    }
+  });
+
+  //  const [Auth, setAuth] = useState(false);
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [email, setEmail] = useState();
@@ -70,7 +79,7 @@ const Authentication = () => {
     setLastName();
     setEmail();
     setUniqueID();
-    setVerificationStatus()
+    setVerificationStatus();
   };
 
   const loginUser = async (formData) => {
@@ -98,6 +107,7 @@ const Authentication = () => {
         localStorage.removeItem("loginToken");
       } else {
         return (
+         // setAuth((state) => state(true)),
           setAuth(true),
           setFirstName(data.buyer.firstname),
           setLastName(data.buyer.lastname),
@@ -111,7 +121,7 @@ const Authentication = () => {
 
   const updateUserPassword = async (formData) => {
     const updatePassword = await axiosMethod(userPasswordUpdate, formData);
-    return updatePassword;
+    return updatePassword.data;
   };
 
   const updateUserProfile = async (formData) => {
@@ -121,7 +131,7 @@ const Authentication = () => {
       setFirstName(updateProfile.data.data.firstname);
       setLastName(updateProfile.data.data.lastname);
     }
-    return updateProfile;
+    return updateProfile.data;
   };
 
   const updateUserEmail = async (formData) => {
@@ -130,12 +140,12 @@ const Authentication = () => {
     if (updateEmail.data.error === false) {
       setEmail(updateEmail.data.data.email);
     }
-    return updateEmail;
+    return updateEmail.data;
   };
 
   const resetUserAccount = async (formData) => {
     const resetAccount = await axiosMethod(userAccountReset, formData);
-    return resetAccount;
+    return resetAccount.data;
   };
 
   const verifyUserAccount = async (formData) => {
@@ -144,8 +154,11 @@ const Authentication = () => {
   };
 
   const verifyCreateEmail = async (formData) => {
-    const createEmailVerify = await axiosMethod(userCreateEmailVerify, formData);
-    return createEmailVerify;
+    const createEmailVerify = await axiosMethod(
+      userCreateEmailVerify,
+      formData
+    );
+    return createEmailVerify.data;
   };
 
   const verifyReadEmail = async (formData) => {
@@ -165,7 +178,7 @@ const Authentication = () => {
 
   const addCart = async (formData) => {
     const addcart = await axiosMethod(cartAdd, formData);
-    return addcart;
+    return addcart.data;
   };
 
   const getCart = async (formData) => {
@@ -176,7 +189,7 @@ const Authentication = () => {
   const countCart = async (formData) => {
     const countcart = await axiosMethod(cartCount, formData);
 
-    return(countcart);
+    return countcart;
   };
 
   const deleteCart = async (formData) => {
@@ -184,16 +197,12 @@ const Authentication = () => {
     return deletecart;
   };
 
-  
-
-
   const updateCart = async (formData) => {
     const updatecart = await axiosMethod(cartUpdate, formData);
     return updatecart;
   };
 
-
-    const checkoutCart = async (formData) => {
+  const checkoutCart = async (formData) => {
     const checkoutcart = await axiosMethod(cartCheckout, formData);
     return checkoutcart.data;
   };
@@ -205,7 +214,7 @@ const Authentication = () => {
 
   const createOrder = async (formData) => {
     const createorder = await axiosMethod(orderCreate, formData);
-    return createorder;
+    return createorder.data;
   };
 
   const historyOrder = async (formData) => {
@@ -218,22 +227,37 @@ const Authentication = () => {
     return detailorder;
   };
 
+  const createWish = async (formData) => {
+    const createwish = await axiosMethod(wishCreate, formData);
+    return createwish;
+  };
+
+  const listWish = async (formData) => {
+    const wishlist = await axiosMethod(wishList, formData);
+    return wishlist;
+  };
+
+  const deleteWish = async (formData) => {
+    const deletewish = await axiosMethod(wishDelete, formData);
+    return deletewish;
+  };
+
   const welcomeUser = async (formData) => {
     const welcomeuser = await axiosMethod(userWelcome, formData);
     return welcomeuser;
   };
 
-  useEffect(() => {
-    const unsubscribe = isLoggedIn((loginToken) => {
-      if (loginToken) {
-        setAuth(true);
-      } else {
-        setAuth(false);
-      }
-    });
+  // useEffect(() => {
+  //   const unsubscribe = isLoggedIn((loginToken) => {
+  //     if (loginToken) {
+  //       setAuth(true);
+  //     } else {
+  //       setAuth(false);
+  //     }
+  //   });
 
-    return () => unsubscribe();
-  }, []);
+  //   return () => unsubscribe();
+  // }, []);
 
   return {
     Auth,
@@ -278,7 +302,11 @@ const Authentication = () => {
     uniqueID,
     verfifcationStatus,
 
-    welcomeUser
+    createWish,
+    listWish,
+    deleteWish,
+
+    welcomeUser,
   };
 };
 

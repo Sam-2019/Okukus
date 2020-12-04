@@ -39,7 +39,7 @@ const Content = (props) => {
       </div>
 
       {resource.loading ? (
-        <Spinner />
+      <Spinner size='big' />
       ) : (
         <div className="products_wrapper">{content}</div>
       )}

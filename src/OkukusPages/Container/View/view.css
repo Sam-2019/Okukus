@@ -1,18 +1,26 @@
-.item2{
+.item2 {
   border: 0.5px solid #00d919;
 }
 
-.view_wrapper {
+.view_wrapper,
+.view_wrapper1 {
   display: flex;
   flex-direction: column;
 }
 
 .view_wrapper:hover,
-.view_wrapper:focus {
+.view_wrapper:focus,
+.view_wrapper1 :hover,
+.view_wrapper1 :focus {
   text-decoration: none;
 }
 
-.item_wrapper {
+.mobile {
+  display: none;
+}
+
+.item_wrapper,
+.item_wrapper1 {
   padding: 10px;
   margin: 3px 2px 2px 2px;
   border-radius: 0.5rem;
@@ -30,17 +38,21 @@
   box-shadow: 0rem 0rem 01rem 0rem #00000032 !important;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-
 }
 
-
+.item_wrapper1:hover,
+.item_wrapper1:focus {
+}
 
 .item_image_wrapper {
+  justify-content: center;
 }
 
 .item_image {
   border-radius: 0.5rem;
-  width: 70%;
+  width: 150px;
+  height: 230px;
+  object-fit: cover;
 }
 
 .item_name_wrapper {
@@ -74,14 +86,39 @@
   padding: 3px 10px;
 }
 
-.discount{
-  font-size: 10px
+.item_price2 {
+  background-color: transparent;
+  font-size: 12px;
+  color: #272727;
+  border-radius: 2rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  color: #616161;
+  width: auto;
+  margin: 0 auto;
+  padding: 3px 10px;
+}
+
+.discount {
+  font-size: 10px;
 }
 
 @media (max-width: 540px) {
+  .view_wrapper1 {
+    display: none;
+  }
+
+  .mobile {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile:hover,
+  .mobile:focus {
+    text-decoration: none;
+  }
+
   .item_wrapper {
-    padding: 5px;
-    margin: 3px 2px 2px 2px;
     border-radius: 0.5rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
       border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -95,7 +132,7 @@
   .item_image_wrapper {
   }
 
-  .item_image { 
+  .item_image {
     width: 100%;
   }
 
@@ -113,3 +150,19 @@
   .item_price {
   }
 }
+
+/* function shuffleArray(arr) {
+  arr.sort(() => Math.random() - 0.5);
+}
+let arr = [1, 2, 3, 4, 5];
+shuffleArray(arr);
+console.log(arr) */
+
+/* const getShuffledArr = arr => {
+  const newArr = arr.slice()
+  for (let i = newArr.length - 1; i > 0; i--) {
+      const rand = Math.floor(Math.random() * (i + 1));
+      [newArr[i], newArr[rand]] = [newArr[rand], newArr[i]];
+  }
+  return newArr
+}; */

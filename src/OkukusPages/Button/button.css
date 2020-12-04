@@ -1,7 +1,8 @@
 .primary,
 .secondary,
 .delete,
-.save {
+.save,
+.inactive {
   border-radius: 13px;
   background-color: transparent;
   color: transparent;
@@ -58,7 +59,6 @@
   background-color: #00d919;
   border: 1px solid #00d919;
   color: #ffffff;
-
   order: 1;
 }
 
@@ -92,6 +92,14 @@
   outline: none;
   background-color: #d99c00;
   color: #ffffff;
+}
+
+.inactive{
+  background-color: #00d9197b;
+  border: 1px #00d9197b;
+  color: #ffffff;
+  order: 1;
+
 }
 
 .button_wrapper {
@@ -132,7 +140,8 @@
     flex-direction: column;
   }
 
-  .primary:not(:last-child) {
+  .primary:not(:last-child),
+  .inactive:not(:last-child) {
     margin-bottom: 0.5rem;
   }
 

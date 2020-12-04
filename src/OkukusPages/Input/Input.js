@@ -21,6 +21,7 @@ const Input = ({
       value={content}
       id={unique}
       name={unique_name}
+      autoComplete='true'
     />
   );
 };

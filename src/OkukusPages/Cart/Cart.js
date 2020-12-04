@@ -18,11 +18,14 @@ const Cart = () => {
     <div className="cart  ">
       <div className=" ">
         {cartData.loading ? (
-          <Spinner />
+          <Spinner size="big" />
         ) : cartData.error || cartData.message === "cart is empty" ? (
           <Empty />
         ) : (
-          <NotEmpty cart={cartData.value}  />
+          <NotEmpty
+            cart={cartData.value}
+
+          />
         )}
       </div>
     </div>

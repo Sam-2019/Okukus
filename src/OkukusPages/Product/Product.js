@@ -3,15 +3,15 @@ import { useHistory, useParams } from "react-router-dom";
 import Spinner from "../Spinner/Spinner";
 import Button from "../Button/Button";
 import Message from "../Message/Message";
-
 import { okukus } from "../apis";
 import { useAsync } from "../helpers";
 import { useAuthentication } from "../Auth/Context";
 import "./product.css";
 
 const Product = () => {
-  const { Auth, getItem, addCart, uniqueID } = useAuthentication();
+  const { getItem, addCart, uniqueID } = useAuthentication();
   const [message, setMessage] = useState();
+  const [loading, setLoading] = useState(false);
 
   let { id } = useParams();
 
@@ -23,6 +23,7 @@ const Product = () => {
   const resource = useAsync(getItem, formData);
 
   const add2cart = async (event) => {
+    setLoading(true);
     setMessage();
     event.preventDefault();
     var formData = new FormData();
@@ -31,7 +32,9 @@ const Product = () => {
     formData.set("product_unique_id", id);
 
     const data = await addCart(formData);
-    setMessage(data.data.message);
+
+    setMessage(data.message);
+    setLoading(false);
   };
 
   let data = resource.value;
@@ -76,33 +79,22 @@ const Product = () => {
 
         {message ? <Message class_name="message" message={message} /> : null}
 
-        {Auth ? (
-          <div className="button_wrapper ">
-            <Button
-              class_name="primary"
-              name="Buy book"
-              action={() => {
-                history.push(`/order/${id}`);
-              }}
-            />
+        <div className="button_wrapper ">
+          <Button
+            class_name="primary"
+            name="Buy book"
+            action={() => {
+              history.push(`/order/${id}`);
+            }}
+          />
 
-            <Button
-              name="Add to cart"
-              action={add2cart}
-              class_name="secondary"
-            />
-          </div>
-        ) : (
-          <div className="button_wrapper ">
-            <Button
-              class_name="primary"
-              name="Buy book"
-              action={() => {
-                history.push("/login");
-              }}
-            />
-          </div>
-        )}
+          <Button
+            name="Add to cart"
+            action={add2cart}
+            class_name="secondary"
+            loading={loading}
+          />
+        </div>
       </div>
     </div>
   );
@@ -110,7 +102,7 @@ const Product = () => {
   return (
     <div>
       {resource.loading ? (
-        <Spinner />
+          <Spinner size='big' />
       ) : resource.error ? (
         <span className="text-danger">{resource.error}</span>
       ) : (

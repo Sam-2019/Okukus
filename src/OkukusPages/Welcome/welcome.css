@@ -37,7 +37,15 @@
 .welcome_message {
   border-radius: 0.25em;
   text-align: center;
-  margin: 3em 0em 5em;
+  margin: 2.5em 0em 5em;
+  padding: 0 1em;
+}
+
+.welcome_company{
+  /* font-size: 30px;
+  text-align: left;
+  margin-top: 0 ; */
+
 }
 
 .welcome_input {

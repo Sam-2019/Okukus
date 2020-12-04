@@ -9,7 +9,6 @@ const Tag = ({ hamburgerClick }) => {
 
   const resource = useAsyncc(getTags);
 
-
   let history = useHistory();
 
   let tenet = resource.value.map(({ id, title }) => (
