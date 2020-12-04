@@ -22,6 +22,8 @@ const Product = () => {
 
   const resource = useAsync(getItem, formData);
 
+  let data = resource.value;
+
   const add2cart = async (event) => {
     setLoading(true);
     setMessage();
@@ -36,8 +38,6 @@ const Product = () => {
     setMessage(data.message);
     setLoading(false);
   };
-
-  let data = resource.value;
 
   let content;
   content = (
@@ -102,11 +102,70 @@ const Product = () => {
   return (
     <div>
       {resource.loading ? (
-          <Spinner size='big' />
+        <Spinner size="big" />
       ) : resource.error ? (
         <span className="text-danger">{resource.error}</span>
       ) : (
-        <>{content}</>
+        <>
+          <div className="product_wrapper ">
+            <div className=" product_img_wrapper  ">
+              <img
+                src={`${okukus}/${data.cover_photo_url}`}
+                className="product_image"
+                alt=" slide"
+              />
+            </div>
+
+            <div className="product_detail_wrapper   ">
+              <div className="name_author_wrapper ">
+                <div className="_name ">{data.product_name}</div>
+
+                <div className="_author">
+                  <small>by</small> {data.product_author}
+                </div>
+              </div>
+
+              <div className="three_content_wrapper ">
+                <div className=" _review ">
+                  0 <small>Review(s)</small>
+                </div>
+
+                <div className=" _price  ">₵{data.unit_price}</div>
+
+                <div className="_stock  ">
+                  {data.stock} <small>copies</small>
+                </div>
+              </div>
+
+              {/* <a href="#" className="" hidden>
+          Add Review
+        </a> */}
+
+              <div className=" _description">{data.product_description}</div>
+
+              {message ? (
+                <Message class_name="message" message={message} />
+              ) : null}
+
+              <div className="button_wrapper ">
+                <Button
+                  class_name="primary"
+                  name="Buy book"
+                  action={() => {
+                    history.push(`/order/${id}`);
+                  }}
+                />
+
+                <Button
+                  name="Add to cart"
+                  action={add2cart}
+                  class_name="secondary"
+                  loading={loading}
+                />
+              </div>
+            </div>
+          </div>
+        </>
       )}
     </div>
   );
