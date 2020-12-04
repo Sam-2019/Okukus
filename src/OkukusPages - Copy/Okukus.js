@@ -1,0 +1,111 @@
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import "./okukus.css";
+
+import Navigation from "./Nav/Nav";
+import Body from "./Body/Body";
+import Search from "./Search/Content";
+import Product from "./Product/Product(offline)";
+import Order from "./Order/newOrder";
+import Confirm from "./Confirmation/Confirm";
+import Cart from "./Cart/Cart(offline)";
+import Checkout from "./Checkout/Checkout";
+import Login from "./User/Login";
+import SignUp from "./User/Signup";
+import Profile from "./User/Profile";
+import TagContent from "./Tag/Content";
+import UserVerify from "./User/UserVerify";
+import NewPassword from "./User/NewPassword";
+
+import NotFound from "./404/404";
+
+import ResetPassword from "./User/ResetPassword";
+import AccountVerify from "./User/AccountVerify";
+
+import Footer from "./Footer/Footer";
+
+const Okukus = () => {
+  return (
+    <Router>
+      <Navigation />
+      <div className="contain ">
+        <Switch>
+          <Route exact path="/">
+            <Body />
+          </Route>
+
+          <Route path="/cart">
+            <Cart />
+          </Route>
+
+          <Route path="/confirm_orders">
+            <Checkout />
+          </Route>
+
+          <Route path="/login">
+            <Login />
+          </Route>
+
+          <Route path="/signup">
+            <SignUp />
+          </Route>
+
+          <Route path="/profile">
+            <Profile />
+          </Route>
+
+          <Route path="/confirm">
+            <Confirm />
+          </Route>
+
+          <Route path="/order/:id">
+            <Order />
+          </Route>
+
+          <Route path="/order/:id">
+            <Order />
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+
+          <Route path="/product/:id">
+            <Product />
+          </Route>
+
+          <Route path="/tag/:id">
+            <TagContent />
+          </Route>
+
+          <Route path="/search/:id">
+            <Search />
+          </Route>
+
+          <Route path="/verify/:id">
+            <AccountVerify />
+          </Route>
+
+          <Route path="/new_password">
+            <NewPassword />
+          </Route>
+
+          <Route path="/user_verify/:id">
+            <UserVerify />
+          </Route>
+
+          <Route path="/reset">
+            <ResetPassword />
+          </Route>
+
+          <Route>
+            <NotFound />
+          </Route>
+        </Switch>
+      </div>
+      <Footer />
+    </Router>
+  );
+};
+
+export default Okukus;

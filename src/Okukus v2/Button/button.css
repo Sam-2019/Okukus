@@ -1,0 +1,143 @@
+.primary,
+.secondary,
+.delete,
+.save {
+  border-radius: 13px;
+  background-color: transparent;
+  color: transparent;
+  font-size: 12px;
+  padding: 6px 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  width: auto;
+}
+
+.delete,
+.save {
+  border-radius: 13px;
+  background-color: transparent;
+  color: transparent;
+  font-size: 12px;
+  padding: 6px 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  width: auto;
+  margin: 0 0.5em;
+  align-items: center;
+}
+
+.margin{
+  margin: 0.5em;
+}
+
+.primary:active,
+.secondary:active,
+.delete:active,
+.save:active {
+  transform: scale(0.95);
+}
+
+.primary:focus,
+.secondary:focus,
+.delete:focus,
+.save:focus {
+  outline: none;
+}
+
+.primary.ghost,
+.secondary.ghost,
+.delete.ghost,
+.save.ghost {
+  background-color: transparent;
+  border-color: #ffffff;
+}
+
+.primary {
+  background-color: #00d919;
+  border: 1px solid #00d919;
+  color: #ffffff;
+
+  order: 1;
+}
+
+.secondary {
+  background-color: #ffffff;
+  border: 1px solid #00d919;
+  color: #00d919;
+  margin-right: 0.5em;
+  order: 0;
+}
+
+.delete {
+  background-color: #ffffff;
+  border: 1px solid #d91d00;
+  color: #d91d00;
+}
+
+.delete:hover {
+  outline: none;
+  background-color: #d91d00;
+  color: #ffffff;
+}
+
+.save {
+  background-color: #ffffff;
+  border: 1px solid #d99c00;
+  color: #d99c00;
+}
+
+.save:hover {
+  outline: none;
+  background-color: #d99c00;
+  color: #ffffff;
+}
+
+.button_wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.right_button_wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 540px) {
+  .primary,
+  .secondary {
+    padding: 10px 20px;
+    width: 100%;
+  }
+
+  .primary {
+    order: 0;
+  }
+
+  .secondary {
+    order: 1;
+  }
+
+  .delete,
+  .save {
+    padding: 6px 5px;
+    justify-content: space-evenly;
+    font-size: 7px;
+    transition: transform 80ms ease-in;
+  }
+
+  .button_wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .primary:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+
+  .right_button_wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+}
