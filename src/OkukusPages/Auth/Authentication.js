@@ -45,11 +45,11 @@ const Authentication = () => {
   });
 
   //  const [Auth, setAuth] = useState(false);
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
-  const [email, setEmail] = useState();
-  const [uniqueID, setUniqueID] = useState();
-  const [verfifcationStatus, setVerificationStatus] = useState();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [uniqueID, setUniqueID] = useState("");
+  const [verfifcationStatus, setVerificationStatus] = useState("");
 
   const getItems = async () => {
     const items = await axios(itemsGet);
@@ -75,11 +75,11 @@ const Authentication = () => {
     localStorage.removeItem("loginToken");
     localStorage.clear();
     setAuth(false);
-    setFirstName();
-    setLastName();
-    setEmail();
-    setUniqueID();
-    setVerificationStatus();
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setUniqueID("");
+    setVerificationStatus("");
   };
 
   const loginUser = async (formData) => {
@@ -107,7 +107,7 @@ const Authentication = () => {
         localStorage.removeItem("loginToken");
       } else {
         return (
-         // setAuth((state) => state(true)),
+          // setAuth((state) => state(true)),
           setAuth(true),
           setFirstName(data.buyer.firstname),
           setLastName(data.buyer.lastname),
@@ -116,7 +116,7 @@ const Authentication = () => {
           setVerificationStatus(data.buyer.verification_status)
         );
       }
-    }
+    } else return;
   };
 
   const updateUserPassword = async (formData) => {

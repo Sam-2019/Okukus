@@ -31,7 +31,7 @@ function Login() {
       setLoading(true);
       formData.set("email", email);
       formData.set("password", password);
-      
+
       const data = await loginUser(formData);
       console.log(data);
 
@@ -45,7 +45,6 @@ function Login() {
         setLoading(false);
       } else return;
     } else if (empty === "") {
-
       setMessage("Please fill the form");
     } else return;
   };
@@ -54,58 +53,54 @@ function Login() {
     <div className=" user_wrapper ">
       <div className="page_title">Sign In</div>
 
-      <div className='wrapper-test '>
+      <div className="wrapper-test ">
+        <Input
+          type="email"
+          placeholder="Email"
+          class_name="input"
+          action={(e) => setEmail(e.target.value)}
+          content={email}
+        />
 
+        <Input
+          type="password"
+          placeholder="Password"
+          class_name="input"
+          action={(e) => setPassword(e.target.value)}
+          content={password}
+        />
 
+        {message ? (
+          <Message class_name="message" message={message} />
+        ) : (
+          <div className="forgotten_password_wrapper ">
+            <span
+              className="forgotten_password  "
+              onClick={() => {
+                history.push("/account/reset");
+              }}
+            >
+              Password forgotten?
+            </span>
+          </div>
+        )}
 
+        <div className="button_wrapper ">
+          <Button
+            class_name="primary"
+            action={logIn}
+            loading={loading}
+            name="Sign in"
+          />
 
-      <Input
-        type="email"
-        placeholder="Email"
-        class_name="input"
-        action={(e) => setEmail(e.target.value)}
-        content={email}
-      />
-
-      <Input
-        type="password"
-        placeholder="Password"
-        class_name="input"
-        action={(e) => setPassword(e.target.value)}
-        content={password}
-      />
-
-      {message ? (
-        <Message class_name="message" message={message} />
-      ) : (
-        <div className="forgotten_password_wrapper ">
-          <span
-            className="forgotten_password  "
-            onClick={() => {
-              history.push("/account/reset");
+          <Button
+            class_name="secondary"
+            action={() => {
+              history.push("/signup");
             }}
-          >
-            Password forgotten?
-          </span>
+            name="Sign up"
+          />
         </div>
-      )}
-
-      <div className="button_wrapper ">
-        <Button
-          class_name="primary"
-          action={logIn}
-          loading={loading}
-          name="Sign in"
-        />
-
-        <Button
-          class_name="secondary"
-          action={() => {
-            history.push("/signup");
-          }}
-          name="Sign up"
-        />
-      </div>
       </div>
     </div>
   );
