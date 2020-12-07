@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import Welcome from "../Welcome/Welcome";
 
-it("Welcome renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<Welcome />, div);
+describe("Welcome renders without crashing", () => {
+  test("renders Welcome component", () => {
+    render(<Welcome />);
+    screen.debug();
+  });
 });

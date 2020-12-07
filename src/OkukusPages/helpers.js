@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 export const axiosMethod = async (url, formData) => {
@@ -76,7 +77,6 @@ export const useAsync = (getMethod, data) => {
     fetchData();
   }, [fetchData]);
 
-
   return { value, message, error, loading, success };
 };
 
@@ -90,16 +90,12 @@ export const useAsyncc = (getMethod) => {
     const result = await getMethod();
 
     if (result.status !== 200) {
-
-        setLoading(false);
-        setError(result.status);
-
+      setLoading(false);
+      setError(result.status);
     } else {
-
-        setSuccess(result.status);
-        setValue(result.data);
-        setLoading(false);
-
+      setSuccess(result.status);
+      setValue(result.data);
+      setLoading(false);
     }
   }, [getMethod]);
 
@@ -136,3 +132,13 @@ export function useOnClickOutside(ref, handler) {
     [ref, handler]
   );
 }
+
+export const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};

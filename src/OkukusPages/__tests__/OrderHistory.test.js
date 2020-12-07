@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import OrderHistory from "../Container/View/OrderHistory";
 
-it("OrderHistory renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<OrderHistory />, div);
+describe("OrderHistory renders without crashing", () => {
+  test("renders OrderHistory component", () => {
+    render(<OrderHistory />);
+    screen.debug();
+  });
 });

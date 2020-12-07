@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import SearchContent from "../Search/Content";
 
-it("SearchContent renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<SearchContent />, div);
+describe("SearchContent renders without crashing", () => {
+  test("renders SearchContent component", () => {
+    render(<SearchContent />);
+    screen.debug();
+  });
 });

@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import Spinner from "../Spinner/Spinner";
 
-it("Spinner renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<Spinner />, div);
+describe("Spinner renders without crashing", () => {
+  test("renders Spinner component", () => {
+    render(<Spinner />);
+    screen.debug();
+  });
 });

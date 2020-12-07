@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import AccountVerify from "../User/AccountVerify";
 
-it("AccountVerify renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<AccountVerify />, div);
+describe("AccountVerify renders without crashing", () => {
+  test("renders AccountVerify component", () => {
+    render(<AccountVerify />);
+    screen.debug();
+  });
 });

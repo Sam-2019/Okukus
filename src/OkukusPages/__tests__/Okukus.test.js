@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import Okukus from "../Okukus";
 
-it("Okukus renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<Okukus />, div);
+describe("Okukus renders without crashing", () => {
+  test("renders Okukus component", () => {
+    render(<Okukus />);
+    screen.debug();
+  });
 });

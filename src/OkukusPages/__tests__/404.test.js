@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import Wrong404 from "../404/404";
+import { render, screen } from '@testing-library/react';
+import NotFound from "../404/404";
 
-it("Wrong404 renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<Wrong404 />, div);
+describe("NotFound renders without crashing", () => {
+  test("renders NotFound component", () => {
+    render(<NotFound />);
+    screen.debug();
+  });
 });

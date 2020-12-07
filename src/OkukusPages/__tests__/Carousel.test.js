@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import Carousel from "../Carousel/Carousel";
 
-it("Carousel renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<Carousel />, div);
+describe("Carousel renders without crashing", () => {
+  test("renders Carousel component", () => {
+    render(<Carousel />);
+    screen.debug();
+  });
 });

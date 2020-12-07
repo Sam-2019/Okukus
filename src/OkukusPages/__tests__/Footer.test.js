@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import Footer from "../Footer/Footer";
 
-it("Footer renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<Footer />, div);
+describe("Footer renders without crashing", () => {
+  test("renders Footer component", () => {
+    render(<Footer />);
+    screen.debug();
+  });
 });

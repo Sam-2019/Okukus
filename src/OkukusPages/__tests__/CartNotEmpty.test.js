@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from "@testing-library/react";
 import CartNotEmpty from "../Cart/NotEmpty";
 
-it("CartNotEmpty renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<CartNotEmpty />, div);
+describe("CartNotEmpty renders without crashing", () => {
+  test("renders CartNotEmpty component", () => {
+    render(<CartNotEmpty />);
+    screen.debug();
+  });
 });

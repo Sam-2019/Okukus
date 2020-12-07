@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import AlertBox from "../DialogBox/AlertBox";
 
-it("AlertBox renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<AlertBox />, div);
+describe("AlertBox renders without crashing", () => {
+  test("renders AlertBox component", () => {
+    render(<AlertBox />);
+    screen.debug();
+  });
 });

@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import CheckoutComplete from "../Checkout/Complete";
 
-it("CheckoutComplete renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<CheckoutComplete />, div);
+describe("CheckoutComplete renders without crashing", () => {
+  test("renders CheckoutComplete component", () => {
+    render(<CheckoutComplete />);
+    screen.debug();
+  });
 });

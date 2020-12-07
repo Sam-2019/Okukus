@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import ProfileMenu from "../DialogBox/ProfileMenu";
 
-it("ProfileMenu renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<ProfileMenu />, div);
+describe("ProfileMenu renders without crashing", () => {
+  test("renders ProfileMenu component", () => {
+    render(<ProfileMenu />);
+    screen.debug();
+  });
 });

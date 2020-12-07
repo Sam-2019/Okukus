@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import TagContent from "../Tag/Content";
 
-it("TagContent renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<TagContent />, div);
+describe("TagContent renders without crashing", () => {
+  test("renders TagContent component", () => {
+    render(<TagContent />);
+    screen.debug();
+  });
 });

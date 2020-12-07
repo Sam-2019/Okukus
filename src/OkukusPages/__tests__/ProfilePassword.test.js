@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import ProfilePassword from "../User/Profile/Password";
 
-it("ProfilePassword renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<ProfilePassword />, div);
+describe("ProfilePassword renders without crashing", () => {
+  test("renders ProfilePassword component", () => {
+    render(<ProfilePassword />);
+    screen.debug();
+  });
 });

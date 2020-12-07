@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
   Switch,
-  useLocation,
   useRouteMatch,
 } from "react-router-dom";
+import { ScrollToTop } from "./helpers";
 
 import "./okukus.css";
 
@@ -31,8 +31,8 @@ import Footer from "./Footer/Footer";
 const Okukus = () => {
   return (
     <Router>
-      <Navigation />
       <ScrollToTop />
+      <Navigation />
       <div className="contain ">
         <Content />
       </div>
@@ -42,16 +42,6 @@ const Okukus = () => {
 };
 
 export default Okukus;
-
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  return null;
-};
 
 const Content = () => {
   return (
@@ -131,7 +121,6 @@ const Content = () => {
       <Route>
         <NotFound />
       </Route>
-      
     </Switch>
   );
 };

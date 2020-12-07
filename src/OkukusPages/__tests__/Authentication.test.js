@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import Authentication from "../Auth/Authentication";
 
-it("Authentication renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<Authentication />, div);
+describe("Authentication renders without crashing", () => {
+  test("renders Authentication component", () => {
+    render(<Authentication />);
+    screen.debug();
+  });
 });

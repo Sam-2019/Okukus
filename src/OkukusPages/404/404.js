@@ -6,9 +6,6 @@ import "./404.css";
 const NotFound = () => {
   let history = useHistory();
 
-  const click = () => {
-    history.push("/");
-  };
   return (
     <div className="not-found-wrapper">
       <div className="not-found-header">
@@ -21,7 +18,13 @@ const NotFound = () => {
         removed.
       </div>
 
-      <Button name="Go home" class_name="primary" action={click} />
+      <Button
+        name="Go home"
+        class_name="primary"
+        action={() => {
+          history.push("/");
+        }}
+      />
     </div>
   );
 };

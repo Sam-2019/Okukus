@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import ProfileWishList from "../User/Profile/WishList";
 
-it("ProfileWishList renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<ProfileWishList />, div);
+describe("ProfileWishList renders without crashing", () => {
+  test("renders ProfileWishList component", () => {
+    render(<ProfileWishList />);
+    screen.debug();
+  });
 });

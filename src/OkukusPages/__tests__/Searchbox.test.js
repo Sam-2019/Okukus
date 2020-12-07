@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import Searchbox from "../Search/Searchbox";
 
-it("Searchbox renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<Searchbox />, div);
+describe("Searchbox renders without crashing", () => {
+  test("renders Searchbox component", () => {
+    render(<Searchbox />);
+    screen.debug();
+  });
 });

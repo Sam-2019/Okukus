@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import Context from "../Auth/Context";
 
-it("Context renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<Context />, div);
+describe("Context renders without crashing", () => {
+  test("renders Context component", () => {
+    render(<Context />);
+    screen.debug();
+  });
 });

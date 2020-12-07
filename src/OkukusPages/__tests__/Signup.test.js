@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import Signup from "../User/Signup";
 
-it("Signup renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<Signup />, div);
+describe("Signup renders without crashing", () => {
+  test("renders Signup component", () => {
+    render(<Signup />);
+    screen.debug();
+  });
 });

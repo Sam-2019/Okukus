@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import Message from "../Message/Message";
 
-it("Message renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<Message />, div);
+describe("Message renders without crashing", () => {
+  test("renders Message component", () => {
+    render(<Message />);
+    screen.debug();
+  });
 });

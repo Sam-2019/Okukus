@@ -1,8 +1,11 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import NewPassword from "../User//NewPassword";
 
-it("NewPassword renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<NewPassword />, div);
+describe("NewPassword renders without crashing", () => {
+  test("renders NewPassword component", () => {
+    render(<NewPassword />);
+    screen.debug();
+  });
 });
+

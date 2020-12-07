@@ -1,8 +1,11 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import View2 from "../Container/View/View2";
 
-it("View2 renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<View2 />, div);
+describe("View2 renders without crashing", () => {
+  test("renders View2 component", () => {
+    render(<View2 />);
+    screen.debug();
+  });
 });
+

@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import ResetPassword from "../User/ResetPassword";
 
-it("ResetPassword renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<ResetPassword />, div);
+describe("ResetPassword renders without crashing", () => {
+  test("renders ResetPassword component", () => {
+    render(<ResetPassword />);
+    screen.debug();
+  });
 });

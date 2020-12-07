@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import Profile from "../User/Profile";
 
-it("Profile renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<Profile />, div);
+describe("Profile renders without crashing", () => {
+  test("renders Profile component", () => {
+    render(<Profile />);
+    screen.debug();
+  });
 });

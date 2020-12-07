@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import Products from "../Product/Products";
 
-it("Products renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<Products />, div);
+describe("Products renders without crashing", () => {
+  test("renders Products component", () => {
+    render(<Products />);
+    screen.debug();
+  });
 });

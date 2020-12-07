@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import Hamburger from "../Hamburger/Hamburger";
 
-it("Hamburger renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<Hamburger />, div);
+describe("Hamburger renders without crashing", () => {
+  test("renders Hamburger component", () => {
+    render(<Hamburger />);
+    screen.debug();
+  });
 });

@@ -1,8 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, screen } from '@testing-library/react';
 import Body from "../Body/Body";
 
-it("Body renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<Body />, div);
+describe("Body renders without crashing", () => {
+  test("renders Body component", () => {
+    render(<Body />);
+    screen.debug();
+  });
 });
