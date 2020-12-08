@@ -12,7 +12,7 @@ const Tag = ({ hamburgerClick }) => {
   let history = useHistory();
 
   let tenet = resource.value.map(({ id, title }) => (
-    <button
+    <div
       key={id}
       onClick={() => {
         history.push(`/tag/${title}`);
@@ -21,7 +21,7 @@ const Tag = ({ hamburgerClick }) => {
       className="selector"
     >
       {title}
-    </button>
+    </div>
   ));
 
   return <div className="tag_wrapper">{tenet}</div>;

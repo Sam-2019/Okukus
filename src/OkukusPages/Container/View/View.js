@@ -1,12 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Skeleton from "react-loading-skeleton";
 import { okukus } from "../../apis";
 import "./view.css";
 
 const View = ({ cover_photo_url, product_name, unit_price, unique_id }) => {
   return (
-    <NavLink to={/product/ + unique_id} className="view_wrapper">
+    <NavLink to={`/product/${unique_id}`} className="view_wrapper">
       <div className="item_wrapper ">
         <div className=" item_image_wrapper ">
           <img

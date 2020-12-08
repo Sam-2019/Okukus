@@ -14,6 +14,7 @@ const Product = () => {
   const [loading, setLoading] = useState(false);
 
   let { id } = useParams();
+  console.log(id)
 
   let history = useHistory();
 
@@ -21,6 +22,7 @@ const Product = () => {
   formData.set("product_unique_id", id);
 
   const resource = useAsync(getItem, formData);
+  console.log(resource)
 
   let data = resource.value;
 
