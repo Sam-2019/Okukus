@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import View from "../Container/View/View";
 import View2 from "../Container/View/View2";
 import Button from "../Button/Button";
 import axios from "axios";
 import { itemsGet } from "../apis";
 
+const ViewSuspense = lazy(() => import("../Container/View/View"));
 
 function shuffle(array) {
   var result = [],
@@ -18,6 +19,15 @@ function shuffle(array) {
 
   return result;
 }
+
+const loadingImg = (
+  <div className="album-img">
+    <img
+      alt="loading"
+      src="https://media.giphy.com/media/y1ZBcOGOOtlpC/200.gif"
+    />
+  </div>
+);
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -55,6 +65,8 @@ const App = () => {
   let random = shuffle(data);
 
   console.log(data);
+
+  // let content = data.map((products, i) => <View key={i} {...products} />);
 
   let content = data.map((products, i) => <View key={i} {...products} />);
 
