@@ -55,7 +55,7 @@ const Welcome = () => {
   const { welcomeUser } = useAuthentication();
 
   const [welcome, setWelcome] = useState(false);
-  const [message, setMessage] = useState();
+  const [message, setMessage] = useState('');
   const [email, setEmail] = useState("");
   const number = uuidv4();
 
@@ -96,14 +96,14 @@ const Welcome = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       checkSession();
-    }, 95000);
+    }, 500);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <>
       {welcome && (
-        <div className="welcome ">
+        <div className="welcome  ">
           <div className="welcome_wrapper  ">
             {/* <div className="x-circle item">
           <svg

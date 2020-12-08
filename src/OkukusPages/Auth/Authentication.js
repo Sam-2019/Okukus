@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import axios from "axios";
 import useStateWithCallback from "use-state-with-callback";
 import {
@@ -247,7 +247,7 @@ const Authentication = () => {
     return welcomeuser;
   };
 
-  // useEffect(() => {
+  // useLayoutEffect(() => {
   //   const unsubscribe = isLoggedIn((loginToken) => {
   //     if (loginToken) {
   //       setAuth(true);
