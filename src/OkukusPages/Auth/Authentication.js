@@ -2,6 +2,7 @@ import { useState, useEffect, useLayoutEffect } from "react";
 import axios from "axios";
 import useStateWithCallback from "use-state-with-callback";
 import {
+  dev_site,
   itemsGet,
   itemGet,
   tagsGet,
@@ -32,8 +33,12 @@ import {
   wishList,
   wishDelete,
   userWelcome,
-} from "../apis";
+} from "../endpoints";
 import { axiosMethod } from "../helpers";
+
+const Axios = axios.create({
+  baseURL: dev_site,
+});
 
 const Authentication = () => {
   const [Auth, setAuth] = useStateWithCallback(false, (Auth) => {
@@ -99,6 +104,9 @@ const Authentication = () => {
     formData.set("token", loginToken);
 
     if (loginToken) {
+      //Adding JWT token to axios default header
+      Axios.defaults.headers.common["Authorization"] = "bearer " + loginToken;
+
       const { data } = await axiosMethod(userValidate, formData);
 
       if (data.validity === true && data.buyer === null) {

@@ -40,7 +40,7 @@ function Login() {
         setLoading(false);
       } else if (data.error === false) {
         localStorage.setItem("loginToken", data.token);
-        isLoggedIn();
+        await isLoggedIn();
         clearLogin();
         setLoading(false);
       } else return;

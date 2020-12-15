@@ -12,6 +12,8 @@ export const axiosMethod = async (url, formData) => {
   return method;
 };
 
+
+
 // export const useAsync = (getMethod, data) => {
 //   const [loading, setLoading] = useState(true);
 //   const [success, setSuccess] = useState();
