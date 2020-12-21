@@ -27,6 +27,8 @@
   bottom: 0;
   top: 0;
   background-color: #bfbfbf48;
+  /* backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); */
   -webkit-transition: all ease 0.7s;
   transition: all ease 0.7s;
   z-index: 11;
@@ -34,7 +36,14 @@
 }
 
 .welcome_wrapper {
-  border: 1px solid #c9bebedb;
+  border: 1px solid linear-gradient(
+    45deg,
+    #18bc4c 0%,
+    #23cc3c 25%,
+    #27dc2d 50%,
+    #97e63c 75%,
+    #bef033 100%
+  );;
   border-radius: 0.25em;
   background: linear-gradient(
     45deg,
@@ -45,10 +54,10 @@
     #bef033 100%
   );
   width: 100%;
-  max-width: 500px;
+  max-width: 480px;
   margin: 10rem auto;
   transition: all 0.6s ease-in-out;
-  min-height: auto;
+  height: 15em;
   color: #ffffff;
 }
 
@@ -123,6 +132,13 @@
   .welcome {
   }
   .welcome_wrapper {
+    width: 100%;
+    max-width: 500px;
+    margin: 10rem auto;
+    transition: all 0.6s ease-in-out;
+    height: 15em;
+    color: #ffffff;
+    
     width: auto;
     margin: 10em 4%;
   }

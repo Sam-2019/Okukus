@@ -7,7 +7,7 @@ import Hamburger from "../Hamburger/Hamburger";
 import { useAuthentication } from "../Auth/Context";
 import { useAsync, useOnClickOutside } from "../helpers";
 
-import "./newNav.css";
+import "./nav.css";
 
 const NavHandler = () => {
   const [dialog, setDialog] = useState(false);
@@ -29,8 +29,10 @@ const NavHandler = () => {
 
   return (
     <header className="head">
-      <div ref={hamburger} className="slideRight">
-        <Hamburger hamburger={hamburgerShow} />
+      <div className="">
+        <div ref={hamburger} className="slideRight">
+          <Hamburger hamburger={hamburgerShow} />
+        </div>
       </div>
 
       <div ref={alertbox} className="slideBottom">
@@ -39,14 +41,14 @@ const NavHandler = () => {
 
       <Navigation hamburger={hamburgerShow} showAlert={showAlert} />
 
-      {/* {dialog && <div className="backdrop"></div>} */}
+      {dialog && <div className="backdrop"></div>}
     </header>
   );
 };
 
 const Navigation = ({ hamburger, showAlert }) => {
   const ref = useRef();
-  const { countCart, uniqueID, logoutUser, Auth } = useAuthentication();
+  const { countCart, uniqueID, logoutUser } = useAuthentication();
   const [menu, setMenu] = useState(false);
 
   useOnClickOutside(ref, () => setMenu(false));

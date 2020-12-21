@@ -1,32 +1,31 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { okukus } from "../../endpoints";
 import "./view.css";
+import book1 from "../../files/book1.png";
 
-const View = ({ cover_photo_url, product_name, unit_price, unique_id }) => {
+const View = () => {
   return (
-    <NavLink to={`/product/${unique_id}`} className="view_wrapper">
+    <div className="view_wrapper">
       <div className="item_wrapper ">
         <div className=" item_image_wrapper ">
           <img
-            src={`${okukus}/${cover_photo_url}`}
+            src={book1}
             alt=""
-            className="item_image"
+            className="picLoad"
           />
         </div>
         <div className="name_price ">
           <div className="item_name_wrapper">
-            <span className="item_name">{product_name}</span>
+            <span className="item_name">product_name</span>
           </div>
 
           <div className=" item_price_wrapper ">
-            <span className="item_price ">₵{unit_price}</span>
+            <span className="item_price ">₵420</span>
 
             {/* <span className="discount item">-5%</span> */}
           </div>
         </div>
       </div>
-    </NavLink>
+    </div>
   );
 };
 

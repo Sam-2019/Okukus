@@ -20,6 +20,10 @@
   width: 60px;
 }
 
+input:checked ~ .hello {
+  background-color: tomato;
+}
+
 .notice {
   display: flex;
   flex-direction: column;

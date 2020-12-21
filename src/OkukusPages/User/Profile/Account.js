@@ -27,8 +27,10 @@ const OkukusAccount = () => {
   const [last_name, setLastName] = useState("");
   const [e_mail, setEmail] = useState("");
 
-  const [message, setMessage] = useState("");
-  const [verifyMessage, setVerifyMessage] = useState();
+  const [detailMessage, setDetailMessage] = useState("");
+  const [emailMessage, setEmaiMessage] = useState("");
+  const [verifyMessage, setVerifyMessage] = useState("");
+
 
   const submitDetail = () => {
     setdetailedit(false);
@@ -45,19 +47,19 @@ const OkukusAccount = () => {
     setdetailedit(false);
     setFirstName("");
     setLastName("");
-    setMessage("");
+    setDetailMessage("");
     setLoading1(false);
   };
 
   const cancelEmail = () => {
     setemailedit(false);
     setEmail("");
-    setMessage("");
+    setEmaiMessage("");
     setLoading2(false);
   };
 
   const updateDetail = async (event) => {
-    setMessage("");
+    setDetailMessage("");
     event.preventDefault();
 
     var formData = new FormData();
@@ -71,21 +73,21 @@ const OkukusAccount = () => {
 
       const data = await updateUserProfile(formData);
       if (data.error === true) {
-        setMessage(data.message);
+        setDetailMessage(data.message);
         setLoading1(false);
       } else if (data.error === false) {
         submitDetail();
-        setMessage(data.message);
+        setDetailMessage(data.message);
         setLoading1(false);
       }
     } else if (empty === "") {
-      setMessage("Please fill the form");
+      setDetailMessage("Please fill the form");
     } else return;
   };
 
   const updateEmail = async (event) => {
     event.preventDefault();
-    setMessage("");
+    setEmaiMessage("");
 
     var formData = new FormData();
 
@@ -97,16 +99,15 @@ const OkukusAccount = () => {
       formData.set("email", e_mail);
 
       const data = await updateUserEmail(formData);
-      console.log(data);
       if (data.error === true) {
-        setMessage(data.message);
+        setEmaiMessage(data.message);
         setLoading2(false);
       } else if (data.error === false) {
         submitEmail();
         setLoading2(false);
       }
     } else if (empty === "") {
-      setMessage("Please fill the form");
+      setEmaiMessage("Please fill the form");
     } else return;
   };
 
@@ -134,7 +135,7 @@ const OkukusAccount = () => {
         setLoading3(false);
       } else return;
     } else if (empty === "") {
-      setMessage("User email empty");
+      setVerifyMessage("User email empty");
     } else return;
   };
 
@@ -165,8 +166,8 @@ const OkukusAccount = () => {
                   action={(e) => setLastName(e.target.value)}
                 />
 
-                {message ? (
-                  <Message class_name="message " message={message} />
+                {detailMessage ? (
+                  <Message class_name="message " message={detailMessage} />
                 ) : null}
 
                 <div className="button_wrapper ">
@@ -221,8 +222,8 @@ const OkukusAccount = () => {
                   action={(e) => setEmail(e.target.value)}
                 />
 
-                {message ? (
-                  <Message class_name="message " message={message} />
+                {emailMessage ? (
+                  <Message class_name="message " message={emailMessage} />
                 ) : null}
 
                 <div className="button_wrapper ">

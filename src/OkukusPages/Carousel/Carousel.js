@@ -1,6 +1,6 @@
 import React from "react";
 import Carousel from "react-bootstrap/Carousel";
-import { okukus } from "../apis";
+import { okukus } from "../endpoints";
 
 const Slider = () => {
   return (

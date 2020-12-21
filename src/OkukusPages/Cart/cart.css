@@ -18,6 +18,20 @@
   margin: 2em 0 1em 0;
 }
 
+
+
+.title_container{
+display: flex;
+justify-content: space-between;
+
+}
+
+.another_container{
+  display: flex;
+
+  
+  }
+
 .cart_stack {
   font-size: 4.5em;
   text-align: center;

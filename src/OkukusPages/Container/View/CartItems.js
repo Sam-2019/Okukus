@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Button from "../../Button/Button";
+import Message from "../../Message/Message";
 import { useAuthentication } from "../../Auth/Context";
 import "./cart-items.css";
 
@@ -10,12 +11,15 @@ const Item = ({
   quantity,
   id,
   product_unique_id,
+  handleToggle,
 }) => {
   const { deleteCart, updateCart, createWish, uniqueID } = useAuthentication();
 
   const [loading1, setLoading1] = useState(false);
   const [loading2, setLoading2] = useState(false);
   const [loading3, setLoading3] = useState(false);
+
+  const [message, setMessage] = useState("");
 
   const [qty, setQty] = useState(Number(quantity));
 
@@ -40,6 +44,7 @@ const Item = ({
   };
 
   const saveItem = async (event) => {
+    setMessage("");
     event.preventDefault();
     var formData = new FormData();
 
@@ -54,8 +59,10 @@ const Item = ({
 
       if (data.error === true) {
         setLoading2(false);
+        setMessage(data.message);
       } else if (data.error === false) {
         setLoading2(false);
+        setMessage(data.message);
       } else return;
     } else return;
   };
@@ -101,6 +108,13 @@ const Item = ({
   return (
     <>
       <div className="cart_item_wrapper ">
+        <input
+          onChange={handleToggle(product_unique_id)}
+          type="checkbox"
+          className="mr-2 hello"
+          value="0"
+        />
+
         <div className="cart_image_wrapper  ">
           <img
             src={`https://okukus.com/${cover_photo_url}`}
@@ -140,7 +154,7 @@ const Item = ({
                   type="number"
                   onChange={(e) => setQty(e.target.value)}
                   placeholder="0"
-                  value={qty}
+                  value={qty || 0}
                 />
               </div>
 
@@ -160,8 +174,23 @@ const Item = ({
           </div>
 
           <div className="left_button_wrapper">
-            <Button name="Delete" class_name="delete" action={deleteItem} loading={loading1}/>
-            <Button name="Save" class_name="save" action={saveItem} loading={loading2}/>
+            <Button
+              name="Delete"
+              class_name="delete"
+              action={deleteItem}
+              loading={loading1}
+            />
+
+            <Button
+              name="Save"
+              class_name="save"
+              action={saveItem}
+              loading={loading2}
+            />
+
+            <span className="message_wrapper">
+              <span className="message">{message} </span>
+            </span>
           </div>
         </div>
       </div>

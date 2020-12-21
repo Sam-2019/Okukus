@@ -1,4 +1,4 @@
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 import axios from "axios";
 import useStateWithCallback from "use-state-with-callback";
 import {
@@ -34,9 +34,11 @@ import {
   wishDelete,
   userWelcome,
 } from "../endpoints";
-import { axiosMethod } from "../helpers";
+import { axiosMethod, useLocalStorage } from "../helpers";
 
-const Axios = axios.create({
+//Try destructring the responses i.e. {data}
+
+const instance = axios.create({
   baseURL: dev_site,
 });
 
@@ -49,6 +51,8 @@ const Authentication = () => {
     }
   });
 
+  const [Auth2, setAuth2] = useLocalStorage("name", "");
+
   //  const [Auth, setAuth] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -56,27 +60,29 @@ const Authentication = () => {
   const [uniqueID, setUniqueID] = useState("");
   const [verfifcationStatus, setVerificationStatus] = useState("");
 
-  const getItems = async () => {
-    const items = await axios(itemsGet);
-    return items;
-  };
+   const getItems = async () => {
+     const data = await axiosMethod('post',itemsGet);
+     return data;
+   };
 
-  const getItem = async (formData) => {
-    const item = await axiosMethod(itemGet, formData);
-    return item;
-  };
+  async function getItem(formData) {
+    const { data } = await axiosMethod("post", itemGet, formData);
+    return data;
+  }
 
-  const getTags = async () => {
-    const tags = await axios(tagsGet);
-    return tags;
-  };
+   const getTags = async () => {
+     const data = await axiosMethod('post',tagsGet);
+     return data;
+   };
 
-  const getTag = async (formData) => {
-    const tag = await axiosMethod(tagGet, formData);
-    return tag;
-  };
 
-  const logoutUser = () => {
+
+  async function getTag(formData) {
+    const { data } = await axiosMethod("post", tagGet, formData);
+    return data;
+  }
+
+  async function logoutUser() {
     localStorage.removeItem("loginToken");
     localStorage.clear();
     setAuth(false);
@@ -85,19 +91,23 @@ const Authentication = () => {
     setEmail("");
     setUniqueID("");
     setVerificationStatus("");
-  };
 
-  const loginUser = async (formData) => {
-    const login = await axiosMethod(userLogin, formData);
-    return login.data;
-  };
+    // Auth2
+    setAuth2("");
+  }
 
-  const registerUser = async (formData) => {
-    const register = await axiosMethod(userRegister, formData);
-    return register.data;
-  };
+  async function loginUser(formData) {
+    const { data } = await axiosMethod("post", userLogin, formData);
 
-  const isLoggedIn = async () => {
+    return data;
+  }
+
+  async function registerUser(formData) {
+    const { data } = await axiosMethod("post", userRegister, formData);
+    return data;
+  }
+
+  async function isLoggedIn() {
     const loginToken = localStorage.getItem("loginToken");
     var formData = new FormData();
 
@@ -105,14 +115,17 @@ const Authentication = () => {
 
     if (loginToken) {
       //Adding JWT token to axios default header
-      Axios.defaults.headers.common["Authorization"] = "bearer " + loginToken;
+      instance.defaults.headers.common["Authorization"] =
+        "bearer " + loginToken;
 
-      const { data } = await axiosMethod(userValidate, formData);
+      const { data } = await axiosMethod("post", userValidate, formData);
 
       if (data.validity === true && data.buyer === null) {
         localStorage.removeItem("loginToken");
+        setAuth2("");
       } else if (data.error === true) {
         localStorage.removeItem("loginToken");
+        setAuth2("");
       } else {
         return (
           // setAuth((state) => state(true)),
@@ -121,139 +134,144 @@ const Authentication = () => {
           setLastName(data.buyer.lastname),
           setEmail(data.buyer.email),
           setUniqueID(data.buyer.unique_id),
-          setVerificationStatus(data.buyer.verification_status)
+          setVerificationStatus(data.buyer.verification_status),
+          //Auth2
+          setAuth2("User Validated")
         );
       }
     } else return;
-  };
+  }
 
-  const updateUserPassword = async (formData) => {
-    const updatePassword = await axiosMethod(userPasswordUpdate, formData);
-    return updatePassword.data;
-  };
+  async function updateUserPassword(formData) {
+    const { data } = await axiosMethod("post", userPasswordUpdate, formData);
 
-  const updateUserProfile = async (formData) => {
-    const updateProfile = await axiosMethod(userProfileUpdate, formData);
+    return data;
+  }
 
-    if (updateProfile.data.error === false) {
-      setFirstName(updateProfile.data.data.firstname);
-      setLastName(updateProfile.data.data.lastname);
+  async function updateUserProfile(formData) {
+    const { data } = await axiosMethod("post", userProfileUpdate, formData);
+
+    if (data.error === false) {
+      setFirstName(data.data.firstname);
+      setLastName(data.data.lastname);
     }
-    return updateProfile.data;
-  };
+    return data;
+  }
 
-  const updateUserEmail = async (formData) => {
-    const updateEmail = await axiosMethod(userEmailUpdate, formData);
+  async function updateUserEmail(formData) {
+    const { data } = await axiosMethod("post", userEmailUpdate, formData);
 
-    if (updateEmail.data.error === false) {
-      setEmail(updateEmail.data.data.email);
+    if (data.error === false) {
+      setEmail(data.data.email);
     }
-    return updateEmail.data;
-  };
+    return data;
+  }
 
-  const resetUserAccount = async (formData) => {
-    const resetAccount = await axiosMethod(userAccountReset, formData);
-    return resetAccount.data;
-  };
+  async function resetUserAccount(formData) {
+    const { data } = await axiosMethod("post", userAccountReset, formData);
+    return data;
+  }
 
-  const verifyUserAccount = async (formData) => {
-    const verifyAccount = await axiosMethod(userAccountVerify, formData);
-    return verifyAccount;
-  };
+  async function verifyUserAccount(formData) {
+    const { data } = await axiosMethod("post", userAccountVerify, formData);
+    return data;
+  }
 
-  const verifyCreateEmail = async (formData) => {
-    const createEmailVerify = await axiosMethod(
-      userCreateEmailVerify,
+  async function verifyCreateEmail(formData) {
+    const { data } = await axiosMethod("post", userCreateEmailVerify, formData);
+    return data;
+  }
+
+  async function verifyReadEmail(formData) {
+    const readEmailVerify = await axiosMethod(
+      "post",
+      userReadEmailVerify,
       formData
     );
-    return createEmailVerify.data;
-  };
-
-  const verifyReadEmail = async (formData) => {
-    const readEmailVerify = await axiosMethod(userReadEmailVerify, formData);
     return readEmailVerify;
-  };
+  }
 
-  const userPasswordReset = async (formData) => {
-    const resetPassword = await axiosMethod(passwordReset, formData);
-    return resetPassword;
-  };
+  async function userPasswordReset(formData) {
+    const { data } = await axiosMethod("post", passwordReset, formData);
+    return data;
+  }
 
-  const searchItem = async (formData) => {
-    const search = await axiosMethod(itemSearch, formData);
-    return search;
-  };
+  async function searchItem(formData) {
+    const { data } = await axiosMethod("post", itemSearch, formData);
+    return data;
+  }
 
-  const addCart = async (formData) => {
-    const addcart = await axiosMethod(cartAdd, formData);
-    return addcart.data;
-  };
+  async function addCart(formData) {
+    const { data } = await axiosMethod("post", cartAdd, formData);
+    return data;
+  }
 
-  const getCart = async (formData) => {
-    const getcart = await axiosMethod(cartGet, formData);
-    return getcart;
-  };
+  async function getCart(formData) {
+    const { data } = await axiosMethod("post", cartGet, formData);
+    return data;
+  }
 
-  const countCart = async (formData) => {
-    const countcart = await axiosMethod(cartCount, formData);
+  async function countCart(formData) {
+    const { data } = await axiosMethod("post", cartCount, formData);
 
-    return countcart;
-  };
+    return data;
+  }
 
-  const deleteCart = async (formData) => {
-    const deletecart = await axiosMethod(cartDelete, formData);
-    return deletecart;
-  };
+  async function deleteCart(formData) {
+    const { data } = await axiosMethod("post", cartDelete, formData);
+    return data;
+  }
 
-  const updateCart = async (formData) => {
-    const updatecart = await axiosMethod(cartUpdate, formData);
-    return updatecart;
-  };
+  async function updateCart(formData) {
+    const { data } = await axiosMethod("post", cartUpdate, formData);
+    return data;
+  }
 
-  const checkoutCart = async (formData) => {
-    const checkoutcart = await axiosMethod(cartCheckout, formData);
-    return checkoutcart.data;
-  };
+  async function checkoutCart(formData) {
+    const { data } = await axiosMethod("post", cartCheckout, formData);
+    return data;
+  }
 
-  const summaryCart = async (formData) => {
-    const summarycart = await axiosMethod(cartSummary, formData);
-    return summarycart;
-  };
+  async function summaryCart(formData) {
+    const { data } = await axiosMethod("post", cartSummary, formData);
+    return data;
+  }
 
-  const createOrder = async (formData) => {
-    const createorder = await axiosMethod(orderCreate, formData);
-    return createorder.data;
-  };
+  async function createOrder(formData) {
+    const { data } = await axiosMethod("post", orderCreate, formData);
+    return data;
+  }
 
-  const historyOrder = async (formData) => {
-    const historyorder = await axiosMethod(orderHistory, formData);
-    return historyorder;
-  };
+  async function historyOrder(formData) {
+    const { data } = await axiosMethod("post", orderHistory, formData);
+    return data;
+  }
 
-  const detailOrder = async (formData) => {
-    const detailorder = await axiosMethod(orderDetail, formData);
-    return detailorder;
-  };
+  async function detailOrder(formData) {
+    const { data } = await axiosMethod("post", orderDetail, formData);
+    return data;
+  }
 
-  const createWish = async (formData) => {
-    const createwish = await axiosMethod(wishCreate, formData);
-    return createwish;
-  };
+  async function createWish(formData) {
+    const { data } = await axiosMethod("post", wishCreate, formData);
+    return data;
+  }
 
-  const listWish = async (formData) => {
-    const wishlist = await axiosMethod(wishList, formData);
-    return wishlist;
-  };
+  async function listWish(formData) {
+    const { data } = await axiosMethod("post", wishList, formData);
 
-  const deleteWish = async (formData) => {
-    const deletewish = await axiosMethod(wishDelete, formData);
-    return deletewish;
-  };
+    return data;
+  }
 
-  const welcomeUser = async (formData) => {
-    const welcomeuser = await axiosMethod(userWelcome, formData);
-    return welcomeuser;
-  };
+  async function deleteWish(formData) {
+    const { data } = await axiosMethod("post", wishDelete, formData);
+    return data;
+  }
+
+  async function welcomeUser(formData) {
+    const { data } = await axiosMethod("post", userWelcome, formData);
+    return data;
+  }
 
   // useLayoutEffect(() => {
   //   const unsubscribe = isLoggedIn((loginToken) => {
@@ -269,6 +287,8 @@ const Authentication = () => {
 
   return {
     Auth,
+
+    Auth2,
 
     getItems,
     getItem,

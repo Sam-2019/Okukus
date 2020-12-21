@@ -64,7 +64,7 @@ function SignUp() {
     <div className="user_wrapper">
       <div className="page_title">Sign Up</div>
 
-      <div className="wrapper-test">
+      <div className="wrapper-test ">
         <Input
           type="text"
           placeholder="First Name"

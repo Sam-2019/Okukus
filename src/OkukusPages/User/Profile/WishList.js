@@ -15,7 +15,6 @@ const WishList = () => {
   formData.set("buyer_unique_id", uniqueID);
 
   const resource = useAsync(listWish, formData);
-  console.log(product);
 
   let content;
 
@@ -47,9 +46,7 @@ const WishList = () => {
   //  );
 
   if (resource.value) {
-    content = resource.value.map((items, i) => (
-      <Item key={i} {...items} />
-    ));
+    content = resource.value.map((items, i) => <Item key={i} {...items} />);
   }
   return (
     <div>

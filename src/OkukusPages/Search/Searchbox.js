@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+
 import "./searchbox.css";
 
 const Search = ({ alert }) => {
@@ -18,6 +19,14 @@ const Search = ({ alert }) => {
   return (
     <>
       <div className="search_object ">
+        {/* <Input
+          type="search"
+          placeholder="Search"
+          class_name="search-input"
+          action={(e) => setQuery(e.target.value)}
+          content={query}
+        /> */}
+
         <input
           className="search-input"
           type="search"

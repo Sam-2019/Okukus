@@ -82,41 +82,13 @@ const Content = () => {
         <Order />
       </Route>
 
-      {/* <Route path="/order/confirm">
-        <Confirm />
-      </Route>
-
-      <Route path="/order/:id">
-        <Order />
-      </Route> */}
-
       <Route path="/user">
         <User />
       </Route>
 
-      {/* <Route path="/user/profile">
-        <Profile />
-      </Route>
-
-      <Route path="/user/verify/:id">
-        <UserVerify />
-      </Route> */}
-
       <Route path="/account">
         <Account />
       </Route>
-
-      {/* <Route path="/account/verify/:id">
-        <AccountVerify />
-      </Route>
-
-      <Route path="/account/reset/pwd">
-        <NewPassword />
-      </Route>
-
-      <Route path="/account/reset">
-        <ResetPassword />
-      </Route> */}
 
       <Route>
         <NotFound />

@@ -25,9 +25,12 @@ const Buy = ({ id }) => {
 
   const [momo, setMomo] = useState(false);
   const [message, setMessage] = useState("");
-  const [display, setDisplay] = useState(false);
 
-  const [momoDisplay, setMomoDisplay] = useState(false);
+  const [display, setDisplay] = useState("");
+  const [momoDisplay, setMomoDisplay] = useState("");
+
+  const [cashMessage, setCashMessage] = useState("");
+  const [momoMessage, setMomoMessage] = useState("");
 
   const [product_unique_id, setProductUniqueID] = useState(id);
 
@@ -64,6 +67,10 @@ const Buy = ({ id }) => {
     setDisplay(false);
     setMomoDisplay(false);
     setMessage("");
+
+    setCashMessage("");
+    setMomoMessage("");
+
     event.preventDefault();
     var formData = new FormData();
 
@@ -82,7 +89,7 @@ const Buy = ({ id }) => {
         console.log(data);
 
         if (data.error) {
-     
+          setCashMessage(data.error);
         } else if (data.order_number !== "") {
           localStorage.setItem("orderID", data.order_number);
 
@@ -92,7 +99,7 @@ const Buy = ({ id }) => {
         } else {
           setLoading(false);
         }
-      } else setMessage("Please fill above");
+      } else setCashMessage("Please fill above");
     } else if (payment_method === "momo") {
       let empty =
         location &&
@@ -120,6 +127,7 @@ const Buy = ({ id }) => {
 
         if (data.error) {
           setLoading(false);
+          setMomoMessage(data.error);
         } else if (data.order_number !== "") {
           localStorage.setItem("orderID", data.order_number);
 
@@ -129,12 +137,10 @@ const Buy = ({ id }) => {
           setLoading(false);
         }
       } else {
-        setMessage("Please fill below");
-        setMomoDisplay(!momoDisplay);
+        setMomoMessage("Please fill below");
       }
     } else {
-      setMessage("Please fill all fields");
-      setDisplay(true);
+      setMomoMessage("Please fill all fields");
     }
   };
 
@@ -187,6 +193,10 @@ const Buy = ({ id }) => {
           action={(e) => setPhoneNumber(e.target.value)}
           required
         />
+
+        {cashMessage ? (
+          <Message message={cashMessage} class_name="message" />
+        ) : null}
 
         {display && (
           <>
@@ -272,6 +282,10 @@ const Buy = ({ id }) => {
             Upon successful payment, please use the details of the payment to
             fill the fields below
           </div>
+
+          {momoMessage === "Please fill below" ? (
+            <Message message={momoMessage} class_name="message" />
+          ) : null}
 
           {momoDisplay && (
             <>

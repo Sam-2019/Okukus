@@ -51,7 +51,18 @@
 .item_image {
   border-radius: 0.5rem;
   width: 150px;
-  height: 230px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.picLoad {
+  background-image: url('../../files/spinner.gif');
+
+  background-size: cover;
+  background-position: center;
+
+  width: 150px;
+  height: 250px;
   object-fit: cover;
 }
 

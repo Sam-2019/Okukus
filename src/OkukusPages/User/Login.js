@@ -22,7 +22,7 @@ function Login() {
   let history = useHistory();
 
   const logIn = async (event) => {
-    setMessage();
+    setMessage("");
     event.preventDefault();
     var formData = new FormData();
 
@@ -34,11 +34,10 @@ function Login() {
 
       const data = await loginUser(formData);
       console.log(data);
-
       if (data.error === true) {
         setMessage(data.message);
         setLoading(false);
-      } else if (data.error === false) {
+      } else if (data.error === false && data.token) {
         localStorage.setItem("loginToken", data.token);
         await isLoggedIn();
         clearLogin();
