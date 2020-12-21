@@ -18,33 +18,6 @@ const WishList = () => {
 
   let content;
 
-  //  content = product.map(
-  //    ({
-  //      cover_photo_url,
-  //      amount,
-  //      datetime_ordered,
-  //      order_number,
-  //      product_author,
-  //      product_name,
-  //      product_unique_id,
-  //      status,
-  //      unique_id,
-  //    }) => (
-  //      <Item
-  //        key={unique_id}
-  //        id={unique_id}
-  //        amount={amount}
-  //        cover_photo_url={cover_photo_url}
-  //        product_name={product_name}
-  //        datetime_ordered={datetime_ordered}
-  //        order_number={order_number}
-  //        product_author={product_author}
-  //        product_unique_id={product_unique_id}
-  //        status={status}
-  //      />
-  //    )
-  //  );
-
   if (resource.value) {
     content = resource.value.map((items, i) => <Item key={i} {...items} />);
   }
@@ -57,25 +30,6 @@ const WishList = () => {
       ) : (
         <div>{content}</div>
       )}
-
-      {/* <div>{content}</div> */}
-      {/* <p>What type of music do you listen to?</p>
-      <ul>
-        <li>
-          <input type="checkbox" name="genre" value="punk" checked /> Punk rock
-        </li>
-        <li>
-          <input type="checkbox" name="genre" value="indie" checked /> Indie
-          rock
-        </li>
-        <li>
-          <input type="checkbox" name="genre" value="hiphop" /> Hip Hop
-        </li>
-        <li>
-          <input type="checkbox" name="genre" value="rockabilly" />
-          Rockabilly
-        </li>
-      </ul> */}
     </div>
   );
 };

@@ -14,6 +14,7 @@ const Vhistory = ({
   unique_id,
 }) => {
   let statusColorX;
+  
   switch (status) {
     case "pending":
       statusColorX = "pending";

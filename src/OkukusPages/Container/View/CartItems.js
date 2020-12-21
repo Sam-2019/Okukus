@@ -12,6 +12,7 @@ const Item = ({
   id,
   product_unique_id,
   handleToggle,
+  unique_id
 }) => {
   const { deleteCart, updateCart, createWish, uniqueID } = useAuthentication();
 
@@ -31,14 +32,16 @@ const Item = ({
     if (empty !== "") {
       setLoading1(true);
       formData.set("buyer_unique_id", uniqueID);
-      formData.set("item_unique_id", id);
+      formData.set("item_unique_id", unique_id);
 
       const data = await deleteCart(formData);
       console.log(data);
+
       if (data.error === true) {
         setLoading1(false);
+        setMessage(data.message);
       } else if (data.error === false) {
-        setLoading1(false);
+        setMessage(data.message);
       } else return;
     } else return;
   };
