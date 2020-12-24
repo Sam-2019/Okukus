@@ -2,7 +2,6 @@
 
 # dependencies
 /node_modules
-/src/OkukusPages/__tests__
 /src/OkukusPages/files
 /.pnp
 .pnp.js
