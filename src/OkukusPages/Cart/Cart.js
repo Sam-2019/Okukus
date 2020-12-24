@@ -4,7 +4,7 @@ import { useAsync } from "../helpers";
 import Spinner from "../Spinner/Spinner";
 import Empty from "./Empty Cart";
 import NotEmpty from "./NotEmpty";
-import products from "../files/products";
+// import products from "../files/products";
 import "./cart.css";
 
 const Cart = () => {
@@ -15,22 +15,23 @@ const Cart = () => {
   formData.set("buyer_unique_id", uniqueID);
 
   const cartData = useAsync(getCart, formData);
-  console.log(cartData.value)
 
   return (
-    <div className="cart  ">
-      <div className=" ">
-        {cartData.loading ? (
-          <Spinner size="big" />
-        ) : cartData.error || cartData.message === "cart is empty" ? (
-          <Empty />
-        ) : (
-          <NotEmpty cart={cartData.value} />
-        )}
+    <>
+      <div className="cart ">
+        <div className=" ">
+          {cartData.loading ? (
+            <Spinner size="big" />
+          ) : cartData.error || cartData.message === "cart is empty" ? (
+            <Empty />
+          ) : (
+            <NotEmpty cart={cartData.value} />
+          )}
 
-        {/* <NotEmpty cart={data} /> */}
+          {/* <NotEmpty cart={data} /> */}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

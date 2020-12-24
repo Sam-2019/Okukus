@@ -59,48 +59,46 @@ function NewPassword() {
     <div className=" user_wrapper">
       <div className="page_title">Reset Password</div>
 
-      <div className='wrapper-test'>
-      <Input
-        class_name="input "
-        placeholder="New Password"
-        content={newPassword}
-        type="password"
-        action={(e) => setNewPassword(e.target.value)}
-      />
+      <form className="wrapper-test " onSubmit={updatePassword}>
+        <Input
+          class_name="input "
+          placeholder="New Password"
+          content={newPassword}
+          type="password"
+          action={(e) => setNewPassword(e.target.value)}
+        />
 
-      <Input
-        class_name="input "
-        placeholder="Confirm Password"
-        content={confirmPassword}
-        type="password"
-        action={(e) => setConfirmPassword(e.target.value)}
-      />
+        <Input
+          class_name="input "
+          placeholder="Confirm Password"
+          content={confirmPassword}
+          type="password"
+          action={(e) => setConfirmPassword(e.target.value)}
+        />
 
-      <div className="message_wrapper ">
-        {message ? <Message message={message} class_name="message" /> : null}
-      </div>
+        <div className="message_wrapper ">
+          {message ? <Message message={message} class_name="message" /> : null}
+        </div>
 
-      <div className="button_wrapper ">
-        {error ? (
-          <Button
-            name="Login"
-            action={() => {
-              history.push("/login");
-            }}
-            class_name="primary"
-          />
-        ) : (
-          <Button
-            name="Submit"
-            action={updatePassword}
-            class_name="primary"
-            loading={loading}
-          />
-        )}
-      </div>
-      </div>
-
-
+        <div className="button_wrapper ">
+          {error ? (
+            <Button
+              name="Login"
+              action={() => {
+                history.push("/login");
+              }}
+              class_name="primary"
+            />
+          ) : (
+            <Button
+              name="Submit"
+              // action={updatePassword}
+              class_name="primary"
+              loading={loading}
+            />
+          )}
+        </div>
+      </form>
     </div>
   );
 }

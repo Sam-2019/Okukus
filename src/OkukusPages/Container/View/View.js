@@ -7,7 +7,7 @@ const View = ({ cover_photo_url, product_name, unit_price, unique_id }) => {
   return (
     <NavLink to={`/product/${unique_id}`} className="view_wrapper">
       <div className="item_wrapper ">
-        <div className=" item_image_wrapper ">
+        <div className=" item_image_wrapper  ">
           <img
             src={`${okukus}/${cover_photo_url}`}
             alt=""

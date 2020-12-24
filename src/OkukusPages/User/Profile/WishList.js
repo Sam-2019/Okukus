@@ -7,6 +7,7 @@ import Spinner from "../../Spinner/Spinner";
 import Button from "../../Button/Button";
 import product from "./products";
 import "./history.css";
+import "./wishlist.css";
 
 const WishList = () => {
   const { listWish, uniqueID } = useAuthentication();
@@ -22,7 +23,7 @@ const WishList = () => {
     content = resource.value.map((items, i) => <Item key={i} {...items} />);
   }
   return (
-    <div>
+    <div className='wishlist_wrapper'>
       {resource.loading ? (
         <Spinner size="big" />
       ) : resource.message === "wishlist is empty" ? (

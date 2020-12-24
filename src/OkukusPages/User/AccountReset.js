@@ -45,7 +45,7 @@ function ResetPassword() {
     <div className=" user_wrapper">
       <div className="page_title">Account Reset</div>
 
-      <div className="wrapper-test">
+      <form className="wrapper-test " onSubmit={send}>
         <Input
           type="email"
           placeholder="Email"
@@ -59,12 +59,12 @@ function ResetPassword() {
         <div className="button_wrapper ">
           <Button
             name="Submit"
-            action={send}
             class_name="primary"
+            // action={send}
             loading={loading}
           />
         </div>
-      </div>
+      </form>
     </div>
   );
 }

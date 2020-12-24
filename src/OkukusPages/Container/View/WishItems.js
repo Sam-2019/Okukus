@@ -34,7 +34,7 @@ const Item = ({
       formData.set("item_unique_id", unique_id);
 
       const data = await deleteWish(formData);
-      console.log(data);
+ 
 
       if (data.error === true) {
         setLoading(false);

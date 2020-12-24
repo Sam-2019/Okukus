@@ -9,7 +9,7 @@ import { useAuthentication } from "../Auth/Context";
 import "./product.css";
 
 const Product = () => {
-  const { getItem, addCart, uniqueID } = useAuthentication();
+  const { Auth2, getItem, addCart, uniqueID } = useAuthentication();
   const [message, setMessage] = useState();
   const [loading, setLoading] = useState(false);
 
@@ -100,7 +100,7 @@ const Product = () => {
   // );
 
   return (
-    <div>
+    <div className="product_page">
       {resource.loading ? (
         <Spinner size="big" />
       ) : resource.error ? (
@@ -148,13 +148,23 @@ const Product = () => {
               ) : null}
 
               <div className="button_wrapper ">
-                <Button
-                  class_name="primary"
-                  name="Buy book"
-                  action={() => {
-                    history.push(`/order/${id}`);
-                  }}
-                />
+                {Auth2 ? (
+                  <Button
+                    class_name="primary"
+                    name="Buy book"
+                    action={() => {
+                      history.push(`/order/${id}`);
+                    }}
+                  />
+                ) : (
+                  <Button
+                    class_name="primary"
+                    name="Login"
+                    action={() => {
+                      history.push("/login");
+                    }}
+                  />
+                )}
 
                 <Button
                   name="Add to cart"

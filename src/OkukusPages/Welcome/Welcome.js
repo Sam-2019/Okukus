@@ -83,7 +83,7 @@ const Welcome = () => {
               ) : (
                 <>
                   <div className="welcome_company">Welcome to OKUKUS.com</div>
-                  <div>
+                  <div className='newsletter'>
                     Subscribe to our newsletter to get updates on our latest
                     offers!
                   </div>

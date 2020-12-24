@@ -4,8 +4,10 @@ import {
   Route,
   Switch,
   useRouteMatch,
+  Redirect,
 } from "react-router-dom";
 import { ScrollToTop } from "./helpers";
+import { useAuthentication } from "./Auth/Context";
 
 import "./okukus.css";
 
@@ -24,16 +26,16 @@ import TagContent from "./Tag/Content";
 import UserVerify from "./User/UserVerify";
 import NewPassword from "./User/NewPassword";
 import NotFound from "./404/404";
-import ResetPassword from "./User/ResetPassword";
+import ResetPassword from "./User/AccountReset";
 import AccountVerify from "./User/AccountVerify";
 import Footer from "./Footer/Footer";
 
 const Okukus = () => {
   return (
     <Router>
-      <ScrollToTop />
       <Navigation />
-      <div className="contain ">
+      <ScrollToTop />
+      <div className="contain">
         <Content />
       </div>
       <Footer />
@@ -44,6 +46,7 @@ const Okukus = () => {
 export default Okukus;
 
 const Content = () => {
+  const { Auth2 } = useAuthentication();
   return (
     <Switch>
       <Route exact path="/">
@@ -55,12 +58,10 @@ const Content = () => {
       </Route>
 
       <Route path="/checkout/confirm">
-        <Checkout />
+        {!Auth2 ? <Redirect to="/" /> : <Checkout />}
       </Route>
 
-      <Route path="/login">
-        <Login />
-      </Route>
+      <Route path="/login">{Auth2 ? <Redirect to="/" /> : <Login />}</Route>
 
       <Route path="/signup">
         <SignUp />
@@ -78,13 +79,9 @@ const Content = () => {
         <Search />
       </Route>
 
-      <Route path="/order">
-        <Order />
-      </Route>
+      <Route path="/order">{!Auth2 ? <Redirect to="/" /> : <Order />}</Route>
 
-      <Route path="/user">
-        <User />
-      </Route>
+      <Route path="/user">{!Auth2 ? <Redirect to="/" /> : <User />}</Route>
 
       <Route path="/account">
         <Account />
@@ -99,7 +96,6 @@ const Content = () => {
 
 function User() {
   let { path } = useRouteMatch();
-
   return (
     <Switch>
       <Route path={`${path}/profile`}>
@@ -115,6 +111,7 @@ function User() {
 
 function Account() {
   let { path } = useRouteMatch();
+
   return (
     <Switch>
       <Route path={`${path}/verify/:id`}>
@@ -134,7 +131,6 @@ function Account() {
 
 function Order() {
   let { path } = useRouteMatch();
-
   return (
     <Switch>
       <Route path={`${path}/confirm`}>

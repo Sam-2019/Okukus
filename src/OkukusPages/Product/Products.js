@@ -1,10 +1,11 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import View from "../Container/View/View";
 import View2 from "../Container/View/View2";
 import ViewLoading from "../Container/View/ViewLoading";
 import Button from "../Button/Button";
 import axios from "axios";
 import { itemsGet } from "../endpoints";
+import Products from "../files/products";
 
 // const ViewSuspense = lazy(() => import("../Container/View/View"));
 
@@ -31,9 +32,9 @@ import { itemsGet } from "../endpoints";
 // );
 
 const App = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(Products);
   const [offset, setOffset] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -65,7 +66,6 @@ const App = () => {
 
   // let random = shuffle(data);
 
-
   // let content = data.map((products, i) => <View key={i} {...products} />);
 
   let content = data.map((products, i) => <View key={i} {...products} />);
@@ -82,11 +82,10 @@ const App = () => {
     );
   };
 
-
   const ViewLoad = () => {
     return (
       <>
-        {Array(4)
+        {Array(8)
           .fill()
           .map((item, index) => (
             <ViewLoading key={index} />
@@ -94,21 +93,10 @@ const App = () => {
       </>
     );
   };
-  
+
   return (
     <>
-      <div className="products_wrapper">{content}</div>
-
-       <div className="products_wrapper">{loading ? <ViewLoad /> : null}</div> 
-
-      {/* {data.map((item) => (
-        <div key={item.id}>
-          <p>
-            ID: {item.id} Title: {item.product_name}
-          </p>
-        </div>
-      ))} */}
-
+      <div className="products_wrapper ">{content}</div>
 
       <div>
         {loading ? (
