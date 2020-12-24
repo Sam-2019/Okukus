@@ -46,8 +46,6 @@ const App = () => {
     fetchData();
   }, []);
 
-
-
   function load() {
     setLoading(true);
     var formData = new FormData();
@@ -58,7 +56,6 @@ const App = () => {
       data: formData,
       headers: { "Content-Type": "multipart/form-data" },
     }).then((response) => {
-
       setTimeout(() => {
         setData((prevState) => [...prevState, ...response.data]);
         setOffset(offset + response.data.length);
