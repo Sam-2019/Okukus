@@ -1,7 +1,6 @@
 import React from "react";
 import "./view.css";
-import book1 from "../../files/book1.png";
-import spinner from "../../files/spinner.gif";
+import spinner from "../../Spinner/spinner.gif";
 
 const View = () => {
   return (

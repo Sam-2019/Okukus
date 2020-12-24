@@ -49,7 +49,7 @@
 }
 
 .item_image {
-  background-image: url("../../files/spinner.gif");
+  background-image: url("../../Spinner/spinner.gif");
   background-position: center;
   border-radius: 0.5rem;
   width: 140px;
@@ -58,7 +58,7 @@
 }
 
 .picLoad {
-  background-image: url("../../files/spinner.gif");
+  background-image: url("../../Spinner/spinner.gif");
   background-position: center;
   border-radius: 0.5rem;
   width: 100%;
