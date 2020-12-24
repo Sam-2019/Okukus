@@ -15,7 +15,7 @@ const View = () => {
           </div>
 
           <div className=" item_price_wrapper ">
-            <span className="item_price ">Loading...</span>
+            <span className="item_price ">........</span>
 
             {/* <span className="discount item">-5%</span> */}
           </div>
