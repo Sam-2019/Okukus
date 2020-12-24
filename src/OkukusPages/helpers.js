@@ -12,38 +12,6 @@ export const axiosMethod = async (type, url, formData) => {
   return method;
 };
 
-// export const useAsync = (getMethod, data) => {
-//   const [loading, setLoading] = useState(true);
-//   const [success, setSuccess] = useState();
-//   const [error, setError] = useState();
-//   const [message, setMessage] = useState();
-//   const [value, setValue] = useState([]);
-
-//   const fetchData = useCallback(async () => {
-//     const result = await getMethod(data);
-
-//     if (result.data.error === true) {
-//       setSuccess(result.status);
-//       setMessage(result.data.message);
-//       setValue(null);
-//       setLoading(false);
-//     } else if (result.data.error === false) {
-//       setValue(result.data.data);
-//       setLoading(false);
-//       setMessage(null);
-//       setError(null);
-//     }
-//   }, [getMethod]);
-
-//   useEffect(() => {
-//     if (data) {
-//       fetchData();
-//     }
-//   }, [fetchData, data]);
-
-//   return { value, message, error, loading, success };
-// };
-
 export const useAsync = (getMethod, data) => {
   const [loading, setLoading] = useState(true);
   const [success, setSuccess] = useState();

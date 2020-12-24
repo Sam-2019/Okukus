@@ -79,6 +79,10 @@ const Content = () => {
         <Search />
       </Route>
 
+      <Route path="/order/confirm">
+        <Confirm />
+      </Route>
+
       <Route path="/order">{!Auth2 ? <Redirect to="/" /> : <Order />}</Route>
 
       <Route path="/user">{!Auth2 ? <Redirect to="/" /> : <User />}</Route>

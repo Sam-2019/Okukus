@@ -14,19 +14,14 @@ function NewPassword() {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const [message, setMessage] = useState("");
-  const [error, setError] = useState();
+  const [error, setError] = useState("");
 
   const email = localStorage.getItem("email");
 
   let history = useHistory();
 
-  const reset = () => {
-    setNewPassword("");
-    setConfirmPassword("");
-  };
-
   const updatePassword = async (event) => {
-    setMessage();
+    setMessage("");
     event.preventDefault();
     var formData = new FormData();
 
@@ -46,7 +41,8 @@ function NewPassword() {
         setError(data.error);
         setLoading(false);
       } else if (data.error === false) {
-        reset();
+        setNewPassword("");
+        setConfirmPassword("");
         localStorage.removeItem("email");
         setLoading(false);
       }

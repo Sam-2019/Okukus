@@ -15,12 +15,8 @@ const Welcome = () => {
     setWelcome(false);
   };
 
-  const clear = () => {
-    setEmail("");
-  };
-
   const submit = async (event) => {
-    setEmail('');
+    setEmail("");
     event.preventDefault();
     var formData = new FormData();
 
@@ -32,7 +28,7 @@ const Welcome = () => {
       return;
     } else if (data.data.message) {
       setMessage(data.data.message);
-      clear();
+      setEmail("");
       sessionStorage.setItem("key", number);
     }
   };
@@ -83,7 +79,7 @@ const Welcome = () => {
               ) : (
                 <>
                   <div className="welcome_company">Welcome to OKUKUS.com</div>
-                  <div className='newsletter'>
+                  <div className="newsletter">
                     Subscribe to our newsletter to get updates on our latest
                     offers!
                   </div>

@@ -1,38 +1,13 @@
 import React, { useState, useEffect } from "react";
 import View from "../Container/View/View";
-import View2 from "../Container/View/View2";
 import ViewLoading from "../Container/View/ViewLoading";
 import Button from "../Button/Button";
 import axios from "axios";
 import { itemsGet } from "../endpoints";
-// import Products from "../files/products";
-
-// const ViewSuspense = lazy(() => import("../Container/View/View"));
-
-// function shuffle(array) {
-//   var result = [],
-//     source = array.concat([]);
-
-//   while (source.length) {
-//     let index = Math.floor(Math.random() * source.length);
-//     result.push(source[index]);
-//     source.splice(index, 1);
-//   }
-
-//   return result;
-// }
-
-// const loadingImg = (
-//   <div className="album-img">
-//     <img
-//       alt="loading"
-//       src="https://media.giphy.com/media/y1ZBcOGOOtlpC/200.gif"
-//     />
-//   </div>
-// );
+import Products from "../files/products";
 
 const App = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(Products);
   const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(false);
 
@@ -64,23 +39,7 @@ const App = () => {
     });
   }
 
-  // let random = shuffle(data);
-
-  // let content = data.map((products, i) => <View key={i} {...products} />);
-
   let content = data.map((products, i) => <View key={i} {...products} />);
-
-  const Skele = () => {
-    return (
-      <>
-        {Array(4)
-          .fill()
-          .map((item, index) => (
-            <View2 key={index} />
-          ))}
-      </>
-    );
-  };
 
   const ViewLoad = () => {
     return (
@@ -97,6 +56,10 @@ const App = () => {
   return (
     <>
       <div className="products_wrapper ">{content}</div>
+
+      {/* <div className="products_wrapper">
+        {loading ? <> {content} </> : <ViewLoad />}
+      </div> */}
 
       <div>
         {loading ? (

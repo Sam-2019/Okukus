@@ -12,10 +12,6 @@ function ResetPassword() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const reset = () => {
-    setEmail("");
-  };
-
   const send = async (event) => {
     setMessage("");
     event.preventDefault();
@@ -34,7 +30,7 @@ function ResetPassword() {
       } else if (data.error === false) {
         setMessage(data.message);
         setLoading(false);
-        reset();
+        setEmail("");
       } else return;
     } else if (email === "") {
       setMessage("Please enter your email");

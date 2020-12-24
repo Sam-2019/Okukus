@@ -1,25 +1,3 @@
-.bg {
-  background: linear-gradient(
-    45deg,
-    #18bc4c 0%,
-    #23cc3c 25%,
-    #27dc2d 50%,
-    #97e63c 75%,
-    #bef033 100%
-  );
-}
-
-.bdg {
-  background: linear-gradient(
-    45deg,
-    #bef033 0%,
-    #97e63c 25%,
-    #27dc2d 50%,
-    #23cc3c 75%,
-    #18bc4c 100%
-  );
-}
-
 .welcome {
   position: fixed;
   left: 0;
@@ -27,8 +5,8 @@
   bottom: 0;
   top: 0;
   background-color: #bfbfbf48;
-  /* backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   -webkit-transition: all ease 0.7s;
   transition: all ease 0.7s;
   z-index: 11;
@@ -165,6 +143,10 @@
     padding: 10px 0;
     text-align: center;
   }
+
+  .newsletter {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 280px) {
@@ -173,9 +155,14 @@
     font-size: 15px;
   }
 
+  .welcome_button {
+    padding: 6px 5px;
+    justify-content: space-evenly;
+    width: 3.5em;
+  }
+
   .newsletter {
     font-size: 12px;
-    margin: 0.5em 0em;
   }
 
   .welcome_input {
