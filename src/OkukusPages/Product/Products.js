@@ -5,7 +5,7 @@ import ViewLoading from "../Container/View/ViewLoading";
 import Button from "../Button/Button";
 import axios from "axios";
 import { itemsGet } from "../endpoints";
-import Products from "../files/products";
+// import Products from "../files/products";
 
 // const ViewSuspense = lazy(() => import("../Container/View/View"));
 
@@ -32,7 +32,7 @@ import Products from "../files/products";
 // );
 
 const App = () => {
-  const [data, setData] = useState(Products);
+  const [data, setData] = useState([]);
   const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(false);
 
