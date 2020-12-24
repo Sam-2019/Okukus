@@ -48,7 +48,7 @@ const Welcome = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       checkSession();
-    }, 9);
+    }, 90000);
     return () => clearTimeout(timer);
   }, []);
 
