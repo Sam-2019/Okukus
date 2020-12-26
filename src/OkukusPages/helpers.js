@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 
@@ -11,38 +11,6 @@ export const axiosMethod = async (type, url, formData) => {
   });
   return method;
 };
-
-// export const useAsync = (getMethod, data) => {
-//   const [loading, setLoading] = useState(true);
-//   const [success, setSuccess] = useState();
-//   const [error, setError] = useState();
-//   const [message, setMessage] = useState();
-//   const [value, setValue] = useState([]);
-
-//   const fetchData = useCallback(async () => {
-//     const result = await getMethod(data);
-
-//     if (result.data.error === true) {
-//       setSuccess(result.status);
-//       setMessage(result.data.message);
-//       setValue(null);
-//       setLoading(false);
-//     } else if (result.data.error === false) {
-//       setValue(result.data.data);
-//       setLoading(false);
-//       setMessage(null);
-//       setError(null);
-//     }
-//   }, [getMethod]);
-
-//   useEffect(() => {
-//     if (data) {
-//       fetchData();
-//     }
-//   }, [fetchData, data]);
-
-//   return { value, message, error, loading, success };
-// };
 
 export const useAsync = (getMethod, data) => {
   const [loading, setLoading] = useState(true);
@@ -175,4 +143,41 @@ export function useLocalStorage(key, initialValue) {
     }
   };
   return [storedValue, setValue];
+}
+
+export function useIntersectionObserver({
+  root,
+  target,
+  onIntersect,
+  threshold = 1.0,
+  rootMargin = "0px",
+  enabled = true,
+}) {
+  React.useEffect(() => {
+    if (!enabled) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((entry) => entry.isIntersecting && onIntersect()),
+      {
+        root: root && root.current,
+        rootMargin,
+        threshold,
+      }
+    );
+
+    const el = target && target.current;
+
+    if (!el) {
+      return;
+    }
+
+    observer.observe(el);
+
+    return () => {
+      observer.unobserve(el);
+    };
+  }, [target.current, enabled]);
 }
