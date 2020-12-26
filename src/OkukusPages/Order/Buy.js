@@ -1,22 +1,9 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useAuthentication } from "../Auth/Context";
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import Message from "../Message/Message";
-import "./neworder.css";
-
-const Order = () => {
-  let { id } = useParams();
-
-  return (
-    <div className="order_">
-      <Buy id={id} />
-    </div>
-  );
-};
-
-export default Order;
 
 const Buy = ({ id }) => {
   const { createOrder, uniqueID } = useAuthentication();
@@ -209,34 +196,6 @@ const Buy = ({ id }) => {
         <h4 className="_billing ">Billing</h4>
         {/* <div>Choose a payment method below</div> */}
 
-        {/* <div className="payment_wrapper">
-          <div className="   radio">
-            <label>
-              <input
-                type="radio"
-                id="cash"
-                name="payment_option"
-                content={payment_method}
-                onClick={cashCheck}
-              />{" "}
-              Cash on Delivery
-            </label>
-          </div>
-
-          <div className="  radio">
-            <label>
-              <input
-                type="radio"
-                id="momo"
-                name="payment_option"
-                content={payment_method}
-                onClick={momoCheck}
-              />{" "}
-              Mobile Money
-            </label>
-          </div>
-        </div> */}
-
         <div className="payment_wrapper ">
           <select
             className="input"
@@ -334,3 +293,5 @@ const Buy = ({ id }) => {
     </div>
   );
 };
+
+export default Buy;
