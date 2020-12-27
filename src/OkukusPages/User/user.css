@@ -14,7 +14,7 @@
 
 .forgotten_password {
   color: #6495ed;
-  cursor: default;
+  cursor: pointer;
 }
 
 .forgotten_password:hover,
@@ -24,10 +24,10 @@
 
 @media (max-width: 540px) {
   .user_wrapper {
-    padding: 0.5em ;
+    padding: 0.5em;
   }
 
-  .wrapper-test{
+  .wrapper-test {
     padding: 1em 1.5em 0;
   }
 }

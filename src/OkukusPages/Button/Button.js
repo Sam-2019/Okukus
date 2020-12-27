@@ -3,6 +3,20 @@ import Spinner from "../Spinner/Spinner";
 import "./button.css";
 
 const Button = ({ class_name, action, name, loading }) => {
+  // switch (loading && class_name ) {
+  //   case "primary":
+  //     className = "inactivePRI";
+  //     break;
+  //   case "secondary":
+  //     className = "inactiveSEC";
+  //     break;
+  //   case "delete":
+  //     className = "inactiveDEL";
+  //     break;
+  //   case "save":
+  //     className = "inactiveSAVE";
+  // }
+
   return (
     <button
       className={

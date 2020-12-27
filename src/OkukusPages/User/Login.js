@@ -79,7 +79,7 @@ function Login() {
                 history.push("/account/reset");
               }}
             >
-              Password forgotten?
+              Forgotten password?
             </span>
           </div>
         )}
