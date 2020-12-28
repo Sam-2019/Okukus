@@ -184,7 +184,6 @@
   }
 
   .cart3000 {
-
   }
 
   .profile {
@@ -229,19 +228,30 @@
   }
 
   .slideRight {
-    width: 100%;
+    width: 85%;
   }
 
   .slideRight {
     transition: margin 2.5s;
-
   }
-  
+
   .slideRight.is-slideRight-open {
     margin-left: 0;
     transition: all ease 1.5s;
   }
-  
+
+  .backdrop {
+    background-color: rgba(255, 255, 255, 0.3);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: all ease 5s;
+  }
 }
 
 @media (max-width: 320px) {
@@ -261,7 +271,6 @@
   }
 
   .cart3000 {
-
   }
 }
 
@@ -282,7 +291,6 @@
   }
 
   .cart3000 {
-
   }
 }
 

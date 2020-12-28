@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Button from "../../Button/Button";
+import Message from "../../Message/Message";
 import { useAuthentication } from "../../Auth/Context";
 import "./cart-items.css";
 
@@ -10,12 +11,17 @@ const Item = ({
   quantity,
   id,
   product_unique_id,
+  handleToggle,
+  unique_id,
+  onFormSubmit,
 }) => {
   const { deleteCart, updateCart, createWish, uniqueID } = useAuthentication();
 
   const [loading1, setLoading1] = useState(false);
   const [loading2, setLoading2] = useState(false);
   const [loading3, setLoading3] = useState(false);
+
+  const [message, setMessage] = useState("");
 
   const [qty, setQty] = useState(Number(quantity));
 
@@ -27,23 +33,27 @@ const Item = ({
     if (empty !== "") {
       setLoading1(true);
       formData.set("buyer_unique_id", uniqueID);
-      formData.set("item_unique_id", id);
+      formData.set("item_unique_id", unique_id);
 
       const data = await deleteCart(formData);
-      console.log(data);
+
+
       if (data.error === true) {
         setLoading1(false);
+        // setMessage(data.message);
       } else if (data.error === false) {
-        setLoading1(false);
+        // setMessage(data.message);
       } else return;
     } else return;
   };
 
   const saveItem = async (event) => {
+    setMessage("");
     event.preventDefault();
     var formData = new FormData();
 
     let empty = product_unique_id;
+
     if (empty !== "") {
       setLoading2(true);
       formData.set("buyer_unique_id", uniqueID);
@@ -54,11 +64,20 @@ const Item = ({
 
       if (data.error === true) {
         setLoading2(false);
+        setMessage(data.message);
+        // onFormSubmit(data.message);
       } else if (data.error === false) {
         setLoading2(false);
+        setMessage(data.message);
+        // onFormSubmit(data.message);
       } else return;
     } else return;
   };
+
+  // if (unit_price) {
+  //   setMessage("No Davey");
+  //   await onFormSubmit(message);
+  // }
 
   const updateItem = useCallback(async () => {
     var formData = new FormData();
@@ -100,7 +119,16 @@ const Item = ({
 
   return (
     <>
-      <div className="cart_item_wrapper ">
+      <div className="cart_item_wrapper">
+        <div className="checkBox ">
+          <input
+            onChange={handleToggle(product_unique_id)}
+            type="checkbox"
+            className
+            value="0"
+          />
+        </div>
+
         <div className="cart_image_wrapper  ">
           <img
             src={`https://okukus.com/${cover_photo_url}`}
@@ -109,7 +137,7 @@ const Item = ({
           />
         </div>
 
-        <div className="notice ">
+        <div className="notice  ">
           <div className="secondhalf   ">
             <div className="cart_item_detail  ">
               <div className=" cart_item_name ">{product_name}</div>
@@ -141,6 +169,7 @@ const Item = ({
                   onChange={(e) => setQty(e.target.value)}
                   placeholder="0"
                   value={qty}
+                  min="1"
                 />
               </div>
 
@@ -159,13 +188,52 @@ const Item = ({
         </div> */}
           </div>
 
-          <div className="left_button_wrapper">
-            <Button name="Delete" class_name="delete" action={deleteItem} loading={loading1}/>
-            <Button name="Save" class_name="save" action={saveItem} loading={loading2}/>
+          <div className="left_button_wrapper  ">
+            <Button
+              name="Delete"
+              class_name="delete"
+              action={deleteItem}
+              loading={loading1}
+            />
+
+            <Button
+              name="Save"
+              class_name="save"
+              action={saveItem}
+              loading={loading2}
+            />
+
+            <span>
+              {message ? <span className="notify">{message}</span> : null}
+            </span>
           </div>
         </div>
-      </div>
+
+        <div className="new_button_wrapper2 item">
+            <Button
+              name="Delete"
+              class_name="delete"
+              action={deleteItem}
+              loading={loading1}
+            />
+
+            <Button
+              name="Save"
+              class_name="save"
+              action={saveItem}
+              loading={loading2}
+            />
+
+            <span>
+              {message ? <span className="notify item">{message}</span> : null}
+            </span>
+          </div>
+    
+  </div>
+
+    
     </>
+
   );
 };
 

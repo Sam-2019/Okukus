@@ -27,14 +27,23 @@
   bottom: 0;
   top: 0;
   background-color: #bfbfbf48;
+  /* backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); */
   -webkit-transition: all ease 0.7s;
   transition: all ease 0.7s;
   z-index: 11;
-
 }
 
 .welcome_wrapper {
-  border: 1px solid #c9bebedb;
+  border: 1px solid
+    linear-gradient(
+      45deg,
+      #18bc4c 0%,
+      #23cc3c 25%,
+      #27dc2d 50%,
+      #97e63c 75%,
+      #bef033 100%
+    );
   border-radius: 0.25em;
   background: linear-gradient(
     45deg,
@@ -45,10 +54,10 @@
     #bef033 100%
   );
   width: 100%;
-  max-width: 500px;
+  max-width: 480px;
   margin: 10rem auto;
   transition: all 0.6s ease-in-out;
-  min-height: auto;
+  height: 15em;
   color: #ffffff;
 }
 
@@ -68,7 +77,7 @@
 .welcome_message {
   border-radius: 0.25em;
   text-align: center;
-  margin: 2.5em 0em 5em;
+  margin: 2em 0em 5em;
   padding: 0 1em;
 }
 
@@ -76,6 +85,11 @@
   /* font-size: 30px;
   text-align: left;
   margin-top: 0 ; */
+}
+
+.newsletter {
+  font-size: 14px;
+  margin: 0.5em 0em;
 }
 
 .welcome_input {
@@ -107,7 +121,7 @@
 }
 
 .welcome_button:active {
-  transform: scale(0.95);
+  /* transform: scale(0.95); */
 }
 
 .welcome_button:focus {
@@ -123,6 +137,13 @@
   .welcome {
   }
   .welcome_wrapper {
+    width: 100%;
+    max-width: 500px;
+    margin: 10rem auto;
+    transition: all 0.6s ease-in-out;
+    height: 15em;
+    color: #ffffff;
+
     width: auto;
     margin: 10em 4%;
   }
@@ -143,5 +164,21 @@
   .thanks {
     padding: 10px 0;
     text-align: center;
+  }
+}
+
+@media (max-width: 280px) {
+  .welcome_company {
+    margin: 0.5em 0 0 0;
+    font-size: 15px;
+  }
+
+  .newsletter {
+    font-size: 12px;
+    margin: 0.5em 0em;
+  }
+
+  .welcome_input {
+    width: 8.6em;
   }
 }

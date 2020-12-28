@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useAuthentication } from "../Auth/Context";
 import { useAsync } from "../helpers";
@@ -17,7 +17,7 @@ const Summary = () => {
   var formData = new FormData();
   formData.set("buyer_unique_id", uniqueID);
   const cartSummary = useAsync(summaryCart, formData);
-  console.log(cartSummary);
+
 
   let totalA;
   let totalQ;

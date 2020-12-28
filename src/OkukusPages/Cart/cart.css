@@ -4,6 +4,7 @@
   margin: 1em 0;
 }
 
+
 .cart_wrapper {
   display: flex;
   justify-content: space-between;
@@ -17,6 +18,20 @@
 .empty_cart_message {
   margin: 2em 0 1em 0;
 }
+
+
+
+.title_container{
+display: flex;
+justify-content: space-between;
+
+}
+
+.another_container{
+  display: flex;
+
+  
+  }
 
 .cart_stack {
   font-size: 4.5em;

@@ -35,7 +35,7 @@ const Password = () => {
       formData.set("confirm_password", confirmPassword);
 
       const data = await updateUserPassword(formData);
-      console.log(data);
+
 
       if (data.error === true) {
         reset();

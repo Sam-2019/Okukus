@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useHistory } from "react-router-dom";
 import { useAuthentication } from "../Auth/Context";
 import Message from "../Message/Message";
 import Button from "../Button/Button";
@@ -11,7 +10,6 @@ import Spinner from "../Spinner/Spinner";
 const Main = ({ main_state }) => {
   const [loading, setLoading] = useState(false);
   const { uniqueID, summaryCart, checkoutCart } = useAuthentication();
-  let history = useHistory();
 
   const [tQty, setTQty] = useState(0);
   const [tValue, setTValue] = useState(0);
@@ -82,7 +80,7 @@ const Main = ({ main_state }) => {
     //   setTQty(cartSummary.value.total_quantity);
     //   setTValue(cartSummary.value.total_amount);
     // } else return;
-  }, [cartSummary.value]);
+  }, [cartSummary.value, cartSummary.loading]);
 
   useEffect(() => {
     load();

@@ -37,8 +37,8 @@ const Content = () => {
       <div>
         {resource.loading ? (
           <Spinner size="big" />
-        ) : resource.message === "no orders found" ? (
-          <div className="">No orders found</div>
+        ) : resource.message === "no item found" ? (
+          <div className="">No item found</div>
         ) : (
           <div className="products_wrapper ">{content}</div>
         )}

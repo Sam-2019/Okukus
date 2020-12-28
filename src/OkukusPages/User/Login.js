@@ -22,7 +22,7 @@ function Login() {
   let history = useHistory();
 
   const logIn = async (event) => {
-    setMessage();
+    setMessage("");
     event.preventDefault();
     var formData = new FormData();
 
@@ -33,14 +33,13 @@ function Login() {
       formData.set("password", password);
 
       const data = await loginUser(formData);
-      console.log(data);
 
       if (data.error === true) {
         setMessage(data.message);
         setLoading(false);
-      } else if (data.error === false) {
+      } else if (data.error === false && data.token) {
         localStorage.setItem("loginToken", data.token);
-        isLoggedIn();
+        await isLoggedIn();
         clearLogin();
         setLoading(false);
       } else return;
@@ -53,7 +52,7 @@ function Login() {
     <div className=" user_wrapper ">
       <div className="page_title">Sign In</div>
 
-      <div className="wrapper-test ">
+      <form className="wrapper-test " onSubmit={logIn}>
         <Input
           type="email"
           placeholder="Email"
@@ -88,7 +87,7 @@ function Login() {
         <div className="button_wrapper ">
           <Button
             class_name="primary"
-            action={logIn}
+            // action={logIn}
             loading={loading}
             name="Sign in"
           />
@@ -101,7 +100,7 @@ function Login() {
             name="Sign up"
           />
         </div>
-      </div>
+      </form>
     </div>
   );
 }

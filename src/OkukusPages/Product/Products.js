@@ -1,38 +1,40 @@
-import React, { useState, useEffect, Suspense, lazy } from "react";
+import React, { useState, useEffect } from "react";
 import View from "../Container/View/View";
 import View2 from "../Container/View/View2";
+import ViewLoading from "../Container/View/ViewLoading";
 import Button from "../Button/Button";
 import axios from "axios";
-import { itemsGet } from "../apis";
+import { itemsGet } from "../endpoints";
+// import Products from "../files/products";
 
-const ViewSuspense = lazy(() => import("../Container/View/View"));
+// const ViewSuspense = lazy(() => import("../Container/View/View"));
 
-function shuffle(array) {
-  var result = [],
-    source = array.concat([]);
+// function shuffle(array) {
+//   var result = [],
+//     source = array.concat([]);
 
-  while (source.length) {
-    let index = Math.floor(Math.random() * source.length);
-    result.push(source[index]);
-    source.splice(index, 1);
-  }
+//   while (source.length) {
+//     let index = Math.floor(Math.random() * source.length);
+//     result.push(source[index]);
+//     source.splice(index, 1);
+//   }
 
-  return result;
-}
+//   return result;
+// }
 
-const loadingImg = (
-  <div className="album-img">
-    <img
-      alt="loading"
-      src="https://media.giphy.com/media/y1ZBcOGOOtlpC/200.gif"
-    />
-  </div>
-);
+// const loadingImg = (
+//   <div className="album-img">
+//     <img
+//       alt="loading"
+//       src="https://media.giphy.com/media/y1ZBcOGOOtlpC/200.gif"
+//     />
+//   </div>
+// );
 
 const App = () => {
   const [data, setData] = useState([]);
   const [offset, setOffset] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -62,9 +64,7 @@ const App = () => {
     });
   }
 
-  let random = shuffle(data);
-
-  console.log(data);
+  // let random = shuffle(data);
 
   // let content = data.map((products, i) => <View key={i} {...products} />);
 
@@ -82,24 +82,26 @@ const App = () => {
     );
   };
 
+  const ViewLoad = () => {
+    return (
+      <>
+        {Array(8)
+          .fill()
+          .map((item, index) => (
+            <ViewLoading key={index} />
+          ))}
+      </>
+    );
+  };
+
   return (
     <>
-      <div className="products_wrapper">{content}</div>
-
-      <div className="products_wrapper">{loading ? <Skele /> : null}</div>
-
-      {/* {data.map((item) => (
-        <div key={item.id}>
-          <p>
-            ID: {item.id} Title: {item.product_name}
-          </p>
-        </div>
-      ))} */}
+      <div className="products_wrapper ">{content}</div>
 
       <div>
         {loading ? (
           <div className="products_wrapper">
-            <Skele />
+            <ViewLoad />
           </div>
         ) : (
           <div className="button_wrapper margin ">

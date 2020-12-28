@@ -2,9 +2,9 @@ import { useState, useEffect, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 
-export const axiosMethod = async (url, formData) => {
+export const axiosMethod = async (type, url, formData) => {
   const method = await axios({
-    method: "post",
+    method: type,
     url: url,
     data: formData,
     headers: { "Content-Type": "multipart/form-data" },
@@ -54,20 +54,20 @@ export const useAsync = (getMethod, data) => {
   const fetchData = useCallback(async () => {
     const result = await getMethod(data);
 
-    if (result.data.error === true) {
+    if (result.error === true) {
       setTimeout(() => {
-        setError(result.data.error);
+        setError(result.error);
         setSuccess(result.status);
-        setMessage(result.data.message);
+        setMessage(result.message);
         setLoading(false);
         setValue(null);
       }, 1000);
-    } else if (result.data.error === false) {
+    } else if (result.error === false) {
       setTimeout(() => {
-        setValue(result.data.data);
+        setValue(result.data);
         setLoading(false);
         setSuccess(result.status);
-        setMessage(result.data.message);
+        setMessage(result.message);
         setError(null);
       }, 1000);
     }
@@ -142,3 +142,37 @@ export const ScrollToTop = () => {
 
   return null;
 };
+
+export function useLocalStorage(key, initialValue) {
+  // State to store our value
+  // Pass initial state function to useState so logic is only executed once
+  const [storedValue, setStoredValue] = useState(() => {
+    try {
+      // Get from local storage by key
+      const item = window.localStorage.getItem(key);
+      // Parse stored json or if none return initialValue
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      // If error also return initialValue
+      console.log(error);
+      return initialValue;
+    }
+  });
+  // Return a wrapped version of useState's setter function that ...
+  // ... persists the new value to localStorage.
+  const setValue = (value) => {
+    try {
+      // Allow value to be a function so we have same API as useState
+      const valueToStore =
+        value instanceof Function ? value(storedValue) : value;
+      // Save state
+      setStoredValue(valueToStore);
+      // Save to local storage
+      window.localStorage.setItem(key, JSON.stringify(valueToStore));
+    } catch (error) {
+      // A more advanced implementation would handle the error case
+      console.log(error);
+    }
+  };
+  return [storedValue, setValue];
+}

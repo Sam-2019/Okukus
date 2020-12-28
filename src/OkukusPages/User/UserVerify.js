@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, useHistory, useLocation } from "react-router-dom";
+import {  useHistory, useLocation } from "react-router-dom";
 import { useAuthentication } from "../Auth/Context";
 import Message from "../Message/Message";
 import Spinner from "../Spinner/Spinner";
@@ -10,7 +10,7 @@ import "./user.css";
 function UserVerify() {
   const { verifyReadEmail } = useAuthentication();
   const [message, setMessage] = useState("");
-  let { id } = useParams();
+
   let history = useHistory();
 
   let token = new URLSearchParams(useLocation().search).get("token");
@@ -19,7 +19,7 @@ function UserVerify() {
   var formData = new FormData();
   formData.set("url_data", token);
   formData.set("url_data", email);
-  // formData.set("url_data", id);
+
 
   const resource = useAsync(verifyReadEmail, formData);
 

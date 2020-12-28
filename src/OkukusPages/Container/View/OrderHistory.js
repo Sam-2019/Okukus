@@ -1,5 +1,5 @@
 import React from "react";
-import { okukus } from "../../apis";
+import { okukus } from "../../endpoints";
 
 const Vhistory = ({
   cover_photo_url,
@@ -13,18 +13,23 @@ const Vhistory = ({
   status,
   unique_id,
 }) => {
-  let statusColor;
-
-  if (status === "pending") {
-    statusColor = <small className="_status pending">{status}</small>;
-  } else if (status === "processed" || "shipped") {
-    statusColor = <small className="_status processed_shipped">{status}</small>;
-  } else if (status === "fulfilled") {
-    statusColor = <small className="_status fulfilled">{status}</small>;
-  } else if (status === "fulfilled") {
-    statusColor = <small className="_status cancelled">{status}</small>;
-  } else {
-    statusColor = <small className="">{status}</small>;
+  let statusColorX;
+  
+  switch (status) {
+    case "pending":
+      statusColorX = "pending";
+      break;
+    case "processed" || "shipped":
+      statusColorX = "processed_shipped";
+      break;
+    case "fulfilled":
+      statusColorX = "fulfilled";
+      break;
+    case "cancelled":
+      statusColorX = "cancelled";
+      break;
+    case "unknown":
+      statusColorX = "unknown";
   }
 
   return (
@@ -58,7 +63,9 @@ const Vhistory = ({
             <small className="">{datetime_ordered}</small>
           </div>
 
-          <div className="order_status">{statusColor}</div>
+          <div className="order_status">
+            <small className={`_status  ${statusColorX}`}>{status}</small>
+          </div>
         </div>
       </div>
     </div>

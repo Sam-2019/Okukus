@@ -64,7 +64,7 @@ function SignUp() {
     <div className="user_wrapper">
       <div className="page_title">Sign Up</div>
 
-      <div className="wrapper-test">
+      <form className="wrapper-test " onSubmit={signup}>
         <Input
           type="text"
           placeholder="First Name"
@@ -110,7 +110,7 @@ function SignUp() {
         <div className="button_wrapper ">
           <Button
             class_name="primary"
-            action={signup}
+            // action={signup}
             loading={loading}
             name="Sign up"
           />
@@ -123,7 +123,7 @@ function SignUp() {
             name="Sign in"
           />
         </div>
-      </div>
+      </form>
     </div>
   );
 }
