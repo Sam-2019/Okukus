@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import "./searchbox.css";
 
@@ -59,3 +60,7 @@ const Search = ({ alert }) => {
 };
 
 export default Search;
+
+Search.propTypes = {
+  alert: PropTypes.func,
+};

@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import "./profilemenu.css";
 
@@ -30,3 +31,9 @@ const ProfileMenu = ({ logout, showMenu }) => {
 };
 
 export default ProfileMenu;
+
+ProfileMenu.propTypes = {
+
+  logout: PropTypes.func,
+  showMenu: PropTypes.func
+}

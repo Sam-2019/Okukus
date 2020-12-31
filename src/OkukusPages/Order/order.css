@@ -30,9 +30,6 @@
   margin-right: 0.5em;
 }
 
-ol {
-}
-
 .payment_instruction {
   display: flex;
   justify-content: center;
@@ -46,8 +43,5 @@ ol {
 
   ol {
     padding-left: 20px;
-  }
-
-  .payment_instruction {
   }
 }

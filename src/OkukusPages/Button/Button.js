@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Spinner from "../Spinner/Spinner";
 import "./button.css";
 
@@ -29,3 +30,10 @@ const Button = ({ class_name, action, name, loading }) => {
 };
 
 export default Button;
+
+Button.propTypes = {
+  class_name: PropTypes.string,
+  action: PropTypes.func,
+  name: PropTypes.string,
+  loading: PropTypes.bool,
+};

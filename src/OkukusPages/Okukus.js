@@ -15,7 +15,7 @@ import Navigation from "./Nav/Nav";
 import Body from "./Body/Body";
 import Search from "./Search/Content";
 import Product from "./Product/Product";
-import OrderItem from "./Order/newOrder";
+import OrderItem from "./Order/Order";
 import Confirm from "./Confirmation/Confirm";
 import Cart from "./Cart/Cart";
 import Checkout from "./Checkout/Checkout";
@@ -77,6 +77,10 @@ const Content = () => {
 
       <Route path="/search">
         <Search />
+      </Route>
+
+      <Route path="/order/confirm">
+        <Confirm />
       </Route>
 
       <Route path="/order">{!Auth2 ? <Redirect to="/" /> : <Order />}</Route>

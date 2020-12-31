@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./alertbox.css";
 
 const AlertBox = ({ alert }) => {
@@ -14,3 +15,7 @@ const AlertBox = ({ alert }) => {
 };
 
 export default AlertBox;
+
+AlertBox.propTypes = {
+  alert: PropTypes.func,
+};

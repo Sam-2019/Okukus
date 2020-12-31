@@ -2,6 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { useAuthentication } from "../Auth/Context";
 import { useAsyncc } from "../helpers";
+import PropTypes from 'prop-types'
 import "./tag.css";
 
 const Tag = ({ hamburgerClick }) => {
@@ -28,3 +29,7 @@ const Tag = ({ hamburgerClick }) => {
 };
 
 export default Tag;
+
+Tag.propTypes = {
+  hamburgerClick: PropTypes.func,
+};

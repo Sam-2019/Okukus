@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import CartItems from "../Container/View/CartItems";
 import Summary from "../Checkout/Summary";
-import Notify from "../Notify/Noftify";
+import Notify from "../Notify/Notify";
 import "./cart.css";
 
 const NotEmpty = ({ cart }) => {
@@ -54,9 +55,7 @@ const NotEmpty = ({ cart }) => {
           <div className="page_title">
             <div className="title_container">
               <div className="another_container">
-                Cart
-                {" "}
-                {/* <div> (4 Items)</div> */}
+                Cart {/* <div> (4 Items)</div> */}
               </div>
 
               {/* <div>4000</div> */}
@@ -75,3 +74,7 @@ const NotEmpty = ({ cart }) => {
 };
 
 export default NotEmpty;
+
+NotEmpty.propTypes = {
+  cart: PropTypes.array,
+};

@@ -25,7 +25,7 @@ const AccountVerify = () => {
     setMessage(resource.message);
   } else if (resource.error === false) {
     let response = "link is valid";
-    if (resource.message === response) {
+    if (resource.message === response && resource.value.email ) {
       localStorage.setItem("email", resource.value.email);
       history.push("/account/reset/pwd");
     } else return;

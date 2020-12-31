@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import PropTypes from "prop-types";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 
@@ -12,37 +13,11 @@ export const axiosMethod = async (type, url, formData) => {
   return method;
 };
 
-// export const useAsync = (getMethod, data) => {
-//   const [loading, setLoading] = useState(true);
-//   const [success, setSuccess] = useState();
-//   const [error, setError] = useState();
-//   const [message, setMessage] = useState();
-//   const [value, setValue] = useState([]);
-
-//   const fetchData = useCallback(async () => {
-//     const result = await getMethod(data);
-
-//     if (result.data.error === true) {
-//       setSuccess(result.status);
-//       setMessage(result.data.message);
-//       setValue(null);
-//       setLoading(false);
-//     } else if (result.data.error === false) {
-//       setValue(result.data.data);
-//       setLoading(false);
-//       setMessage(null);
-//       setError(null);
-//     }
-//   }, [getMethod]);
-
-//   useEffect(() => {
-//     if (data) {
-//       fetchData();
-//     }
-//   }, [fetchData, data]);
-
-//   return { value, message, error, loading, success };
-// };
+axiosMethod.propTypes = {
+  type: PropTypes.string,
+  url: PropTypes.func,
+  formData: PropTypes.object,
+};
 
 export const useAsync = (getMethod, data) => {
   const [loading, setLoading] = useState(true);
@@ -79,6 +54,8 @@ export const useAsync = (getMethod, data) => {
 
   return { value, message, error, loading, success };
 };
+
+useAsync.propTypes = {};
 
 export const useAsyncc = (getMethod) => {
   const [loading, setLoading] = useState(true);
