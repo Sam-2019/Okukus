@@ -5,6 +5,7 @@ import Button from "../Button/Button";
 import axios from "axios";
 import { itemsGet } from "../endpoints";
 import Products from "../files/products";
+import Spinner from '../Spinner/Spinner'
 
 const App = () => {
   const [data, setData] = useState(Products);
@@ -55,7 +56,16 @@ const App = () => {
 
   return (
     <>
-      <div className="products_wrapper ">{content}</div>
+
+{loading ? (
+          <div className="products_wrapper">
+            <Spinner size="big" />
+          </div>
+        ) : (
+          <div className="products_wrapper ">{content}</div>
+        )}
+
+
 
       {/* <div className="products_wrapper">
         {loading ? <> {content} </> : <ViewLoad />}
@@ -64,7 +74,7 @@ const App = () => {
       <div>
         {loading ? (
           <div className="products_wrapper">
-            <ViewLoad />
+            <Spinner size="big" />
           </div>
         ) : (
           <div className="button_wrapper margin ">
