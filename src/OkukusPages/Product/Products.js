@@ -4,7 +4,7 @@ import ViewLoading from "../Container/View/ViewLoading";
 import Button from "../Button/Button";
 import axios from "axios";
 import { itemsGet } from "../endpoints";
-import Products from "../files/products";
+// import Products from "../files/products";
 import Spinner from "../Spinner/Spinner";
 
 const App = () => {
