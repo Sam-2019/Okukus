@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import PropTypes from "prop-types";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 
@@ -10,6 +11,12 @@ export const axiosMethod = async (type, url, formData) => {
     headers: { "Content-Type": "multipart/form-data" },
   });
   return method;
+};
+
+axiosMethod.propTypes = {
+  type: PropTypes.string,
+  url: PropTypes.func,
+  formData: PropTypes.object,
 };
 
 export const useAsync = (getMethod, data) => {
@@ -47,6 +54,8 @@ export const useAsync = (getMethod, data) => {
 
   return { value, message, error, loading, success };
 };
+
+useAsync.propTypes = {};
 
 export const useAsyncc = (getMethod) => {
   const [loading, setLoading] = useState(true);

@@ -6,6 +6,7 @@ import ProfileMenu from "../DialogBox/ProfileMenu";
 import Hamburger from "../Hamburger/Hamburger";
 import { useAuthentication } from "../Auth/Context";
 import { useAsync, useOnClickOutside } from "../helpers";
+import PropTypes from "prop-types";
 
 import "./nav.css";
 
@@ -172,3 +173,8 @@ const Navigation = ({ hamburger, showAlert }) => {
 };
 
 export default NavHandler;
+
+Navigation.propTypes = {
+  showAlert: PropTypes.func,
+  hamburger: PropTypes.func,
+};

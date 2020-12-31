@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 import { okukus } from "../../endpoints";
 import "./view.css";
 
@@ -31,3 +32,10 @@ const View = ({ cover_photo_url, product_name, unit_price, unique_id }) => {
 };
 
 export default View;
+
+View.propTypes = {
+  cover_photo_url: PropTypes.string,
+  product_name: PropTypes.string,
+  unit_price: PropTypes.number,
+  unique_id: PropTypes.number,
+};

@@ -1,5 +1,6 @@
 import React from "react";
 import Tag from "../Tag/Tag";
+import PropTypes from "prop-types";
 import "./hamburger.css";
 
 const Hamburger = ({ hamburger }) => {
@@ -27,11 +28,13 @@ const Hamburger = ({ hamburger }) => {
         </div>
 
         <Tag hamburgerClick={hamburger} />
-
-        
       </div>
     </>
   );
 };
 
 export default Hamburger;
+
+Hamburger.propTypes = {
+  hamburger: PropTypes.func,
+};

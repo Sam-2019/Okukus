@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import Message from "../Message/Message";
+import PropTypes from "prop-types";
 
 const Buy = ({ id }) => {
   const { createOrder, uniqueID } = useAuthentication();
@@ -295,3 +296,7 @@ const Buy = ({ id }) => {
 };
 
 export default Buy;
+
+Buy.propTypes = {
+  id: PropTypes.number,
+};

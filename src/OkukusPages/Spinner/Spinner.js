@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./spinner.css";
 
-const Spinner = ({ size, small, color}) => {
+const Spinner = ({ size, small, color }) => {
   return (
     <>
       {/* <div className=" spinner_wrapper item">
@@ -20,3 +21,9 @@ const Spinner = ({ size, small, color}) => {
 };
 
 export default Spinner;
+
+Spinner.propTypes = {
+  size: PropTypes.string,
+  small: PropTypes.string,
+  color: PropTypes.string,
+};

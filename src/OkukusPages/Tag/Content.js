@@ -6,7 +6,7 @@ import { useAuthentication } from "../Auth/Context";
 import { useAsync } from "../helpers";
 import "./content.css";
 
-const Content = (props) => {
+const Content = () => {
   const { getTag } = useAuthentication();
 
   let { id } = useParams();

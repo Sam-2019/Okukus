@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { okukus } from "../../endpoints";
 
 const Vhistory = ({
@@ -14,7 +15,7 @@ const Vhistory = ({
   unique_id,
 }) => {
   let statusColorX;
-  
+
   switch (status) {
     case "pending":
       statusColorX = "pending";
@@ -73,3 +74,16 @@ const Vhistory = ({
 };
 
 export default Vhistory;
+
+Vhistory.propTypes = {
+  cover_photo_url: PropTypes.string,
+  amount: PropTypes.number,
+  datetime_ordered: PropTypes.string,
+  id: PropTypes.number,
+  order_number: PropTypes.number,
+  product_author: PropTypes.string,
+  product_name: PropTypes.string,
+  product_unique_id: PropTypes.number,
+  status: PropTypes.string,
+  unique_id: PropTypes.number,
+};

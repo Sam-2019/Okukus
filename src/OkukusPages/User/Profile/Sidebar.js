@@ -1,11 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./sidebar.css";
 
 const Sidebar = ({
+  active,
   okukus_account,
   order_history,
   wish_list,
-  active,
   change_password,
 }) => {
   return (
@@ -57,3 +58,11 @@ const Sidebar = ({
 };
 
 export default Sidebar;
+
+Sidebar.propTypes = {
+  active: PropTypes.string,
+  okukus_account: PropTypes.func,
+  order_history: PropTypes.func,
+  wish_list: PropTypes.func,
+  change_password: PropTypes.func,
+};

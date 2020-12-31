@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Button from "../../Button/Button";
+import PropTypes from "prop-types";
 import Message from "../../Message/Message";
 import { useAuthentication } from "../../Auth/Context";
 import "./cart-items.css";
@@ -36,7 +37,6 @@ const Item = ({
       formData.set("item_unique_id", unique_id);
 
       const data = await deleteCart(formData);
-
 
       if (data.error === true) {
         setLoading1(false);
@@ -210,31 +210,39 @@ const Item = ({
         </div>
 
         <div className="new_button_wrapper2 item">
-            <Button
-              name="Delete"
-              class_name="delete"
-              action={deleteItem}
-              loading={loading1}
-            />
+          <Button
+            name="Delete"
+            class_name="delete"
+            action={deleteItem}
+            loading={loading1}
+          />
 
-            <Button
-              name="Save"
-              class_name="save"
-              action={saveItem}
-              loading={loading2}
-            />
+          <Button
+            name="Save"
+            class_name="save"
+            action={saveItem}
+            loading={loading2}
+          />
 
-            <span>
-              {message ? <span className="notify item">{message}</span> : null}
-            </span>
-          </div>
-    
-  </div>
-
-    
+          <span>
+            {message ? <span className="notify item">{message}</span> : null}
+          </span>
+        </div>
+      </div>
     </>
-
   );
 };
 
 export default Item;
+
+Item.propTypes = {
+  unit_price: PropTypes.number,
+  product_name: PropTypes.string,
+  cover_photo_url: PropTypes.string,
+  quantity: PropTypes.number,
+  id: PropTypes.number,
+  product_unique_id: PropTypes.number,
+  handleToggle: PropTypes.func,
+  unique_id: PropTypes.number,
+  onFormSubmit: PropTypes.func,
+};

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "../../Button/Button";
 import { useAuthentication } from "../../Auth/Context";
+import PropTypes from "prop-types";
 import "./wish-items.css";
 
 const Item = ({
@@ -34,7 +35,6 @@ const Item = ({
       formData.set("item_unique_id", unique_id);
 
       const data = await deleteWish(formData);
- 
 
       if (data.error === true) {
         setLoading(false);
@@ -101,3 +101,18 @@ const Item = ({
 };
 
 export default Item;
+
+Item.propTypes = {
+  availablity: PropTypes.string,
+  cover_photo_url: PropTypes.string,
+  existence: PropTypes.string,
+  id: PropTypes.number,
+  product_author: PropTypes.string,
+  product_category: PropTypes.string,
+  product_description: PropTypes.string,
+  product_name: PropTypes.string,
+  product_unique_id: PropTypes.number,
+  stock: PropTypes.number,
+  unique_id: PropTypes.number,
+  unit_price: PropTypes.number,
+};

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useAuthentication } from "../Auth/Context";
+import PropTypes from "prop-types";
 import Message from "../Message/Message";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
@@ -328,3 +329,7 @@ const Main = ({ main_state }) => {
 };
 
 export default Main;
+
+Main.propTypes = {
+  main_state: PropTypes.func,
+};
