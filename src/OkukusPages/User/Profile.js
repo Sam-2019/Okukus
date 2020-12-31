@@ -1,15 +1,15 @@
 import React, { useState, lazy } from "react";
 import Account from "./Profile/Account";
-// import OrderHistory from "./Profile/History";
-// import Password from "./Profile/Password";
-// import WishList from "./Profile/WishList";
+import OrderHistory from "./Profile/History";
+import Password from "./Profile/Password";
+import WishList from "./Profile/WishList";
 
 import Sidebar from "./Profile/Sidebar";
 import "./profile.css";
 
-const OrderHistory = lazy(() => import("./Profile/History"));
-const Password = lazy(() => import("./Profile/Password"));
-const WishList = lazy(() => import("./Profile/WishList"));
+// const OrderHistory = lazy(() => import("./Profile/History"));
+// const Password = lazy(() => import("./Profile/Password"));
+// const WishList = lazy(() => import("./Profile/WishList"));
 
 const Profile = () => {
   const [active, setActive] = useState("account");
