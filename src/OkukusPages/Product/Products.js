@@ -8,7 +8,7 @@ import Products from "../files/products";
 import Spinner from '../Spinner/Spinner'
 
 const App = () => {
-  const [data, setData] = useState(Products);
+  const [data, setData] = useState([]);
   const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(false);
 
