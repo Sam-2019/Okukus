@@ -17,6 +17,7 @@ import { useIntersectionObserver } from "../helpers";
 function useProducs() {
   return useQuery("products", async () => {
     const { data } = await axios.get(itemsGet);
+
     return data;
   });
 }
