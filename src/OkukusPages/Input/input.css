@@ -1,7 +1,8 @@
 .input,
 .edit_input,
 .hi_hi,
-.checkout_input {
+.checkout_input,
+.promo_code_input {
   background-color: #eee;
   border: 1px solid transparent;
   outline: none;
@@ -31,6 +32,16 @@
   width: 100%;
 }
 
+.promo_code{
+  margin-bottom: 0.5em;
+}
+
+.promo_code_input {
+  width: 9em;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 500;
+}
 
 .input:hover,
 .input:focus,
@@ -39,7 +50,9 @@
 .hi_hi:hover,
 .hi_hi:focus,
 .checkout_input:hover,
-.checkout_input:focus {
+.checkout_input:focus,
+.promo_code_input:hover,
+.promo_code_input:focus {
   border: 1px solid #00d919;
   -webkit-transition: all ease-in-out 0.3s;
   transition: all ease-in-out 0.3s;
@@ -61,6 +74,10 @@
   .checkout_input {
     width: 100%;
   }
+
+  .promo_code_input {
+    width: 40%;
+  }
 }
 
 @media (max-width: 320px) {
@@ -68,5 +85,9 @@
   .hi_hi,
   .checkout_input {
     width: 100%;
+  }
+
+  .promo_code_input {
+    width: 60%;
   }
 }

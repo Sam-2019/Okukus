@@ -35,7 +35,7 @@ const Okukus = () => {
     <Router>
       <Navigation />
       <ScrollToTop />
-      <div className="contain">
+      <div className="contain item">
         <Content />
       </div>
       <Footer />
@@ -57,8 +57,12 @@ const Content = () => {
         <Cart />
       </Route>
 
-      <Route path="/checkout/confirm">
+      {/* <Route path="/checkout/confirm">
         {!Auth2 ? <Redirect to="/" /> : <Checkout />}
+      </Route> */}
+
+      <Route path="/checkout/confirm">
+        <Checkout />
       </Route>
 
       <Route path="/login">{Auth2 ? <Redirect to="/" /> : <Login />}</Route>

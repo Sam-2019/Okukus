@@ -16,7 +16,7 @@
 .section {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
   height: auto;
-  padding: 0.5rem 1rem;
+  padding: 1.5rem 1rem;
   border: 0.4px solid #7f7f7f57;
   border-radius: 0.25em;
 }
@@ -88,7 +88,7 @@ input[radio="checked"] {
 }
 
 .payment_select {
-  padding: 0.8em 0em;
+  padding: 0em 0em 0;
 }
 
 .payment_select:not(:last-child) {
@@ -106,6 +106,7 @@ input[radio="checked"] {
   border: 1px solid #00d919;
   color: #00d919;
   cursor: default;
+  border-radius: 0.25em;
 }
 
 .payment_mode:focus {
@@ -141,6 +142,14 @@ input[radio="checked"] {
 .label-custom {
 }
 
+.momo_selected{
+  padding: 1em 0em 0em;
+}
+
+.promo_code_wrapper{
+  margin: 0.5em 0;
+}
+
 @media (max-width: 768px) {
 }
 
@@ -172,17 +181,18 @@ input[radio="checked"] {
 
   .payment_method {
     width: 100%;
-    margin: 0.5em 0;
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
   }
 
   .payment_select {
-    padding: 0.4em 0;
+
   }
 
   .payment_mode {
-    padding: 6px 20px;
+    padding: 6px 19.3px;
+
   }
 
   .momo_new {
