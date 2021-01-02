@@ -1,8 +1,8 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import { useAuthentication } from "../Auth/Context";
 import { useAsyncc } from "../helpers";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 import "./tag.css";
 
 const Tag = ({ hamburgerClick }) => {
@@ -13,16 +13,17 @@ const Tag = ({ hamburgerClick }) => {
   let history = useHistory();
 
   let tenet = resource.value.map(({ id, title }) => (
-    <div
+    <NavLink
       key={id}
       onClick={() => {
-        history.push(`/tag/${title}`);
         hamburgerClick();
       }}
       className="selector"
+      to={`/tag/${title}`}
+      activeClassName="selected"
     >
       {title}
-    </div>
+    </NavLink>
   ));
 
   return <div className="tag_wrapper">{tenet}</div>;
