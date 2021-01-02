@@ -5,6 +5,7 @@ import Button from "../Button/Button";
 import axios from "axios";
 import { itemsGet } from "../endpoints";
 import Spinner from "../Spinner/Spinner";
+import "./products.css";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -55,11 +56,11 @@ const App = () => {
   };
 
   return (
-    <>
+    <div className="products_over ">
       <div className="products_wrapper ">{content}</div>
 
       {loading ? (
-        <div className="products_spinner">
+        <div className=" ">
           <Spinner size="big" />
         </div>
       ) : (
@@ -73,7 +74,7 @@ const App = () => {
       </div> */}
 
       {/* {data.length > offset ? <div> All</div> : null} */}
-    </>
+    </div>
   );
 };
 
