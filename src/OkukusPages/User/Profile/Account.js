@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Addressedit from "./Edit/Address_Edit";
 import { useAuthentication } from "../../Auth/Context";
 import Button from "../../Button/Button";
 import Input from "../../Input/Input";
@@ -19,7 +18,6 @@ const OkukusAccount = () => {
   } = useAuthentication();
   const [detailedit, setdetailedit] = useState(false);
   const [emailedit, setemailedit] = useState(false);
-  const [addressedit, setaddressedit] = useState(false);
 
   const [first_name, setFirstName] = useState();
   const [last_name, setLastName] = useState();
@@ -39,9 +37,6 @@ const OkukusAccount = () => {
     setEmail("");
   };
 
-  const submitAddress = () => {
-    setaddressedit(false);
-  };
 
   const cancelDetail = () => {
     setdetailedit(false);
@@ -56,16 +51,13 @@ const OkukusAccount = () => {
     setMessage("");
   };
 
-  const cancelAddress = () => {
-    setaddressedit(false);
-  };
 
   const updateDetail = async (event) => {
     setMessage("");
     event.preventDefault();
 
-    let empty = firstName && lastName;
-    if (empty !== "") {
+    let empty = first_name && last_name;
+    if (empty === "") {
       setMessage("please complete the forms");
     } else {
       var formData = new FormData();
@@ -89,7 +81,7 @@ const OkukusAccount = () => {
 
     setMessage("");
     let empty = e_mail;
-    if (empty !== "") {
+    if (empty === "") {
       setMessage("please complete the form");
     } else {
       var formData = new FormData();
@@ -179,7 +171,6 @@ const OkukusAccount = () => {
                   onClick={() => {
                     setdetailedit(true);
                     setemailedit(false);
-                    setaddressedit(false);
                   }}
                   viewBox="0 0 16 16"
                   className="bi bi-pencil-square"
@@ -233,7 +224,6 @@ const OkukusAccount = () => {
                   onClick={() => {
                     setemailedit(true);
                     setdetailedit(false);
-                    setaddressedit(false);
                   }}
                   viewBox="0 0 16 16"
                   className="bi bi-pencil-square"

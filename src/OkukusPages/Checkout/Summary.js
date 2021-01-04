@@ -5,12 +5,24 @@ import { useAsync } from "../helpers";
 import Button from "../Button/Button";
 
 const Summary = () => {
-  const { uniqueID, summaryCart} = useAuthentication();
+  const { uniqueID, summaryCart } = useAuthentication();
+
   let history = useHistory();
 
   var formData = new FormData();
   formData.set("buyer_unique_id", uniqueID);
   const cartSummary = useAsync(summaryCart, formData);
+
+  let totalA;
+  let totalQ;
+
+  if (cartSummary.value) {
+    totalA = cartSummary.value.total_amount;
+    totalQ = cartSummary.value.total_quantity;
+  } else {
+    totalA = 0;
+    totalQ = 0;
+  }
 
   return (
     <div>
@@ -23,9 +35,7 @@ const Summary = () => {
 
         <div className="summary_item_wrapper  ">
           <div className="summary_item">Quantity</div>
-          <div className="summary_amount ">
-            {cartSummary.value.total_quantity} 
-          </div>
+          <div className="summary_amount ">{totalQ}</div>
         </div>
 
         {/* <div className="summary_item_wrapper  ">
@@ -35,12 +45,8 @@ const Summary = () => {
 
         <div className="summary_item_wrapper  ">
           <div className="summary_item">Total (Ghc)</div>
-          <div className="summary_amount">
-             {cartSummary.value.total_amount} 
-            </div>
+          <div className="summary_amount">{totalA}</div>
         </div>
-
- 
 
         <div className="button_wrapper ">
           <Button

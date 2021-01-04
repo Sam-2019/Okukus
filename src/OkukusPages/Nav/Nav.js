@@ -64,7 +64,7 @@ const Navigation = ({ hamburger, showAlert }) => {
   return (
     <header>
       <nav className="nav_header  ">
-        <div className=" one">
+        <div className=" one ">
           <div className=" justify" onClick={hamburger}>
             <svg
               viewBox="0 0 16 16"
@@ -86,7 +86,7 @@ const Navigation = ({ hamburger, showAlert }) => {
           </div>
         </div>
 
-        <div className="two ">
+        <div className="two  ">
           <div className="cartIcon  " onClick={() => history.push("/cart")}>
             <svg
               viewBox="0 0 16 16"

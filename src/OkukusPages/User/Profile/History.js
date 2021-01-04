@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { useAuthentication } from "../../Auth/Context";
 import { useAsync } from "../../helpers";
-import Vhistory from "../../Container/View/V-history";
+import Vhistory from "../../Container/View/OrderHistory";
 import Spinner from "../../Spinner/Spinner";
 import Button from "../../Button/Button";
 import "./history.css";
@@ -23,17 +23,15 @@ const OrderHistory = () => {
         cover_photo_url,
         amount,
         datetime_ordered,
-        id,
         order_number,
         product_author,
         product_name,
         product_unique_id,
         status,
-        unique_id,
       }) => (
         <Vhistory
-          key={unique_id}
-          id={unique_id}
+          key={order_number}
+          id={order_number}
           amount={amount}
           cover_photo_url={cover_photo_url}
           product_name={product_name}

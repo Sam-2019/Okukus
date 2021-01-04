@@ -15,6 +15,14 @@ const Search = ({ alert }) => {
     }
   }
 
+  function Query2() {
+    if (query === "") {
+      // alert();
+    } else {
+      history.push(`/search?name=${query}`);
+    }
+  }
+
   return (
     <>
       <div className="search_object ">

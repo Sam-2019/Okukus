@@ -1,5 +1,5 @@
 import React from "react";
-import Item from "./Item2";
+import Item from "../Container/View/CartItems";
 import Summary from "../Checkout/Summary";
 import "./cart.css";
 
@@ -27,6 +27,7 @@ const NotEmpty = ({ cart }) => {
         cover_photo_url={cover_photo_url}
         product_name={product_name}
         quantity={quantity}
+        product_unique_id={product_unique_id}
       />
     )
   );

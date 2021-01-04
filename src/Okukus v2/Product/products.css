@@ -1,9 +1,0 @@
-.products_wrapper {
-  margin: 1em 0;
-}
-
-@media (max-width: 540px) {
-  .products_wrapper {
-    margin: 0;
-  }
-}

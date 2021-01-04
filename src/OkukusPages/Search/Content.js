@@ -1,15 +1,16 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import View from "../Container/View/View";
 import { useAuthentication } from "../Auth/Context";
 import Spinner from "../Spinner/Spinner";
 import { useAsync } from "../helpers";
 import "./search.css";
 
-const Content = (props) => {
+const Content = () => {
   const { searchItem } = useAuthentication();
 
   let { id } = useParams();
+  let query2 = useQuery();
 
   var formData = new FormData();
   formData.set("search_phrase", id);
@@ -33,6 +34,7 @@ const Content = (props) => {
   return (
     <div className="search_wrapper   ">
       <div className="page_title">Search Results for "{id}"</div>
+      <Child name={query2.get("name")} />
       <div>
         {resource.loading ? (
           <Spinner />
@@ -47,3 +49,25 @@ const Content = (props) => {
 };
 
 export default Content;
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
+function Child({ name }) {
+  return (
+    <div>
+      {name ? (
+        <>
+          <div className="page_title">Search Results for "{name}"</div>
+          <h3>
+            The <code>name</code> in the query string is &quot;{name}
+            &quot;
+          </h3>
+        </>
+      ) : (
+        <h3>There is no name in the query string</h3>
+      )}
+    </div>
+  );
+}
