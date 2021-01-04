@@ -1,305 +1,240 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import Buy from "./Buy";
-import "./neworder.css";
+import React, { useState, useContext } from "react";
+import { auth } from "../Context/authContext";
+import Confirm from "./Confirm";
+import "./order.css";
 
-const Order = () => {
-  let { id } = useParams();
+const Order = (props) => {
+  let id = props.match.params.id;
+
+  const [state, setState] = useState(false);
+
+  const doneShopping = () => {
+    setState(true);
+  };
 
   return (
-    <div className="order_">
-      <Buy id={id} />
+    <div className="order-contain shadow">
+      {state ? <Confirm /> : <Buy doneShopping={doneShopping} id={id} />}
     </div>
   );
 };
 
 export default Order;
 
-// const Buy = ({ id }) => {
-//   const { createOrder, uniqueID } = useAuthentication();
+const Buy = ({ doneShopping, id }) => {
+  const { rootState, orderItem } = useContext(auth);
+  const { uniqueID } = rootState;
 
-//   const [loading, setLoading] = useState(false);
+  const [momo, setMomo] = useState(false);
 
-//   const [momo, setMomo] = useState(false);
-//   const [message, setMessage] = useState("");
+  const [buyer_unique_id, setBuyerUniqueID] = useState(uniqueID);
+  const [product_unique_id, setProductUniqueID] = useState(id);
+  const [location, setLocation] = useState("");
+  const [digital_address, setDigitalAddress] = useState("");
+  const [phone_number, setPhoneNumber] = useState("");
+  const [payment_method, setPaymentMethod] = useState("");
+  const [momo_name, setMomoName] = useState("");
+  const [momo_number, setMomoNumber] = useState("");
+  const [momo_transaction_id, setMomoTransactionID] = useState("");
 
-//   const [display, setDisplay] = useState("");
-//   const [momoDisplay, setMomoDisplay] = useState("");
+  const cashCheck = () => {
+    setMomo(false);
+    setPaymentMethod("cash");
+  };
 
-//   const [cashMessage, setCashMessage] = useState("");
-//   const [momoMessage, setMomoMessage] = useState("");
+  const momoCheck = () => {
+    setMomo(true);
+    setPaymentMethod("momo");
+  };
 
-//   const [product_unique_id, setProductUniqueID] = useState(id);
+  const clearCheckOut = () => {
+    setBuyerUniqueID("");
+    setProductUniqueID("");
+    setLocation("");
+    setDigitalAddress("");
+    setPhoneNumber("");
+    setPaymentMethod("");
+    setMomoName("");
+    setMomoNumber("");
+    setMomoTransactionID("");
+  };
 
-//   const [location, setLocation] = useState("");
-//   const [digital_address, setDigitalAddress] = useState("");
-//   const [phone_number, setPhoneNumber] = useState("");
+  const submit = async (event) => {
+    event.preventDefault();
+    var formData = new FormData();
 
-//   const [payment_method, setPaymentMethod] = useState("");
+    if (payment_method === "cash") {
+      let empty = location && digital_address && phone_number && payment_method;
+      if (empty !== "") {
+        formData.set("buyer_unique_id", buyer_unique_id);
+        formData.set("product_unique_id", product_unique_id);
+        formData.set("location", location);
+        formData.set("digital_address", digital_address);
+        formData.set("phone_number", phone_number);
+        formData.set("payment_method", payment_method);
 
-//   const [momo_name, setMomoName] = useState("");
-//   const [momo_number, setMomoNumber] = useState("");
-//   const [momo_transaction_id, setMomoTransactionID] = useState("");
+        const data = await orderItem(formData);
 
-//   const [selectedOption, setSelectedOption] = useState("");
+        localStorage.setItem("orderID", data.order_number);
+        clearCheckOut();
+        doneShopping();
+      } else alert("Please fill below");
+    } else if (payment_method === "momo") {
+      let empty =
+        location &&
+        digital_address &&
+        phone_number &&
+        payment_method &&
+        momo_name &&
+        momo_number &&
+        momo_transaction_id;
 
-//   let history = useHistory();
+      if (empty !== "") {
+        formData.set("buyer_unique_id", buyer_unique_id);
+        formData.set("product_unique_id", product_unique_id);
+        formData.set("location", location);
+        formData.set("digital_address", digital_address);
+        formData.set("phone_number", phone_number);
+        formData.set("payment_method", payment_method);
+        formData.set("momo_name", momo_name);
+        formData.set("momo_number", momo_number);
+        formData.set("momo_transaction_id", momo_transaction_id);
 
-//   const clear = () => {
-//     setProductUniqueID("");
-//     setLocation("");
-//     setDigitalAddress("");
-//     setPhoneNumber("");
-//     setPaymentMethod("");
-//     setMomoName("");
-//     setMomoNumber("");
-//     setMomoTransactionID("");
-//   };
+        const data = await orderItem(formData);
 
-//   const confirm = () => {
-//     history.push("/order/confirm");
-//   };
+        localStorage.setItem("orderID", data.order_number);
+        clearCheckOut();
+        doneShopping();
+      } else alert("Please fill below");
+    } else {
+    alert('Please fill fields')
+    }
+  };
 
-//   const submit = async (event) => {
-//     setDisplay(false);
-//     setMomoDisplay(false);
-//     setMessage("");
+  return (
+    <div>
+      <h2 className="text-center">Order</h2>
+      <div className="order_form ">
+        <div className="order_text" hidden>
+          or use your account
+        </div>
+        <input
+          type="text"
+          placeholder="Location"
+          className="user_input"
+          onChange={(e) => setLocation(e.target.value)}
+          value={location}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Digital Address"
+          className="user_input"
+          onChange={(e) => setDigitalAddress(e.target.value)}
+          value={digital_address}
+          required
+        />
+        <input
+          type="number"
+          placeholder="Phone Number"
+          className="user_input"
+          value={phone_number}
+          onChange={(e) => setPhoneNumber(e.target.value)}
+          required
+        />
+        <h2>Billing</h2>
+        <p>Choose an option here.</p>
+        <p>
+          Note: If u choose mobile money, you have to fill out the form below
+        </p>
 
-//     setCashMessage("");
-//     setMomoMessage("");
+        <div className="">
+          <input
+            type="radio"
+            name="payment_option"
+            value={payment_method}
+            defaultChecked
+            hidden
+          />
 
-//     event.preventDefault();
-//     var formData = new FormData();
+          <div>
+            <label>
+              <input
+                type="radio"
+                id="cash"
+                name="payment_option"
+                value={payment_method}
+                onClick={cashCheck}
+              />{" "}
+              Cash on Delivery
+            </label>
+          </div>
 
-//     if (payment_method === "cash") {
-//       let empty = location && digital_address && phone_number && payment_method;
-//       if (empty !== "") {
-//         setLoading(true);
-//         formData.set("buyer_unique_id", uniqueID);
-//         formData.set("product_unique_id", product_unique_id);
-//         formData.set("location", location);
-//         formData.set("digital_address", digital_address);
-//         formData.set("phone_number", phone_number);
-//         formData.set("payment_method", payment_method);
+          <div>
+            <label>
+              <input
+                type="radio"
+                id="momo"
+                name="payment_option"
+                value={payment_method}
+                onClick={momoCheck}
+              />{" "}
+              Mobile Money
+            </label>
+          </div>
+        </div>
 
-//         const data = await createOrder(formData);
-//         console.log(data);
+        {momo && (
+          <>
+            <div>HOW TO MAKE PAYMENT</div>
 
-//         if (data.error) {
-//           setCashMessage(data.error);
-//         } else if (data.order_number !== "") {
-//           localStorage.setItem("orderID", data.order_number);
+            <ol>
+              <li>Dial *170# on your phone</li>
+              <li>Select Option 2: MoMoPay &amp; PayBill</li>
+              <li>Select Option 1: MoMoPay</li>
+              <li>
+                Enter <strong>283051</strong> as the Merchant ID
+              </li>
+              <li>Enter Reference</li>
+              <li>Enter Your Pin to confirm payment</li>
+            </ol>
 
-//           clear();
+            <div>
+              After making successful payment, please use the details of the
+              payment to fill the fields below
+            </div>
 
-//           confirm();
-//         } else {
-//           setLoading(false);
-//         }
-//       } else setCashMessage("Please fill above");
-//     } else if (payment_method === "momo") {
-//       let empty =
-//         location &&
-//         digital_address &&
-//         phone_number &&
-//         payment_method &&
-//         momo_name &&
-//         momo_number &&
-//         momo_transaction_id;
+            <div>MOMO</div>
+            <input
+              type="text"
+              placeholder="Name "
+              className="user_input"
+              onChange={(e) => setMomoName(e.target.value)}
+              value={momo_name}
+            />
+            <input
+              type="number"
+              placeholder="Number"
+              className="user_input"
+              onChange={(e) => setMomoNumber(e.target.value)}
+              value={momo_number}
+            />
+            <input
+              type="number"
+              placeholder="Transaction ID"
+              className="user_input"
+              onChange={(e) => setMomoTransactionID(e.target.value)}
+              value={momo_transaction_id}
+            />
+          </>
+        )}
 
-//       if (empty !== "") {
-//         setLoading(true);
-//         formData.set("buyer_unique_id", uniqueID);
-//         formData.set("product_unique_id", product_unique_id);
-//         formData.set("location", location);
-//         formData.set("digital_address", digital_address);
-//         formData.set("phone_number", phone_number);
-//         formData.set("payment_method", payment_method);
-//         formData.set("momo_name", momo_name);
-//         formData.set("momo_number", momo_number);
-//         formData.set("momo_transaction_id", momo_transaction_id);
-
-//         const data = await createOrder(formData);
-//         console.log(data);
-
-//         if (data.error) {
-//           setLoading(false);
-//           setMomoMessage(data.error);
-//         } else if (data.order_number !== "") {
-//           localStorage.setItem("orderID", data.order_number);
-
-//           clear();
-//           confirm();
-//         } else {
-//           setLoading(false);
-//         }
-//       } else {
-//         setMomoMessage("Please fill below");
-//       }
-//     } else {
-//       setMomoMessage("Please fill all fields");
-//     }
-//   };
-
-//   const dodo = useCallback(() => {
-//     if (selectedOption === "Momo") {
-//       setPaymentMethod(null);
-//       setMomo(true);
-//       setPaymentMethod("momo");
-//     } else if (selectedOption === "Cash") {
-//       setPaymentMethod(null);
-//       setMomo(false);
-//       setPaymentMethod("cash");
-//     } else return;
-//   }, [selectedOption]);
-
-//   useEffect(() => {
-//     dodo();
-//   }, [dodo]);
-
-//   // console.log(selectedOption);
-
-//   return (
-//     <div className="buy_wrapper ">
-//       <div>
-//         <div className="page_title">Order</div>
-
-//         <Input
-//           type="text"
-//           placeholder="Location"
-//           class_name="input"
-//           action={(e) => setLocation(e.target.value)}
-//           content={location}
-//           required
-//         />
-
-//         <Input
-//           type="text"
-//           placeholder="Digital Address"
-//           class_name="input"
-//           action={(e) => setDigitalAddress(e.target.value)}
-//           content={digital_address}
-//           required
-//         />
-
-//         <Input
-//           type="number"
-//           placeholder="Phone Number"
-//           class_name="input"
-//           content={phone_number}
-//           action={(e) => setPhoneNumber(e.target.value)}
-//           required
-//         />
-
-//         {cashMessage ? (
-//           <Message message={cashMessage} class_name="message" />
-//         ) : null}
-
-//         {display && (
-//           <>
-//             {message ? (
-//               <Message message={message} class_name="message" />
-//             ) : null}
-//           </>
-//         )}
-
-//         <h4 className="_billing ">Billing</h4>
-//         {/* <div>Choose a payment method below</div> */}
-
-//         <div className="payment_wrapper ">
-//           <select
-//             className="input"
-//             value={selectedOption}
-//             onChange={(e) => {
-//               setSelectedOption(e.target.value);
-//               dodo();
-//             }}
-//           >
-//             <option value="" disabled defaultValue>
-//               Select a payment method
-//             </option>
-//             <option value="Cash" className="option">
-//               Cash
-//             </option>
-//             <option value="Momo">Momo</option>
-//           </select>
-
-//           {/* <div>Selected option: {selectedOption}</div>
-//           <div>Payment method: {payment_method}</div> */}
-//         </div>
-//       </div>
-
-//       {momo && (
-//         <div>
-//           <h5>HOW TO MAKE PAYMENT</h5>
-
-//           <div className="payment_instruction">
-//             <ol>
-//               <li>Dial *170# on your phone</li>
-//               <li>Select MoMoPay &amp; PayBill</li>
-//               <li>Select MoMoPay</li>
-//               <li>
-//                 Enter <strong>283051 </strong>
-//                 as the Merchant ID
-//               </li>
-//               <li>Enter Reference</li>
-//               <li>Enter Your Pin to confirm payment</li>
-//             </ol>
-//           </div>
-
-//           <div>
-//             Upon successful payment, please use the details of the payment to
-//             fill the fields below
-//           </div>
-
-//           {momoMessage === "Please fill below" ? (
-//             <Message message={momoMessage} class_name="message" />
-//           ) : null}
-
-//           {momoDisplay && (
-//             <>
-//               {message === "Please fill below" ? (
-//                 <Message message={message} class_name="message" />
-//               ) : null}
-//             </>
-//           )}
-//         </div>
-//       )}
-
-//       {momo && (
-//         <div className="momo_form ">
-//           <Input
-//             type="text"
-//             placeholder="Name "
-//             class_name="input"
-//             action={(e) => setMomoName(e.target.value)}
-//             content={momo_name}
-//           />
-
-//           <Input
-//             type="number"
-//             placeholder="Number"
-//             class_name="input"
-//             action={(e) => setMomoNumber(e.target.value)}
-//             content={momo_number}
-//           />
-
-//           <Input
-//             type="number"
-//             placeholder="Transaction ID"
-//             class_name="input"
-//             action={(e) => setMomoTransactionID(e.target.value)}
-//             content={momo_transaction_id}
-//           />
-//         </div>
-//       )}
-
-//       <Button
-//         name="Check Out"
-//         class_name="primary"
-//         action={submit}
-//         loading={loading}
-//       />
-//     </div>
-//   );
-// };
+        <div>
+          <button className="order_button" onClick={submit}>
+            Check Out
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};

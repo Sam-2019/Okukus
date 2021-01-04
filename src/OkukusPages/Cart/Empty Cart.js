@@ -1,14 +1,8 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-import { useAuthentication } from "../Auth/Context";
-import Button from "../Button/Button";
 
 const EmptyCart = () => {
-  const { Auth } = useAuthentication();
-  let history = useHistory();
   return (
     <div className="empty_cart">
-      <div className="page_title"> Cart</div>
       <div className="cart_stack">
         <svg
           viewBox="0 0 16 16"
@@ -26,22 +20,12 @@ const EmptyCart = () => {
       <div className=" empty_cart_message">
         <div>Your cart is empty!.</div>
 
-        {Auth ? null : (
-          <>
-            <div>Already have an account?</div>
+        <div>Already have an account?</div>
 
-            <div>Login to see items in your cart.</div>
-          </>
-        )}
+        <div>Login to see items in your cart.</div>
       </div>
 
-      <Button
-        name="Go Shopping"
-        class_name="primary"
-        action={() => {
-          history.push("/");
-        }}
-      />
+      <button className="cart_button m-2">Start Shopping</button>
     </div>
   );
 };

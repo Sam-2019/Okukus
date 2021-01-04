@@ -1,37 +1,131 @@
-.search_wrapper {
-  padding: 0.5em 0.5em 0em 0.5em;
-  margin: 1em 0;
-  font-size: 15px;
-}
-
-.title_item {
-  text-align: center;
-}
-
-.search_message {
-  padding: 10em 0;
-  font-weight: 500;
-}
-
-.products_wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  width: 51%;
-  display: inline-grid;
-  grid-template-columns: 50% 50% 50% 50%;
-  padding: 0 0.5em 0.5em 0.5em;
-}
-
-@media (max-width: 720px) {
-  .search_message {
-    padding: 10em 0;
+.order-background {
+    background-color: whitesmoke;
   }
-}
-
-@media (max-width: 540px) {
-  .products_wrapper {
+  
+  .order {
     width: 100%;
-    grid-template-columns: 50% 50%;
-    padding: 0 0.25em 0.5em 0.25em;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 1.5em;
   }
-}
+  
+  .order-container {
+    border-radius: 0px;
+    transition: all 0.6s ease-in-out;
+    padding: 2em 1.5em;
+    background-color: #ffffff;
+  }
+  
+  .order_form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  
+  }
+  
+  
+  .order_button {
+    margin: 15px 0 0 0;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    background-color: transparent;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+  }
+  
+  .order_button {
+    border: 1px solid #00d919;
+    background-color: #00d919;
+  }
+  
+  .order_button:active {
+    transform: scale(0.95);
+  }
+  
+  .order_button:focus {
+    outline: none;
+  }
+  
+  
+  .user_input {
+    background-color: #eee;
+    border: 1px solid transparent;
+    outline: none;
+    border-radius: 5px;
+    padding: 12px 15px;
+    margin: 5px 0;
+    width: 80%;
+  }
+  
+  .user_input:hover,
+  .user_input:focus {
+    border: 1px solid #00d919;
+    -webkit-transition: all ease-in-out 0.3s;
+    transition: all ease-in-out 0.3s;
+  }
+  
+  .user_input:focus {
+    border: 1px solid #00d919;
+    -webkit-transition: all ease-in-out 0.3s;
+    transition: all ease-in-out 0.3s;
+  }
+  
+  .user_input:active {
+    border: 1px solid #00d919;
+    -webkit-transition: all ease-in-out 0.3s;
+    transition: all ease-in-out 0.3s;
+  }
+  
+  
+  
+  
+  @media (min-width: 576px) {
+  }
+  
+  @media (min-width: 768px) {
+    .order {
+      width: 100%;
+      margin-right: auto;
+      margin-left: auto;
+    }
+  
+    .order-container {
+      border-radius: 0px;
+      transition: all 0.6s ease-in-out;
+      padding: 3em 3em;
+      background-color: #ffffff;
+    }
+  
+    .user_input {
+      background-color: #eee;
+      border: 1px solid transparent;
+      outline: none;
+      border-radius: 5px;
+      padding: 12px 15px;
+      margin: 5px 0;
+      width: 40%;
+    }
+  
+    .order_form {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+  
+  @media (min-width: 992px) {
+  }
+  
+  @media (min-width: 1200px) {
+  }
+  

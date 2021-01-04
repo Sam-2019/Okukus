@@ -1,16 +1,14 @@
 import React from "react";
-import Products from "../Product/Products";
+import All from "./all";
 import Carousel from "../Carousel/Carousel";
-import Welcome from "../Welcome/Welcome";
 import "./body.css";
 
 const Body = () => {
   return (
-    <>
-      <Welcome />
+    <div>
       <Carousel />
-      <Products />
-    </>
+      <All />
+    </div>
   );
 };
 

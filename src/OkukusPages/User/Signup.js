@@ -1,24 +1,18 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { useAuthentication } from "../Auth/Context";
-import Input from "../Input/Input";
-import Button from "../Button/Button";
-import Message from "../Message/Message";
+import React, { useContext, useState } from "react";
+import { NavLink } from "react-router-dom";
+import { auth } from "../Context/authContext";
 import "./user.css";
 
 function SignUp() {
-  const { registerUser, isLoggedIn } = useAuthentication();
+  const { registerUser, isLoggedIn } = useContext(auth);
 
-  const [loading, setLoading] = useState(false);
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password0, setPassword0] = useState("");
   const [password1, setPassword1] = useState("");
 
-  const [message, setMessage] = useState("");
-
-  let history = useHistory();
+  const [error, setError] = useState("");
 
   const clearSignup = () => {
     setFirstName("");
@@ -28,100 +22,90 @@ function SignUp() {
     setPassword1("");
   };
 
-  const signup = async (event) => {
-    setMessage();
+  const SignUp = async (event) => {
+    setError();
     event.preventDefault();
     var formData = new FormData();
 
-    let empty = firstname && lastname && email && password0 && password1;
+    formData.set("firstname", firstname);
+    formData.set("lastname", lastname);
+    formData.set("email", email);
+    formData.set("password0", password0);
+    formData.set("password1", password1);
 
-    if (empty !== "") {
-      setLoading(true);
-      formData.set("firstname", firstname);
-      formData.set("lastname", lastname);
-      formData.set("email", email);
-      formData.set("password0", password0);
-      formData.set("password1", password1);
-
-      const data = await registerUser(formData);
-      console.log(data);
-
-      if (data.error === true) {
-        setMessage(data.message);
-        setLoading(false);
-      } else if (data.error === false) {
-        localStorage.setItem("loginToken", data.buyer.token);
-        isLoggedIn();
-        clearSignup();
-        setLoading(false);
-      } else return;
-    } else if (empty === "") {
-      setMessage("Please fill the form");
-    } else return;
+    const data = await registerUser(formData);
+    if (data.error === true) {
+      setError(data.message);
+    } else {
+      localStorage.setItem("loginToken", data.buyer.token);
+      isLoggedIn();
+      clearSignup();
+    }
   };
 
   return (
-    <div className="user_wrapper">
-      <div className="page_title">Sign Up</div>
-
-      <form className="wrapper-test " onSubmit={signup}>
-        <Input
+    <div className="sign-up-container shadow ">
+      <form action="#" className="user_form">
+        <h2>Sign Up</h2>
+        {/* <div className="social-container" hidden>
+          <a href="#" className="social">
+            <i className="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" className="social">
+            <i className="fab fa-google-plus-g"></i>
+          </a>
+        </div> */}
+        <div className="user_text" hidden>
+          or use your email for registration
+        </div>
+        <input
           type="text"
           placeholder="First Name"
-          class_name="input"
-          action={(e) => setFirstName(e.target.value)}
-          content={firstname}
+          className="user_input"
+          onChange={(e) => setFirstName(e.target.value)}
+          value={firstname}
         />
-
-        <Input
+        <input
           type="text"
           placeholder="Last Name"
-          class_name="input"
-          action={(e) => setLastName(e.target.value)}
-          content={lastname}
+          className="user_input"
+          onChange={(e) => setLastName(e.target.value)}
+          value={lastname}
         />
-
-        <Input
+        <input
           type="email"
           placeholder="Email"
-          class_name="input"
-          action={(e) => setEmail(e.target.value)}
-          content={email}
+          className="user_input"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
         />
-
-        <Input
+        <input
           type="password"
           placeholder="Password"
-          class_name="input"
-          action={(e) => setPassword0(e.target.value)}
-          content={password0}
+          className="user_input"
+          onChange={(e) => setPassword0(e.target.value)}
+          value={password0}
         />
-
-        <Input
+        <input
           type="password"
           placeholder="Confirm Password"
-          class_name="input"
-          action={(e) => setPassword1(e.target.value)}
-          content={password1}
+          className="user_input"
+          onChange={(e) => setPassword1(e.target.value)}
+          value={password1}
         />
+        {error ? <div className="mt-3 mb-2 error"> {error}</div> : null}
 
-        {message ? <Message class_name="message" message={message} /> : null}
+        <div className="mt-3">
+          <NavLink to="/login" className="user_button up mr-3">
+            Sign In
+          </NavLink>
 
-        <div className="button_wrapper ">
-          <Button
-            class_name="primary"
-            // action={signup}
-            loading={loading}
-            name="Sign up"
-          />
-
-          <Button
-            class_name="secondary"
-            action={() => {
-              history.push("/login");
-            }}
-            name="Sign in"
-          />
+          {/* <button className="user_button up mr-3 " onClick={handler}>
+            Sign In
+          </button> */}
+          <button className="user_button in" onClick={SignUp}>
+            Sign Up
+          </button>
         </div>
       </form>
     </div>

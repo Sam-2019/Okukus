@@ -1,122 +1,105 @@
-import React, { useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { NavLink } from "react-router-dom";
+import { auth } from "../Context/authContext";
 import Spinner from "../Spinner/Spinner";
-import Button from "../Button/Button";
-import Message from "../Message/Message";
-import { okukus } from "../endpoints";
-import { useAsync } from "../helpers";
-import { useAuthentication } from "../Auth/Context";
 import "./product.css";
 
-const Product = () => {
-  const { Auth2, getItem, addCart, uniqueID } = useAuthentication();
+const Product = (props) => {
+  const { rootState, getItem } = useContext(auth);
+  const { isAuth } = rootState;
+  const [product, setProduct] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState();
-  const [loading, setLoading] = useState(false);
 
-  let { id } = useParams();
+  let id = props.match.params.id;
 
-  let history = useHistory();
-
-  var formData = new FormData();
-  formData.set("product_unique_id", id);
-
-  const resource = useAsync(getItem, formData);
-
-  let data = resource.value;
-
-  const add2cart = async (event) => {
-    setLoading(true);
-    setMessage('');
-    event.preventDefault();
+  useEffect(() => {
     var formData = new FormData();
-
-    formData.set(" buyer_unique_id", uniqueID);
     formData.set("product_unique_id", id);
 
-    const data = await addCart(formData);
+    const fetchData = async () => {
+      const data = await getItem(formData);
 
-    setMessage(data.message);
-    setLoading(false);
-  };
+      if (data) {
+        setLoading(false);
+        setProduct(data);
+      } else {
+        setLoading(false);
+        setMessage("No data");
+      }
 
-  return (
-    <div className="product_page">
-      {resource.loading ? (
-        <Spinner size="big" />
-      ) : resource.error ? (
-        <span className="text-danger">{resource.error}</span>
-      ) : (
-        <>
-          <div className="product_wrapper ">
-            <div className=" product_img_wrapper  ">
-              <img
-                src={`${okukus}/${data.cover_photo_url}`}
-                className="product_image"
-                alt=" slide"
-              />
-            </div>
+      setProduct(data);
+    };
 
-            <div className="product_detail_wrapper   ">
-              <div className="name_author_wrapper ">
-                <div className="_name ">{data.product_name}</div>
+    fetchData();
+  }, [id, getItem]);
 
-                <div className="_author">
-                  <small>by</small> {data.product_author}
-                </div>
-              </div>
+  console.log(product)
+  let view;
 
-              <div className="three_content_wrapper ">
-                <div className=" _review ">
-                  0 <small>Review(s)</small>
-                </div>
+  if (id === product.unique_id) {
+    view = (
+      <div className="row ">
+        <div className="col-5 col-md-5  ">
+          <div className="text-center ">
+            <img
+              src={`https://okukus.com/${product.cover_photo_url}`}
+              className=" product_image"
+              alt=" slide"
+            />
+          </div>
+        </div>
 
-                <div className=" _price  ">₵{data.unit_price}</div>
+        <div className="col-7 col-md ">
+          <div className="product_detail ">
+            <div className="product_name ">{product.product_name}</div>
+            <span className="d-block product_price">₵{product.unit_price}</span>
 
-                <div className="_stock  ">
-                  {data.stock} <small>copies</small>
-                </div>
-              </div>
+            <div className="product_review">
+              <span className="">
+                0 Review(s) /{" "}
+                {/* <a href="#" className="">
+                    Add Review
+                  </a> */}
+              </span>
 
-              {/* <a href="#" className="" hidden>
-          Add Review
-        </a> */}
+              <span className="d-block  mt-1">
+                Availability : {product.stock} left
+              </span>
+              <span className="d-block  mt-1">
+                Author : {product.product_author}
+              </span>
 
-              <div className=" _description">{data.product_description}</div>
+              <span className="d-block product_description mt-1 ">
+                {product.product_description}
+              </span>
 
-              {message ? (
-                <Message class_name="message" message={message} />
-              ) : null}
-
-              <div className="button_wrapper ">
-                {Auth2 ? (
-                  <Button
-                    class_name="primary"
-                    name="Buy book"
-                    action={() => {
-                      history.push(`/order/${id}`);
-                    }}
-                  />
-                ) : (
-                  <Button
-                    class_name="primary"
-                    name="Login"
-                    action={() => {
-                      history.push("/login");
-                    }}
-                  />
-                )}
-
-                <Button
-                  name="Add to cart"
-                  action={add2cart}
-                  class_name="secondary"
-                  loading={loading}
-                />
-              </div>
+              {isAuth ? (
+                <NavLink
+                  to={/order/ + id}
+                  className="product_link item buy_btn mt-2"
+                >
+                  Buy book
+                </NavLink>
+              ) : (
+                <NavLink to="/login" className="product_link item buy_btn mt-2">
+                  Buy book
+                </NavLink>
+              )}
             </div>
           </div>
-        </>
-      )}
+        </div>
+      </div>
+    );
+  } else {
+    view = <div className="text-center">{message}</div>;
+  }
+
+  return (
+    <div className="text-center">
+      <div className="product_page">
+        {loading ? <Spinner /> : <div> {view} </div>}
+      </div>
     </div>
   );
 };

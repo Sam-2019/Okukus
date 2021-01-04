@@ -1,6 +1,6 @@
 import React from "react";
 import Carousel from "react-bootstrap/Carousel";
-import { okukus } from "../endpoints";
+import { okukus } from "../apis";
 
 const Slider = () => {
   return (
@@ -34,6 +34,14 @@ const Slider = () => {
           className="d-block w-100"
           src={`${okukus}/img/slides/okuks3.jpg`}
           alt=" slide"
+        />
+      </Carousel.Item>
+
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={`${okukus}/img/slides/okuksslider.png`}
+          alt="Third slide"
         />
       </Carousel.Item>
     </Carousel>

@@ -1,104 +1,89 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { useAuthentication } from "../Auth/Context";
-import Button from "../Button/Button";
-import Input from "../Input/Input";
-import Message from "../Message/Message";
+import React, { useContext, useState } from "react";
+import { NavLink } from "react-router-dom";
+import { auth } from "../Context/authContext";
 import "./user.css";
 
 function Login() {
-  const { loginUser, isLoggedIn } = useAuthentication();
+  const { loginUser, isLoggedIn } = useContext(auth);
 
-  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
 
   const clearLogin = () => {
     setEmail("");
     setPassword("");
   };
 
-  let history = useHistory();
-
-  const logIn = async (event) => {
-    setMessage("");
+  const LogIn = async (event) => {
+    setError();
     event.preventDefault();
     var formData = new FormData();
 
-    let empty = email && password;
-    if (empty !== "") {
-      setLoading(true);
-      formData.set("email", email);
-      formData.set("password", password);
+    formData.set("email", email);
+    formData.set("password", password);
 
-      const data = await loginUser(formData);
+    const data = await loginUser(formData);
+    if (data.error === true) {
+      setError(data.message);
 
-      if (data.error === true) {
-        setMessage(data.message);
-        setLoading(false);
-      } else if (data.error === false && data.token) {
-        localStorage.setItem("loginToken", data.token);
-        await isLoggedIn();
-        clearLogin();
-        setLoading(false);
-      } else return;
-    } else if (empty === "") {
-      setMessage("Please fill the form");
-    } else return;
+    } else {
+      localStorage.setItem("loginToken", data.token);
+      isLoggedIn();
+      clearLogin();
+    }
+
   };
 
   return (
-    <div className=" user_wrapper ">
-      <div className="page_title">Sign In</div>
+    <div className="sign-in-container  shadow">
+      <form action="#" className="user_form ">
+        <h2>Sign In</h2>
+        {/* <div className="social-container" hidden>
+          <a href="#" className="social">
+            <i className="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" className="social">
+            <i className="fab fa-google-plus-g"></i>
+          </a>
+        </div> */}
+        <div className="user_text" hidden>
+          or use your account
+        </div>
 
-      <form className="wrapper-test " onSubmit={logIn}>
-        <Input
+        <input
           type="email"
           placeholder="Email"
-          class_name="input"
-          action={(e) => setEmail(e.target.value)}
-          content={email}
+          className="user_input"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          autoComplete="true"
         />
 
-        <Input
+        <input
           type="password"
           placeholder="Password"
-          class_name="input"
-          action={(e) => setPassword(e.target.value)}
-          content={password}
+          className="user_input"
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+          autoComplete="true"
         />
 
-        {message ? (
-          <Message class_name="message" message={message} />
-        ) : (
-          <div className="forgotten_password_wrapper ">
-            <span
-              className="forgotten_password  "
-              onClick={() => {
-                history.push("/account/reset");
-              }}
-            >
-              Password forgotten?
-            </span>
-          </div>
-        )}
+        {error ? <div className="mt-3 mb-2 error"> {error}</div> : null}
 
-        <div className="button_wrapper ">
-          <Button
-            class_name="primary"
-            // action={logIn}
-            loading={loading}
-            name="Sign in"
-          />
+        {/* <a href="#">Forgot your password?</a> */}
+        <div className="mt-3">
+          <NavLink to="/signup" className="user_button up mr-3">
+            Sign Up
+          </NavLink>
 
-          <Button
-            class_name="secondary"
-            action={() => {
-              history.push("/signup");
-            }}
-            name="Sign up"
-          />
+          {/* <button className="user_button up mr-3 " onClick={handler}>
+            Sign In
+          </button> */}
+
+          <button className="user_button in" onClick={LogIn}>
+            Sign In
+          </button>
         </div>
       </form>
     </div>

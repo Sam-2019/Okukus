@@ -1,32 +1,25 @@
 .footer {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+.logo {
+  padding:  0.5em 0 0 0;
+  max-width: 15%;
+}
+
+
+
+.item {
+  border: 1px solid #ff0000db;
+}
+
+.footer_bg {
   background-color: #474747b8;
-  color: #fff;
-}
-
-.footer_wrapper {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.copyright {
-  padding: 0 0.5em 0.5em 0.5em;
-  text-align: center;
-  font-size: 13px;
-}
-
-.company_overview,
-.mission,
-.visit,
-.reach {
-  padding: 0.5em 0.5em 0em 0.5em;
-  width: 25%;
-}
-
-.reach_wrapper {
-}
-
-.contact {
-  color: #fff;
 }
 
 p {
@@ -39,10 +32,11 @@ h5 {
 
 .facebook,
 .instagram,
-.whatsapp,
-.phone,
-.twitter {
+.whatsapp {
   margin: 0 0.1em 0 0.1em;
+  font-size: 1.5em;
+  padding: 10px 12px;
+  color: #212529;
   text-align: center;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -55,17 +49,22 @@ h5 {
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.facebook,
-.instagram,
-.whatsapp {
-  font-size: 1.5em;
-  padding: 10px 12px;
-}
-
 .phone,
 .twitter {
+  margin: 0 0.1em 0 0.1em;
   font-size: 1.4em;
   padding: 10px 10px;
+  color: #212529;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  color: #fff;
+  border-radius: 50%;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .whatsapp:hover,
@@ -106,27 +105,55 @@ h5 {
   color: white;
 }
 
-@media (max-width: 540px) {
-  .footer_wrapper {
-    flex-direction: column;
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+  .logo {
+    max-width: 4%;
+    padding:  0.5em 0 0 0
   }
 
-  .company_overview,
-  .mission,
-  .visit,
-  .reach {
-    width: 100%;
+  .facebook,
+  .instagram,
+  .whatsapp {
+    margin: 0 0.1em 0 0.1em;
+    font-size: 2.1em;
+    padding: 12px 15px;
+    color: #212529;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    color: #fff;
+    border-radius: 50%;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
 
-  p {
-    font-size: 15px;
+  .phone,
+  .twitter {
+    margin: 0 0.6em 0 0.06em;
+    font-size: 1.8em;
+    padding: 12px 12px;
+    color: #212529;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    color: #fff;
+    border-radius: 50%;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
+}
 
-  .reach_wrapper {
+@media (min-width: 992px) {
+}
 
-  }
-
-  .contact {
-    display: none;
-  }
+@media (min-width: 1200px) {
 }

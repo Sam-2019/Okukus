@@ -1,18 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
-import "./spinner.css";
+import './spinner.css'
 
-const Spinner = ({ size, small, color }) => {
+const Spinner = () => {
   return (
     <>
-      {/* <div className=" spinner_wrapper item">
+      <div className=" text-center my-5">
         <div className="spinner-border spinner" role="status">
-          <span className="sr-only">Loading...</span>
-        </div>
-      </div> */}
-
-      <div className={size}>
-        <div className={`spinner-border ${small} ${color}`} role="status">
           <span className="sr-only">Loading...</span>
         </div>
       </div>
@@ -21,9 +14,3 @@ const Spinner = ({ size, small, color }) => {
 };
 
 export default Spinner;
-
-Spinner.propTypes = {
-  size: PropTypes.string,
-  small: PropTypes.string,
-  color: PropTypes.string,
-};

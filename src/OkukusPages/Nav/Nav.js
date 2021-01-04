@@ -1,125 +1,81 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useContext, useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
-import Searchbox from "../Search/Searchbox";
-import AlertBox from "../DialogBox/AlertBox";
-import ProfileMenu from "../DialogBox/ProfileMenu";
-import Hamburger from "../Hamburger/Hamburger";
-import { useAuthentication } from "../Auth/Context";
-import { useAsync, useOnClickOutside } from "../helpers";
-import PropTypes from "prop-types";
+import { auth } from "../Context/authContext";
+import Hamburger from "./Hamburger";
 
 import "./nav.css";
 
-const NavHandler = () => {
-  const [dialog, setDialog] = useState(false);
-  const [alert, noAlert] = useState(false);
-  const hamburger = useRef(null);
-  const alertbox = useRef(null);
+const Navigation = () => {
+  const slide = useRef(null);
 
-  const hamburgerShow = () => {
-    setDialog(!dialog);
-    const slider = hamburger.current;
+  const hamburgerClick = () => {
+    const slider = slide.current;
     slider.classList.toggle("is-slideRight-open");
   };
 
-  const showAlert = () => {
-    noAlert(!alert);
-    const slide = alertbox.current;
-    slide.classList.toggle("is-slideBottom-open");
-  };
-
   return (
-    <header className="head">
-      <div className="">
-        <div ref={hamburger} className="slideRight">
-          <Hamburger hamburger={hamburgerShow} />
-        </div>
+    <>
+      <div className="d-none d-sm-block ">
+        <Desktop hamburger={hamburgerClick} />
       </div>
 
-      <div ref={alertbox} className="slideBottom">
-        <AlertBox alert={showAlert} />
+      <div className="d-none d-block d-sm-none   ">
+        <Mobile hamburger={hamburgerClick} />
       </div>
 
-      <Navigation hamburger={hamburgerShow} showAlert={showAlert} />
-
-      {dialog && <div className="backdrop"></div>}
-    </header>
+      <div ref={slide} className="slideRight ">
+        <Hamburger hamburger={hamburgerClick} />
+      </div>
+    </>
   );
 };
 
-const Navigation = ({ hamburger, showAlert }) => {
-  const ref = useRef();
-  const { Auth2, countCart, uniqueID, logoutUser } = useAuthentication();
-  const [menu, setMenu] = useState(false);
+export default Navigation;
 
-  useOnClickOutside(ref, () => setMenu(false));
-  // const [getCartCount, setGetCartCount] = useState(0);
+const Desktop = ({ hamburger }) => {
+  const { rootState, logoutUser } = useContext(auth);
 
-  let history = useHistory();
-
-  var formData = new FormData();
-  formData.set("buyer_unique_id", uniqueID);
-
-  const resource = useAsync(countCart, formData);
-
-  // setGetCartCount(resource.value.cart_count);
-
+  const { isAuth } = rootState;
   return (
-    <header>
-      <nav className="nav_header   ">
-        <div className=" one ">
-          <div className=" justify " onClick={hamburger}>
-            <svg
-              viewBox="0 0 16 16"
-              className="bi bi-justify navIcon "
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"
-              />
-            </svg>
-          </div>
-
-          <div className="  insider2 ">
-            <NavLink to="/" activeClassName=" home">
-              OKUKUS
-            </NavLink>
-          </div>
+    <div className=" d-flex justify-content-between  shadow  nav_bg p-2">
+      <div className="bd-highlight inline in-content ">
+        <div className="" onClick={hamburger}>
+          <svg
+            width="1em"
+            height="1em"
+            viewBox="0 0 16 16"
+            className="bi bi-justify "
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fillRule="evenodd"
+              d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"
+            />
+          </svg>
         </div>
+      </div>
 
-        <div className="two  ">
-          <div className="cartIcon  " onClick={() => history.push("/cart")}>
-            <svg
-              viewBox="0 0 16 16"
-              className="bi bi-cart3 navIcon"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
-              />
-            </svg>
+      <div className="bd-highlight inline in-content">
+        <div className="mr-2">
+          <NavLink to="/" className=" name">
+            OKUKUS
+          </NavLink>
+        </div>
+      </div>
 
-            <span className="cart3000 ">
-              {resource.loading ? (
-                <>0 </>
-              ) : resource.value === null ? (
-                <>0</>
-              ) : (
-                <>{resource.value.cart_count}</>
-              )}
-            </span>
-          </div>
+ 
 
-          {Auth2 ? (
-            <>
-              <div className=" profile " onClick={() => setMenu(!menu)}>
+      <div className="bd-highlight inline in-content">
+        {isAuth ? (
+          <>
+            <div className="mr-3">
+              <NavLink to="/profile" className="link">
                 <svg
+                  width="1em"
+                  height="1em"
                   viewBox="0 0 16 16"
-                  className="bi bi-person-circle navIcon"
+                  className="bi bi-person-circle"
                   fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -133,48 +89,198 @@ const Navigation = ({ hamburger, showAlert }) => {
                     d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"
                   />
                 </svg>
-              </div>
-
-              {menu ? (
-                <div ref={ref}>
-                  <ProfileMenu
-                    logout={logoutUser}
-                    showMenu={() => {
-                      setMenu(!menu);
-                    }}
-                  />
-                </div>
-              ) : null}
-            </>
-          ) : (
-            <div
-              className="profile"
-              onClick={() => {
-                history.push("/login");
-              }}
-            >
-              Login
+              </NavLink>
             </div>
-          )}
-        </div>
 
-        <div className="three ">
-          <NavLink to="/" activeClassName=" home">
-            OKUKUS
-          </NavLink>
-        </div>
+            <div className="mr-3">
+              <span className="link" onClick={logoutUser}>
+                Logout
+              </span>
+            </div>
+          </>
+        ) : (
+          <div className="mr-3">
+            <NavLink to="/login" className="link">
+              Login
+            </NavLink>
+          </div>
+        )}
 
-        <div className="four  ">
-          <Searchbox alert={showAlert} />
-        </div>
-      </nav>
-    </header>
+<div className="p-2 " >
+            <NavLink to="/cart" className="link">
+              <svg
+                width="1em"
+                height="1em"
+                viewBox="0 0 16 16"
+                className="bi bi-cart3 "
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
+                />
+              </svg>
+            </NavLink>
+          </div>
+
+        <SearchDesktop />
+      </div>
+    </div>
   );
 };
 
-export default NavHandler;
+const Mobile = ({ hamburger }) => {
+  const { rootState, logoutUser } = useContext(auth);
 
-Navigation.propTypes = {
-  showAlert: PropTypes.func,
-  hamburger: PropTypes.func,
+  const { isAuth } = rootState;
+  return (
+    <div className=" nav_bg p-1">
+      <div className="d-flex justify-content-between  ">
+        <div className="p-2 bd-highlight  ">
+          <div className=" " onClick={hamburger}>
+            <svg
+              width="1em"
+              height="1em"
+              viewBox="0 0 16 16"
+              className="bi bi-justify "
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"
+              />
+            </svg>{" "}
+          </div>
+        </div>
+
+        <div className="p-2bd-highlight inline in-content">
+          <div className="mr-1 p-2">
+            <NavLink to="/" className=" name">
+              OKUKUS
+            </NavLink>
+          </div>
+        </div>
+
+        <div className="p-2bd-highlight inline in-content">
+          {isAuth ? (
+            <>
+              <div className="mr-1 p-2">
+                <NavLink to="/profile" className="link">
+                  <svg
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 16 16"
+                    className="bi bi-person-circle"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
+                    <path
+                      fillRule="evenodd"
+                      d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+                    />
+                    <path
+                      fillRule="evenodd"
+                      d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"
+                    />
+                  </svg>
+                </NavLink>
+              </div>
+
+              <div className="mr-3">
+                <span className="link" onClick={logoutUser}>
+                  Logout
+                </span>
+              </div>
+            </>
+          ) : (
+            <div className="mr-1 p-2">
+              <NavLink to="/login" className="link">
+                Login
+              </NavLink>
+            </div>
+          )}
+
+          <div className="p-2 " >
+            <NavLink to="/cart" className="link">
+              <svg
+                width="1em"
+                height="1em"
+                viewBox="0 0 16 16"
+                className="bi bi-cart3 "
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
+                />
+              </svg>
+            </NavLink>
+          </div>
+
+        </div>
+      </div>
+
+      <SearchMobile />
+    </div>
+  );
+};
+
+const SearchDesktop = () => {
+  const [query, setQuery] = useState("");
+
+  let history = useHistory();
+
+  function Query() {
+    history.push(`/search/${query}`);
+  }
+
+  return (
+    <div className=" ">
+      <input
+        className="search-input"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+
+      <button className="search-button" onClick={Query}>
+        Search
+      </button>
+    </div>
+  );
+};
+
+const SearchMobile = () => {
+  const [query, setQuery] = useState("");
+
+  let history = useHistory();
+  function Query() {
+    if (query === "") {
+      alert("Please fill the search box");
+    } else {
+      history.push(`/search/${query}`);
+    }
+  }
+  return (
+    <div className="text-center pb-2 ">
+      <input
+        className="search-input mobile"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+
+      <button className="search-button" onClick={Query}>
+        Search
+      </button>
+    </div>
+  );
 };
