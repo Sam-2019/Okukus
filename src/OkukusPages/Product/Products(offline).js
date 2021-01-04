@@ -30,7 +30,7 @@ const Products = () => {
       ) : (
         <div className="products_wrapper ">{content}</div>
       )}
-      
+
       {message ? <div className="message_wrapper ">{message} </div> : null}
     </div>
   );

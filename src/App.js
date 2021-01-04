@@ -1,5 +1,5 @@
 import React from "react";
-import { ContextProvider } from "./OkukusPages/Context";
+import { ContextProvider } from "./OkukusPages/Context/context";
 import "bootstrap/dist/css/bootstrap.css";
 import Okukus from "./OkukusPages/Okukus";
 

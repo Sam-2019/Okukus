@@ -55,6 +55,7 @@ const Product = () => {
         console.log(error);
       });
   };
+  
   const [isFetching, setIsFetching] = useInfiniteScroll(moreData);
   useEffect(() => {
     loadData();

@@ -8,6 +8,8 @@ import useInfiniteScroll from "../useInfinite";
 import { itemsGet } from "../apis";
 import jsonplaceholder from "./jsonplaceholder";
 
+let url = "https://okukus.com/api_call_dev/get_books.php";
+
 const Products = () => {
   const [data, setData] = useState([]);
   const [data2, setData2] = useState([]);
@@ -15,22 +17,11 @@ const Products = () => {
   const [after, setAfter] = useState(0);
   const [isFetching, setIsFetching] = useInfiniteScroll(load);
 
-  const loadData = () => {
-    let url = "https://okukus.com/api_call_dev/get_books.php";
-    axios.get(url).then((res) => {
-      setData2(res.data);
-    });
-  };
-
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios(
-        "https://okukus.com/api_call_dev/get_books.php"
-      );
-
+      const result = await axios(url);
       setData2(result.data);
     };
-
     fetchData();
   }, []);
 
@@ -38,7 +29,6 @@ const Products = () => {
   const perPage = 10;
 
   const newData = data2.slice(after, after + perPage);
-
 
   function load() {
     const timer = setTimeout(() => {
