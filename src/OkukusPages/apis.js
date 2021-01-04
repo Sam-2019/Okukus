@@ -41,8 +41,4 @@ export const orderCreate = `${okukus}/${dev_site}/create_order.php`;
 export const orderHistory = `${okukus}/${dev_site}/get_order_history.php`;
 export const orderDetail = `${okukus}/${dev_site}/get_order_details.php`;
 
-export const wishCreate = `${okukus}/${dev_site}/create_wishlist_item.php`;
-export const wishList = `${okukus}/${dev_site}/get_wishlist_items.php`;
-export const wishDelete = `${okukus}/${dev_site}/delete_wishlist_item.php`;
-
 export const userWelcome = `${okukus}/${dev_site}/create_newsletter_subscription.php`;

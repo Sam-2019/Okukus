@@ -76,6 +76,7 @@ const Welcome = () => {
 
     const data = await welcomeUser(formData);
 
+
     if (data.error === true) {
       return;
     } else if (data.data.message) {
@@ -96,7 +97,7 @@ const Welcome = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       checkSession();
-    }, 95000);
+    }, 3000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -149,10 +150,7 @@ const Welcome = () => {
               ) : (
                 <>
                   <div>Welcome to OKUKUS.com</div>
-                  <div>
-                    Subscribe to our newsletter to get updates on our latest
-                    offers!
-                  </div>
+                  <div>Please give us your email wai</div>
 
                   <form onSubmit={submit}>
                     <input

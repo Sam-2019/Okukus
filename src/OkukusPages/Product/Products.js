@@ -27,7 +27,7 @@ const App = () => {
 
     axios({
       method: "post",
-      url: itemsGet,
+      url: "https://okukus.com/api_call_dev/get_books.php",
       data: formData,
       headers: { "Content-Type": "multipart/form-data" },
     }).then((response) => {
@@ -36,6 +36,8 @@ const App = () => {
         setOffset(offset + response.data.length);
         setLoading(false);
       }, 100);
+
+
     });
   }
 

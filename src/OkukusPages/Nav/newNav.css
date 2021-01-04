@@ -9,13 +9,13 @@
   align-items: center;
   flex-wrap: wrap;
   padding: 0.5em 2em;
+
   transition: all 0.6s ease-in-out;
 }
 
 .one {
   display: flex;
   order: 1;
-  align-items: center;
 }
 
 .home {
@@ -63,7 +63,7 @@
   padding: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-content: center;
 }
 
 .justify {

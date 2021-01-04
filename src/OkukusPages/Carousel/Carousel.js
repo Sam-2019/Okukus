@@ -1,40 +1,35 @@
 import React from "react";
 import Carousel from "react-bootstrap/Carousel";
-import { okukus } from "../apis";
+import okuks0 from "./okuks0.jpg";
+import okuks1 from "./okuks1.jpg";
+import okuks2 from "./okuks2.jpg";
+import okuks3 from "./okuks3.jpg";
+import okuks4 from "./okuks4.png";
+import "./carousel.css";
 
 const Slider = () => {
   return (
-    <Carousel indicators={false}     slide={true}>
+    <Carousel indicators={false}
+    slide={true}
+    >
       <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src={`${okukus}/img/slides/okuks0.jpg`}
-          alt=" slide"
-        />
+        <img className="d-block w-100  carousel" src={okuks0} alt=" slide" />
       </Carousel.Item>
 
       <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src={`${okukus}/img/slides/okuks1.jpg`}
-          alt=" slide"
-        />
+        <img className="d-block w-100 carousel" src={okuks1} alt=" slide" />
       </Carousel.Item>
 
       <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src={`${okukus}/img/slides/okuks2.jpg`}
-          alt=" slide"
-        />
+        <img className="d-block w-100 carousel" src={okuks2} alt=" slide" />
       </Carousel.Item>
 
       <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src={`${okukus}/img/slides/okuks3.jpg`}
-          alt=" slide"
-        />
+        <img className="d-block w-100 carousel" src={okuks3} alt=" slide" />
+      </Carousel.Item>
+
+      <Carousel.Item>
+        <img className="d-block w-100 carousel" src={okuks4} alt=" slide" />
       </Carousel.Item>
     </Carousel>
   );

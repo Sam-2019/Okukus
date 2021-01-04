@@ -36,7 +36,6 @@ const Product = () => {
 
   let data = resource.value;
 
-
   let content;
   content = (
     <div className="product_wrapper ">

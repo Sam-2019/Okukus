@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   Redirect,
-  useLocation,
 } from "react-router-dom";
 import { useAuthentication } from "./Auth/Context";
 import "./okukus.css";
@@ -22,7 +21,7 @@ import SignUp from "./User/Signup";
 import Profile from "./User/Profile";
 import TagContent from "./Tag/Content";
 import UserVerify from "./User/UserVerify";
-import NewPassword from "./User/NewPassword";
+import NewPassword from './User/NewPassword'
 
 import NotFound from "./404/404";
 
@@ -33,11 +32,9 @@ import Footer from "./Footer/Footer";
 
 const Okukus = () => {
   const { Auth } = useAuthentication();
-
   return (
     <Router>
       <Navigation />
-      <ScrollToTop />
       <div className="contain ">
         <Switch>
           <Route exact path="/">
@@ -124,13 +121,3 @@ const Okukus = () => {
 };
 
 export default Okukus;
-
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  return null;
-};

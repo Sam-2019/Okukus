@@ -1,17 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
-import Button from "../../Button/Button";
-import { useAuthentication } from "../../Auth/Context";
-import "./cart-items.css";
+import Button from "../Button/Button";
+import { useAuthentication } from "../Auth/Context";
+import "./item2.css";
 
-const Item = ({
-  unit_price,
-  product_name,
-  cover_photo_url,
-  quantity,
-  id,
-  product_unique_id,
-}) => {
-  const { deleteCart, updateCart, createWish, uniqueID } = useAuthentication();
+const Item = ({ unit_price, product_name, cover_photo_url, quantity, id }) => {
+  const { deleteCart, updateCart, uniqueID } = useAuthentication();
   const [qty, setQty] = useState(Number(quantity));
 
   const deleteItem = async (event) => {
@@ -19,15 +12,8 @@ const Item = ({
     var formData = new FormData();
     formData.set("buyer_unique_id", uniqueID);
     formData.set("item_unique_id", id);
-    await deleteCart(formData);
-  };
 
-  const saveItem = async (event) => {
-    event.preventDefault();
-    var formData = new FormData();
-    formData.set("buyer_unique_id", uniqueID);
-    formData.set("product_unique_id", product_unique_id);
-    await createWish(formData);
+    await deleteCart(formData);
   };
 
   const updateItem = useCallback(async () => {
@@ -35,8 +21,9 @@ const Item = ({
     formData.set("buyer_unique_id", uniqueID);
     formData.set("item_unique_id", id);
     formData.set("item_quantity", qty);
+
     await updateCart(formData);
-  }, [uniqueID, id, qty, updateCart]);
+  }, [uniqueID, id, qty, updateCart])
 
   useEffect(() => {
     updateItem();
@@ -108,17 +95,18 @@ const Item = ({
 
               <div className="cart_item_subtotal">{subtotal}</div>
             </div>
-
             {/* 
         <div className="cart_actions item ">
             <Button name="S" action={updateItem} class_name='save' />
         <Button name="D " action={deleteItem } class_name='delete' />
+
+
         </div> */}
           </div>
 
           <div className="left_button_wrapper">
             <Button name="Delete" class_name="delete" action={deleteItem} />
-            <Button name="Save" class_name="save" action={saveItem} />
+            <Button name="Save" class_name="save" />
           </div>
         </div>
       </div>

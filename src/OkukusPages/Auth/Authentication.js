@@ -13,9 +13,11 @@ import {
   userEmailUpdate,
   userAccountReset,
   userAccountVerify,
+
   userCreateEmailVerify,
   userReadEmailVerify,
   passwordReset,
+
   itemSearch,
   cartAdd,
   cartGet,
@@ -27,10 +29,8 @@ import {
   orderCreate,
   orderHistory,
   orderDetail,
-  wishCreate,
-  wishList,
-  wishDelete,
-  userWelcome,
+
+  userWelcome
 } from "../apis";
 import { axiosMethod } from "../helpers";
 
@@ -70,7 +70,7 @@ const Authentication = () => {
     setLastName();
     setEmail();
     setUniqueID();
-    setVerificationStatus();
+    setVerificationStatus()
   };
 
   const loginUser = async (formData) => {
@@ -144,10 +144,7 @@ const Authentication = () => {
   };
 
   const verifyCreateEmail = async (formData) => {
-    const createEmailVerify = await axiosMethod(
-      userCreateEmailVerify,
-      formData
-    );
+    const createEmailVerify = await axiosMethod(userCreateEmailVerify, formData);
     return createEmailVerify;
   };
 
@@ -179,7 +176,7 @@ const Authentication = () => {
   const countCart = async (formData) => {
     const countcart = await axiosMethod(cartCount, formData);
 
-    return countcart;
+    return(countcart);
   };
 
   const deleteCart = async (formData) => {
@@ -187,12 +184,16 @@ const Authentication = () => {
     return deletecart;
   };
 
+  
+
+
   const updateCart = async (formData) => {
     const updatecart = await axiosMethod(cartUpdate, formData);
     return updatecart;
   };
 
-  const checkoutCart = async (formData) => {
+
+    const checkoutCart = async (formData) => {
     const checkoutcart = await axiosMethod(cartCheckout, formData);
     return checkoutcart.data;
   };
@@ -215,21 +216,6 @@ const Authentication = () => {
   const detailOrder = async (formData) => {
     const detailorder = await axiosMethod(orderDetail, formData);
     return detailorder;
-  };
-
-  const createWish = async (formData) => {
-    const createwish = await axiosMethod(wishCreate, formData);
-    return createwish;
-  };
-
-  const listWish = async (formData) => {
-    const wishlist = await axiosMethod(wishList, formData);
-    return wishlist;
-  };
-
-  const deleteWish = async (formData) => {
-    const deletewish = await axiosMethod(wishDelete, formData);
-    return deletewish;
   };
 
   const welcomeUser = async (formData) => {
@@ -292,11 +278,7 @@ const Authentication = () => {
     uniqueID,
     verfifcationStatus,
 
-    createWish,
-    listWish,
-    deleteWish,
-
-    welcomeUser,
+    welcomeUser
   };
 };
 

@@ -1,13 +1,7 @@
 import React from "react";
 import "./sidebar.css";
 
-const Sidebar = ({
-  okukus_account,
-  order_history,
-  wish_list,
-  active,
-  change_password,
-}) => {
+const Sidebar = ({ okukus_account, order_history, active, change_password }) => {
   return (
     <div className="sidebar_wrapper">
       <div className="sidelist">
@@ -30,18 +24,6 @@ const Sidebar = ({
           Order History
         </button>
       </div>
-
-      <div className="sidelist">
-        <button
-          onClick={wish_list}
-          className={
-            active === "wishlist" ? "sidebarbtn sidebarbtn-view" : "sidebarbtn"
-          }
-        >
-          Wish List
-        </button>
-      </div>
-
       <div className="sidelist">
         <button
           onClick={change_password}
@@ -49,7 +31,7 @@ const Sidebar = ({
             active === "password" ? "sidebarbtn sidebarbtn-view" : "sidebarbtn"
           }
         >
-          Change Password
+         Change Password
         </button>
       </div>
     </div>
