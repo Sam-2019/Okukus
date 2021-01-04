@@ -35,7 +35,7 @@ const Okukus = () => {
     <Router>
       <Navigation />
       <ScrollToTop />
-      <div className="contain item">
+      <div className="contain ">
         <Content />
       </div>
       <Footer />
