@@ -37,7 +37,7 @@ const Welcome = () => {
     let sessionKey = sessionStorage.getItem("key");
 
     if (sessionKey) {
-      return;
+      setWelcome(false);
     } else setWelcome(true);
   };
 
@@ -84,7 +84,7 @@ const Welcome = () => {
                     offers!
                   </div>
 
-                  <form onSubmit={submit} >
+                  <form onSubmit={submit}>
                     <input
                       className="welcome_input"
                       type="email"

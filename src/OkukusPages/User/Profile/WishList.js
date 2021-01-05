@@ -5,7 +5,6 @@ import { useAsync } from "../../helpers";
 import Item from "../../Container/View/WishItems";
 import Spinner from "../../Spinner/Spinner";
 import Button from "../../Button/Button";
-import product from "./products";
 import "./history.css";
 import "./wishlist.css";
 
