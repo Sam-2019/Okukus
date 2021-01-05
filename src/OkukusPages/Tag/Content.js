@@ -17,7 +17,6 @@ const Content = () => {
   const resource = useAsync(getTag, formData);
 
   let content = resource.value.map((items, i) => <View key={i} {...items} />);
-  console.log(content)
 
   return (
     <>

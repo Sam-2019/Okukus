@@ -4,7 +4,7 @@ import { okukus } from "../endpoints";
 
 const Slider = () => {
   return (
-    <Carousel indicators={false}     slide={true}>
+    <Carousel indicators={false} slide={true}>
       <Carousel.Item>
         <img
           className="d-block w-100"

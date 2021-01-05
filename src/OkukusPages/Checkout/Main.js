@@ -30,6 +30,8 @@ const Main = ({ main_state }) => {
   const [momo_number, setMomoNumber] = useState("");
   const [momo_transaction_id, setMomoTransactionID] = useState("");
 
+  const [promo_code, setPromoCode] = useState("");
+
   // const cash = active === "Cash";
   // const momo = active === "Momo";
 
@@ -127,7 +129,7 @@ const Main = ({ main_state }) => {
         //   clear();
         //   confirm();
         // } else return;
-      } else setMessage("Please all fields");
+      } else setMessage("Please fill all fields");
     } else if (active === "Momo") {
       setMessage();
       let empty =
@@ -162,7 +164,7 @@ const Main = ({ main_state }) => {
           main_state(false);
         } else return;
       } else {
-        setMessage("Please all fields");
+        setMessage("Please fill all fields");
       }
     } else {
       setMessage("Please fill all fields");
@@ -211,7 +213,7 @@ const Main = ({ main_state }) => {
 
           <div className="section payment">
             <div className="payment_method  ">
-              <div className="payment_select  ">
+              <div className="payment_select ">
                 <div
                   onClick={cashActivate}
                   className={
@@ -223,7 +225,7 @@ const Main = ({ main_state }) => {
                   Cash
                 </div>
               </div>
-              <div className="payment_select">
+              <div className="payment_select ">
                 <div
                   onClick={momoActivate}
                   className={
@@ -304,6 +306,18 @@ const Main = ({ main_state }) => {
                   )}  */}{" "}
                   {tValue}
                 </div>
+              </div>
+
+              <div className="promo_code_wrapper  ">
+                {/* <div className="promo_code">Promo Code</div> */}
+                <Input
+                  type="text"
+                  placeholder="Promo code"
+                  class_name="promo_code_input"
+                  action={(e) => setPromoCode(e.target.value)}
+                  content={promo_code}
+                  required
+                />
               </div>
 
               {message ? (

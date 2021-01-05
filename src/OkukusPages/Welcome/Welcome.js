@@ -84,7 +84,7 @@ const Welcome = () => {
                     offers!
                   </div>
 
-                  <form onSubmit={submit} className>
+                  <form onSubmit={submit} >
                     <input
                       className="welcome_input"
                       type="email"

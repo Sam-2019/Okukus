@@ -5,6 +5,7 @@ import { okukus } from "../../endpoints";
 import "./view.css";
 
 const View = ({ cover_photo_url, product_name, unit_price, unique_id }) => {
+
   return (
     <NavLink to={`/product/${unique_id}`} className="view_wrapper">
       <div className="item_wrapper ">
@@ -36,6 +37,6 @@ export default View;
 View.propTypes = {
   cover_photo_url: PropTypes.string,
   product_name: PropTypes.string,
-  unit_price: PropTypes.number,
-  unique_id: PropTypes.number,
+  unit_price: PropTypes.string,
+  unique_id: PropTypes.string,
 };

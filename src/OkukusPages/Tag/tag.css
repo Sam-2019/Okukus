@@ -2,6 +2,18 @@
   margin: 0em 0em;
 }
 
+.selected {
+  background-color: #00d919;
+  color: #ffffff;
+}
+
+.selected:active,
+.selected:focus {
+  background-color: #00d919;
+  color: #ffffff;
+  outline: none;
+}
+
 .selector {
   font-size: 15px;
   font-weight: 500;
@@ -13,11 +25,11 @@
   width: 100%;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  display: block;
 }
 
 .selector:hover {
   background-color: #00d919;
-
   color: #ffffff;
   outline: none;
 }
