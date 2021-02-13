@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -12,35 +12,32 @@ import { useAuthentication } from "./Auth/Context";
 import "./okukus.css";
 
 import Navigation from "./Nav/Nav";
+import Body from "./Body/Body";
+import Search from "./Search/Content";
+import Product from "./Product/Product";
+import OrderItem from "./Order/Order";
+import Confirm from "./Confirmation/Confirm";
+import Cart from "./Cart/Cart";
+import Checkout from "./Checkout/Checkout";
+import Login from "./User/Login";
+import SignUp from "./User/Signup";
+import Profile from "./User/Profile";
+import TagContent from "./Tag/Content";
+import UserVerify from "./User/UserVerify";
+import NewPassword from "./User/NewPassword";
+import NotFound from "./404/404";
+import ResetPassword from "./User/AccountReset";
+import AccountVerify from "./User/AccountVerify";
 import Footer from "./Footer/Footer";
-
-const Body = lazy(() => import("./Body/Body"));
-const Search = lazy(() => import("./Search/Content"));
-const Product = lazy(() => import("./Product/Product"));
-const OrderItem = lazy(() => import("./Order/Order"));
-const Confirm = lazy(() => import("./Confirmation/Confirm"));
-const Cart = lazy(() => import("./Cart/Cart"));
-const Checkout = lazy(() => import("./Checkout/Checkout"));
-const Login = lazy(() => import("./User/Login"));
-const SignUp = lazy(() => import("./User/Signup"));
-const Profile = lazy(() => import("./User/Profile"));
-const TagContent = lazy(() => import("./Tag/Content"));
-const UserVerify = lazy(() => import("./User/UserVerify"));
-const NewPassword = lazy(() => import("./User/NewPassword"));
-const NotFound = lazy(() => import("./404/404"));
-const ResetPassword = lazy(() => import("./User/AccountReset"));
-const AccountVerify = lazy(() => import("./User/AccountVerify"));
 
 const Okukus = () => {
   return (
     <Router>
       <Navigation />
       <ScrollToTop />
-      <Suspense fallback={<div>Loading...</div>}>
-        <div className="contain ">
-          <Content />
-        </div>
-      </Suspense>
+      <div className="contain ">
+        <Content />
+      </div>
       <Footer />
     </Router>
   );
