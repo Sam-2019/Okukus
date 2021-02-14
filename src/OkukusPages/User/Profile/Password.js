@@ -36,7 +36,6 @@ const Password = () => {
 
       const data = await updateUserPassword(formData);
 
-
       if (data.error === true) {
         reset();
         setMessage(data.message);

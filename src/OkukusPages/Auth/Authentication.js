@@ -130,6 +130,7 @@ const Authentication = () => {
       } else {
         return (
           // setAuth((state) => state(true)),
+          setAuth(prevAuth => !prevAuth),
           setAuth(true),
           setFirstName(data.buyer.firstname),
           setLastName(data.buyer.lastname),

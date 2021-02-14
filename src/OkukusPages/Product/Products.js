@@ -18,7 +18,7 @@ const App = () => {
       const result = await axios(itemsGet);
       setLoading(false);
       setData(result.data);
-      setOffset(offset + result.data.length);
+      setOffset((offset) => offset + result.data.length);
     };
     fetchData();
   }, []);
@@ -35,7 +35,7 @@ const App = () => {
     }).then((response) => {
       setTimeout(() => {
         setData((prevState) => [...prevState, ...response.data]);
-        setOffset(offset + response.data.length);
+        setOffset((offset) => offset + response.data.length);
         setLoading(false);
       }, 100);
     });
