@@ -11,7 +11,7 @@ We sell physical copies of all books via the web.
     <li>
       <a href="#about-the-project">Front-end Tech</a>
       <ul>
-        <li><a href="#built-with">React</a></li>
+        <li><a href="https://reactjs.org">React</a></li>
         <li><a href="https://reactrouter.com">React Router</a></li>
          <li><a href="https://react-query.tanstack.com">React Query</a><li>        
         <li><a href="https://icons.getbootstrap.com">Bootstrap Icons</a><li>    
