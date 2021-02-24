@@ -21,7 +21,7 @@ We sell physical copies of all books via the web.
     <li>
       <a href="#getting-started">Back-end Tech</a>
       <ul>
-      <li><a href="php.net">Prop-Types</a></li>
+      <li><a href="php.net">pHp</a></li>
       </ul>
     </li>
    
