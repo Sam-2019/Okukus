@@ -124,8 +124,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  -webkit-transition: margin 2.2s;
-  transition: margin 2.5s;
+  -webkit-transition: margin 0.9s;
+  transition: margin 0.9s;
   margin: 0 0 0 -130vh;
   position: fixed;
   overflow: scroll;
@@ -134,7 +134,7 @@
 
 .slideRight.is-slideRight-open {
   margin-left: 0;
-  transition: all ease 1.2s;
+  transition: all ease 0.3s;
 }
 
 .slideRight::-webkit-scrollbar {
@@ -232,12 +232,12 @@
   }
 
   .slideRight {
-    transition: margin 2.5s;
+    transition: margin 0.9s;
   }
 
   .slideRight.is-slideRight-open {
     margin-left: 0;
-    transition: all ease 1.5s;
+    transition: all ease 0.3s;
   }
 
   .backdrop {
