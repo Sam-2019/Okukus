@@ -1,4 +1,4 @@
-[Okukus Preview](https://okukus.netlify.app)
+<!-- [Okukus Preview](https://okukus.netlify.app) -->
 
 # Okukus.com
 
@@ -18,6 +18,7 @@ This project uses the following technologies
 - [React Query](https://react-query.tanstack.com) for data fecting and cache
 - [Bootstrap Icons](https://icons.getbootstrap.com) for icons
 - [PropType](https://www.npmjs.com/package/prop-types) for type-checking
+- [PHP](https://php.net) for back-end
 
  <!-- <details open="open">
   <ol>
@@ -50,7 +51,7 @@ Please follow the instructions below to set up this project locally.
 <!--To get a local copy up and running, please follow these simple example steps.-->
 
 <!-- LICENSE -->
-
+<!--
 ### Clone Repo
 
 Clone the Okukus Git repo:
@@ -63,7 +64,7 @@ Via GitHub CLI
 
 ```
 gh repo clone Sam-2019/Okukus
-```
+``` -->
 
 ### Installation
 
@@ -73,35 +74,17 @@ gh repo clone Sam-2019/Okukus
 git clone https://github.com/Sam-2019/Okukus.git
 ```
 
-Via GitHub CLI
+via GitHub CLI
 
 ```
 gh repo clone Sam-2019/Okukus
 ```
 
 2. Install NPM packages
-   ```sh
-   npm install
-   ```
-
-<!-- ### npm
-
-Currently, we are using `npm`, so make sure you have latest npm version installed before running Okukus:
 
 ```
-  npm install npm@latest -g
-``` -->
-
-<!-- ### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-
-- npm
-
-  ```sh
-  npm install npm@latest -g
-  npm install -g npm
-  ``` -->
+npm install
+```
 
 ## Collaborators and Contributors
 
@@ -110,9 +93,14 @@ This is an example of how to list things you need to use the software and how to
 - Samuel Martey ([Sam-2019](https://github.com/Sam-2019))
 - Senyo Motey ([senyo-motey](https://github.com/senyo-motey))
 
-<!-- ### Contributors
+### Contributors
 
--   Senyo Motey ([senyo-motey](https://github.com/senyo-motey)) -->
+- Dan Tackie ([Niitackie17](https://github.com/Niitackie17))
+
+### Code Reviewer
+
+- Apetsi Ampiah ([Apetsi Ampiah](https://github.com/aapetsi))
+
 
 ## License
 
