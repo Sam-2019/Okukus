@@ -18,6 +18,7 @@ This project uses the following technologies
 - [React Query](https://react-query.tanstack.com) for data fecting and cache
 - [Bootstrap Icons](https://icons.getbootstrap.com) for icons
 - [PropType](https://www.npmjs.com/package/prop-types) for type-checking
+- [PHP](https://php.net) for back-end
 
  <!-- <details open="open">
   <ol>
