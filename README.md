@@ -50,7 +50,7 @@ Please follow the instructions below to set up this project locally.
 <!--To get a local copy up and running, please follow these simple example steps.-->
 
 <!-- LICENSE -->
-<!-- 
+<!--
 ### Clone Repo
 
 Clone the Okukus Git repo:
@@ -80,10 +80,10 @@ gh repo clone Sam-2019/Okukus
 ```
 
 2. Install NPM packages
-```sh
-   npm install
-```
 
+```npm install
+
+```
 
 ## Collaborators and Contributors
 
@@ -92,10 +92,10 @@ gh repo clone Sam-2019/Okukus
 - Samuel Martey ([Sam-2019](https://github.com/Sam-2019))
 - Senyo Motey ([senyo-motey](https://github.com/senyo-motey))
 
- ### Contributors
+### Contributors
 
-- Dan Tackie ([Niitackie17](https://github.com/Niitackie17)) 
-- Apetsi Ampiah ([Apetsi Ampiah](https://github.com/aapetsi)) 
+- Dan Tackie ([Niitackie17](https://github.com/Niitackie17))
+- Apetsi Ampiah ([Apetsi Ampiah](https://github.com/aapetsi))
 
 ## License
 
