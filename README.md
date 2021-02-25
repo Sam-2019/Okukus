@@ -81,7 +81,8 @@ gh repo clone Sam-2019/Okukus
 
 2. Install NPM packages
 
-```npm install
+```
+npm install
 
 ```
 
