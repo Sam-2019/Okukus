@@ -84,7 +84,6 @@ gh repo clone Sam-2019/Okukus
 
 ```
 npm install
-
 ```
 
 ## Collaborators and Contributors
