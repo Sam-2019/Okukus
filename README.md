@@ -50,7 +50,7 @@ Please follow the instructions below to set up this project locally.
 <!--To get a local copy up and running, please follow these simple example steps.-->
 
 <!-- LICENSE -->
-
+<!-- 
 ### Clone Repo
 
 Clone the Okukus Git repo:
@@ -63,7 +63,7 @@ Via GitHub CLI
 
 ```
 gh repo clone Sam-2019/Okukus
-```
+``` -->
 
 ### Installation
 
@@ -73,7 +73,7 @@ gh repo clone Sam-2019/Okukus
 git clone https://github.com/Sam-2019/Okukus.git
 ```
 
-Via GitHub CLI
+via GitHub CLI
 
 ```
 gh repo clone Sam-2019/Okukus
