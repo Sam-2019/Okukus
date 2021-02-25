@@ -1,4 +1,4 @@
-[Okukus Preview](https://okukus.netlify.app)
+<!-- [Okukus Preview](https://okukus.netlify.app) -->
 
 # Okukus.com
 
