@@ -84,24 +84,6 @@ gh repo clone Sam-2019/Okukus
    npm install
    ```
 
-<!-- ### npm
-
-Currently, we are using `npm`, so make sure you have latest npm version installed before running Okukus:
-
-```
-  npm install npm@latest -g
-``` -->
-
-<!-- ### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-
-- npm
-
-  ```sh
-  npm install npm@latest -g
-  npm install -g npm
-  ``` -->
 
 ## Collaborators and Contributors
 
@@ -110,9 +92,10 @@ This is an example of how to list things you need to use the software and how to
 - Samuel Martey ([Sam-2019](https://github.com/Sam-2019))
 - Senyo Motey ([senyo-motey](https://github.com/senyo-motey))
 
-<!-- ### Contributors
+ ### Contributors
 
--   Senyo Motey ([senyo-motey](https://github.com/senyo-motey)) -->
+- Dan Tackie ([Niitackie17](https://github.com/Niitackie17)) 
+- Apetsi Ampiah ([Apetsi Ampiah](https://github.com/aapetsi)) 
 
 ## License
 
