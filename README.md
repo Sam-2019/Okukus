@@ -2,11 +2,23 @@
 
 # Okukus.com
 
-We sell physical copies of all books via the web.
+An online bookstore
+
+<!-- We sell physical copies of all books via the web. -->
+[Go to Demo](https://okukus.netlify.app) and create your own account or use `username: qaz@1.com` and `password: 123`
 
 ### Built With
 
-<details open="open">
+This project uses the following technologies
+
+- [Create React App](https://github.com/facebook/create-react-app) for bootstrapping client
+- [React.js](https://reactjs.org) for client
+- [React Router](https://reacttraining.com/react-router/) for routing
+- [React Query](https://react-query.tanstack.com) for data fecting and cache
+- [Bootstrap Icons](https://icons.getbootstrap.com) for icons
+- [PropType](https://www.npmjs.com/package/prop-types) for type-checking
+
+ <!-- <details open="open">
   <ol>
     <li>
       <a href="#about-the-project">Front-end Tech</a>
@@ -21,27 +33,29 @@ We sell physical copies of all books via the web.
     <li>
       <a href="#getting-started">Back-end Tech</a>
       <ul>
-      <li><a href="php.net">pHp</a></li>
+      <li><a href="php.net">PHP</a></li>
       </ul>
     </li>
    
   </ol>
-</details>
+</details> -->
 
 <!-- GETTING STARTED -->
 
 ## Getting Started
 
-<!--Please follow the instructions below to set up this project locally. -->
+Please follow the instructions below to set up this project locally.
 
-To get a local copy up and running, please follow these simple example steps.
+<!--To get a local copy up and running, please follow these simple example steps.-->
 
 <!-- LICENSE -->
 
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
+
+- npm
+
   ```sh
   npm install npm@latest -g
   ```
@@ -61,7 +75,6 @@ This is an example of how to list things you need to use the software and how to
    ```JS
    const API_KEY = 'ENTER YOUR API';
    ```
-
 
 ## License
 
