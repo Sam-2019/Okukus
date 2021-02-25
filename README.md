@@ -99,6 +99,7 @@ npm install
 - Dan Tackie ([Niitackie17](https://github.com/Niitackie17))
 - Apetsi Ampiah ([Apetsi Ampiah](https://github.com/aapetsi))
 
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
