@@ -97,6 +97,9 @@ npm install
 ### Contributors
 
 - Dan Tackie ([Niitackie17](https://github.com/Niitackie17))
+
+### Code Reviewer
+
 - Apetsi Ampiah ([Apetsi Ampiah](https://github.com/aapetsi))
 
 
