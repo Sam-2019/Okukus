@@ -80,9 +80,9 @@ gh repo clone Sam-2019/Okukus
 ```
 
 2. Install NPM packages
-   ```sh
+```sh
    npm install
-   ```
+```
 
 
 ## Collaborators and Contributors
