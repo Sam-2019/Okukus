@@ -69,7 +69,7 @@ const Main = ({ main_state }) => {
   var formData = new FormData();
   formData.set("buyer_unique_id", uniqueID);
   const cartSummary = useAsync(summaryCart, formData);
-  console.log(cartSummary);
+
 
   const load = useCallback(() => {
     if (cartSummary.loading === true) {
@@ -152,7 +152,6 @@ const Main = ({ main_state }) => {
         formData.set("momo_transaction_id", momo_transaction_id);
 
         const data = await checkoutCart(formData);
-        console.log(data);
 
         if (data.error === true) {
           setMessage(data.message);
