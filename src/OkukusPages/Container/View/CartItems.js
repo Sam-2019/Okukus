@@ -90,7 +90,7 @@ const Item = ({
       formData.set("item_quantity", qty);
 
       const data = await updateCart(formData);
-      console.log(data);
+ 
 
       if (data.error === true) {
         setLoading3(false);
