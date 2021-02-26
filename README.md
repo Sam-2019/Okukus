@@ -105,3 +105,6 @@ npm install
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
+
+## Deployment
+[![Netlify Status](https://api.netlify.com/api/v1/badges/64ef730f-344c-4972-ad29-a979c8f64af1/deploy-status)](https://app.netlify.com/sites/okukus/deploys)
