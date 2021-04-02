@@ -32,7 +32,7 @@ const Product = () => {
 
     formData.set(" buyer_unique_id", uniqueID);
     formData.set("product_unique_id", id);
-
+    var dataFile2 = formData.get("buyer_unique_id");
     const data = await addCart(formData);
 
     setMessage(data.message);
