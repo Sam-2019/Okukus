@@ -136,6 +136,7 @@ const Authentication = () => {
           setLastName(data.buyer.lastname),
           setEmail(data.buyer.email),
           setUniqueID(data.buyer.unique_id),
+
           setVerificationStatus(data.buyer.verification_status),
           //Auth2
           setAuth2("User Validated")
